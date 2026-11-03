@@ -1,0 +1,319 @@
+{
+  "records": [
+    {
+      "id": "Q10-01",
+      "query": "rule.id:(503 OR 504 OR 506)",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 27,
+      "parser_error": false,
+      "utc": "2026-11-03T12:07:29.073Z"
+    },
+    {
+      "id": "Q10-02",
+      "query": "agent.name:\"fw\" AND rule.id:(503 OR 504 OR 506)",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 4,
+      "parser_error": false,
+      "utc": "2026-11-03T12:07:32.608Z"
+    },
+    {
+      "id": "Q10-03",
+      "query": "rule.id:(651 OR 652) OR rule.groups:active_response",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 2,
+      "parser_error": false,
+      "utc": "2026-11-03T12:07:35.952Z"
+    },
+    {
+      "id": "Q10-04",
+      "query": "rule.id:(651 OR 652) AND\ndata.parameters.alert.data.srcip:\"192.168.0.108\"",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 2,
+      "parser_error": false,
+      "utc": "2026-11-03T12:07:39.639Z"
+    },
+    {
+      "id": "Q10-05",
+      "query": "id:\"1793619097.12602015\"",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 1,
+      "parser_error": false,
+      "utc": "2026-11-03T12:07:42.913Z"
+    },
+    {
+      "id": "Q10-06",
+      "query": "rule.id:5763 AND agent.name:\"bastion\" AND\ndata.srcip:\"192.168.0.108\"",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 1,
+      "parser_error": false,
+      "utc": "2026-11-03T12:07:46.556Z"
+    },
+    {
+      "id": "Q11-01",
+      "query": "rule.groups:suricata",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:07:49.844Z"
+    },
+    {
+      "id": "Q11-02",
+      "query": "rule.groups:suricata AND\nNOT data.alert.category:\"Not Suspicious Traffic\"",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:08:18.402Z"
+    },
+    {
+      "id": "Q11-03",
+      "query": "rule.groups:suricata AND\nNOT data.alert.category:*",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:08:21.680Z"
+    },
+    {
+      "id": "Q11-04",
+      "query": "rule.groups:suricata AND\ndata.alert.action:blocked",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:08:25.041Z"
+    },
+    {
+      "id": "Q11-05",
+      "query": "data.src_ip:\"192.168.0.108\" OR\ndata.srcip:\"192.168.0.108\"",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 69,
+      "parser_error": false,
+      "utc": "2026-11-03T12:08:29.164Z"
+    },
+    {
+      "id": "Q11-06",
+      "query": "rule.mitre.tactic:(\"Privilege Escalation\" OR\n\"Credential Access\" OR \"Persistence\" OR\n\"Defense Evasion\") AND rule.level >= 8",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 126,
+      "parser_error": false,
+      "utc": "2026-11-03T12:08:32.796Z"
+    },
+    {
+      "id": "Q11-07",
+      "query": "rule.mitre.id:\"T1562.001\"",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 13,
+      "parser_error": false,
+      "utc": "2026-11-03T12:08:36.207Z"
+    },
+    {
+      "id": "Q11-08",
+      "query": "rule.level >= 8 AND NOT rule.mitre.id:*",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 7,
+      "parser_error": false,
+      "utc": "2026-11-03T12:08:39.608Z"
+    },
+    {
+      "id": "Q11-09",
+      "query": "rule.level >= 12 AND NOT\nrule.groups:(sca OR vulnerability-detector OR rootcheck)",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 438,
+      "parser_error": false,
+      "utc": "2026-11-03T12:08:43.266Z"
+    },
+    {
+      "id": "Q12-01",
+      "query": "synthetic.flag:true",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:10:20.797Z"
+    },
+    {
+      "id": "Q12-02",
+      "query": "synthetic.flag:true AND\n(data.srcip:\"185.220.158.180\" OR\n data.src_ip:\"185.220.158.180\")",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:10:24.622Z"
+    },
+    {
+      "id": "Q12-03",
+      "query": "synthetic.flag:true AND\n(data.srcip:\"185.220.158.180\" OR\n data.src_ip:\"185.220.158.180\") AND rule.level >= 5",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:10:27.916Z"
+    },
+    {
+      "id": "Q12-04",
+      "query": "synthetic.flag:true AND\n(data.srcip:\"185.220.158.180\" OR\n data.src_ip:\"185.220.158.180\") AND rule.groups:firewall_drop",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:10:31.577Z"
+    },
+    {
+      "id": "Q12-05",
+      "query": "synthetic.flag:true AND\n(data.srcip:\"185.220.158.180\" OR\n data.src_ip:\"185.220.158.180\") AND data.alert.action:allowed",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:10:35.065Z"
+    },
+    {
+      "id": "Q12-06",
+      "query": "synthetic.flag:true AND\n(data.srcip:\"185.220.158.180\" OR\n data.src_ip:\"185.220.158.180\") AND rule.groups:attack AND data.id:\"403\"",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:10:38.535Z"
+    },
+    {
+      "id": "Q12-07",
+      "query": "synthetic.flag:true AND\n(data.srcip:\"185.220.158.180\" OR\n data.src_ip:\"185.220.158.180\") AND rule.groups:attack AND data.id:\"200\"",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:10:41.818Z"
+    },
+    {
+      "id": "Q12-08",
+      "query": "synthetic.flag:true AND rule.id:(5712 OR 5763)",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:10:45.441Z"
+    },
+    {
+      "id": "Q12-09",
+      "query": "synthetic.flag:true AND\n(data.srcip:\"185.220.158.180\" OR\n data.src_ip:\"185.220.158.180\") AND rule.id:5715 AND data.dstuser:\"ccc\"",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:11:50.616Z"
+    },
+    {
+      "id": "Q12-10",
+      "query": "synthetic.flag:true AND agent.name:\"bastion\" AND\ndata.srcuser:\"ccc\" AND rule.id:(5402 OR 5902)",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:11:53.977Z"
+    },
+    {
+      "id": "Q12-11",
+      "query": "synthetic.flag:true AND rule.groups:syscheck AND\n(syscheck.path:*authorized_keys* OR\n syscheck.path:/etc/cron* OR\n syscheck.path:/etc/sudoers* OR\n syscheck.path:\"/etc/passwd\")",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:11:57.599Z"
+    },
+    {
+      "id": "Q12-12",
+      "query": "synthetic.flag:true AND\n(rule.id:100261 OR\n data.alert.signature:*Reverse*Shell* OR\n syscheck.path:*bash_history*)",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:12:01.045Z"
+    },
+    {
+      "id": "Q13-01",
+      "query": "synthetic.flag:true AND agent.name:\"bastion\" AND\nrule.id:5715 AND data.dstuser:\"ccc\"",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:12:04.584Z"
+    },
+    {
+      "id": "Q13-02",
+      "query": "synthetic.flag:true AND agent.name:\"bastion\" AND\n(rule.id:(5402 OR 5902 OR 100261))",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:12:07.875Z"
+    },
+    {
+      "id": "Q13-03",
+      "query": "synthetic.flag:true AND rule.id:31103",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:12:11.588Z"
+    },
+    {
+      "id": "Q13-04",
+      "query": "synthetic.flag:true AND\nsynthetic.actor:(attacker OR insider)",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:12:14.842Z"
+    },
+    {
+      "id": "QA-01",
+      "query": "data.srcip:\"192.168.0.108\" OR\ndata.src_ip:\"192.168.0.108\" OR\ndata.win.eventdata.ipAddress:\"192.168.0.108\"",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 69,
+      "parser_error": false,
+      "utc": "2026-11-03T12:13:15.216Z"
+    },
+    {
+      "id": "QA-02",
+      "query": "agent.name:\"windows-user\" AND\ndata.win.system.channel:\"Security\" AND\ndata.win.system.eventID:(\"4624\" OR \"4625\")",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 328,
+      "parser_error": false,
+      "utc": "2026-11-03T12:13:19.187Z"
+    },
+    {
+      "id": "QA-03",
+      "query": "rule.id:(503 OR 504 OR 506 OR 651 OR 652)",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 29,
+      "parser_error": false,
+      "utc": "2026-11-03T12:13:22.676Z"
+    },
+    {
+      "id": "QA-04",
+      "query": "synthetic.flag:true AND\n(data.srcip:\"185.220.158.180\" OR\n data.src_ip:\"185.220.158.180\")",
+      "index": "wazuh-alerts-*",
+      "range": "Last 90 days",
+      "hits": 0,
+      "parser_error": false,
+      "utc": "2026-11-03T12:13:23.289Z"
+    }
+  ]
+}

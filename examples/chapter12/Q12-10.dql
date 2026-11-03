@@ -1,0 +1,2 @@
+synthetic.flag:true AND agent.name:"bastion" AND
+data.srcuser:"ccc" AND rule.id:(5402 OR 5902)

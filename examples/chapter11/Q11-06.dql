@@ -1,0 +1,3 @@
+rule.mitre.tactic:("Privilege Escalation" OR
+"Credential Access" OR "Persistence" OR
+"Defense Evasion") AND rule.level >= 8

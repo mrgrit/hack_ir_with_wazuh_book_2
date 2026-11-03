@@ -1,0 +1,95 @@
+{
+  "date": "2026-11-03",
+  "status": "13 chapters and appendix draft complete; publication proofreading remains",
+  "new_artifacts": [
+    {
+      "docx": "manuscript/volume02-chapter10.docx",
+      "sha256": "d818f410e5516a7b31b325876e2342fce8a8e9c0fdcdfa6ec81778048c2aff18",
+      "pages": 19
+    },
+    {
+      "docx": "manuscript/volume02-chapter11.docx",
+      "sha256": "ffce842edf03862fb27c2eb8b532ced9debeed05ed00182f5ee6b13db4ac2f97",
+      "pages": 18
+    },
+    {
+      "docx": "manuscript/volume02-chapter12.docx",
+      "sha256": "828b1fbe57b51fc066e6934111bc2871fedcad33656d86d3d048b349aec62a8a",
+      "pages": 25
+    },
+    {
+      "docx": "manuscript/volume02-chapter13.docx",
+      "sha256": "01be51bd6a2b63ad846b9fe6435f25f00fd5e38e10db3fc6acfef399ef4238c1",
+      "pages": 21
+    },
+    {
+      "docx": "manuscript/volume02-appendix.docx",
+      "sha256": "33c29b6436775d9fa73c61223699180edc8ab887ca5283d27cc2874dd643845f",
+      "pages": 17
+    }
+  ],
+  "new_total_pages": 100,
+  "copy_inputs": 61,
+  "dql_ui": 35,
+  "shell_syntax": 19,
+  "powershell_syntax": 1,
+  "complete_get_requests": 5,
+  "images": 24,
+  "reference_url_occurrences": 27,
+  "rolling_window_checks": [
+    {
+      "id": "hourly-risk",
+      "buckets": 47,
+      "documents": 0,
+      "current_plus_prior_23_sum_matches": true
+    },
+    {
+      "id": "hourly-populated-smoke",
+      "buckets": 72,
+      "documents": 17767,
+      "current_plus_prior_23_sum_matches": true
+    }
+  ],
+  "offhour_current_data": {
+    "documents": 17610,
+    "offhour": 10459,
+    "ratio": 0.593923906871096
+  },
+  "arithmetic": {
+    "score_cases": [
+      48,
+      1,
+      100,
+      20,
+      50
+    ],
+    "raw_max": 123,
+    "rounded_rule_weights": [
+      "0.74",
+      "0.69",
+      "0.64",
+      "0.57"
+    ],
+    "burst_mean": 32.5,
+    "burst_population_std": 38.97114317029974,
+    "burstiness": 0.09054204093084749,
+    "hourly_boundary_expected": [
+      150,
+      175,
+      175,
+      25
+    ],
+    "precision_example": 0.75
+  },
+  "final_agents_active": 6,
+  "scope": {
+    "prior_chapters_unchanged": true,
+    "rev01_unchanged": true,
+    "no_combined_book": true,
+    "no_distributed_pdf": true,
+    "no_attack_or_security_setting_change": true,
+    "no_synthetic_generation_ingestion_deletion": true
+  },
+  "credential_signature_scan": "no matches in new/changed text and DOCX XML",
+  "review": "remaining-review.md"
+}

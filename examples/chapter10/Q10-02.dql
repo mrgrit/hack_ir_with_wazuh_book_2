@@ -1,0 +1,1 @@
+agent.name:"fw" AND rule.id:(503 OR 504 OR 506)

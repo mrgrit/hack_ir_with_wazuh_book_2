@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-03",
+  "tool": "image_gen",
+  "style": "옛 PC 게임풍 픽셀, 제한된 색면, 점무늬 음영",
+  "reference": "https://m.blog.naver.com/studygir/220961448822",
+  "transparent_background": true,
+  "generated_directory": "C:/Users/Student/.codex/generated_images/01a19bc8-e54e-7910-941e-8f0c61166e6a",
+  "selected": [
+    {
+      "chapter": 10,
+      "path": "assets/illustrations/chapter10/connectivity.png",
+      "original": "exec-0dc19f03-25c7-4c3c-bbcf-6fa12fcafa55.png",
+      "prompt": "Use case: illustration-story. Small textbook spot vignette, old 1990s PC game pixel art with crisp visible square pixels, limited navy teal rust cream palette and ordered dither shading, no text or letters. Korean technical training campus covered outdoor utility area. One middle-aged Korean woman technician with short gray bob, teal work jacket and straight trousers, front three-quarter face visible, standing beside a CLOSED wall-mounted network junction cabinet, checking the status LEDs through its small status window. Her right hand rests lightly on the cabinet edge; left arm hangs relaxed, no device held. Exactly two arms and hands and two legs, separated clearly. Cabinet fixed to wall not floating, natural single perspective, clean calm proportions. Small patch of paving and wall establishes place, transparent outside the vignette. No headset, no laptop, no extra limbs, no cables tangled through limbs.",
+      "scene": "회색 단발 여성의 통신함 연결 점검",
+      "review": "두 팔·두 손·두 다리 연결, 통신함과 손의 접촉, 투명 여백 확인"
+    },
+    {
+      "chapter": 11,
+      "path": "assets/illustrations/chapter11/daily-review.png",
+      "original": "exec-77c4545f-49b7-4fc3-a824-774bb93ff08f.png",
+      "prompt": "Edit this textbook pixel illustration. Keep the man in navy cardigan, office morning report-writing activity, crisp 1990s PC game pixel style and transparent outside vignette. CORRECT ENTIRE SITTING GEOMETRY with a natural side three-quarter view: man sits on one ordinary chair to RIGHT of desk, faces LEFT toward report. Head, chest, pelvis, both thighs and knees all face same left-forward direction. Show the near hip resting on seat, thigh extending horizontally forward toward left, knee at tabletop front, lower leg vertical down, shoe resting on floor pointing left; far leg parallel slightly offset. Desk is on LEFT and does not conceal the hip-thigh connection of near side. View the front-left portion of his face in three-quarter angle. Both forearms extend naturally left to tabletop, right writes with pencil, left rests. Exactly two arms, two hands, two legs, no disconnected legs. Replace bench with simple chair, clearly separate four chair legs from human legs; broadside composition. Paper lies flat facing reader. No artificial rotated joints. Do not merely move feet; redraw full pose consistently. No text.",
+      "scene": "사무실 책상에서 평평한 문서에 기록하는 남성",
+      "review": "사용자 지적 후 교정. 몸통·골반·허벅지·무릎·발의 방향, 의자 지지와 손·펜 연결 확인"
+    },
+    {
+      "chapter": 12,
+      "path": "assets/illustrations/chapter12/office-analysis.png",
+      "original": "exec-e32794b0-134f-4aa4-8a1f-86145fe40555.png",
+      "prompt": "Use case illustration-story. Book interior small vignette in crisp visible square pixel 1990s PC game style, limited navy cream mauve pale green, ordered dither, transparent outside vignette, no text. Spacious modern Korean OFFICE, one Korean female data analyst in cream blouse and plum cardigan, short wavy hair and glasses, standing naturally with two feet on floor to left of large desk, three-quarter front face visible. She studies a single desktop monitor on the desk, oriented toward her; camera sees monitor rear and side, not impossible two-sided screen. Her right hand uses mouse on desk, left hand rests naturally on tabletop. Her arms clearly connect to shoulders; two hands only. A second empty desk, rolling office chair, plant and shelves in background establish office. Framing medium wide and single consistent viewpoint. No work uniform, no utility cabinet, no headset, no handheld tablet.",
+      "scene": "사무실에서 모니터와 자료를 비교하는 여성",
+      "review": "모니터 전면은 사용자를 향하고 독자는 뒷면을 봄. 마우스와 손·책상 지지, 두 다리 확인"
+    },
+    {
+      "chapter": 13,
+      "path": "assets/illustrations/chapter13/office-briefing.png",
+      "original": "exec-7917d662-5efa-47f5-8c85-cb357c2a063d.png",
+      "prompt": "Use case illustration-story. Small book interior pixel-art vignette, crisp square pixels limited 1990s PC game palette cream navy terracotta muted teal with ordered dithering, transparent outside vignette. Korean OFFICE meeting room with a wall pinboard of a few blank rectangular cards and one simple timeline line, no readable text. One Korean man in his 50s with gray side-parted hair, glasses, light blue office shirt and dark trousers, standing relaxed facing three-quarter toward camera while looking at the timeline board to his left. His near right arm bends naturally holding a pen and points to a card on the board; left arm relaxed by side. Exactly two connected arms/hands and two legs, feet on floor, no twisted joints. Small conference table and two empty chairs in background, blinds and bookshelf. Natural proportion and perspective. No workwear, no hardhat, no device held, no fake dashboard UI.",
+      "scene": "회의실 시간선 자료를 검토하는 회색 머리 남성",
+      "review": "몸통·골반·두 다리와 두 팔 연결, 게시판·손의 방향 및 한 장면의 시점 확인"
+    }
+  ],
+  "rejected": [
+    {
+      "original": "exec-5977c51d-30f3-43fa-93a8-e468aa284d5e.png",
+      "prompt": "Use case: illustration-story. Small book interior spot vignette, crisp square pixel old Korean PC game art, limited navy ochre sage cream, ordered dithering, no text. Early morning security operations handover corner, one young Korean man with neat short hair in navy cardigan seated sideways on a simple bench, front three-quarter face visible, studying a printed report laid flat on a low broad table. Right hand holds a pencil touching the paper; left hand lies relaxed flat at the edge of the table. Paper readable side faces him naturally, not forced toward camera. Exactly two arms and hands, two legs below table separated from table legs. A wall clock and bright window suggest morning shift. No monitor, no headset, no floating objects. Single physically coherent viewpoint. Transparent around vignette.",
+      "reason": "사용자: 몸통과 다리를 보면 같은 사람의 것으로 안 보임",
+      "included_in_deliverables": false
+    }
+  ],
+  "review": {
+    "originals_individually_viewed": true,
+    "inserted_docx_pages_individually_viewed": true,
+    "no_pixel_postprocessing": true,
+    "office_scenes": 3,
+    "outdoor_scene": 1,
+    "actual_hash_checks": "chapter10-qa.json through chapter13-qa.json"
+  }
+}

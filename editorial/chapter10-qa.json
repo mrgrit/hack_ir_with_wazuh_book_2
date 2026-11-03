@@ -1,0 +1,200 @@
+{
+  "date": "2026-11-03",
+  "artifact": "chapter10",
+  "status": "draft reviewed",
+  "docx": "manuscript/volume02-chapter10.docx",
+  "docx_sha256": "d818f410e5516a7b31b325876e2342fce8a8e9c0fdcdfa6ec81778048c2aff18",
+  "manuscript_sha256": "b5b21ccd536c5c6b3b379536d3bc81c5de19277a36173fb5d048680000e8721a",
+  "page_count": 19,
+  "internal_render": "build/remaining/chapter10-final-v2.pdf",
+  "internal_render_sha256": "b17b067d791191786313ce2bc7f7dc96e6b6be49914b129ee51a0e4c98d797e1",
+  "render_method": "Hidden Microsoft Word COM and pypdfium2; PDF only for internal QA",
+  "template_sha256": "2506e3b2036c3bfa18f84a1f3b6185bff52c0273d4c2c526dd3c68d9adb5b18b",
+  "geometry_twips": {
+    "pgSz": {
+      "w": "10660",
+      "h": "14912",
+      "code": "190"
+    },
+    "pgMar": {
+      "top": "1588",
+      "right": "1588",
+      "bottom": "2438",
+      "left": "1588",
+      "header": "851",
+      "footer": "907",
+      "gutter": "284"
+    }
+  },
+  "theme_matches_template": true,
+  "first_paragraph_style": "Title",
+  "pdf_fonts": [
+    "/BCDEEE+BookkMyungjo-Lt",
+    "/BCDFEE+BookkGothic-Lt",
+    "/BCDGEE+BookkGothic-Lt",
+    "/BCDHEE+BookkMyungjo-Lt",
+    "/BCDIEE+Consolas"
+  ],
+  "copy_inputs": {
+    "total": 17,
+    "shell": 11,
+    "dql": 6,
+    "dev_tools_fragments": 0,
+    "manifest_matches": true,
+    "all_input_text_in_render": true,
+    "ui_evidence": "remaining-query-ui.json"
+  },
+  "full_urls_verified_in_docx_and_render": [
+    "https://docs.google.com/presentation/d/1o0H_2DDHBp8p2HvlSnEPbx6-jdURYzew",
+    "https://documentation.wazuh.com/current/user-manual/reference/ossec-conf/global.html",
+    "https://documentation.wazuh.com/current/user-manual/reference/ossec-conf/active-response.html",
+    "https://github.com/wazuh/wazuh/blob/v4.10.0/ruleset/rules/0015-ossec_rules.xml",
+    "https://github.com/mrgrit/kt66/tree/63d4180b1d6866de986ef263a3bd831d6082b5d5"
+  ],
+  "images": [
+    {
+      "path": "assets/illustrations/chapter10/connectivity.png",
+      "sha256": "3436737c91c63ef48e9ada2d2142f8ddbb0fee2171efa7f6fceecf56564e5954",
+      "size": [
+        1217,
+        1293
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/figures/chapter10/collection.png",
+      "sha256": "a2f6606c83bda919b544637f446720e28ca915848a43b6c1d716a5ffee0b478d",
+      "size": [
+        1280,
+        720
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter10/agent-events.png",
+      "sha256": "acd82422fe2182854555d9005d02d007f8ebdd1085c660db563a4852ec068342",
+      "size": [
+        620,
+        230
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter10/source-disconnect.png",
+      "sha256": "23d688139b4c72efd8142e79c63df96b412a45a066e6f2d650be825febb2a143",
+      "size": [
+        553,
+        290
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/figures/chapter10/response.png",
+      "sha256": "18c057b76578de0dc055aa7037aaac3adb85f567af154e697ec4ea9de57be115",
+      "size": [
+        1280,
+        720
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter10/active-response.png",
+      "sha256": "1273e9f2645c0bf074ed1f1424260f3132529066d087fcb6ddedbfc3ea90cf93",
+      "size": [
+        620,
+        165
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    }
+  ],
+  "visual_review": {
+    "previous_final_individually_viewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "final_pages_unchanged_hash_match": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "final_changed_pages_individually_viewed": [
+      18,
+      19
+    ],
+    "final_page_sha256": {
+      "page-01.png": "48ce27a986bc037c90963941e25043b36d5d85f9564c12e6f1f3f33fe1e62cdf",
+      "page-02.png": "0dc53311b23695ccc702e76cf10bd9dbaa67ec854cec0d0783338198919750cd",
+      "page-03.png": "bd2ab858599e995946e82f551e5b2121a21d09f7594a82c22fba5347cf971545",
+      "page-04.png": "54557671ae66c434a48fd3ea7b707f41ec652d772a7e6807d7fb4ddeadc689b9",
+      "page-05.png": "7c4e30d6dfcf6aca6ac0bcef595a915c7a5548a3150da1dc6f3ea51b974bdea5",
+      "page-06.png": "e34e803f7e06b47231dee6ca7bad7627d422ac1c7ac7880944636b18a1644327",
+      "page-07.png": "b3300c3fdd646ba3f4f6944fc8db2acb410ceae93911536e743fe8c4a005cc05",
+      "page-08.png": "3ec48c740460a90e8db2061a30b817ad6921e5cd5159750078443a9db938e820",
+      "page-09.png": "64fc5264387591c022633f66397bb5182540fcd006f59617dfa7a5c9cf312a69",
+      "page-10.png": "7fc8f8273b7cbee72e3cbf4f5edf30f0e18e817aff3ab898d747c8a5d8326714",
+      "page-11.png": "97c08f30cfcbde9324ef080b61c6a04769f1ec62ef3d7397b6372641c19db5ef",
+      "page-12.png": "cbf7c087851d8527fb5e2256c528b9e65dc76179552e5c44ffa5f688d29b2327",
+      "page-13.png": "22b9648aade57a4ee7eea0195fa0af05b2f1019477ecf9e1e367c7a7f1d16c0b",
+      "page-14.png": "2dc209096d5a9ed2d67e24bb3efa98d38b477fd1d8afc824f69599527f13c202",
+      "page-15.png": "a8b1cd8911c758e0cec29046644a7bf9508a2c979d6552440feb11934179ba9d",
+      "page-16.png": "7e521e05dd9486058b694faac8bbdd86b4c3dfabb5d10c23e83fe3bc822ac133",
+      "page-17.png": "6ade32d78f14db9050069d388f999eefb7d494c7da41938d2fb39da47502f1cf",
+      "page-18.png": "ba203e3ea7420d284734b7e98e88d98804912a2057be2737554c6ddb91513aa9",
+      "page-19.png": "29c052bd63dd393ee77890141a0b1b1efd10b06f857d7249b24a5d55a1ff7b5c"
+    },
+    "result": "No clipping, distorted images, detached captions or missing URL characters observed."
+  },
+  "validation_limits": "Read-only observations plus source screenshots. No new attack, service stop, firewall/protection change, synthetic generation/ingestion/deletion. Empty synthetic results are not positive-path verification. Arithmetic fixtures are constructed. See remaining-review.md and artifact review."
+}

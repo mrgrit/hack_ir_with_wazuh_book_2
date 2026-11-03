@@ -1,0 +1,2 @@
+rule.id:(651 OR 652) AND
+data.parameters.alert.data.srcip:"192.168.0.108"

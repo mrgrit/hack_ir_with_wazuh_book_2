@@ -1,0 +1,208 @@
+{
+  "date": "2026-11-03",
+  "artifact": "chapter12",
+  "status": "draft reviewed",
+  "docx": "manuscript/volume02-chapter12.docx",
+  "docx_sha256": "828b1fbe57b51fc066e6934111bc2871fedcad33656d86d3d048b349aec62a8a",
+  "manuscript_sha256": "93d4f967a2709f83929810e7d3a95e4ab5be214d3529be74ecd2b02d6f2fa224",
+  "page_count": 25,
+  "internal_render": "build/remaining/chapter12-final-v3.pdf",
+  "internal_render_sha256": "5f5ea5a8b5b0b69a2ce0b66f892d2b18a9038050911085f1e006648dcd5b2d76",
+  "render_method": "Hidden Microsoft Word COM and pypdfium2; PDF only for internal QA",
+  "template_sha256": "2506e3b2036c3bfa18f84a1f3b6185bff52c0273d4c2c526dd3c68d9adb5b18b",
+  "geometry_twips": {
+    "pgSz": {
+      "w": "10660",
+      "h": "14912",
+      "code": "190"
+    },
+    "pgMar": {
+      "top": "1588",
+      "right": "1588",
+      "bottom": "2438",
+      "left": "1588",
+      "header": "851",
+      "footer": "907",
+      "gutter": "284"
+    }
+  },
+  "theme_matches_template": true,
+  "first_paragraph_style": "Title",
+  "pdf_fonts": [
+    "/BCDEEE+BookkMyungjo-Lt",
+    "/BCDFEE+BookkGothic-Lt",
+    "/BCDGEE+BookkGothic-Lt",
+    "/BCDHEE+BookkMyungjo-Lt",
+    "/BCDIEE+Consolas",
+    "/BCDJEE+Batang"
+  ],
+  "copy_inputs": {
+    "total": 20,
+    "shell": 3,
+    "dql": 12,
+    "dev_tools_fragments": 5,
+    "manifest_matches": true,
+    "all_input_text_in_render": true,
+    "ui_evidence": "remaining-query-ui.json"
+  },
+  "full_urls_verified_in_docx_and_render": [
+    "https://docs.google.com/presentation/d/1o0H_2DDHBp8p2HvlSnEPbx6-jdURYzew",
+    "https://github.com/mrgrit/kt66/blob/63d4180b1d6866de986ef263a3bd831d6082b5d5/analytics/kt66_synth.py",
+    "https://docs.opensearch.org/2.13/aggregations/bucket/terms/",
+    "https://docs.opensearch.org/2.13/aggregations/metric/cardinality/",
+    "https://docs.opensearch.org/latest/api-reference/search-apis/field-caps/",
+    "https://docs.opensearch.org/latest/aggregations/pipeline/bucket-script/"
+  ],
+  "images": [
+    {
+      "path": "assets/illustrations/chapter12/office-analysis.png",
+      "sha256": "69609c208a52b58cff94160da5ebfbf83c6cbc43b9356e091586bc4316fe7f10",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/figures/chapter12/pivot.png",
+      "sha256": "867407d5fd7d3dfc6bc79f564e379df4663a0db4bd45d54acade4f66bc48fb1e",
+      "size": [
+        1280,
+        720
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter12/synthetic-empty.png",
+      "sha256": "9bbc70dd2d39471fad685f9d662a8ee721d98c03cd2fca979427b4c6cd11c73e",
+      "size": [
+        600,
+        170
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter12/source-ip.png",
+      "sha256": "b0a444aaf579c5b4b91ebe029a7b8876bdb0ac94c5ef5b9cd38ce9a7b1dd12bc",
+      "size": [
+        707,
+        344
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter12/source-response.png",
+      "sha256": "35ee060a4624f2b33eb1c644915a8501182b1bf7c3aefbfb03ffc1496fb48051",
+      "size": [
+        620,
+        416
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    }
+  ],
+  "visual_review": {
+    "previous_final_individually_viewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "final_pages_unchanged_hash_match": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      17,
+      20,
+      22
+    ],
+    "final_changed_pages_individually_viewed": [
+      8,
+      15,
+      16,
+      18,
+      19,
+      21,
+      23,
+      24,
+      25
+    ],
+    "final_page_sha256": {
+      "page-01.png": "968d2c4f75fc4bad591cb048f5c1e4bd5d642c50b745e558d85bd1ab5c300967",
+      "page-02.png": "a905441afb36c4fa7be980368285f69933f2022df80218ebc09a995a7365ad46",
+      "page-03.png": "ad4608d9c4bf57edef878eb7e0004d5eafd602776d1e0f644054219544e12191",
+      "page-04.png": "df59fd9a1836f778d6afd1de53314fd3ea8d69477cb96a207cc9dce11a074fa0",
+      "page-05.png": "36d3f1e5de98cea26d43aebac171fba11b73035b18d0a38603885d39d1b2a131",
+      "page-06.png": "952d00d123c323bfa71519c37609125ad9af998aa212e855c67bb8077cde94b4",
+      "page-07.png": "60a22586f0341b0c5806987867b72555101535b60af0f5d06fd2fd1c65247001",
+      "page-08.png": "08ba3baf189bbd7be908454a94d2b657f32ee67e468a497d5e5f796393446a44",
+      "page-09.png": "da8072b78047333155f93f0b2a3713ff5388c03df470b04a21f36375368769b4",
+      "page-10.png": "39ce8a02ce5db050f9591d3e6feb939056a5e9c0a64349dcdfab53cdc5d4ae56",
+      "page-11.png": "c13820ec5df72f3fa5bfbf3c7a2329aa91fd509a149b3fd2f48d5d0f21abab99",
+      "page-12.png": "de89af0de1d4b548a784b9e7892be9b81fe74d3eecf22b8e240c6534a877c9f0",
+      "page-13.png": "e35a1e58fa1b5465fd581fe897d56e43b0aff7185f35df8975ec9722d3971281",
+      "page-14.png": "a0cd84f5c89e6d1a79ad17caf29ffa6c37afcf468a8e1d94097351c845277ee4",
+      "page-15.png": "81728244e40e6eed9931fc82322e9bfd1fb6366c07acffa81832c9e7eeff25f6",
+      "page-16.png": "05961a1e2ce7a097844126026e4cd00fb318b779f6a92d0eec5a7392349068f9",
+      "page-17.png": "71c09936f86436312012e4182462e412e239e7c8569b880813b9fa5bd848b8b9",
+      "page-18.png": "c0bd89fadbe661d34dd110f62551be2b6a14caa3e35fb168ea145673ee4954c3",
+      "page-19.png": "185147d14d536124bb3981207adda3abec59b44d4a5bb2b81010fb9e3060d179",
+      "page-20.png": "0857e1e6ee8b35b6cb49833285a9e3694f47d621f04ef61ba183714572467b2b",
+      "page-21.png": "6dd9a60f643b4a9666ebe6cda83db462ef4071c14a58820e7c5a8207f6323a0e",
+      "page-22.png": "d261b3231b5b1c6f4b30431a36c87284f291914faf8dcff5c715ee65fb23b615",
+      "page-23.png": "74a83dc4061e7ed355961f59f7675bb0a8b62aad4d39b837be2a01bdd1b51c39",
+      "page-24.png": "be2653724fae670c07486a9a3c759b3aa857beeef703a1fddbdf2e438b66bb44",
+      "page-25.png": "735032b3e68c66a615c88ceef45acfba15f676d0eb54e70f66b2cfe734305b75"
+    },
+    "result": "No clipping, distorted images, detached captions or missing URL characters observed."
+  },
+  "validation_limits": "Read-only observations plus source screenshots. No new attack, service stop, firewall/protection change, synthetic generation/ingestion/deletion. Empty synthetic results are not positive-path verification. Arithmetic fixtures are constructed. See remaining-review.md and artifact review."
+}

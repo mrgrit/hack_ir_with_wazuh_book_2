@@ -217,35 +217,40 @@
       "chapter": 10,
       "slide_start_1_based": 584,
       "source_title": "57 에이전트 연결 끊김·중지 (탐지 회피)",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter10-review.md"
     },
     {
       "exercise": 58,
       "chapter": 10,
       "slide_start_1_based": 593,
       "source_title": "58 Active Response 발동 이력",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter10-review.md"
     },
     {
       "exercise": 59,
       "chapter": 11,
       "slide_start_1_based": 603,
       "source_title": "59 Suricata IDS 알림 연계",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter11-review.md"
     },
     {
       "exercise": 60,
       "chapter": 11,
       "slide_start_1_based": 613,
       "source_title": "60 MITRE ATT&CK 전술·기법별 보기",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter11-review.md"
     },
     {
       "exercise": 61,
       "chapter": 11,
       "slide_start_1_based": 620,
       "source_title": "61 고위험 알림 전체 (일일 점검용)",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter11-review.md"
     },
     {
       "exercise": 63,
@@ -273,16 +278,27 @@
         704
       ],
       "meaning": "inclusive primary range",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter12-review.md"
     },
     {
       "chapter": 13,
       "slides": [
         705,
-        726
+        721
       ],
       "meaning": "inclusive primary range",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter13-review.md"
     }
-  ]
+  ],
+  "appendix": {
+    "slides": [
+      722,
+      726
+    ],
+    "meaning": "inclusive range plus preceding chapter lookup tables",
+    "status": "draft",
+    "review": "appendix-review.md"
+  }
 }

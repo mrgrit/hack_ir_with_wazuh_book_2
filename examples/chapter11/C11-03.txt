@@ -1,0 +1,1 @@
+less /etc/suricata/rules/local.rules

@@ -1,0 +1,1 @@
+rule.id:(651 OR 652) OR rule.groups:active_response

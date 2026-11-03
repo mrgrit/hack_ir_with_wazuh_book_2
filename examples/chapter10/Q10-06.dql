@@ -1,0 +1,2 @@
+rule.id:5763 AND agent.name:"bastion" AND
+data.srcip:"192.168.0.108"

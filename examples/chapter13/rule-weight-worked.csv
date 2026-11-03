@@ -1,0 +1,5 @@
+﻿rule,level,foreign_ratio,reputation,offhour_ratio,followup_ratio,weight,rounded,source
+31106,12,1,69,1,0.6,0.739,0.74,printed source inputs; not current rule settings
+4151,10,1,69,0.8,0.6,0.6856666666666666666666666667,0.69,printed source inputs; not current rule settings
+86601,6,0.83,68,0.83,0.67,0.6355,0.64,printed source inputs; not current rule settings
+5716,5,1,66,1,0.5,0.5743333333333333333333333333,0.57,printed source inputs; not current rule settings

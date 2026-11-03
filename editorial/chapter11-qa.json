@@ -1,0 +1,221 @@
+{
+  "date": "2026-11-03",
+  "artifact": "chapter11",
+  "status": "draft reviewed",
+  "docx": "manuscript/volume02-chapter11.docx",
+  "docx_sha256": "ffce842edf03862fb27c2eb8b532ced9debeed05ed00182f5ee6b13db4ac2f97",
+  "manuscript_sha256": "35b0eb351883e2de6ac9c28307ca141c1d92f848092041c275a83f391f37deaa",
+  "page_count": 18,
+  "internal_render": "build/remaining/chapter11-final.pdf",
+  "internal_render_sha256": "9a9202a51b5c3bed8efeb988f4dd07dca74826c5e152baee435f1eaf02d29d71",
+  "render_method": "Hidden Microsoft Word COM and pypdfium2; PDF only for internal QA",
+  "template_sha256": "2506e3b2036c3bfa18f84a1f3b6185bff52c0273d4c2c526dd3c68d9adb5b18b",
+  "geometry_twips": {
+    "pgSz": {
+      "w": "10660",
+      "h": "14912",
+      "code": "190"
+    },
+    "pgMar": {
+      "top": "1588",
+      "right": "1588",
+      "bottom": "2438",
+      "left": "1588",
+      "header": "851",
+      "footer": "907",
+      "gutter": "284"
+    }
+  },
+  "theme_matches_template": true,
+  "first_paragraph_style": "Title",
+  "pdf_fonts": [
+    "/BCDEEE+BookkMyungjo-Lt",
+    "/BCDFEE+BookkGothic-Lt",
+    "/BCDGEE+BookkGothic-Lt",
+    "/BCDHEE+BookkMyungjo-Lt",
+    "/BCDIEE+Consolas"
+  ],
+  "copy_inputs": {
+    "total": 14,
+    "shell": 5,
+    "dql": 9,
+    "dev_tools_fragments": 0,
+    "manifest_matches": true,
+    "all_input_text_in_render": true,
+    "ui_evidence": "remaining-query-ui.json"
+  },
+  "full_urls_verified_in_docx_and_render": [
+    "https://docs.google.com/presentation/d/1o0H_2DDHBp8p2HvlSnEPbx6-jdURYzew",
+    "https://docs.suricata.io/en/suricata-6.0.4/output/eve/eve-json-output.html",
+    "https://docs.suricata.io/en/suricata-6.0.4/setting-up-ipsinline-for-linux.html",
+    "https://github.com/wazuh/wazuh/blob/v4.10.0/ruleset/rules/0475-suricata_rules.xml",
+    "https://attack.mitre.org/tactics/enterprise/",
+    "https://docs.opensearch.org/2.13/dashboards/dql/"
+  ],
+  "images": [
+    {
+      "path": "assets/illustrations/chapter11/daily-review.png",
+      "sha256": "08e1adad1b2c4b7bf0b4ec58836882faff26b6251db53f3e5eaba8db1eebae10",
+      "size": [
+        1312,
+        1199
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/figures/chapter11/sensors.png",
+      "sha256": "448603e7e90e06c4893740f5e2c9bf86666a87a0064a33d6214d24c4ce283ebe",
+      "size": [
+        1280,
+        720
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter11/suricata-current.png",
+      "sha256": "49664799a5d23d5e32d6dd402d1b8bfa80a4f6855c27c1efc6ae2f809d86ed3c",
+      "size": [
+        600,
+        170
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter11/source-signature.png",
+      "sha256": "eee37ed7b82afd8daac4337cdc5bcdb91367fc588b2c26b35b4d351d163ea4bc",
+      "size": [
+        731,
+        168
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter11/source-action.png",
+      "sha256": "f64571ebd5f13ec8ea3041376cf8f884e71735dec794ed8f6a68a2e3c7de64d6",
+      "size": [
+        810,
+        168
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter11/mitre-current.png",
+      "sha256": "f3ebfcada4d7d928c03e06158bc0fdb480a98d2a4e1809ec719508348a5ddd5c",
+      "size": [
+        350,
+        276
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/figures/chapter11/daily.png",
+      "sha256": "e68521d9ffd95ea4e09249880a76d6ab3898e91c5a91a57507d5c22c7efe9db6",
+      "size": [
+        1280,
+        720
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter11/daily-current.png",
+      "sha256": "673caddcaf1ae3381d25417890fcc472c63ad25cb3f9569cc0e5740da87ec794",
+      "size": [
+        350,
+        276
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    }
+  ],
+  "visual_review": {
+    "previous_final_individually_viewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "final_pages_unchanged_hash_match": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "final_changed_pages_individually_viewed": [],
+    "final_page_sha256": {
+      "page-01.png": "9b1c2cb95ba9b78b698bd6925c88e07e0225a79c818ce4307892a47e135b7666",
+      "page-02.png": "623c3c6d2028a60705c45fa1e479a31a34245546d73985e568245db9be539b78",
+      "page-03.png": "e1b40088857a99bc79b8103321b2d9b4791bb290b1ad36158f5346c4409027e9",
+      "page-04.png": "b048af4fca511412e9efab04a0f4a5c1f8fd637a5f481722010bfa09e8836b71",
+      "page-05.png": "1ccdb9027d809e4c781308f7f9deda60a2c7af6ca063cec0342b0a9ccb3bf237",
+      "page-06.png": "c613dde4083d263186a1e08d51fd389de90868e5ec87efb892372fbde913ea0c",
+      "page-07.png": "8097649a3b3e162bb3c8885500754b48f2424fc87ff233f654cca40a3e620648",
+      "page-08.png": "2c27882d1842885f3e43e93827d82b57e840a8f0848f06ecdcee3383196dc296",
+      "page-09.png": "d228d1f5a6515442a46c9d89a071bb1a6d865a3b8ee60f6a49c6943f60d8d21c",
+      "page-10.png": "ecfb9c720b2b5f666a49e12fc57a04e82fb3f53f1bdc0c6be813a02cc7410504",
+      "page-11.png": "4ba71691b93ba7db24af4dc43f6b6a8d1f0d39c0a65c3c1d7597650b2da16236",
+      "page-12.png": "cff7e3831eca8bdc73955b38bfd355e39015dc8a2a49a7a6f802a03a755c0db0",
+      "page-13.png": "657daacfadcfc34fe7798cb04ff2d4a2551f15d37d76bf35daf2dc6035c0fdeb",
+      "page-14.png": "aba8fe89239c2d78ac3c0b219ba40e52f5aedf031b102a0f8a2c5e0a888a530d",
+      "page-15.png": "a68dc6845d6208912891bd6b6f05153cf29934c5431bf1fc29256d6d7675d464",
+      "page-16.png": "8247bc9ced45be8290add79bee9b9076c91a7ec971bfa498f21bce2896e1b058",
+      "page-17.png": "93cef3a4c2493cdf96671fbaf06ed1100776ce145202ae9268437f785a93ce4c",
+      "page-18.png": "0dc0b0db33663170caa348651620bc7008ab7ee940fef3c07a989dda3a70aeb8"
+    },
+    "result": "No clipping, distorted images, detached captions or missing URL characters observed."
+  },
+  "validation_limits": "Read-only observations plus source screenshots. No new attack, service stop, firewall/protection change, synthetic generation/ingestion/deletion. Empty synthetic results are not positive-path verification. Arithmetic fixtures are constructed. See remaining-review.md and artifact review."
+}

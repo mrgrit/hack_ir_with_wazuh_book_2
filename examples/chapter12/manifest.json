@@ -1,0 +1,142 @@
+[
+  {
+    "id": "C12-01",
+    "file": "C12-01.txt",
+    "where": "kt66 Ubuntu VM · 터미널",
+    "section": "강사 준비: 생성과 적재 경로",
+    "input": "cd /home/ccc/kt66\npython3 --version\nls -l /home/ccc/synth-v2-ch12.jsonl"
+  },
+  {
+    "id": "C12-02",
+    "file": "C12-02.txt",
+    "where": "kt66 Ubuntu VM · 터미널",
+    "section": "강사 준비: 생성과 적재 경로",
+    "input": "python3 analytics/kt66_synth.py --days 90 \\\n  --seed 66 --out /home/ccc/synth-v2-ch12.jsonl"
+  },
+  {
+    "id": "C12-03",
+    "file": "C12-03.txt",
+    "where": "kt66 Ubuntu VM · 터미널",
+    "section": "강사 준비: 생성과 적재 경로",
+    "input": "wc -l /home/ccc/synth-v2-ch12.jsonl\nsha256sum /home/ccc/synth-v2-ch12.jsonl"
+  },
+  {
+    "id": "Q12-01",
+    "file": "Q12-01.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "데이터 확인과 시간 범위 고정",
+    "input": "synthetic.flag:true"
+  },
+  {
+    "id": "Q12-02",
+    "file": "Q12-02.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "12.2  한 IP를 두 필드에서 찾는다",
+    "input": "synthetic.flag:true AND\n(data.srcip:\"185.220.158.180\" OR\n data.src_ip:\"185.220.158.180\")"
+  },
+  {
+    "id": "Q12-03",
+    "file": "Q12-03.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "Discover에서 건수와 분포 읽기",
+    "input": "synthetic.flag:true AND\n(data.srcip:\"185.220.158.180\" OR\n data.src_ip:\"185.220.158.180\") AND rule.level >= 5"
+  },
+  {
+    "id": "Q12-04",
+    "file": "Q12-04.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "허용·차단 후보를 같은 분모로 비교한다",
+    "input": "synthetic.flag:true AND\n(data.srcip:\"185.220.158.180\" OR\n data.src_ip:\"185.220.158.180\") AND rule.groups:firewall_drop"
+  },
+  {
+    "id": "Q12-05",
+    "file": "Q12-05.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "허용·차단 후보를 같은 분모로 비교한다",
+    "input": "synthetic.flag:true AND\n(data.srcip:\"185.220.158.180\" OR\n data.src_ip:\"185.220.158.180\") AND data.alert.action:allowed"
+  },
+  {
+    "id": "Q12-06",
+    "file": "Q12-06.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "허용·차단 후보를 같은 분모로 비교한다",
+    "input": "synthetic.flag:true AND\n(data.srcip:\"185.220.158.180\" OR\n data.src_ip:\"185.220.158.180\") AND rule.groups:attack AND data.id:\"403\""
+  },
+  {
+    "id": "Q12-07",
+    "file": "Q12-07.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "허용·차단 후보를 같은 분모로 비교한다",
+    "input": "synthetic.flag:true AND\n(data.srcip:\"185.220.158.180\" OR\n data.src_ip:\"185.220.158.180\") AND rule.groups:attack AND data.id:\"200\""
+  },
+  {
+    "id": "Q12-08",
+    "file": "Q12-08.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "12.3  계정과 호스트로 피벗한다",
+    "input": "synthetic.flag:true AND rule.id:(5712 OR 5763)"
+  },
+  {
+    "id": "Q12-09",
+    "file": "Q12-09.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "12.3  계정과 호스트로 피벗한다",
+    "input": "synthetic.flag:true AND\n(data.srcip:\"185.220.158.180\" OR\n data.src_ip:\"185.220.158.180\") AND rule.id:5715 AND data.dstuser:\"ccc\""
+  },
+  {
+    "id": "Q12-10",
+    "file": "Q12-10.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "12.3  계정과 호스트로 피벗한다",
+    "input": "synthetic.flag:true AND agent.name:\"bastion\" AND\ndata.srcuser:\"ccc\" AND rule.id:(5402 OR 5902)"
+  },
+  {
+    "id": "Q12-11",
+    "file": "Q12-11.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "IP가 없는 후속 기록을 보존한다",
+    "input": "synthetic.flag:true AND rule.groups:syscheck AND\n(syscheck.path:*authorized_keys* OR\n syscheck.path:/etc/cron* OR\n syscheck.path:/etc/sudoers* OR\n syscheck.path:\"/etc/passwd\")"
+  },
+  {
+    "id": "Q12-12",
+    "file": "Q12-12.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "IP가 없는 후속 기록을 보존한다",
+    "input": "synthetic.flag:true AND\n(rule.id:100261 OR\n data.alert.signature:*Reverse*Shell* OR\n syscheck.path:*bash_history*)"
+  },
+  {
+    "id": "D12-01",
+    "file": "D12-01.txt",
+    "where": "Windows PC · Wazuh · Indexer management → Dev Tools",
+    "section": "12.4  Dev Tools의 요청과 응답",
+    "input": "GET wazuh-alerts-*/_field_caps?fields=*"
+  },
+  {
+    "id": "D12-02",
+    "file": "D12-02.txt",
+    "where": "Windows PC · Wazuh · Indexer management → Dev Tools",
+    "section": "기간과 전체 문서 수를 고정한다",
+    "input": "GET wazuh-alerts-*/_search\n{\n  \"size\": 0, \"track_total_hits\": true,\n  \"query\": {\"bool\": {\"filter\": [\n    {\"term\": {\"synthetic.flag\": true}},\n    {\"range\": {\"timestamp\": {\n      \"gte\": \"2026-08-01T00:00:00+09:00\",\n      \"lt\": \"2026-11-01T00:00:00+09:00\"\n    }}}\n  ]}},\n  \"aggs\": {\n    \"first\": {\"min\": {\"field\": \"timestamp\"}},\n    \"last\": {\"max\": {\"field\": \"timestamp\"}}\n  }\n}"
+  },
+  {
+    "id": "D12-03",
+    "file": "D12-03.txt",
+    "where": "Windows PC · Wazuh · Indexer management → Dev Tools",
+    "section": "한 IP의 집계: 검색 부분",
+    "input": "GET wazuh-alerts-*/_search\n{\n  \"size\": 0, \"track_total_hits\": true,\n  \"query\": {\"bool\": {\"filter\": [\n    {\"term\": {\"synthetic.flag\": true}},\n    {\"range\": {\"timestamp\": {\n      \"gte\": \"2026-08-01T00:00:00+09:00\",\n      \"lt\": \"2026-11-01T00:00:00+09:00\"\n    }}},\n    {\"bool\": {\"minimum_should_match\": 1,\n      \"should\": [\n        {\"term\": {\"data.srcip\":\n          \"185.220.158.180\"}},\n        {\"term\": {\"data.src_ip\":\n          \"185.220.158.180\"}}\n      ]}}\n  ]}},"
+  },
+  {
+    "id": "D12-04",
+    "file": "D12-04.txt",
+    "where": "Windows PC · Wazuh · Indexer management → Dev Tools",
+    "section": "한 IP의 집계: 요약 부분",
+    "input": "  \"aggs\": {\n    \"max_level\": {\"max\": {\n      \"field\": \"rule.level\"}},\n    \"sensors\": {\"terms\": {\n      \"field\": \"agent.name\", \"size\": 50}},\n    \"types_estimate\": {\"cardinality\": {\n      \"field\": \"rule.id\"}},\n    \"days\": {\"date_histogram\": {\n      \"field\": \"timestamp\",\n      \"calendar_interval\": \"day\",\n      \"time_zone\": \"Asia/Seoul\",\n      \"min_doc_count\": 1}}\n  }\n}"
+  },
+  {
+    "id": "D12-05",
+    "file": "D12-05.txt",
+    "where": "Windows PC · Wazuh · Indexer management → Dev Tools",
+    "section": "업무외 비율의 계산 기준",
+    "input": "GET wazuh-alerts-*/_search\n{\n \"size\": 0,\n \"query\": {\"term\": {\"synthetic.flag\": true}},\n \"aggs\": {\"scope\": {\n  \"filters\": {\"filters\": {\"all\": {\"range\": {\n   \"timestamp\": {\n    \"gte\": \"2026-08-01T00:00:00+09:00\",\n    \"lt\": \"2026-11-01T00:00:00+09:00\"\n   }}}}},\n  \"aggs\": {\n   \"off\": {\"filter\": {\"script\": {\"script\": {\n    \"source\": \"def t = doc['timestamp'].value.withZoneSameInstant(ZoneId.of('Asia/Seoul')); return t.getDayOfWeek().getValue() >= 6 || t.getHour() < 9 || t.getHour() >= 18;\"\n   }}}},\n   \"ratio\": {\"bucket_script\": {\n    \"buckets_path\": {\"n\":\"off>_count\",\"d\":\"_count\"},\n    \"script\":\"params.d > 0 ? 1.0 * params.n / params.d : null\"\n   }}\n  }\n }}\n}"
+  }
+]

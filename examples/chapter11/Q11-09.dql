@@ -1,0 +1,2 @@
+rule.level >= 12 AND NOT
+rule.groups:(sca OR vulnerability-detector OR rootcheck)

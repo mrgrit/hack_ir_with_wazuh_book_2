@@ -1,0 +1,2 @@
+suricata -V
+pgrep -a -f '^suricata '

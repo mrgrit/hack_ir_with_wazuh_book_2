@@ -1,0 +1,116 @@
+"""Module01 pp645–704: 피벗·집계. 본문의 DSL은 읽기 요청만 제공."""
+from chapter_authoring import *
+pages=[]
+DT='Windows PC · Wazuh · Indexer management → Dev Tools'
+def page(t,*b):pages.append({'title':t,'kind':'body','level':'section','break':False,'blocks':list(b)})
+def dq(i,t,w,r):return query(i,t,w,r,index='wazuh-alerts-*')
+def dc(i,t,w,r):return cmd(i,t,w,r,where=DT)
+def pic(n,c):return image('assets/screenshots/chapter12/'+n+'.png',c)
+IP='synthetic.flag:true AND\n(data.srcip:"185.220.158.180" OR\n data.src_ip:"185.220.158.180")'
+page('12장  장기 로그의 피벗과 집계',
+ p('한 IP의 경보가 여러 날과 센서에 흩어져 있으면 검색 조건을 바꾸어 관련 기록을 찾고 같은 기준으로 수를 센다. 피벗은 찾은 IP·계정·호스트·시각을 다음 검색의 기준으로 삼는 조사 방법이다. 집계는 선택한 기록을 날짜·규칙·대상별로 묶어 수치로 요약하는 작업이다.'),
+ p('이 장에서는 Module 01의 90일 합성 로그를 읽는 방법을 익힌다. IP 하나를 추적한 뒤 다섯 IP의 비교표를 만들고, 다음 장에서 연결 근거와 점수를 평가한다. 합성 자료의 주소·국가·평판·역할은 교육용 설정이다. 예시 IP의 현재 평판이나 실제 운영자를 뜻하지 않는다.'),
+ image('assets/illustrations/chapter12/office-analysis.png','그림 12-1  사무실에서 장기 로그를 분석하는 담당자',73))
+page('12.1  필터와 집계를 구분한다',
+ table(['도구','할 일','확인할 한계'],[['DQL·Discover','관련 문서 선별·원문 읽기','GROUP BY·조인·비율 계산 없음'],['Visualize','항목별 건수·시간 분포','상위 항목 제한과 고유 수 구분'],['Dev Tools·DSL','조건별 수·중첩 집계·시간 계산','필드 자료형·분모·오류 확인'],['조사 워크시트','세션 후보 연결·점수 근거','가정과 미귀속 기록 보존']],[34,48,45]),
+ p('DQL은 문서를 찾는 필터 언어다. Dev Tools의 DSL은 JSON으로 검색·집계를 표현하는 요청 형식이다. 같은 자료를 보더라도 DQL 입력란에 JSON을 붙이면 동작하지 않는다. SQL의 GROUP BY 문장을 DQL에 입력하는 방법도 사용하지 않는다.'),
+ image('assets/figures/chapter12/pivot.png','그림 12-2  원문 검색과 집계 결과를 연결하는 분석 순서'),
+ p('집계 숫자를 먼저 결론으로 쓰지 않는다. 같은 요청의 중복 수집, 수집 공백, 필드 누락이 있으면 수치가 달라진다. 조사 범위와 계산 규칙을 먼저 고정한다.'))
+page('합성 자료의 의미와 준비 상태',
+ p('원전은 정상 사용자(normal), 스캐너(scanner), 공격 시나리오(attacker), 내부자 시나리오(insider)를 생성했다. synthetic.flag는 합성 문서 표시이고 actor·campaign·stage는 생성자가 넣은 역할·시나리오·단계 라벨이다. 이 라벨은 실제 Wazuh가 공격자를 알아내서 붙인 결과가 아니다.'),
+ table(['원전 부류','IP 수','문서 수'],[['normal','171','15,972'],['scanner','40','27,836'],['attacker','5','1,088'],['insider','1','303'],['원전 표 합계','217','45,199']],[55,30,42]),
+ p('원전 표의 합은 45,199건이다. 생성 날짜·난수·축척과 수집 기간이 바뀌면 건수가 달라진다. 현재 실습 환경의 synthetic.flag:true 검색에는 해당 90일 데이터가 없다. 원전 화면을 읽는 경로와 강사가 데이터를 준비한 환경에서 직접 조회하는 경로를 구분하여 진행한다.'),
+ p('자료가 없는 독자는 이 장의 원전 화면과 계산 예제를 읽고 다음 장의 워크시트를 채운다. 조회를 직접 수행하려면 강사에게 데이터가 들어 있는 인덱스·기간·문서 수·원본 파일 해시를 먼저 확인한다. 빈 인덱스에서 같은 숫자가 나오도록 공격을 반복하지 않는다.'))
+page('강사 준비: 생성과 적재 경로',
+ p('kt66 기준 소스의 analytics/kt66_synth.py는 Python으로 과거 시각의 합성 경보 문서를 만든다. Python 3은 이 스크립트를 실행하는 프로그램이다. 아래 명령은 kt66 Ubuntu VM에서 파일만 생성하는 선택 절차다. 실행 전 출력 경로가 비어 있는지 확인한다.'),
+ cmd('C12-01','cd /home/ccc/kt66\npython3 --version\nls -l /home/ccc/synth-v2-ch12.jsonl','cd는 현재 디렉터리를 바꾼다. --version은 Python 버전을 읽고 ls -l은 지정한 파일의 존재와 속성을 확인한다.','Python 3과 스크립트 경로를 확인한다. 출력 파일이 이미 있으면 보존하고 새 파일명을 정한다. 파일 부재 오류는 생성 전에는 정상이다.',where=HOST),
+ cmd('C12-02','python3 analytics/kt66_synth.py --days 90 \\\n  --seed 66 --out /home/ccc/synth-v2-ch12.jsonl','--days는 기간, --seed는 난수 시작값, --out은 출력 파일이다. 줄 끝 역슬래시(\\)는 다음 줄까지 같은 명령으로 연결하며 뒤에 공백을 넣지 않는다.','생성 문서 수와 부류별 수를 기록한다. 종료 기준 시각은 실행 시각에 따라 정해지므로 seed가 같아도 실행 날짜가 다르면 동일 데이터라고 보장하지 않는다.',where=HOST),
+ cmd('C12-03','wc -l /home/ccc/synth-v2-ch12.jsonl\nsha256sum /home/ccc/synth-v2-ch12.jsonl','wc -l은 줄 수, sha256sum은 파일 내용의 SHA-256 해시를 계산한다. JSONL은 한 줄에 JSON 문서 하나를 저장하는 형식이다.','줄 수와 생성 문서 수를 대조하고 생성 시각·시간대·seed·기준 커밋·파일 해시를 준비 기록에 남긴다.',where=HOST))
+page('적재 자료가 검증하는 범위',
+ p('원전의 백필(backfill)은 인덱서에 완성된 경보 문서를 직접 넣는 방식이다. 과거 timestamp를 만들 수 있지만 관리자 디코더·규칙·Active Response 처리를 통과하지 않는다. 이 자료로 검색·집계는 연습할 수 있어도 실제 탐지·차단이 동작했다고 검증할 수는 없다.'),
+ p('반대로 에이전트가 읽는 원본 로그에 줄을 넣으면 실제 수집·파싱 경로를 지난다. 이때도 로그 형식·디코더·시간 처리·버전에 따라 필드가 달라지므로 “실제와 100% 같은 필드”라고 보장할 수 없다. 기존 auth.log나 access.log에 연습용 줄을 섞으면 실제 조사와 자동 대응에 영향을 줄 수 있다.'),
+ p('강사는 교육용 인덱스와 권한·보존 범위를 먼저 정하고 적재한다. 원전 스크립트의 --push는 wazuh-alerts-4.x 날짜 인덱스에 쓰므로 기본 실행 절차로 사용하지 않는다. 인증 비밀을 명령 인수에 남기거나 인증서 검사를 생략하는 예제도 그대로 복사하지 않는다.'),
+ p('정상 웹 요청 31100은 합성 자료에서 레벨 3으로 지정되어 있다. 운영의 alerts에는 저장 기준 미만 이벤트가 빠질 수 있다. 전체 접근량을 계산하려면 원본 로그나 적절히 수집된 archives의 범위·중복·보존 상태까지 확인한다. alerts 건수를 곧바로 전체 요청 수라고 부르지 않는다.'))
+page('데이터 확인과 시간 범위 고정',
+ p('Windows PC에서 Wazuh에 로그인한다. **Explore → Discover**에서 준비된 데이터 보기와 **DQL**을 선택하고 기존 필터를 해제한다. 우선 **Last 90 days**로 자료 유무를 확인한다. 이후 첫·마지막 이벤트 시각에 맞는 절대 기간을 기록하여 재조회 때 같은 범위를 사용한다.'),
+ dq('Q12-01','synthetic.flag:true','합성 문서만 선택한다. true는 JSON의 참 값이다.','행을 펼쳐 synthetic·timestamp·agent·rule·data를 확인한다. actor·campaign·stage는 점수 계산 전 가리고, 마지막 평가에서만 연다.'),
+ pic('synthetic-empty','그림 12-3  합성 문서 검색과 데이터 준비 확인'),
+ p('검색 결과가 없으면 데이터 보기·기간·고정 필터·적재 인덱스를 확인한다. 현재 환경처럼 자료가 없는 경우와 검색 구문 오류를 구분한다. 0건을 정상 사용자만 있었다는 의미로 읽지 않는다.'),
+ p('기간은 시작 포함·끝 제외로 기록하면 인접 기간의 중복을 줄일 수 있다. 뒤의 DSL 예제는 2026-08-01 00:00 KST 이상, 2026-11-01 00:00 KST 미만을 사용한다. 자신의 데이터 범위를 확인한 뒤 함께 바꾼다.'))
+page('12.2  한 IP를 두 필드에서 찾는다',
+ dq('Q12-02',IP,'Suricata의 src_ip와 다른 로그의 srcip를 괄호로 묶고 합성 조건을 AND로 붙인다.','Time·agent.name·rule.id·rule.description을 추가하고 행을 펼쳐 출발지와 목적지를 읽는다. 두 주소 필드가 모두 있으면 서로 같은 값인지도 확인한다.'),
+ p('괄호 없이 “A OR B AND 합성 조건”을 쓰면 합성 조건이 B에만 적용되는 검색이 될 수 있다. 모든 추가 조건은 출발지 두 필드를 묶은 괄호 밖에 붙인다. 단순 문자열 치환으로 필터의 범위를 바꾸지 않는다.'),
+ pic('source-ip','그림 12-4  원전의 단일 IP 경보 목록'),
+ p('IP는 통신 단서다. 공유 주소·NAT·프록시·재할당이 있으면 여러 사용자의 활동이 같은 주소에 모인다. 역방향 연결에서는 관심 주소가 dest_ip일 수 있다. 출발지 프로파일과 상대 주소 조사 조건을 나누어 적는다.'))
+page('Discover에서 건수와 분포 읽기',
+ dq('Q12-03',IP+' AND rule.level >= 5','같은 출발지 집합에서 레벨 5 이상만 선택한다.','전체 hits와 조건 추가 후 hits를 각각 기록한다. 두 수는 전체 문서 수와 선택한 레벨의 문서 수이며 고유 사건 수가 아니다.'),
+ p('히스토그램의 **Time interval**을 **Day**로 바꾸고 KST 날짜별 건수를 읽는다. 실제 문서가 있는 날짜 수가 관찰 일수다. 자동 간격(Auto)의 막대 수를 그대로 일수로 세면 안 된다. 첫·마지막 시각의 간격은 활동 기간이며 관찰 일수와 다르다.'),
+ p('왼쪽 agent.name 필드를 열어 분포를 보고 **Visualize**로 이동한다. Terms는 같은 값을 묶어 문서 수를 보여준다. rule.id도 같은 방법으로 확인한다. 항목 수 제한이 5·10개라면 표시된 목록이 전체 종류 수인지 확인할 수 없다. 전체 수는 고유값 집계나 모든 페이지의 목록으로 구한다.'),
+ p('agent.name의 고유 수는 수집 에이전트 수다. Suricata 한 센서가 여러 서버를 관찰할 수 있으므로 그대로 “접근 시스템 수”라고 부르지 않는다. 목적지 주소·자산대장을 대조하여 실제 대상 시스템 수를 별도 열에 적는다.'))
+page('허용·차단 후보를 같은 분모로 비교한다',
+ dq('Q12-04',IP+' AND rule.groups:firewall_drop','IP 기준 조건에 방화벽 drop 분류를 추가한다.','해당 문서의 실제 action과 규칙 설명을 읽는다. 모든 FW 이벤트를 수집한 자료인지 확인한 뒤 차단 비율의 분모를 정한다.'),
+ dq('Q12-05',IP+' AND data.alert.action:allowed','같은 IP에서 Suricata allowed 경보를 조회한다.','blocked와 비교할 때 동일 센서·기간·이벤트 종류를 사용한다. allowed 경보 수는 전체 허용 패킷 수가 아니다.'),
+ dq('Q12-06',IP+' AND rule.groups:attack AND data.id:"403"','웹 attack 그룹 중 HTTP 상태 403 문서를 찾는다.','“공격 패턴이 있는 403 응답 후보”로 기록한다. WAF 차단 여부는 WAF의 audit 로그·규칙·동작을 대조한다.'),
+ dq('Q12-07',IP+' AND rule.groups:attack AND data.id:"200"','같은 조건에서 HTTP 200 응답을 조회한다.','본문·이동 주소·호스트 후속 실행을 확인한다. HTTP 200은 요청 처리 결과 코드이며 취약점 악용 성공을 직접 뜻하지 않는다.'))
+page('분모·누락·중복을 기록한다',
+ p('FW·IPS·웹 경보는 관측 단위가 다르고 같은 요청을 중복 기록할 수 있다. 세 건수를 더하여 전체 공격 횟수로 만들지 않는다. FW 차단률은 해당 FW 판정 문서 중 drop 비율, Suricata blocked 비율은 해당 alert 중 blocked 비율처럼 모집단을 명시한다.'),
+ table(['상태','집계 처리'],[['action 없음','unknown으로 별도 집계'],['분모 0','계산 불가로 기록'],['같은 원본의 중복','원본 식별자로 중복 제거 후 재계산'],['srcip·src_ip 모두 없음','미귀속 기록으로 보존'],['국가·평판 없음','미확인으로 기록, 정상값 0과 구분']],[43,84]),
+ p('외국 IP 비율은 국가를 아는 대상 중 국내 기준과 다른 대상의 비율로 정의한다. 미확인 국가를 외국으로 자동 분류하지 않는다. IP 위치는 접속자의 국적·실제 위치·악성 여부와 다르다. 원전의 평판은 생성자가 부여한 0~100 가정값이다.'))
+page('12.3  계정과 호스트로 피벗한다',
+ dq('Q12-08','synthetic.flag:true AND rule.id:(5712 OR 5763)','SSH 반복 실패 규칙에서 조사할 IP를 선택한다.','IP·계정·시각·호스트를 적고 앞뒤 30분 정도의 좁은 범위에서 성공 기록을 찾는다. 조사 창의 길이는 근거와 함께 조정한다.'),
+ dq('Q12-09',IP+' AND rule.id:5715 AND data.dstuser:"ccc"','같은 출발지와 ccc 계정의 SSH 로그인 성공을 찾는다.','대상 호스트와 성공 시각을 기록한다. 계정 승인 내역과 원본 로그를 대조한 뒤 비인가 접근 여부를 판단한다.'),
+ dq('Q12-10','synthetic.flag:true AND agent.name:"bastion" AND\ndata.srcuser:"ccc" AND rule.id:(5402 OR 5902)','이번에는 IP 조건을 제거하고 같은 호스트·계정의 권한 관련 이벤트를 찾는다.','IP 없는 sudo 등을 후보로 남긴다. 가장 가까운 로그인에 자동 귀속하지 않는다. 다른 세션·계정 공유·PID·TTY 정보를 함께 조사한다.'),
+ p('피벗할 때 이전 검색의 IP 필터가 고정되어 있으면 출발지 없는 기록은 사라진다. 어떤 필터를 유지하고 제거했는지 기록한다. 사용자 생성 규칙처럼 계정 필드가 다르면 먼저 호스트와 규칙만 찾은 다음 실제 필드 구조를 읽는다.'))
+page('IP가 없는 후속 기록을 보존한다',
+ dq('Q12-11','synthetic.flag:true AND rule.groups:syscheck AND\n(syscheck.path:*authorized_keys* OR\n syscheck.path:/etc/cron* OR\n syscheck.path:/etc/sudoers* OR\n syscheck.path:"/etc/passwd")','괄호 안의 OR는 파일 경로 후보를 묶는다. 별표는 경로 문자열의 일부를 일치시키며 먼저 기간을 좁힌다.','호스트·변경 종류·경로·해시·시각을 적는다. bastion 로그인 뒤 web 파일이 바뀌었더라도 두 호스트를 연결할 추가 증거가 필요하다.'),
+ dq('Q12-12','synthetic.flag:true AND\n(rule.id:100261 OR\n data.alert.signature:*Reverse*Shell* OR\n syscheck.path:*bash_history*)','명령 탐지·역방향 셸 시그니처·이력 파일 변경의 후보를 함께 찾는다. 시그니처의 두 단어 사이는 별표로 연결한다.','명령·프로세스·통신 방향과 파일 동작을 각각 읽는다. 문자열 일치만으로 실행 성공이나 흔적 삭제 의도를 확정하지 않는다.'),
+ p('DQL의 OR와 셸의 파이프(|)는 다르다. 원전의 curl 문자열과 sh 문자열 사이에 셸처럼 파이프를 넣어 두 조건의 결합을 표현하지 않는다. 필요한 명령 조각은 각각의 필드 조건과 AND·OR로 명시한다.'),
+ p('다음 장에서 직접 주소가 있는 기록, 세션 근거로 연결한 기록, 시간만 가까운 미귀속 기록을 서로 구분한다. 체인을 길게 만들기 위해 빈 연결을 사실로 채우지 않는다.'))
+page('12.4  Dev Tools의 요청과 응답',
+ p('메뉴의 **Indexer management → Dev Tools**를 연다. 왼쪽에 요청을 붙이고 요청 안에 커서를 둔 뒤 삼각형 실행 버튼 또는 Ctrl+Enter를 누른다. 오른쪽에서 상태 코드와 JSON 응답을 읽는다. 아래 GET은 조회 요청이다. 입력한 데이터 보기와 무관하게 요청 URL에 적은 인덱스를 읽는다.'),
+ dc('D12-01','GET wazuh-alerts-*/_field_caps?fields=*','_field_caps는 필드 자료형과 검색·집계 가능 여부를 조회한다. 물음표(?) 뒤 fields는 필드 선택 매개변수다. 별표(*)는 전체 필드를 선택한다. 응답에서 필요한 필드 이름을 찾는다.','timestamp가 date, rule.level이 숫자형인지 확인한다. rule.id·agent.name·주소 필드는 자신의 매핑을 읽는다. data.ip_reputation이 문자열이면 avg를 바로 적용하지 않는다.'),
+ p('JSON의 중괄호({ })는 객체, 대괄호([ ])는 배열이다. 키와 문자열은 큰따옴표로 감싸고 마지막 항목 뒤에는 쉼표를 붙이지 않는다. true는 문자열이 아닌 참 값이다. 예제 파일의 요청 첫 줄과 JSON 본문을 함께 복사한다.'),
+ p('같은 필드가 날짜별 인덱스에서 서로 다른 자료형이면 충돌이 생긴다. 결과에 여러 타입이 나오는지 확인하고 같은 매핑의 인덱스 범위로 좁히거나 별도 정규화 계획을 세운다. 모든 rule.*·data.*가 문자열이라는 가정은 사용하지 않는다.'))
+page('기간과 전체 문서 수를 고정한다',
+ dc('D12-02','GET wazuh-alerts-*/_search\n{\n  "size": 0, "track_total_hits": true,\n  "query": {"bool": {"filter": [\n    {"term": {"synthetic.flag": true}},\n    {"range": {"timestamp": {\n      "gte": "2026-08-01T00:00:00+09:00",\n      "lt": "2026-11-01T00:00:00+09:00"\n    }}}\n  ]}},\n  "aggs": {\n    "first": {"min": {"field": "timestamp"}},\n    "last": {"max": {"field": "timestamp"}}\n  }\n}','size 0은 개별 문서 목록을 받지 않고 건수·집계만 받는다. track_total_hits true는 정확한 총 문서 수를 요청한다. filter 배열은 조건을 모두 만족하는 문서만 고른다. gte는 시작 이상, lt는 끝 미만이다.','hits.total.relation이 eq인지 확인한다. first·last의 value_as_string으로 실제 관찰 범위를 확인한다. 0건이면 min·max는 null이며 정상 관측 기간으로 해석하지 않는다.'),
+ p('Dev Tools의 시간 범위는 Discover 선택기와 자동으로 같아지지 않는다. 이 요청의 range를 직접 바꾼다. now-90d처럼 현재에 상대적인 범위를 쓰면 재실행 시 모집단도 움직인다. 보고서에는 절대 시작·끝 시각을 남긴다.'))
+page('응답의 성공과 집계의 완전성',
+ pic('source-response','그림 12-5  원전 집계 응답의 상태와 총 건수 관계'),
+ p('원전 화면의 HTTP 상태는 200이지만 hits.total.relation은 gte이고 value는 10000이다. 이것은 정확히 10,000건이라는 뜻이 아니라 적어도 10,000건이라는 의미다. 집계만 요청한 size 0에서는 hits.hits가 빈 배열이어도 정상이다.'),
+ p('timed_out이 false인지, _shards.failed가 0인지 확인한다. 실패한 샤드가 있으면 일부 자료만 집계되었을 수 있다. 응답 코드만 보고 완전한 결과라고 판정하지 않는다. 오류 객체가 있으면 필드 이름·자료형·권한·스크립트 제한을 읽고 수정한 조건을 기록한다.'))
+page('한 IP의 집계: 검색 부분',
+ p('D12-03과 D12-04는 한 요청을 두 부분으로 나눈 것이다. D12-03의 마지막 줄 뒤에 D12-04를 이어 붙인 후 전체를 실행한다. examples/chapter12/ip-profile.http에는 완성된 요청이 있다. 인덱스·기간·IP를 함께 수정한다.'),
+ dc('D12-03','GET wazuh-alerts-*/_search\n{\n  "size": 0, "track_total_hits": true,\n  "query": {"bool": {"filter": [\n    {"term": {"synthetic.flag": true}},\n    {"range": {"timestamp": {\n      "gte": "2026-08-01T00:00:00+09:00",\n      "lt": "2026-11-01T00:00:00+09:00"\n    }}},\n    {"bool": {"minimum_should_match": 1,\n      "should": [\n        {"term": {"data.srcip":\n          "185.220.158.180"}},\n        {"term": {"data.src_ip":\n          "185.220.158.180"}}\n      ]}}\n  ]}},','should의 두 필드 조건 중 하나 이상을 만족하도록 minimum_should_match를 1로 지정한다. IP 두 필드에 같은 값이 있어도 같은 문서는 한 번 선택된다.','여기까지만 실행하면 JSON이 닫히지 않아 오류가 난다. 다음 집계 부분을 이어 붙인다.'),
+ p('한 IP를 명시적으로 선택하면 srcip와 src_ip의 서로 다른 이름을 안전하게 함께 조회할 수 있다. 모든 IP를 한 번에 묶으려면 충돌·누락·방향을 처리한 정규화 필드를 먼저 설계한다. 한 필드를 다른 필드로 무조건 덮어쓰지 않는다.'))
+page('한 IP의 집계: 요약 부분',
+ dc('D12-04','  "aggs": {\n    "max_level": {"max": {\n      "field": "rule.level"}},\n    "sensors": {"terms": {\n      "field": "agent.name", "size": 50}},\n    "types_estimate": {"cardinality": {\n      "field": "rule.id"}},\n    "days": {"date_histogram": {\n      "field": "timestamp",\n      "calendar_interval": "day",\n      "time_zone": "Asia/Seoul",\n      "min_doc_count": 1}}\n  }\n}','max는 최대값, terms는 값별 문서 수, cardinality는 고유값 수의 근사치다. date_histogram은 날짜로 묶고 min_doc_count 1은 문서가 있는 날짜만 반환한다.','sensors는 센서 목록, types_estimate는 규칙 종류의 근사치, days의 버킷 수는 관찰 일수다. 센서 수를 대상 시스템 수로 바꾸어 쓰지 않는다.'),
+ p('terms의 기본 size는 10이다. size를 50으로 늘려도 전체 고유값이 50보다 많으면 일부가 빠진다. sum_other_doc_count와 doc_count_error_upper_bound를 읽는다. cardinality는 근사 집계이므로 정확한 종류 수가 필요하면 모든 고유값 목록을 확보한다.'),
+ p('완전한 목록은 composite 집계에서 응답의 after_key를 다음 요청의 after에 그대로 넣어 끝까지 읽는 방법으로 얻을 수 있다. 페이지별 개수를 합치기 전에 중복·조회 중 데이터 변경 여부를 확인한다. 상위 20개 버킷만으로 전체 IP 수를 계산하지 않는다.'))
+page('업무외 비율의 계산 기준',
+ p('여러 날의 평일 09~18시를 하나의 연속된 시간 선택 구간으로 만들 수는 없다. 각 이벤트 시각을 KST로 바꾸고 요일·시각 조건을 적용한다. 이 연습의 업무시간은 월~금 09:00 이상 18:00 미만이다. 원전의 휴일 목록은 별도 입력 자료이며 법정 공휴일 전체를 보장하지 않는다.'),
+ p('업무외 비율은 업무외 문서 수를 같은 모집단의 전체 문서 수로 나눈다. 예를 들어 100건 중 65건이면 0.65다. 해외 파트너의 정상 근무 시간이 KST 밤일 수 있으므로 비율만으로 악성 여부를 판정하지 않는다.'),
+ dc('D12-05','GET wazuh-alerts-*/_search\n{\n "size": 0,\n "query": {"term": {"synthetic.flag": true}},\n "aggs": {"scope": {\n  "filters": {"filters": {"all": {"range": {\n   "timestamp": {\n    "gte": "2026-08-01T00:00:00+09:00",\n    "lt": "2026-11-01T00:00:00+09:00"\n   }}}}},\n  "aggs": {\n   "off": {"filter": {"script": {"script": {\n    "source": "def t = doc[\'timestamp\'].value.withZoneSameInstant(ZoneId.of(\'Asia/Seoul\')); return t.getDayOfWeek().getValue() >= 6 || t.getHour() < 9 || t.getHour() >= 18;"\n   }}}},\n   "ratio": {"bucket_script": {\n    "buckets_path": {"n":"off>_count","d":"_count"},\n    "script":"params.d > 0 ? 1.0 * params.n / params.d : null"\n   }}\n  }\n }}\n}','filters는 여러 버킷을 만들 수 있는 부모 집계다. 그 안에 off 조건별 건수와 ratio 계산을 둔다. 전체 합성 자료의 기간별 비율을 계산하는 예제다.','분모 0은 null 또는 값 없음으로 읽는다. source의 논리 OR 기호(||)는 셸 파이프와 다르다. 숫자 1.0을 곱하여 정수 나눗셈에 의한 소수 손실을 피한다.'))
+page('스크립트와 결과 검토',
+ p('Painless는 인덱서가 허용된 범위에서 실행하는 계산 언어다. D12-05에서 doc은 문서의 인덱싱된 값을 읽고 withZoneSameInstant는 같은 순간을 KST로 표시한다. 요일 값 6·7은 토·일이다. 조건식의 물음표와 콜론은 조건이 참일 때의 값과 거짓일 때의 값을 선택한다.'),
+ p('휴일 비율에는 토·일과 강사가 명시한 날짜 목록을 사용한다. 업무외 조건에 휴일도 포함하려면 평일 공휴일을 추가해야 한다. “주말 비율”과 “휴일 비율”을 같은 이름으로 섞지 않는다. 자료형 충돌이나 timestamp 누락이 있는 자료는 먼저 정리하고 누락 건수를 기록한다.'),
+ p('현재처럼 합성 자료가 없으면 요청 구문이 받아들여져도 계산 스크립트가 실제 문서에서 실행되지 않을 수 있다. 양성 경로 확인에는 알려진 평일 08:59·09:00·17:59·18:00, 토요일·휴일 문서의 예상값과 결과를 대조해야 한다.'),
+ p('한 IP의 비율은 D12-05의 query에 D12-03의 IP와 합성 조건을 적용하여 계산한다. 분자와 분모에 같은 IP·기간·중복 처리 기준을 사용한다. 전체 집계의 비율을 개별 IP에 그대로 붙이지 않는다.'))
+page('접근 간격과 다섯 IP 비교표',
+ p('원본 문서를 시각 오름차순으로 정렬하고 인접한 시각의 차이를 초 단위로 계산한다. 같은 시각의 서로 다른 문서는 0초 간격으로 남기고, 동일 원본의 중복은 먼저 제거한다. 중앙값은 간격을 정렬한 뒤 가운데 값을, 짝수 개면 가운데 두 값의 평균을 구한다.'),
+ p('버스트성 B는 (표준편차−평균)/(표준편차+평균)이다. 여기서는 모집단 표준편차를 쓴다. 간격이 일정하면 −1에 가깝고, 짧은 간격과 긴 공백이 섞이면 커진다. 두 문서 미만이거나 평균과 표준편차가 모두 0이면 계산 불가다. 통신 주기나 악성 의도를 직접 증명하는 값은 아니다.'),
+ table(['계산 연습','값'],[['시각 간격(초)','10, 10, 10, 100'],['평균·중앙값','32.5, 10'],['모집단 표준편차','약 38.97'],['버스트성','약 0.0905']],[49,78]),
+ p('examples/chapter12/ip-profile-worksheet.csv에 IP 다섯 개를 적는다. 전체 문서·레벨 5 이상·관찰 일수·기간·간격·센서·대상 시스템·규칙 종류·최대 레벨·FW/IPS/웹 후보·업무외·휴일·평판·연결 근거를 채운다. 없는 값은 빈칸 대신 “미확인”으로 표시한다.'))
+page('원상복구와 다음 장의 입력',
+ p('완료 조건은 같은 모집단의 IP 비교표, 원문으로 돌아갈 수 있는 식별자, 집계의 누락·분모·자료형 기록이다. 원전의 모든 숫자와 같아지는 것을 성공 기준으로 삼지 않는다. 입력 자료와 기간이 같을 때에만 수치를 직접 비교한다.'),
+ p('읽기 조회만 수행했다면 검색 조건을 원래 상태로 되돌린다. 선택 생성으로 만든 로컬 파일은 경로·해시·소유자를 확인하여 보존하거나 자신의 파일만 정리한다. 강사가 적재한 합성 문서는 준비 기록의 인덱스·실행 식별 범위를 확인한 뒤 강사 절차로 정리한다.'),
+ p('원전의 --delete는 넓은 alerts 범위의 synthetic.flag:true를 일괄 삭제한다. 다른 실습의 합성 자료까지 포함할 수 있으므로 일반 원상복구 명령으로 복사하지 않는다. 로그와 집계 결과를 보존한 상태에서 다음 장의 세션 연결과 점수 평가로 진행한다.'))
+page('참고자료',
+ link('Module 01 — 장기 로그 분석, 슬라이드 645~704','https://docs.google.com/presentation/d/1o0H_2DDHBp8p2HvlSnEPbx6-jdURYzew'),
+ link('kt66 — 합성 자료 생성 코드','https://github.com/mrgrit/kt66/blob/63d4180b1d6866de986ef263a3bd831d6082b5d5/analytics/kt66_synth.py'),
+ link('OpenSearch — Terms','https://docs.opensearch.org/2.13/aggregations/bucket/terms/'),
+ link('OpenSearch — Cardinality','https://docs.opensearch.org/2.13/aggregations/metric/cardinality/'),
+ link('OpenSearch — Field capabilities','https://docs.opensearch.org/latest/api-reference/search-apis/field-caps/'),
+ link('OpenSearch — Bucket script','https://docs.opensearch.org/latest/aggregations/pipeline/bucket-script/'))
+pages[-2]['break']=True
+pages[-1]['break']=True
+save(12,'12장 장기 로그의 피벗과 집계',pages,'Module01 pp645~704. 원전 합성 자료와 현재 빈 검색 구분. 생성·적재 미실행. 조회·계산 검토 범위 editorial/chapter12-review.md.')

@@ -1,0 +1,100 @@
+[
+  {
+    "id": "C11-01",
+    "file": "C11-01.txt",
+    "where": "kt66 Ubuntu VM · 터미널",
+    "section": "준비와 프로세스 확인",
+    "input": "sudo docker ps --format \"{{.Names}}\\t{{.Status}}\"\nsudo docker exec -it kt66-ips /bin/bash\nhostname"
+  },
+  {
+    "id": "C11-02",
+    "file": "C11-02.txt",
+    "where": "kt66-ips 컨테이너 · root Bash",
+    "section": "준비와 프로세스 확인",
+    "input": "suricata -V\npgrep -a -f '^suricata '"
+  },
+  {
+    "id": "C11-03",
+    "file": "C11-03.txt",
+    "where": "kt66-ips 컨테이너 · root Bash",
+    "section": "규칙과 수집 파일을 확인한다",
+    "input": "less /etc/suricata/rules/local.rules"
+  },
+  {
+    "id": "C11-04",
+    "file": "C11-04.txt",
+    "where": "kt66-ips 컨테이너 · root Bash",
+    "section": "규칙과 수집 파일을 확인한다",
+    "input": "tail -n 2 /var/log/suricata/eve.json\nless /var/ossec/etc/ossec.conf"
+  },
+  {
+    "id": "Q11-01",
+    "file": "Q11-01.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "Wazuh에서 Suricata를 찾는다",
+    "input": "rule.groups:suricata"
+  },
+  {
+    "id": "C11-05",
+    "file": "C11-05.txt",
+    "where": "kt66-ips에서 exit 후 kt66 Ubuntu VM, 이어 siem",
+    "section": "Wazuh에서 Suricata를 찾는다",
+    "input": "exit\nsudo docker exec -it kt66-siem /bin/bash\nless /var/ossec/ruleset/rules/0475-suricata_rules.xml"
+  },
+  {
+    "id": "Q11-02",
+    "file": "Q11-02.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "추가 필터와 누락 점검",
+    "input": "rule.groups:suricata AND\nNOT data.alert.category:\"Not Suspicious Traffic\""
+  },
+  {
+    "id": "Q11-03",
+    "file": "Q11-03.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "추가 필터와 누락 점검",
+    "input": "rule.groups:suricata AND\nNOT data.alert.category:*"
+  },
+  {
+    "id": "Q11-04",
+    "file": "Q11-04.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "추가 필터와 누락 점검",
+    "input": "rule.groups:suricata AND\ndata.alert.action:blocked"
+  },
+  {
+    "id": "Q11-05",
+    "file": "Q11-05.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "네트워크와 호스트 기록을 연결한다",
+    "input": "data.src_ip:\"192.168.0.108\" OR\ndata.srcip:\"192.168.0.108\""
+  },
+  {
+    "id": "Q11-06",
+    "file": "Q11-06.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "11.2  실습 60 ATT&CK로 조사 범위를 정한다",
+    "input": "rule.mitre.tactic:(\"Privilege Escalation\" OR\n\"Credential Access\" OR \"Persistence\" OR\n\"Defense Evasion\") AND rule.level >= 8"
+  },
+  {
+    "id": "Q11-07",
+    "file": "Q11-07.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "MITRE 화면과 원문 경보의 왕복",
+    "input": "rule.mitre.id:\"T1562.001\""
+  },
+  {
+    "id": "Q11-08",
+    "file": "Q11-08.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "MITRE 화면과 원문 경보의 왕복",
+    "input": "rule.level >= 8 AND NOT rule.mitre.id:*"
+  },
+  {
+    "id": "Q11-09",
+    "file": "Q11-09.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "11.3  실습 61 일일 관제의 시작",
+    "input": "rule.level >= 12 AND NOT\nrule.groups:(sca OR vulnerability-detector OR rootcheck)"
+  }
+]

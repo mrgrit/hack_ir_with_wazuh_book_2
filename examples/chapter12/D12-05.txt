@@ -1,0 +1,21 @@
+GET wazuh-alerts-*/_search
+{
+ "size": 0,
+ "query": {"term": {"synthetic.flag": true}},
+ "aggs": {"scope": {
+  "filters": {"filters": {"all": {"range": {
+   "timestamp": {
+    "gte": "2026-08-01T00:00:00+09:00",
+    "lt": "2026-11-01T00:00:00+09:00"
+   }}}}},
+  "aggs": {
+   "off": {"filter": {"script": {"script": {
+    "source": "def t = doc['timestamp'].value.withZoneSameInstant(ZoneId.of('Asia/Seoul')); return t.getDayOfWeek().getValue() >= 6 || t.getHour() < 9 || t.getHour() >= 18;"
+   }}}},
+   "ratio": {"bucket_script": {
+    "buckets_path": {"n":"off>_count","d":"_count"},
+    "script":"params.d > 0 ? 1.0 * params.n / params.d : null"
+   }}
+  }
+ }}
+}

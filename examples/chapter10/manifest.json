@@ -1,0 +1,121 @@
+[
+  {
+    "id": "C10-01",
+    "file": "C10-01.txt",
+    "where": "Windows PC · PowerShell",
+    "section": "10.1  준비와 실행 위치",
+    "input": "ssh ccc@192.168.0.107"
+  },
+  {
+    "id": "C10-02",
+    "file": "C10-02.txt",
+    "where": "kt66 Ubuntu VM · 터미널",
+    "section": "10.1  준비와 실행 위치",
+    "input": "sudo docker ps --format \"{{.Names}}\\t{{.Status}}\""
+  },
+  {
+    "id": "C10-03",
+    "file": "C10-03.txt",
+    "where": "kt66 Ubuntu VM · 터미널",
+    "section": "관리자 서버에서 연결 상태 확인",
+    "input": "sudo docker exec -it kt66-siem /bin/bash\nhostname"
+  },
+  {
+    "id": "C10-04",
+    "file": "C10-04.txt",
+    "where": "kt66-siem 컨테이너 · root Bash",
+    "section": "관리자 서버에서 연결 상태 확인",
+    "input": "/var/ossec/bin/agent_control -l"
+  },
+  {
+    "id": "C10-05",
+    "file": "C10-05.txt",
+    "where": "kt66-siem 컨테이너 · root Bash",
+    "section": "관리자 서버에서 연결 상태 확인",
+    "input": "less /var/ossec/etc/ossec.conf"
+  },
+  {
+    "id": "Q10-01",
+    "file": "Q10-01.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "검색 기간과 표 열 구성",
+    "input": "rule.id:(503 OR 504 OR 506)"
+  },
+  {
+    "id": "Q10-02",
+    "file": "Q10-02.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "원전의 fw 단절 사례",
+    "input": "agent.name:\"fw\" AND rule.id:(503 OR 504 OR 506)"
+  },
+  {
+    "id": "C10-06",
+    "file": "C10-06.txt",
+    "where": "kt66-siem 컨테이너 · root Bash",
+    "section": "원인 조사와 실패 시 확인 순서",
+    "input": "tail -n 40 /var/ossec/logs/ossec.log"
+  },
+  {
+    "id": "C10-07",
+    "file": "C10-07.txt",
+    "where": "kt66-siem에서 exit 후 kt66 Ubuntu VM, 이어 bastion",
+    "section": "원인 조사와 실패 시 확인 순서",
+    "input": "exit\nsudo docker exec -it kt66-bastion /bin/bash\n/var/ossec/bin/wazuh-control status"
+  },
+  {
+    "id": "C10-08",
+    "file": "C10-08.txt",
+    "where": "kt66-bastion에서 exit 후 kt66 Ubuntu VM, 이어 siem",
+    "section": "자동 대응 설정을 읽는다",
+    "input": "exit\nsudo docker exec -it kt66-siem /bin/bash\nless /var/ossec/etc/ossec.conf"
+  },
+  {
+    "id": "C10-09",
+    "file": "C10-09.txt",
+    "where": "kt66-siem에서 exit 후 kt66 Ubuntu VM, 이어 bastion",
+    "section": "대상 에이전트의 대응 로그",
+    "input": "exit\nsudo docker exec -it kt66-bastion /bin/bash\nless /var/ossec/logs/active-responses.log"
+  },
+  {
+    "id": "Q10-03",
+    "file": "Q10-03.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "Wazuh의 차단·해제 검색",
+    "input": "rule.id:(651 OR 652) OR rule.groups:active_response"
+  },
+  {
+    "id": "Q10-04",
+    "file": "Q10-04.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "대응 대상과 원인 경보를 연결한다",
+    "input": "rule.id:(651 OR 652) AND\ndata.parameters.alert.data.srcip:\"192.168.0.108\""
+  },
+  {
+    "id": "Q10-05",
+    "file": "Q10-05.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "대응 대상과 원인 경보를 연결한다",
+    "input": "id:\"1793619097.12602015\""
+  },
+  {
+    "id": "Q10-06",
+    "file": "Q10-06.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "대응 대상과 원인 경보를 연결한다",
+    "input": "rule.id:5763 AND agent.name:\"bastion\" AND\ndata.srcip:\"192.168.0.108\""
+  },
+  {
+    "id": "C10-10",
+    "file": "C10-10.txt",
+    "where": "kt66-bastion 컨테이너 · root Bash",
+    "section": "대응 대상과 원인 경보를 연결한다",
+    "input": "iptables -S"
+  },
+  {
+    "id": "C10-11",
+    "file": "C10-11.txt",
+    "where": "kt66-bastion 컨테이너 · root Bash",
+    "section": "실습 58의 원상복구와 종결",
+    "input": "exit"
+  }
+]

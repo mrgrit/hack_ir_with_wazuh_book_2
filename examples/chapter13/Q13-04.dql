@@ -1,0 +1,2 @@
+synthetic.flag:true AND
+synthetic.actor:(attacker OR insider)

@@ -1,0 +1,2 @@
+wc -l /home/ccc/synth-v2-ch12.jsonl
+sha256sum /home/ccc/synth-v2-ch12.jsonl

@@ -1,0 +1,3 @@
+cd /home/ccc/kt66
+python3 --version
+ls -l /home/ccc/synth-v2-ch12.jsonl

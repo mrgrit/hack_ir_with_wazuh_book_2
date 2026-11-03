@@ -1,0 +1,13 @@
+  "aggs": {
+   "max_level": {"max": {"field":"rule.level"}},
+   "risk": {"sum": {"script": {
+    "source": "if (doc['rule.level'].size() == 0) return 0; def n = doc['rule.level'].value; return n >= 5 ? n * n : 0;"
+   }}},
+   "risk_24h": {"moving_fn": {
+    "buckets_path": "risk", "window": 24,
+    "shift": 1, "gap_policy": "insert_zeros",
+    "script": "MovingFunctions.sum(values)"
+   }}
+  }
+ }}
+}

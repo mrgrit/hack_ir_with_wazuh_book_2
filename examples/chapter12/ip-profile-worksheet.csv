@@ -1,0 +1,6 @@
+﻿ip,start_inclusive,end_exclusive,time_zone,index,documents,level_ge5_documents,sensor_count,target_system_count,rule_types_ge5,active_days,interval_mean_s,interval_median_s,interval_std_s,max_level,fw_drop,ips_allowed,ips_blocked,web_403_candidate,web_200_candidate,offhour_ratio,holiday_ratio,reputation,burstiness,missing_fields,evidence_ids,next_action
+185.220.158.180,,,Asia/Seoul,,,,,,,,,,,,,,,,,,,,,,,
+162.142.241.68,,,Asia/Seoul,,,,,,,,,,,,,,,,,,,,,,,
+,,,Asia/Seoul,,,,,,,,,,,,,,,,,,,,,,,
+,,,Asia/Seoul,,,,,,,,,,,,,,,,,,,,,,,
+,,,Asia/Seoul,,,,,,,,,,,,,,,,,,,,,,,

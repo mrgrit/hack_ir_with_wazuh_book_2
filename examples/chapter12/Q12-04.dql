@@ -1,0 +1,3 @@
+synthetic.flag:true AND
+(data.srcip:"185.220.158.180" OR
+ data.src_ip:"185.220.158.180") AND rule.groups:firewall_drop

@@ -1,0 +1,130 @@
+{
+  "date": "2026-11-03",
+  "artifact": "appendix",
+  "status": "draft reviewed",
+  "docx": "manuscript/volume02-appendix.docx",
+  "docx_sha256": "33c29b6436775d9fa73c61223699180edc8ab887ca5283d27cc2874dd643845f",
+  "manuscript_sha256": "2b7047fbdc27b34a2f8d145b4fec82031c352d8ba0dd403d9157e585c1e8296e",
+  "page_count": 17,
+  "internal_render": "build/remaining/appendix-final.pdf",
+  "internal_render_sha256": "b43a7a56cbc483f282598f68ddc90278b95155cc61d6d51b092354bda2e25165",
+  "render_method": "Hidden Microsoft Word COM and pypdfium2; PDF only for internal QA",
+  "template_sha256": "2506e3b2036c3bfa18f84a1f3b6185bff52c0273d4c2c526dd3c68d9adb5b18b",
+  "geometry_twips": {
+    "pgSz": {
+      "w": "10660",
+      "h": "14912",
+      "code": "190"
+    },
+    "pgMar": {
+      "top": "1588",
+      "right": "1588",
+      "bottom": "2438",
+      "left": "1588",
+      "header": "851",
+      "footer": "907",
+      "gutter": "284"
+    }
+  },
+  "theme_matches_template": true,
+  "first_paragraph_style": "Title",
+  "pdf_fonts": [
+    "/BCDEEE+BookkMyungjo-Lt",
+    "/BCDFEE+BookkGothic-Lt",
+    "/BCDGEE+BookkGothic-Lt",
+    "/BCDHEE+BookkMyungjo-Lt",
+    "/BCDIEE+Consolas"
+  ],
+  "copy_inputs": {
+    "total": 4,
+    "shell": 0,
+    "dql": 4,
+    "dev_tools_fragments": 0,
+    "manifest_matches": true,
+    "all_input_text_in_render": true,
+    "ui_evidence": "remaining-query-ui.json"
+  },
+  "full_urls_verified_in_docx_and_render": [
+    "https://github.com/mrgrit/hack_ir_with_wazuh_book_2",
+    "https://docs.google.com/presentation/d/1o0H_2DDHBp8p2HvlSnEPbx6-jdURYzew",
+    "https://learn.microsoft.com/sysinternals/downloads/sysmon",
+    "https://docs.opensearch.org/2.13/dashboards/dql/",
+    "https://docs.opensearch.org/latest/api-reference/search-apis/field-caps/"
+  ],
+  "images": [
+    {
+      "path": "assets/figures/appendix/check-path.png",
+      "sha256": "c2d20dbdce81fb233244aa348cfc350018526dfb9054141d702e6762b1d239a0",
+      "size": [
+        1280,
+        720
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    }
+  ],
+  "visual_review": {
+    "previous_final_individually_viewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "final_pages_unchanged_hash_match": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "final_changed_pages_individually_viewed": [],
+    "final_page_sha256": {
+      "page-01.png": "3e14bf1e070627b57d55ec646dd9084966fbfb68b9330909d7cb9a799025027a",
+      "page-02.png": "83ebe1a8aba5d780af7d57505427338630b5bde031d473a8004a68fd911e217a",
+      "page-03.png": "c9f6654d04506d011a125388c6bf7023c826169203d804fa8da96ce438fcaf57",
+      "page-04.png": "1df0b173020e1cf083415ed867fd4ecd3a45659981c0f688e782885ccf9bbb2a",
+      "page-05.png": "a567897284153a2e4fc7781cfc369c92adfbbebd669ff11594e6cddeec814a5c",
+      "page-06.png": "ea87a5ac937b02a4afbd294a850f457b4aaf486c8032355f1f63196348f88dfd",
+      "page-07.png": "40605ac4ffdcad142bbd47f33c37f79c46e7699547aedda52f1a57b2b11408d8",
+      "page-08.png": "086f3161d9ee775b268996832e184156174f8ff1fec3e9ce2a265dba7b912991",
+      "page-09.png": "2a47a8afebee55e894d6410f246ace95d058810ac765956f7ad8b4b89a8ac318",
+      "page-10.png": "93491dad4d376be68c6c1b5a9e4849d69536a84b7cf4ef3460ec4e99a4447eea",
+      "page-11.png": "c8be95072071a4a914e62d00694e2837fbe17960d24885b20e78462caebdfaab",
+      "page-12.png": "8bd3ca9eaa023bfa7ec9c3b301335e22e0dd245d6f19ef0233cb9c7ad32a9ba3",
+      "page-13.png": "9862ff38723db20ec1afb82673aa5937320513399f155098818dce22ea271d5e",
+      "page-14.png": "9b79e4e6b3ebfc9a242b1295ef9b16c49f1c6a9d5c0e720e3a5e0607895d9299",
+      "page-15.png": "9b39115be376b33f64088da846e0fed207d3d0d103c0bdec1c9c1965d12a215b",
+      "page-16.png": "bbd4bdb9d16c3409980831962dbc68ca7f5d60d8daf8d2632b75a1f109f8094e",
+      "page-17.png": "57eb27e8dfeec0d3862ecb3f35a5531438970bbd8ff0197b07015ff9b5164304"
+    },
+    "result": "No clipping, distorted images, detached captions or missing URL characters observed."
+  },
+  "validation_limits": "Read-only observations plus source screenshots. No new attack, service stop, firewall/protection change, synthetic generation/ingestion/deletion. Empty synthetic results are not positive-path verification. Arithmetic fixtures are constructed. See remaining-review.md and artifact review."
+}

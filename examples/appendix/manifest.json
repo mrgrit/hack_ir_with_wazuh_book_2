@@ -1,0 +1,30 @@
+[
+  {
+    "id": "QA-01",
+    "file": "QA-01.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "출발지와 자동 대응 필드",
+    "input": "data.srcip:\"192.168.0.108\" OR\ndata.src_ip:\"192.168.0.108\" OR\ndata.win.eventdata.ipAddress:\"192.168.0.108\""
+  },
+  {
+    "id": "QA-02",
+    "file": "QA-02.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "검색 예와 오류 점검",
+    "input": "agent.name:\"windows-user\" AND\ndata.win.system.channel:\"Security\" AND\ndata.win.system.eventID:(\"4624\" OR \"4625\")"
+  },
+  {
+    "id": "QA-03",
+    "file": "QA-03.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "검색 예와 오류 점검",
+    "input": "rule.id:(503 OR 504 OR 506 OR 651 OR 652)"
+  },
+  {
+    "id": "QA-04",
+    "file": "QA-04.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "검색 예와 오류 점검",
+    "input": "synthetic.flag:true AND\n(data.srcip:\"185.220.158.180\" OR\n data.src_ip:\"185.220.158.180\")"
+  }
+]

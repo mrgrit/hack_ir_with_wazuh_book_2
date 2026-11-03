@@ -1,0 +1,2 @@
+rule.groups:suricata AND
+data.alert.action:blocked

@@ -1,0 +1,155 @@
+[
+  {
+    "file": "assets/screenshots/chapter10/agent-events.png",
+    "source": "build/remaining/ui/agent-events.png",
+    "crop": [
+      280,
+      410,
+      900,
+      640
+    ],
+    "kind": "current UI",
+    "slide": null,
+    "sha256": "acd82422fe2182854555d9005d02d007f8ebdd1085c660db563a4852ec068342",
+    "source_sha256": "5b64d5d0ebf7dd6ccd376123e12d9d7ee3493b84a72bad305e7c8e9148d064fa"
+  },
+  {
+    "file": "assets/screenshots/chapter10/active-response.png",
+    "source": "build/remaining/ui/active-response.png",
+    "crop": [
+      280,
+      410,
+      900,
+      575
+    ],
+    "kind": "current UI",
+    "slide": null,
+    "sha256": "1273e9f2645c0bf074ed1f1424260f3132529066d087fcb6ddedbfc3ea90cf93",
+    "source_sha256": "c8f4525e59af2a20375152b480bbc7a0a9ff918f462fd2c82e1ef4e525b9f6ed"
+  },
+  {
+    "file": "assets/screenshots/chapter11/mitre-current.png",
+    "source": "build/remaining/ui/mitre-current.png",
+    "crop": [
+      280,
+      410,
+      630,
+      686
+    ],
+    "kind": "current UI",
+    "slide": null,
+    "sha256": "f3ebfcada4d7d928c03e06158bc0fdb480a98d2a4e1809ec719508348a5ddd5c",
+    "source_sha256": "8fcac2523fdcbc0ce7cfa6612c785dfbe154a96c429456f6dd46e5a606d08c93"
+  },
+  {
+    "file": "assets/screenshots/chapter11/daily-current.png",
+    "source": "build/remaining/ui/daily-current.png",
+    "crop": [
+      280,
+      410,
+      630,
+      686
+    ],
+    "kind": "current UI",
+    "slide": null,
+    "sha256": "673caddcaf1ae3381d25417890fcc472c63ad25cb3f9569cc0e5740da87ec794",
+    "source_sha256": "9d7c1af7d6b892b696fb55a828f1421fcfa20f70ff16ea4ed1c864e2b380654d"
+  },
+  {
+    "file": "assets/screenshots/chapter11/suricata-current.png",
+    "source": "build/remaining/ui/suricata-current.png",
+    "crop": [
+      270,
+      52,
+      870,
+      222
+    ],
+    "kind": "current UI",
+    "slide": null,
+    "sha256": "49664799a5d23d5e32d6dd402d1b8bfa80a4f6855c27c1efc6ae2f809d86ed3c",
+    "source_sha256": "a0657cfaaed23c36960b2c7b0918d2d490766d5ba403514c5462cde5235e8bdc"
+  },
+  {
+    "file": "assets/screenshots/chapter12/synthetic-empty.png",
+    "source": "build/remaining/ui/synthetic-empty.png",
+    "crop": [
+      270,
+      52,
+      870,
+      222
+    ],
+    "kind": "current UI",
+    "slide": null,
+    "sha256": "9bbc70dd2d39471fad685f9d662a8ee721d98c03cd2fca979427b4c6cd11c73e",
+    "source_sha256": "e0b6fb1e0b86036744b4c9bcdeb2d6830a8e62733ee21867e033294b31230e15"
+  },
+  {
+    "file": "assets/screenshots/chapter10/source-disconnect.png",
+    "source": "build/research/remaining-images/p589-image291.png",
+    "crop": null,
+    "kind": "source slide",
+    "slide": 589,
+    "sha256": "23d688139b4c72efd8142e79c63df96b412a45a066e6f2d650be825febb2a143",
+    "source_sha256": "23d688139b4c72efd8142e79c63df96b412a45a066e6f2d650be825febb2a143"
+  },
+  {
+    "file": "assets/screenshots/chapter11/source-signature.png",
+    "source": "build/research/remaining-images/p608-image290.png",
+    "crop": null,
+    "kind": "source slide",
+    "slide": 608,
+    "sha256": "eee37ed7b82afd8daac4337cdc5bcdb91367fc588b2c26b35b4d351d163ea4bc",
+    "source_sha256": "eee37ed7b82afd8daac4337cdc5bcdb91367fc588b2c26b35b4d351d163ea4bc"
+  },
+  {
+    "file": "assets/screenshots/chapter11/source-action.png",
+    "source": "build/research/remaining-images/p609-image286.png",
+    "crop": null,
+    "kind": "source slide",
+    "slide": 609,
+    "sha256": "f64571ebd5f13ec8ea3041376cf8f884e71735dec794ed8f6a68a2e3c7de64d6",
+    "source_sha256": "f64571ebd5f13ec8ea3041376cf8f884e71735dec794ed8f6a68a2e3c7de64d6"
+  },
+  {
+    "file": "assets/screenshots/chapter12/source-ip.png",
+    "source": "build/research/remaining-images/p656-image310.png",
+    "crop": [
+      0,
+      0,
+      707,
+      344
+    ],
+    "kind": "source slide",
+    "slide": 656,
+    "sha256": "b0a444aaf579c5b4b91ebe029a7b8876bdb0ac94c5ef5b9cd38ce9a7b1dd12bc",
+    "source_sha256": "5dcbfcfac217523397c984aee673e566012e450401585566f70c5fedf7df5738"
+  },
+  {
+    "file": "assets/screenshots/chapter12/source-response.png",
+    "source": "build/research/remaining-images/p704-image350.png",
+    "crop": [
+      0,
+      34,
+      620,
+      450
+    ],
+    "kind": "source slide",
+    "slide": 704,
+    "sha256": "35ee060a4624f2b33eb1c644915a8501182b1bf7c3aefbfb03ffc1496fb48051",
+    "source_sha256": "714a78e940538021d17ca528b684904f220780eb43bb90fc365e64483da8f481"
+  },
+  {
+    "file": "assets/screenshots/chapter13/source-hour-response.png",
+    "source": "build/research/remaining-images/p719-image347.png",
+    "crop": [
+      0,
+      34,
+      620,
+      450
+    ],
+    "kind": "source slide",
+    "slide": 719,
+    "sha256": "1a0dc1e7d01fb41837d6bcc7830e9b393f4818ee667a54bbc1260776e350ea85",
+    "source_sha256": "3da5113fa7582d11ce2ffd1a48977afd1e92b8d741a97f2a481030b33bde03c3"
+  }
+]

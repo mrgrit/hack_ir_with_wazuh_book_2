@@ -1,0 +1,14 @@
+{
+  "utc": "2026-11-03T11:45:18.253360+00:00",
+  "records": [
+    {
+      "id": "index-version",
+      "container": "kt66-wazuh-indexer",
+      "text": "curl --silent --show-error --fail --cacert /usr/share/wazuh-indexer/certs/root-ca.pem --cert /usr/share/wazuh-indexer/certs/admin.pem --key /usr/share/wazuh-indexer/certs/admin-key.pem --resolve wazuh.indexer:9200:127.0.0.1 https://wazuh.indexer:9200/",
+      "print_chars": 1000,
+      "stdout": "{\n  \"name\" : \"wazuh.indexer\",\n  \"cluster_name\" : \"opensearch\",\n  \"cluster_uuid\" : \"K0gweUV2Rq62nrAq3btobQ\",\n  \"version\" : {\n    \"number\" : \"7.10.2\",\n    \"build_type\" : \"rpm\",\n    \"build_hash\" : \"3f6ccf6a2243f68b200f3d752d32e51facfe30f6\",\n    \"build_date\" : \"2025-01-08T12:26:21.519600Z\",\n    \"build_snapshot\" : false,\n    \"lucene_version\" : \"9.11.1\",\n    \"minimum_wire_compatibility_version\" : \"7.10.0\",\n    \"minimum_index_compatibility_version\" : \"7.0.0\"\n  },\n  \"tagline\" : \"The OpenSearch Project: https://opensearch.org/\"\n}\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ]
+}

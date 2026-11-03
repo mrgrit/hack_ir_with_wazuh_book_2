@@ -1,0 +1,182 @@
+{
+  "date": "2026-11-03",
+  "artifact": "chapter13",
+  "status": "draft reviewed",
+  "docx": "manuscript/volume02-chapter13.docx",
+  "docx_sha256": "01be51bd6a2b63ad846b9fe6435f25f00fd5e38e10db3fc6acfef399ef4238c1",
+  "manuscript_sha256": "eb41273f53fd908794ee51df8f1ca141fd18e862ea6e7c9c255e3f4b7c2890a4",
+  "page_count": 21,
+  "internal_render": "build/remaining/chapter13-final-v2.pdf",
+  "internal_render_sha256": "ee8ae88da0374f38f5a4ce9a2d362de19de5678897ce66a2d3c87780d6cc69d2",
+  "render_method": "Hidden Microsoft Word COM and pypdfium2; PDF only for internal QA",
+  "template_sha256": "2506e3b2036c3bfa18f84a1f3b6185bff52c0273d4c2c526dd3c68d9adb5b18b",
+  "geometry_twips": {
+    "pgSz": {
+      "w": "10660",
+      "h": "14912",
+      "code": "190"
+    },
+    "pgMar": {
+      "top": "1588",
+      "right": "1588",
+      "bottom": "2438",
+      "left": "1588",
+      "header": "851",
+      "footer": "907",
+      "gutter": "284"
+    }
+  },
+  "theme_matches_template": true,
+  "first_paragraph_style": "Title",
+  "pdf_fonts": [
+    "/BCDEEE+BookkMyungjo-Lt",
+    "/BCDFEE+BookkGothic-Lt",
+    "/BCDGEE+BookkGothic-Lt",
+    "/BCDHEE+BookkMyungjo-Lt",
+    "/BCDIEE+Consolas"
+  ],
+  "copy_inputs": {
+    "total": 6,
+    "shell": 0,
+    "dql": 4,
+    "dev_tools_fragments": 2,
+    "manifest_matches": true,
+    "all_input_text_in_render": true,
+    "ui_evidence": "remaining-query-ui.json"
+  },
+  "full_urls_verified_in_docx_and_render": [
+    "https://docs.google.com/presentation/d/1o0H_2DDHBp8p2HvlSnEPbx6-jdURYzew",
+    "https://github.com/mrgrit/kt66/blob/63d4180b1d6866de986ef263a3bd831d6082b5d5/analytics/devtools_aggregations.md",
+    "https://docs.opensearch.org/latest/aggregations/pipeline/",
+    "https://docs.opensearch.org/2.13/aggregations/bucket/date-histogram/",
+    "https://docs.opensearch.org/latest/aggregations/pipeline/moving-function/"
+  ],
+  "images": [
+    {
+      "path": "assets/illustrations/chapter13/office-briefing.png",
+      "sha256": "b9250c2e53c2cf05eee643d82c3a29054a3f657a4a75e04508ef8d93f8da660f",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        254
+      ],
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/figures/chapter13/linking.png",
+      "sha256": "7b4843419e3c73a6f5b9e589df0804d08950a94f233d7f51f30a20e7f0385359",
+      "size": [
+        1280,
+        720
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/figures/chapter13/window.png",
+      "sha256": "9b7696e9eedb2d52d9e2d18fc7f7b25ad865964b2d4b7008997ad026d1fdc273",
+      "size": [
+        1280,
+        510
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter13/source-hour-response.png",
+      "sha256": "1a0dc1e7d01fb41837d6bcc7830e9b393f4818ee667a54bbc1260776e350ea85",
+      "size": [
+        620,
+        416
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    }
+  ],
+  "visual_review": {
+    "previous_final_individually_viewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "final_pages_unchanged_hash_match": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "final_changed_pages_individually_viewed": [
+      20,
+      21
+    ],
+    "final_page_sha256": {
+      "page-01.png": "3f627cef1425c12b9df87e21c3f6cff9b52438a6a872c285c0cceb0a8576cd51",
+      "page-02.png": "573457b6652b529bf969dbbd7f010e3178f7885f6a70e404f9b4754e1baf2b5f",
+      "page-03.png": "649a230448780a8b59e9ba659b7cba965c56b297e464983027100d69d9f37014",
+      "page-04.png": "6213ed059b0478a73390df7cafb5c2164319e5280ecb106c02d2409ce9991c9e",
+      "page-05.png": "23e6cdaebbb1a989e7d3aabbc36907e0b746499409b9ed2f2171161f2be3cb8b",
+      "page-06.png": "d72b30400c6ae1dec03b7104d8c1381938839f99ae10546f605aa5d13f8a248c",
+      "page-07.png": "14bffc2e2318d16ba38c346d2669be40c89d49df3a6b5de3f31ce5c2a8819ab4",
+      "page-08.png": "1b4f9964a8ebe2fbc81c914c964f85dfea6f279f340ceac3f6f297e7ef747645",
+      "page-09.png": "685534c08608210a09773690104c47443b0e6604a04360765e0636b5374d6a2f",
+      "page-10.png": "6a8be0e7ba2d6b89a18006feb25aa7e78dd58d6e60a990223a2d2c5116aa447f",
+      "page-11.png": "ac76c715f688c974afe402e70d65989f8a728a168d4d055ea940e062c8f26f53",
+      "page-12.png": "48df61a2a120181f65408dc9d6f500544720c70532424fcdc67cb7b5213778ca",
+      "page-13.png": "d361292d042eacd904649d6802b8e061e37cef0d6963cae119d572f550b24119",
+      "page-14.png": "c205cf552aba530b73d3fca631716f261e3384329fda26a14e44c4fe13f630b5",
+      "page-15.png": "e50f4acf170535ce24a4db139a05331477ae3ddb3155e412120b7df1037c4f7c",
+      "page-16.png": "652aae2b23ee73791ab33b022d752f5ef0e7099e50e70d83778ee8a43b0e6def",
+      "page-17.png": "61c1b1c3b12242d393a9830a1a8cc4d315387bf147180f9e00e1f9bd6393ae4f",
+      "page-18.png": "86d69bc3f577005371147c7d8dcc166b66a594d3d4cac863922c17fb832eb36b",
+      "page-19.png": "878e84a7715be5812e6ef9e7f5dff678dbd4b6e5358579236481853bd5b3d60c",
+      "page-20.png": "778b40639fbc5d3a8b51cb8f84a6ecdda0c04e79d9e294a7e7ce875c7122726b",
+      "page-21.png": "0dc2b43bdd123f473df6a746b693ddd61b6e5551338de6c973d6b344cc5983f1"
+    },
+    "result": "No clipping, distorted images, detached captions or missing URL characters observed."
+  },
+  "validation_limits": "Read-only observations plus source screenshots. No new attack, service stop, firewall/protection change, synthetic generation/ingestion/deletion. Empty synthetic results are not positive-path verification. Arithmetic fixtures are constructed. See remaining-review.md and artifact review."
+}
