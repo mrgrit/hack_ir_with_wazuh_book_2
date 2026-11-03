@@ -1,0 +1,4 @@
+Get-ItemProperty 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging'
+Get-WinEvent -ListLog 'Microsoft-Windows-PowerShell/Operational' |
+ Format-List LogName,IsEnabled
+Get-ExecutionPolicy -List

@@ -1,0 +1,13 @@
+{
+  "started_utc": "2026-11-03T05:53:09.848631+00:00",
+  "records": [
+    {
+      "id": "remove-created-items",
+      "text": "sc.exe qc book2_ch04_svc; sc.exe delete book2_ch04_svc; sc.exe query book2_ch04_svc; schtasks.exe /query /tn book2_ch04_task /fo LIST; schtasks.exe /delete /tn book2_ch04_task /f; schtasks.exe /query /tn book2_ch04_task; reg.exe query HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v book2_ch04_run; reg.exe delete HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v book2_ch04_run /f; reg.exe query HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v book2_ch04_run; Get-Service WazuhSvc,Sysmon64,osqueryd | Format-Table Name,Status; Get-MpComputerStatus | Format-List IsTamperProtected,RealTimeProtectionEnabled",
+      "print_chars": 3200,
+      "stdout": "[SC] QueryServiceConfig SUCCESS\r\n\r\nSERVICE_NAME: book2_ch04_svc\r\n        TYPE               : 10  WIN32_OWN_PROCESS \r\n        START_TYPE         : 3   DEMAND_START\r\n        ERROR_CONTROL      : 1   NORMAL\r\n        BINARY_PATH_NAME   : C:\\Windows\\Temp\\book2_ch04_missing.exe\r\n        LOAD_ORDER_GROUP   : \r\n        TAG                : 0\r\n        DISPLAY_NAME       : book2_ch04_svc\r\n        DEPENDENCIES       : \r\n        SERVICE_START_NAME : LocalSystem\r\n[SC] DeleteService SUCCESS\r\n[SC] EnumQueryServicesStatus:OpenService FAILED 1060:\r\n\r\nThe specified service does not exist as an installed service.\r\n\r\n\r\nFolder: \\\r\nHostName:      KT66-WIN-01\r\nTaskName:      \\book2_ch04_task\r\nNext Run Time: N/A\r\nStatus:        Ready\r\nLogon Mode:    Interactive/Background\r\nSUCCESS: The scheduled task \"book2_ch04_task\" was successfully deleted.\r\n\r\nHKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\r\n    book2_ch04_run    REG_SZ    C:\\Windows\\Temp\\book2_ch04_missing.exe\r\n\r\nThe operation completed successfully.\r\r\n\r\n\r\n\r\nName      Status\r\n----      ------\r\nosqueryd Running\r\nSysmon64 Running\r\nWazuhSvc Running\r\n\r\n\r\n\r\n\r\nIsTamperProtected         : True\r\nRealTimeProtectionEnabled : True\r\n\r\n\r\n\r\n",
+      "stderr": "ERROR: The system cannot find the file specified.\r\r\nERROR: The system was unable to find the specified registry key or value.\r\n",
+      "exit_code": 0
+    }
+  ]
+}

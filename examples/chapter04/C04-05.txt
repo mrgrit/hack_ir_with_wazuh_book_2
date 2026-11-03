@@ -1,0 +1,1 @@
+sc.exe create book2_ch04_svc binPath= C:\Windows\Temp\book2_ch04_missing.exe start= demand

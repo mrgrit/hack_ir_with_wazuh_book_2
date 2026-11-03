@@ -1,0 +1,233 @@
+[
+  {
+    "id": "C04-01",
+    "file": "C04-01.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "준비된 Windows와 수집 상태 확인",
+    "input": "hostname\nwhoami.exe\nGet-Service WazuhSvc,Sysmon64,osqueryd |\n Format-Table Name,Status"
+  },
+  {
+    "id": "C04-02",
+    "file": "C04-02.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "준비된 Windows와 수집 상태 확인",
+    "input": "auditpol.exe /get /subcategory:'{0CCE9211-69AE-11D9-BED3-505054503030}'\nauditpol.exe /get /subcategory:'{0CCE9227-69AE-11D9-BED3-505054503030}'"
+  },
+  {
+    "id": "C04-03",
+    "file": "C04-03.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "관찰 시각과 Wazuh 검색 준비",
+    "input": "$start = Get-Date\n$start.ToUniversalTime().ToString(\"o\")"
+  },
+  {
+    "id": "C04-04",
+    "file": "C04-04.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "4.2  서비스 등록 흔적 만들기",
+    "input": "sc.exe query book2_ch04_svc\nTest-Path C:\\Windows\\Temp\\book2_ch04_missing.exe"
+  },
+  {
+    "id": "C04-05",
+    "file": "C04-05.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "4.2  서비스 등록 흔적 만들기",
+    "input": "sc.exe create book2_ch04_svc binPath= C:\\Windows\\Temp\\book2_ch04_missing.exe start= demand"
+  },
+  {
+    "id": "C04-06",
+    "file": "C04-06.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "서비스 구성과 실제 상태 확인",
+    "input": "sc.exe qc book2_ch04_svc\nsc.exe query book2_ch04_svc"
+  },
+  {
+    "id": "C04-07",
+    "file": "C04-07.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "7045와 4697 원본 찾기",
+    "input": "Get-WinEvent -FilterHashtable @{\n LogName='System';Id=7045;StartTime=$start\n} | Format-List TimeCreated,Id,RecordId,Message\nGet-WinEvent -FilterHashtable @{\n LogName='Security';Id=4697;StartTime=$start\n} | Format-List TimeCreated,Id,RecordId,Message"
+  },
+  {
+    "id": "Q04-01",
+    "file": "Q04-01.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "서비스 설치를 Wazuh에서 읽기",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"System\"\nAND data.win.system.eventID:\"7045\"\nAND data.win.eventdata.serviceName:\"book2_ch04_svc\""
+  },
+  {
+    "id": "Q04-02",
+    "file": "Q04-02.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "등록 수행자를 다른 채널에서 연결하기",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4697\"\nAND data.win.eventdata.serviceName:\"book2_ch04_svc\""
+  },
+  {
+    "id": "C04-08",
+    "file": "C04-08.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "4.3  예약 작업의 조건과 동작",
+    "input": "schtasks.exe /query /tn book2_ch04_task"
+  },
+  {
+    "id": "C04-09",
+    "file": "C04-09.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "작업 등록과 XML 확인",
+    "input": "schtasks.exe /create /tn book2_ch04_task /tr \"powershell.exe -NoProfile -Command Write-Output book2-ch04-task\" /sc ONLOGON /ru SYSTEM"
+  },
+  {
+    "id": "C04-10",
+    "file": "C04-10.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "작업 등록과 XML 확인",
+    "input": "schtasks.exe /query /tn book2_ch04_task /xml"
+  },
+  {
+    "id": "C04-11",
+    "file": "C04-11.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "작업 실행의 응답과 완료 결과",
+    "input": "schtasks.exe /run /tn book2_ch04_task\nGet-ScheduledTaskInfo -TaskName book2_ch04_task |\n Format-List LastRunTime,LastTaskResult,NextRunTime"
+  },
+  {
+    "id": "Q04-03",
+    "file": "Q04-03.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "작업 실행의 응답과 완료 결과",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"1\"\nAND data.win.eventdata.image:*powershell.exe\nAND data.win.eventdata.commandLine:*book2-ch04-task"
+  },
+  {
+    "id": "C04-12",
+    "file": "C04-12.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "4698의 작업 이름과 수행자",
+    "input": "Get-WinEvent -FilterHashtable @{\n LogName='Security';Id=4698;StartTime=$start\n} | Format-List TimeCreated,Id,RecordId,Message"
+  },
+  {
+    "id": "Q04-04",
+    "file": "Q04-04.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "4698의 작업 이름과 수행자",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4698\"\nAND data.win.eventdata.taskName:*book2_ch04_task"
+  },
+  {
+    "id": "C04-13",
+    "file": "C04-13.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "4.4  Run 키에 남는 자동 실행 명령",
+    "input": "reg.exe query HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v book2_ch04_run"
+  },
+  {
+    "id": "C04-14",
+    "file": "C04-14.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "Run 값 등록과 재조회",
+    "input": "reg.exe add HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v book2_ch04_run /t REG_SZ /d C:\\Windows\\Temp\\book2_ch04_missing.exe"
+  },
+  {
+    "id": "C04-15",
+    "file": "C04-15.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "Run 값 등록과 재조회",
+    "input": "reg.exe query HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v book2_ch04_run"
+  },
+  {
+    "id": "C04-16",
+    "file": "C04-16.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "Sysmon 13의 세 가지 경로",
+    "input": "Get-WinEvent -FilterHashtable @{\n LogName='Microsoft-Windows-Sysmon/Operational'\n Id=13;StartTime=$start\n} | Format-List TimeCreated,Id,RecordId,Message"
+  },
+  {
+    "id": "Q04-05",
+    "file": "Q04-05.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "Run 키 변경과 프로세스 연결",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"13\"\nAND data.win.eventdata.targetObject:*book2_ch04_run"
+  },
+  {
+    "id": "C04-17",
+    "file": "C04-17.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "4.5  osquery로 현재 남은 항목 확인",
+    "input": "Get-Content 'C:\\Program Files\\osquery\\osquery.conf'"
+  },
+  {
+    "id": "C04-18",
+    "file": "C04-18.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "시작 항목 직접 조회",
+    "input": "$oq = 'C:\\Program Files\\osquery\\osqueryi.exe'\nTest-Path -LiteralPath $oq\n& $oq --json \"SELECT name,path,source,username FROM startup_items WHERE name='book2_ch04_run';\""
+  },
+  {
+    "id": "C04-19",
+    "file": "C04-19.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "예약 작업과 관리자 구성원 조회",
+    "input": "& $oq --json \"SELECT name,action,path,enabled,last_run_time FROM scheduled_tasks WHERE name='book2_ch04_task';\""
+  },
+  {
+    "id": "C04-20",
+    "file": "C04-20.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "예약 작업과 관리자 구성원 조회",
+    "input": "& $oq --json \"SELECT u.username,g.groupname FROM user_groups ug JOIN users u USING(uid) JOIN groups g USING(gid) WHERE g.group_sid='S-1-5-32-544';\""
+  },
+  {
+    "id": "C04-21",
+    "file": "C04-21.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "예약 조회 로그와 Wazuh 결과",
+    "input": "Get-Content 'C:\\Program Files\\osquery\\log\\osqueryd.results.log' -Tail 300 |\n Select-String -SimpleMatch 'book2_ch04' |\n ForEach-Object { $_.Line }"
+  },
+  {
+    "id": "Q04-06",
+    "file": "Q04-06.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "예약 조회 로그와 Wazuh 결과",
+    "input": "agent.name:\"windows-user\"\nAND rule.groups:osquery\nAND data.osquery.name:(kt66_startup_items OR kt66_scheduled_tasks)\nAND data.osquery.columns.name:(book2_ch04_run OR book2_ch04_task)\nAND data.osquery.action:added"
+  },
+  {
+    "id": "C04-22",
+    "file": "C04-22.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "원상복구할 객체 다시 확인",
+    "input": "sc.exe qc book2_ch04_svc\nsc.exe query book2_ch04_svc\nschtasks.exe /query /tn book2_ch04_task /fo LIST\nreg.exe query HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v book2_ch04_run"
+  },
+  {
+    "id": "C04-23",
+    "file": "C04-23.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "원상복구할 객체 다시 확인",
+    "input": "sc.exe delete book2_ch04_svc\nschtasks.exe /delete /tn book2_ch04_task /f\nreg.exe delete HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v book2_ch04_run /f"
+  },
+  {
+    "id": "C04-24",
+    "file": "C04-24.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "삭제 뒤 현재 상태와 기록 확인",
+    "input": "sc.exe query book2_ch04_svc\nschtasks.exe /query /tn book2_ch04_task\nreg.exe query HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v book2_ch04_run"
+  },
+  {
+    "id": "C04-25",
+    "file": "C04-25.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "삭제 뒤 현재 상태와 기록 확인",
+    "input": "& $oq --json \"SELECT name FROM startup_items WHERE name='book2_ch04_run';\"\n& $oq --json \"SELECT name FROM scheduled_tasks WHERE name='book2_ch04_task';\""
+  },
+  {
+    "id": "Q04-07",
+    "file": "Q04-07.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "삭제 뒤 현재 상태와 기록 확인",
+    "input": "agent.name:\"windows-user\"\nAND rule.groups:osquery\nAND data.osquery.columns.name:(book2_ch04_run OR book2_ch04_task)\nAND data.osquery.action:removed"
+  },
+  {
+    "id": "C04-26",
+    "file": "C04-26.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "결과가 다를 때의 확인 순서",
+    "input": "Get-Service WazuhSvc,Sysmon64,osqueryd |\n Format-Table Name,Status\nGet-MpComputerStatus |\n Format-List IsTamperProtected,RealTimeProtectionEnabled"
+  }
+]

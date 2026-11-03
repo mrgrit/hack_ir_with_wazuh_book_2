@@ -1,0 +1,4 @@
+Get-Content -LiteralPath "$dir\w.cs"
+& $csc /nologo "/out:$dir\WINWORD.EXE" "$dir\w.cs"
+$LASTEXITCODE
+Get-Item -LiteralPath "$dir\WINWORD.EXE"

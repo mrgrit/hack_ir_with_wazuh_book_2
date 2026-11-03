@@ -1,0 +1,13 @@
+{
+  "started_utc": "2026-11-03T06:05:09.183634+00:00",
+  "records": [
+    {
+      "id": "cleanup-and-final-state",
+      "text_file": "build/ch05-cleanup.ps1",
+      "print_chars": 2000,
+      "stdout": "\r\nFullName                               Length\r\n--------                               ------\r\nC:\\Windows\\Temp\\book2_ch05\\block.ps1       71\r\nC:\\Windows\\Temp\\book2_ch05\\p.b64           22\r\nC:\\Windows\\Temp\\book2_ch05\\p.txt           15\r\nC:\\Windows\\Temp\\book2_ch05\\w.cs           315\r\nC:\\Windows\\Temp\\book2_ch05\\WINWORD.EXE   4096\r\nFalse\r\n\r\n\r\n\r\nName      Status\r\n----      ------\r\nosqueryd Running\r\nSysmon64 Running\r\nWazuhSvc Running\r\n\r\n\r\n\r\n\r\nIsTamperProtected         : True\r\nRealTimeProtectionEnabled : True\r\n\r\n\r\n\r\n\r\n[\r\n\r\n]\r\n[\r\n\r\n]\r\n        Scope ExecutionPolicy\r\n        ----- ---------------\r\nMachinePolicy       Undefined\r\n   UserPolicy       Undefined\r\n      Process       Undefined\r\n  CurrentUser       Undefined\r\n LocalMachine       Undefined\r\n\r\n\r\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ]
+}

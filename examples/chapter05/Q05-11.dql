@@ -1,0 +1,4 @@
+agent.name:"windows-user"
+AND data.win.system.channel:"Microsoft-Windows-Sysmon/Operational"
+AND data.win.system.eventID:"1"
+AND data.win.eventdata.image:(*certutil.exe OR *mshta.exe OR *regsvr32.exe OR *rundll32.exe OR *bitsadmin.exe OR *wmic.exe OR *msiexec.exe)

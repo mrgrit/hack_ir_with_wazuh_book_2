@@ -1,0 +1,3 @@
+Get-Content 'C:\Program Files\osquery\log\osqueryd.results.log' -Tail 300 |
+ Select-String -SimpleMatch 'book2_ch04' |
+ ForEach-Object { $_.Line }

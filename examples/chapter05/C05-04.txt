@@ -1,0 +1,2 @@
+New-Item -ItemType Directory -Path $dir
+Get-Item -LiteralPath $dir

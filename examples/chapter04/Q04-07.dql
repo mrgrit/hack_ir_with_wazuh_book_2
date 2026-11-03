@@ -1,0 +1,4 @@
+agent.name:"windows-user"
+AND rule.groups:osquery
+AND data.osquery.columns.name:(book2_ch04_run OR book2_ch04_task)
+AND data.osquery.action:removed

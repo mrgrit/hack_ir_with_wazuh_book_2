@@ -1,0 +1,5 @@
+agent.name:"windows-user"
+AND rule.groups:osquery
+AND data.osquery.name:(kt66_startup_items OR kt66_scheduled_tasks)
+AND data.osquery.columns.name:(book2_ch04_run OR book2_ch04_task)
+AND data.osquery.action:added

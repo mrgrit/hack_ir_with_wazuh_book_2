@@ -1,0 +1,1 @@
+& $oq --json "SELECT name,action,path,enabled,last_run_time FROM scheduled_tasks WHERE name='book2_ch04_task';"

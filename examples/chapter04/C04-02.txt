@@ -1,0 +1,2 @@
+auditpol.exe /get /subcategory:'{0CCE9211-69AE-11D9-BED3-505054503030}'
+auditpol.exe /get /subcategory:'{0CCE9227-69AE-11D9-BED3-505054503030}'

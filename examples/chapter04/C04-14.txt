@@ -1,0 +1,1 @@
+reg.exe add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v book2_ch04_run /t REG_SZ /d C:\Windows\Temp\book2_ch04_missing.exe

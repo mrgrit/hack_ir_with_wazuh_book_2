@@ -1,0 +1,4 @@
+agent.name:"windows-user"
+AND data.win.system.channel:"Security"
+AND data.win.system.eventID:"4698"
+AND data.win.eventdata.taskName:*book2_ch04_task

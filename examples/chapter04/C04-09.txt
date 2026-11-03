@@ -1,0 +1,1 @@
+schtasks.exe /create /tn book2_ch04_task /tr "powershell.exe -NoProfile -Command Write-Output book2-ch04-task" /sc ONLOGON /ru SYSTEM

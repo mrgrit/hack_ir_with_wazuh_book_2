@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-03",
+  "artifact": "manuscript/volume02-chapter04.docx",
+  "sha256": "eda787de270eaad105ad251738c491b959ede8c46115441f2568d6dadc1ed609",
+  "pages": 36,
+  "examples": 33,
+  "commands": 26,
+  "dql": 7,
+  "screenshots": 5,
+  "diagrams": 4,
+  "illustrations": 2,
+  "full_reference_urls_verified": true,
+  "reference_url_count": 13,
+  "template_geometry_equal": true,
+  "template_geometry_section": 0,
+  "template_theme_equal": true,
+  "source_manifest_copy_inputs_equal": true,
+  "all_images_embedded_with_matching_sha256": true,
+  "pdf_fonts": [
+    "/BCDEEE+BookkMyungjo-Lt",
+    "/BCDFEE+BookkGothic-Lt",
+    "/BCDGEE+BookkGothic-Lt",
+    "/BCDHEE+BookkMyungjo-Lt",
+    "/BCDIEE+Consolas"
+  ],
+  "execution_scope": "editorial/chapter04-review.md",
+  "powershell_syntax": "All final command blocks parsed in Windows PowerShell without errors; parsing did not execute the blocks.",
+  "dql_verification": "editorial/evidence/chapter04/2026-11-03/dql-ui-checks.json",
+  "visual_review": "All 36 final pages individually inspected at full render size.",
+  "render_method": "Bundled render_docx.py attempted but soffice.exe unavailable; hidden Word COM PDF export followed by pypdfium2 page rendering. PDF/PNG remain internal build artifacts.",
+  "illustration_review": "editorial/chapter04-05-illustration-review.json"
+}

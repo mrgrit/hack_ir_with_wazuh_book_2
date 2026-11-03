@@ -1,0 +1,6 @@
+Test-Path -LiteralPath "$dir\p.b64"
+Test-Path -LiteralPath "$dir\p.txt"
+$plain = [Text.Encoding]::ASCII.GetBytes('book2-ch05-file')
+[Convert]::ToBase64String($plain) |
+ Set-Content -LiteralPath "$dir\p.b64" -Encoding ASCII
+Get-Content -LiteralPath "$dir\p.b64"

@@ -1,0 +1,85 @@
+{
+  "date": "2026-11-03",
+  "tool": "image_gen built-in",
+  "scope": "4·5장 새 삽화 네 장. 이전 1·2권 삽화 점검 기록을 대체하지 않는다.",
+  "prompt_record": "chapter04-05-illustration-prompts.json",
+  "review_method": "원본 개별 확대·흰 종이 배경 합성 미리보기·실제 DOCX 지면. 합성 미리보기는 QA 전용이며 최종 PNG의 픽셀과 투명도를 변경하지 않았다.",
+  "assets": [
+    {
+      "path": "assets/illustrations/chapter04-service.png",
+      "generated_source_basename": "exec-5491866f-2b12-49d8-bfc4-e5c63069c98b.png",
+      "sha256": "43fe88c56ca33c73a2259e15f4e7738d26934726d7d8be89d09084ebe9f5ad04",
+      "size": [
+        1216,
+        1293
+      ],
+      "alpha_range": [
+        0,
+        255
+      ],
+      "native_asset_unchanged": true,
+      "individual_original_review": true,
+      "white_paper_review": true,
+      "docx_page_review": 2,
+      "chapter": 4,
+      "physical_review": "중년 여성·서버실 출입구·정비 카트. 두 팔이 어깨와 연결되며 한 손은 키보드에, 다른 손은 화면 뒤쪽에 일부 가려진다. 노트북 화면은 인물을 향하고 카트가 하중을 받친다."
+    },
+    {
+      "path": "assets/illustrations/chapter04-schedule.png",
+      "generated_source_basename": "exec-b94b8e17-594a-4e34-86e0-ea6c309449c7.png",
+      "sha256": "00f81c7b8cdf0c49a36e4aeceb6cfe0e19a5fe5b2af3dfd25038422fbec73548",
+      "size": [
+        1312,
+        1199
+      ],
+      "alpha_range": [
+        0,
+        255
+      ],
+      "native_asset_unchanged": true,
+      "individual_original_review": true,
+      "white_paper_review": true,
+      "docx_page_review": 28,
+      "chapter": 4,
+      "physical_review": "청년 남성·작업장·시계·공구함. 두 팔과 두 손을 확인했다. 노트는 탁자 위에 놓여 있고 한 손은 가리키며 다른 손은 가장자리를 잡는다. 화면은 인물을 향한다."
+    },
+    {
+      "path": "assets/illustrations/chapter05-command.png",
+      "generated_source_basename": "exec-04db6807-e7c8-4352-b403-8d0ce5c18639.png",
+      "sha256": "75c92e3013bedb6af7d2c915b2a137f735532ce7a43564d50ad5ab3320c712a5",
+      "size": [
+        1536,
+        1024
+      ],
+      "alpha_range": [
+        0,
+        254
+      ],
+      "native_asset_unchanged": true,
+      "individual_original_review": true,
+      "white_paper_review": true,
+      "docx_page_review": 2,
+      "chapter": 5,
+      "physical_review": "후드 인물의 뒤쪽 3/4·구형 CRT PC·부품 상자. 두 팔과 두 손은 한 키보드로 이어진다. 화면은 인물을 향하며 타워는 바닥, 인물은 의자에 놓인다."
+    },
+    {
+      "path": "assets/illustrations/chapter05-origin.png",
+      "generated_source_basename": "exec-a100a7f7-1c94-4c53-9500-43dc4cc99cd2.png",
+      "sha256": "16d79d25ea48182e3125f5e64ae80ad693e4fe2411da6324d4d19348941ce895",
+      "size": [
+        1312,
+        1199
+      ],
+      "alpha_range": [
+        0,
+        255
+      ],
+      "native_asset_unchanged": true,
+      "individual_original_review": true,
+      "white_paper_review": true,
+      "docx_page_review": 27,
+      "chapter": 5,
+      "physical_review": "안경 쓴 남성·처마 아래 공용 단말·USB 트레이. 두 팔과 두 손을 확인했다. 한 손은 키보드, 다른 손은 받침대 위에 놓인다. 단말 화면은 인물 쪽이며 종이를 억지로 돌린 소품은 없다."
+    }
+  ]
+}

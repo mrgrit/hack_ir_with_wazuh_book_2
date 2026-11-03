@@ -1,0 +1,2 @@
+& $oq --json "SELECT name FROM startup_items WHERE name='book2_ch04_run';"
+& $oq --json "SELECT name FROM scheduled_tasks WHERE name='book2_ch04_task';"

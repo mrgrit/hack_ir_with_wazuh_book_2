@@ -1,0 +1,119 @@
+[
+  {
+    "asset": "assets/screenshots/chapter04/service-fields.png",
+    "full_capture_sha256": "29a9f82a1afa97584ca18496c5abceca2619cefcab98d2411e7ce48b07e03bbd",
+    "crop_ltrb": [
+      25,
+      243,
+      680,
+      553
+    ],
+    "sha256": "933e4e4acc8aab597c472aa9b8ef0b836aeee8000395a676740a3ef1c8301d8c",
+    "source": "Wazuh Discover live UI, archives, 2026-11-03",
+    "processing": "rectangular crop only; no UI text replacement or synthesis"
+  },
+  {
+    "asset": "assets/screenshots/chapter04/service-subject.png",
+    "full_capture_sha256": "9ba451110de9ce517866becb46edc5c8d81ce461d0d07e6328537244874e5719",
+    "crop_ltrb": [
+      25,
+      367,
+      705,
+      767
+    ],
+    "sha256": "aba28ac41f397be17d0f47c3d925ecfa0b89055f81d97fe71c7e018040b7fd38",
+    "source": "Wazuh Discover live UI, archives, 2026-11-03",
+    "processing": "rectangular crop only; no UI text replacement or synthesis"
+  },
+  {
+    "asset": "assets/screenshots/chapter04/task-identity.png",
+    "full_capture_sha256": "4f85bd81ab67a035f9ead8995f5e325d72e0694fc1136e3b4a11b2b1c79e25a6",
+    "crop_ltrb": [
+      25,
+      707,
+      650,
+      862
+    ],
+    "sha256": "bafa012705691a2db90fdf56a1311db90db3de34a82f6cbbe341b18416a8c215",
+    "source": "Wazuh Discover live UI, archives, 2026-11-03",
+    "processing": "rectangular crop only; no UI text replacement or synthesis"
+  },
+  {
+    "asset": "assets/screenshots/chapter04/run-fields.png",
+    "full_capture_sha256": "2a4a734a7fffbfa33be483b44557e38eb232ff05375f663a16c595e13bea1d42",
+    "crop_ltrb": [
+      25,
+      243,
+      680,
+      458
+    ],
+    "sha256": "e14cd290d81399fc18b1d5a7baddaf344ff0d0afad67b33d8219c01b49b3efc9",
+    "source": "Wazuh Discover live UI, archives, 2026-11-03",
+    "processing": "rectangular crop only; no UI text replacement or synthesis"
+  },
+  {
+    "asset": "assets/screenshots/chapter04/osquery-fields.png",
+    "full_capture_sha256": "16b878e7bef9fc77180215839e68378ce4ba358f1ee1e62c3b7fc3281220ca7e",
+    "crop_ltrb": [
+      25,
+      243,
+      680,
+      396
+    ],
+    "sha256": "908df6588346d59796702707fff7b720d14815be0c79426d91135b66a4f275a0",
+    "source": "Wazuh Discover live UI, archives, 2026-11-03",
+    "processing": "rectangular crop only; no UI text replacement or synthesis"
+  },
+  {
+    "asset": "assets/screenshots/chapter05/scriptblock-fields.png",
+    "full_capture_sha256": "ebe511159d3d0f5421cd47402ca31aa8e0161cd785e7db43f3d6ad4f9f68f922",
+    "crop_ltrb": [
+      25,
+      243,
+      835,
+      520
+    ],
+    "sha256": "6305bb382dd568cb01f390a749ff9cfd8e2d7f03f038ef448b636e3da492e63d",
+    "source": "Wazuh Discover live UI, archives, 2026-11-03",
+    "processing": "rectangular crop only; no UI text replacement or synthesis"
+  },
+  {
+    "asset": "assets/screenshots/chapter05/encoded-fields.png",
+    "full_capture_sha256": "996ddb3efa55950ef651f88e61a0e6c569f41ccbccb9b00a96a0a22391c8ebd6",
+    "crop_ltrb": [
+      310,
+      273,
+      1110,
+      319
+    ],
+    "sha256": "53e5c389fa796b17d956aadb9ee2b29e41bbc6caaeef634d6935dc964a07f2ce",
+    "source": "Wazuh Discover live UI, archives, 2026-11-03",
+    "processing": "rectangular crop only; no UI text replacement or synthesis"
+  },
+  {
+    "asset": "assets/screenshots/chapter05/certutil-fields.png",
+    "full_capture_sha256": "34e573e2c7434925d83169afa72b838ddaa5934f58212e3bdbe2e137d7a3f217",
+    "crop_ltrb": [
+      25,
+      491,
+      800,
+      646
+    ],
+    "sha256": "73c1f6175829ab565cd8c8c5cb7fcb765f5bf8bd66d5266dbb9556c61e556bee",
+    "source": "Wazuh Discover live UI, archives, 2026-11-03",
+    "processing": "rectangular crop only; no UI text replacement or synthesis"
+  },
+  {
+    "asset": "assets/screenshots/chapter05/child-fields.png",
+    "full_capture_sha256": "2976e50eba992e460f7e585a6f6f1c902d76897eed92a628e6f7511cb9c43692",
+    "crop_ltrb": [
+      25,
+      630,
+      680,
+      815
+    ],
+    "sha256": "b4c1f2ca93a1aba3d78b496248b5a33b1f9c423d5cdb47044b63e989e5957877",
+    "source": "Wazuh Discover live UI, archives, 2026-11-03",
+    "processing": "rectangular crop only; no UI text replacement or synthesis"
+  }
+]

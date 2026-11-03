@@ -1,0 +1,4 @@
+agent.name:"windows-user"
+AND data.win.system.channel:"Microsoft-Windows-PowerShell/Operational"
+AND data.win.system.eventID:"4104"
+AND data.win.eventdata.scriptBlockText:(*Invoke-Mimikatz* OR *Invoke-Shellcode* OR *System.Reflection.Assembly* OR *VirtualAlloc* OR *SetThreadContext* OR *AmsiUtils* OR *amsiInitFailed*)

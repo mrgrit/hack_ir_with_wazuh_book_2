@@ -1,0 +1,4 @@
+$dir = 'C:\Windows\Temp\book2_ch05'
+Test-Path -LiteralPath $dir
+$start = Get-Date
+$start.ToUniversalTime().ToString('o')

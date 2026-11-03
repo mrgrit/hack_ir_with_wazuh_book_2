@@ -1,0 +1,2 @@
+sc.exe qc book2_ch04_svc
+sc.exe query book2_ch04_svc

@@ -1,0 +1,4 @@
+Get-WinEvent -FilterHashtable @{
+ LogName='Microsoft-Windows-Sysmon/Operational'
+ Id=1;StartTime=$start
+} | Format-List TimeCreated,Id,RecordId,Message

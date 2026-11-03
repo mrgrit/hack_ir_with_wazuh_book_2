@@ -1,0 +1,5 @@
+Remove-Item -LiteralPath "$dir\p.b64"
+Remove-Item -LiteralPath "$dir\p.txt"
+Remove-Item -LiteralPath "$dir\w.cs"
+Remove-Item -LiteralPath "$dir\WINWORD.EXE"
+Get-ChildItem -LiteralPath $dir

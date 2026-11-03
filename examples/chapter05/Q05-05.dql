@@ -1,0 +1,4 @@
+agent.name:"windows-user"
+AND data.win.system.channel:"Microsoft-Windows-PowerShell/Operational"
+AND data.win.system.eventID:"4104"
+AND data.win.eventdata.scriptBlockId:"c6b05be4-bfdb-4ae4-b16c-ebcbd0c7d19b"

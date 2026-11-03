@@ -1,0 +1,3 @@
+certutil.exe -decode "$dir\p.b64" "$dir\p.txt"
+Get-Content -LiteralPath "$dir\p.txt"
+Get-FileHash -LiteralPath "$dir\p.txt" -Algorithm SHA256

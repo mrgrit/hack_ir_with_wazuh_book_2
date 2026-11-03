@@ -1,0 +1,4 @@
+Get-ChildItem -LiteralPath $dir |
+ Select-Object FullName,Length
+Get-Process WINWORD -ErrorAction SilentlyContinue |
+ Select-Object Id,Path

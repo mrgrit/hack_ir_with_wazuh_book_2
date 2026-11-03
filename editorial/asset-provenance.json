@@ -207,6 +207,136 @@
       "kind": "actual Wazuh screenshot",
       "source": "192.168.0.107:5601, CUA, 2026-11-03",
       "sha256": "0a23d8093850285dc3ba44627cadb3699b32a19eee3c8319cb30a26383fb32f6"
+    },
+    {
+      "path": "assets/illustrations/chapter04-service.png",
+      "sha256": "43fe88c56ca33c73a2259e15f4e7738d26934726d7d8be89d09084ebe9f5ad04",
+      "kind": "generated illustration",
+      "source": "image_gen built-in",
+      "review": "editorial/chapter04-05-illustration-review.json"
+    },
+    {
+      "path": "assets/figures/chapter04/layers.png",
+      "sha256": "3f5b9a35d424efcde91d72a2d1d6598d5eda67446d4fa3179fe75c6bc4ee6d7b",
+      "kind": "generated relationship diagram",
+      "generator": "tools/build_chapter04.py"
+    },
+    {
+      "path": "assets/screenshots/chapter04/service-fields.png",
+      "sha256": "933e4e4acc8aab597c472aa9b8ef0b836aeee8000395a676740a3ef1c8301d8c",
+      "kind": "actual Wazuh UI screenshot crop",
+      "review": "editorial/chapter04-05-screenshots.json"
+    },
+    {
+      "path": "assets/screenshots/chapter04/service-subject.png",
+      "sha256": "aba28ac41f397be17d0f47c3d925ecfa0b89055f81d97fe71c7e018040b7fd38",
+      "kind": "actual Wazuh UI screenshot crop",
+      "review": "editorial/chapter04-05-screenshots.json"
+    },
+    {
+      "path": "assets/figures/chapter04/task.png",
+      "sha256": "62ea8f6ff0df07d3d5885e1baf9effa77380a5de7b74e49dffc9eb36827b845d",
+      "kind": "generated relationship diagram",
+      "generator": "tools/build_chapter04.py"
+    },
+    {
+      "path": "assets/screenshots/chapter04/task-identity.png",
+      "sha256": "bafa012705691a2db90fdf56a1311db90db3de34a82f6cbbe341b18416a8c215",
+      "kind": "actual Wazuh UI screenshot crop",
+      "review": "editorial/chapter04-05-screenshots.json"
+    },
+    {
+      "path": "assets/figures/chapter04/registry.png",
+      "sha256": "93980028f1e1673ff388b716d29d422d1017c77f87d2d3491e2367d9f2bbc44c",
+      "kind": "generated relationship diagram",
+      "generator": "tools/build_chapter04.py"
+    },
+    {
+      "path": "assets/screenshots/chapter04/run-fields.png",
+      "sha256": "e14cd290d81399fc18b1d5a7baddaf344ff0d0afad67b33d8219c01b49b3efc9",
+      "kind": "actual Wazuh UI screenshot crop",
+      "review": "editorial/chapter04-05-screenshots.json"
+    },
+    {
+      "path": "assets/figures/chapter04/osquery.png",
+      "sha256": "78ef46c73695ad2d4d8af30c229a7abcf91aa1a08cb8096184a8b2dccf419fd1",
+      "kind": "generated relationship diagram",
+      "generator": "tools/build_chapter04.py"
+    },
+    {
+      "path": "assets/screenshots/chapter04/osquery-fields.png",
+      "sha256": "908df6588346d59796702707fff7b720d14815be0c79426d91135b66a4f275a0",
+      "kind": "actual Wazuh UI screenshot crop",
+      "review": "editorial/chapter04-05-screenshots.json"
+    },
+    {
+      "path": "assets/illustrations/chapter04-schedule.png",
+      "sha256": "00f81c7b8cdf0c49a36e4aeceb6cfe0e19a5fe5b2af3dfd25038422fbec73548",
+      "kind": "generated illustration",
+      "source": "image_gen built-in",
+      "review": "editorial/chapter04-05-illustration-review.json"
+    },
+    {
+      "path": "assets/illustrations/chapter05-command.png",
+      "sha256": "75c92e3013bedb6af7d2c915b2a137f735532ce7a43564d50ad5ab3320c712a5",
+      "kind": "generated illustration",
+      "source": "image_gen built-in",
+      "review": "editorial/chapter04-05-illustration-review.json"
+    },
+    {
+      "path": "assets/figures/chapter05/evidence.png",
+      "sha256": "af451278645a96d97b388f32ea7436dd8795428ff1cdf65d091c731e212e4120",
+      "kind": "generated relationship diagram",
+      "generator": "tools/build_chapter05.py"
+    },
+    {
+      "path": "assets/figures/chapter05/encoding.png",
+      "sha256": "d66fd41764f210603ada330d3e187ff5506d10623271c6cbe5d911536f32d007",
+      "kind": "generated relationship diagram",
+      "generator": "tools/build_chapter05.py"
+    },
+    {
+      "path": "assets/screenshots/chapter05/encoded-fields.png",
+      "sha256": "53e5c389fa796b17d956aadb9ee2b29e41bbc6caaeef634d6935dc964a07f2ce",
+      "kind": "actual Wazuh UI screenshot crop",
+      "review": "editorial/chapter04-05-screenshots.json"
+    },
+    {
+      "path": "assets/figures/chapter05/download.png",
+      "sha256": "b5a6df113c44339d18831dd1abe587fabbafb7f24883ac94e15474b9c4d3226d",
+      "kind": "generated relationship diagram",
+      "generator": "tools/build_chapter05.py"
+    },
+    {
+      "path": "assets/screenshots/chapter05/scriptblock-fields.png",
+      "sha256": "6305bb382dd568cb01f390a749ff9cfd8e2d7f03f038ef448b636e3da492e63d",
+      "kind": "actual Wazuh UI screenshot crop",
+      "review": "editorial/chapter04-05-screenshots.json"
+    },
+    {
+      "path": "assets/screenshots/chapter05/certutil-fields.png",
+      "sha256": "73c1f6175829ab565cd8c8c5cb7fcb765f5bf8bd66d5266dbb9556c61e556bee",
+      "kind": "actual Wazuh UI screenshot crop",
+      "review": "editorial/chapter04-05-screenshots.json"
+    },
+    {
+      "path": "assets/figures/chapter05/parent.png",
+      "sha256": "28090adb592ee8e923b974cab0155308e0101e84caa46f092847a1f73b7d07a0",
+      "kind": "generated relationship diagram",
+      "generator": "tools/build_chapter05.py"
+    },
+    {
+      "path": "assets/screenshots/chapter05/child-fields.png",
+      "sha256": "b4c1f2ca93a1aba3d78b496248b5a33b1f9c423d5cdb47044b63e989e5957877",
+      "kind": "actual Wazuh UI screenshot crop",
+      "review": "editorial/chapter04-05-screenshots.json"
+    },
+    {
+      "path": "assets/illustrations/chapter05-origin.png",
+      "sha256": "16d79d25ea48182e3125f5e64ae80ad693e4fe2411da6324d4d19348941ce895",
+      "kind": "generated illustration",
+      "source": "image_gen built-in",
+      "review": "editorial/chapter04-05-illustration-review.json"
     }
   ],
   "template": {

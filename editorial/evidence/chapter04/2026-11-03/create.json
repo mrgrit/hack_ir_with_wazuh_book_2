@@ -1,0 +1,35 @@
+{
+  "started_utc": "2026-11-03T05:51:08.617710+00:00",
+  "records": [
+    {
+      "id": "service",
+      "text": "if (Get-Service book2_ch04_svc -ErrorAction SilentlyContinue) {throw 'Name exists'}; if (Test-Path 'C:\\Windows\\Temp\\book2_ch04_missing.exe') {throw 'Path exists'}; sc.exe create book2_ch04_svc binPath= C:\\Windows\\Temp\\book2_ch04_missing.exe start= demand; sc.exe qc book2_ch04_svc; sc.exe query book2_ch04_svc",
+      "stdout": "[SC] CreateService SUCCESS\r\n[SC] QueryServiceConfig SUCCESS\r\n\r\nSERVICE_NAME: book2_ch04_svc\r\n        TYPE               : 10  WIN32_OWN_PROCESS \r\n        START_TYPE         : 3   DEMAND_START\r\n        ERROR_CONTROL      : 1   NORMAL\r\n        BINARY_PATH_NAME   : C:\\Windows\\Temp\\book2_ch04_missing.exe\r\n        LOAD_ORDER_GROUP   : \r\n        TAG                : 0\r\n        DISPLAY_NAME       : book2_ch04_svc\r\n        DEPENDENCIES       : \r\n        SERVICE_START_NAME : LocalSystem\r\n\r\nSERVICE_NAME: book2_ch04_svc \r\n        TYPE               : 10  WIN32_OWN_PROCESS  \r\n        STATE              : 1  STOPPED \r\n        WIN32_EXIT_CODE    : 1077  (0x435)\r\n        SERVICE_EXIT_CODE  : 0  (0x0)\r\n        CHECKPOINT         : 0x0\r\n        WAIT_HINT          : 0x0\r\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "task",
+      "text": "if (Get-ScheduledTask -TaskName book2_ch04_task -ErrorAction SilentlyContinue) {throw 'Name exists'}; schtasks.exe /create /tn book2_ch04_task /tr 'powershell.exe -NoProfile -Command Write-Output book2-ch04-task' /sc ONLOGON /ru SYSTEM; schtasks.exe /query /tn book2_ch04_task /xml; schtasks.exe /run /tn book2_ch04_task; Get-ScheduledTaskInfo -TaskName book2_ch04_task | Format-List LastRunTime,LastTaskResult,NextRunTime",
+      "print_chars": 4200,
+      "stdout": "SUCCESS: The scheduled task \"book2_ch04_task\" has successfully been created.\r\n<?xml version=\"1.0\" encoding=\"UTF-16\"?>\r\r\n<Task version=\"1.2\" xmlns=\"http://schemas.microsoft.com/windows/2004/02/mit/task\">\r\r\n  <RegistrationInfo>\r\r\n    <Date>2026-11-03T14:51:19</Date>\r\r\n    <Author>KT66-WIN-01\\kt66student</Author>\r\r\n    <URI>\\book2_ch04_task</URI>\r\r\n  </RegistrationInfo>\r\r\n  <Principals>\r\r\n    <Principal id=\"Author\">\r\r\n      <UserId>S-1-5-18</UserId>\r\r\n    </Principal>\r\r\n  </Principals>\r\r\n  <Settings>\r\r\n    <DisallowStartIfOnBatteries>true</DisallowStartIfOnBatteries>\r\r\n    <StopIfGoingOnBatteries>true</StopIfGoingOnBatteries>\r\r\n    <MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy>\r\r\n    <IdleSettings>\r\r\n      <Duration>PT10M</Duration>\r\r\n      <WaitTimeout>PT1H</WaitTimeout>\r\r\n      <StopOnIdleEnd>true</StopOnIdleEnd>\r\r\n      <RestartOnIdle>false</RestartOnIdle>\r\r\n    </IdleSettings>\r\r\n  </Settings>\r\r\n  <Triggers>\r\r\n    <LogonTrigger>\r\r\n      <StartBoundary>2026-11-03T14:51:00</StartBoundary>\r\r\n    </LogonTrigger>\r\r\n  </Triggers>\r\r\n  <Actions Context=\"Author\">\r\r\n    <Exec>\r\r\n      <Command>powershell.exe</Command>\r\r\n      <Arguments>-NoProfile -Command Write-Output book2-ch04-task</Arguments>\r\r\n    </Exec>\r\r\n  </Actions>\r\r\n</Task>SUCCESS: Attempted to run the scheduled task \"book2_ch04_task\".\r\n\r\n\r\nLastRunTime    : 2026-11-03 오후 2:51:20\r\nLastTaskResult : 267009\r\nNextRunTime    : \r\n\r\n\r\n\r\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "run-key",
+      "text": "$run='HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run'; if (Get-ItemProperty -LiteralPath $run -Name book2_ch04_run -ErrorAction SilentlyContinue) {throw 'Name exists'}; reg.exe add HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v book2_ch04_run /t REG_SZ /d C:\\Windows\\Temp\\book2_ch04_missing.exe; reg.exe query HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v book2_ch04_run",
+      "stdout": "The operation completed successfully.\r\r\n\r\nHKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\r\n    book2_ch04_run    REG_SZ    C:\\Windows\\Temp\\book2_ch04_missing.exe\r\n\r\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "direct-sql",
+      "text": "& 'C:\\Program Files\\osquery\\osqueryi.exe' --json \"SELECT name,path,source,username FROM startup_items WHERE name='book2_ch04_run';\"; & 'C:\\Program Files\\osquery\\osqueryi.exe' --json \"SELECT name,action,path,enabled,last_run_time FROM scheduled_tasks WHERE name='book2_ch04_task';\"; & 'C:\\Program Files\\osquery\\osqueryi.exe' --json \"SELECT u.username,g.groupname FROM user_groups ug JOIN users u USING(uid) JOIN groups g USING(gid) WHERE g.group_sid='S-1-5-32-544';\"",
+      "print_chars": 3500,
+      "stdout": "[\r\n  {\"name\":\"book2_ch04_run\",\"path\":\"C:\\\\Windows\\\\Temp\\\\book2_ch04_missing.exe\",\"source\":\"HKEY_USERS\\\\S-1-5-21-3937859836-2530084332-1215515481-1000\\\\SOFTWARE\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Run\",\"username\":\"kt66student\"}\r\n]\r\n[\r\n  {\"action\":\" powershell.exe -NoProfile -Command Write-Output book2-ch04-task\",\"enabled\":\"1\",\"last_run_time\":\"1793685080\",\"name\":\"book2_ch04_task\",\"path\":\"\\\\book2_ch04_task\"}\r\n]\r\n[\r\n  {\"groupname\":\"Administrators\",\"username\":\"Administrator\"},\r\n  {\"groupname\":\"Administrators\",\"username\":\"kt66student\"}\r\n]\r\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ]
+}

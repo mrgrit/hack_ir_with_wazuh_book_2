@@ -1,0 +1,4 @@
+powershell.exe -NoProfile -Command {
+ $api = 'VirtualAlloc'
+ Write-Output ('book2-ch05-scriptblock ' + $api)
+}
