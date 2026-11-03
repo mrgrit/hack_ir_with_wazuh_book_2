@@ -7,10 +7,10 @@
       "book": 2,
       "chapter": "01",
       "old": "assets/illustrations/chapter01/evidence.png",
-      "scene": "A young South Asian female analyst with tied-back curly hair and round glasses compares a printed Windows event record with a screen at a small public-library IT workroom. She stands at a tall shared workstation; monitor faces her, rear toward viewer. Shelves of manuals, mechanical wall clock and a simple file tray. Terracotta, cream, dark teal. Only one person; focused reading, no magnifying glass.",
+      "scene": "Edit this exact book illustration. Preserve its retro 1990s PC-game pixel art, limited colors, stippled shadows, landscape canvas, setting and equipment. Prioritize physically coherent human anatomy and object orientation. Each person has exactly two arms, two hands; trace each shoulder to elbow to wrist. Do not add any readable text. Documents need not face the reader of the book. No two-sided screens or transparent objects. Keep same librarian/analyst, glasses, monitor back, keyboard, library scene, colors. Correct held event sheet: printed face toward HER EYES, visible camera side is plain blank paper reverse with no logo or rows. One hand holds paper, the other types on keyboard. Exactly two arms. Paper may partially obscure shirt naturally.",
       "path": "assets/illustrations/diversity/v2-c01-evidence.png",
-      "sha256": "9289567480189f913d336cdcef24085a12dc29c564cfb7b42f3d7e68c754384d",
-      "generation_file": "exec-8e66f5f1-8467-4070-883a-91915390ffd1.png",
+      "sha256": "e07b206036f0138c80ab8799a137eb1bbdfeb1b16903de75b780f99e4a5c9eb6",
+      "generation_file": "exec-4b39d1a6-38ab-4569-b522-d93569c905d3.png",
       "image_size": [
         1536,
         1024
@@ -20,7 +20,10 @@
         1360,
         1157
       ],
-      "manuscript": "volume02-chapter01"
+      "manuscript": "volume02-chapter01",
+      "previous_sha256": "9289567480189f913d336cdcef24085a12dc29c564cfb7b42f3d7e68c754384d",
+      "physical_review": "2026-11-03",
+      "transparency_prompt": "Edit the FIRST image only to restore transparency at the outermost border. The second image is its original transparency reference. Keep ALL interior content and corrected human anatomy/object orientations from the FIRST image pixel-for-pixel: do not revert to second image poses, paper fronts or extra arms. Preserve same 1536x1024 canvas, crisp pixel art, interior colors and shading. Preserve the concrete interior background (walls, equipment, floor) from the first image. Make only its thin outer empty margin transparent, with a modest pixel-edged vignette boundary like the second reference. No added white, black or grey opaque backdrop. Do not change faces, hands, papers, objects, framing, text or the scene."
     },
     {
       "id": "v2-c01-sensors",
@@ -70,33 +73,39 @@
     },
     {
       "id": "v2-c03-identity",
-      "scene": "A middle-aged East Asian female incident investigator with short wavy dark hair and a maroon rain jacket, standing under the awning of a campus network maintenance cabin, compares a printed login source record with equipment inventory on a small rugged handheld tablet. Concrete steps, an open wall telecom cabinet containing neat patch leads and a compact network switch, wet cobblestone street and brick facade fragment. Natural front three-quarter face, tablet screen faces her. No desk, no chair, no huge server rack. She is checking which device originated an event, not doing physical intrusion. Muted burgundy, slate blue, moss and cream. Wide view with figure on left and cabinet on right.",
+      "scene": "Edit this exact book illustration. Preserve its retro 1990s PC-game pixel art, limited colors, stippled shadows, landscape canvas, setting and equipment. Prioritize physically coherent human anatomy and object orientation. Each person has exactly two arms, two hands; trace each shoulder to elbow to wrist. Do not add any readable text. Documents need not face the reader of the book. No two-sided screens or transparent objects. Keep same Korean woman, maroon raincoat, wet campus, cabinet and tablet orientation. Correct loose record sheet so printed side faces her and camera sees only its plain blank reverse; she holds both objects naturally angled towards her eyes. Exactly two arms, one hand sheet edge, one hand tablet lower edge. Do not expose print to camera or add hands. Tablet rear remains opaque.",
       "book": 2,
       "chapter": "03",
       "style": "Retro 1990s PC adventure-game pixel illustration. Crisp visible pixel clusters, limited colors, stippled shadows, no smooth painterly gradients. Small book vignette, landscape 3:2, isolated with a transparent outer margin while preserving a concrete background fragment. No text, logos, readable UI, floating symbols, headsets, or comic metaphors. Physical equipment and hands must be plausible. Defender faces visible in front three-quarter view; screen faces the person using it.",
       "path": "assets/illustrations/diversity/v2-c03-identity.png",
-      "generation_file": "exec-b6a52a5d-de01-480e-bb1c-c223493d82e3.png",
+      "generation_file": "exec-b6be9408-006f-4099-ab49-7a6e8c6d51a3.png",
       "image_size": [
         1536,
         1024
       ],
       "manuscript": "volume02-chapter03",
-      "sha256": "6f9c68461010297c6a8b5e3657d52b6cd8a5c7bb5e0200be9c0beda76f2573e4"
+      "sha256": "f501198b1eb57223d4833fc677cd8c9609f687c3444544c719a8eb0e7f6d4e4b",
+      "previous_sha256": "6f9c68461010297c6a8b5e3657d52b6cd8a5c7bb5e0200be9c0beda76f2573e4",
+      "physical_review": "2026-11-03",
+      "transparency_prompt": "Edit the FIRST image only to restore transparency at the outermost border. The second image is its original transparency reference. Keep ALL interior content and corrected human anatomy/object orientations from the FIRST image pixel-for-pixel: do not revert to second image poses, paper fronts or extra arms. Preserve same 1536x1024 canvas, crisp pixel art, interior colors and shading. Preserve the concrete interior background (walls, equipment, floor) from the first image. Make only its thin outer empty margin transparent, with a modest pixel-edged vignette boundary like the second reference. No added white, black or grey opaque backdrop. Do not change faces, hands, papers, objects, framing, text or the scene."
     },
     {
       "id": "v2-c03-permission",
-      "scene": "An elderly South Asian male defender with a white moustache, turban and mustard vest, and a young East Asian woman in navy coveralls, jointly compare a printed administrator-group membership list and an approved change ticket beside a waist-high filing trolley in a university equipment storeroom. The older man stands frontal three-quarter holding the membership sheet, the woman faces him pointing at one row on her clipboard. Open shelving with beige tower PCs, labeled-but-unreadable spare drive boxes, one rolled cable, a stool unused. No computer monitors, no desk. Warm cream, ochre, dark blue and faded green. Credible calm access review, distinct people and props.",
+      "scene": "Edit this exact book illustration. Preserve its retro 1990s PC-game pixel art, limited colors, stippled shadows, landscape canvas, setting and equipment. Prioritize physically coherent human anatomy and object orientation. Each person has exactly two arms, two hands; trace each shoulder to elbow to wrist. Do not add any readable text. Documents need not face the reader of the book. No two-sided screens or transparent objects. Replace the turbaned character with an older KOREAN male technician, short salt-and-pepper hair, clean shaven, ordinary ochre work vest over cream shirt. Keep young Korean woman in navy coveralls. Redesign their joint document review: clear the trolley upper surface and lay TWO sheets FLAT ON IT, both printed faces upward. Move its file box to lower shelf. They stand side by side behind trolley, facing diagonally inward, look DOWN at these papers. Older man's left hand rests on trolley edge, right hand lightly pins left paper. Woman's left hand rests on right paper corner, her right index finger points down to a row ON THE FLAT PAPER. Exactly four arms total, natural shoulder-elbow-wrist chains. Slightly elevated front three-quarter camera naturally sees their faces and foreshortened trolley top. No hand-held upright paper, no clipboard aimed towards viewer, no headgear. Preserve ordinary Korean university equipment storeroom with beige PCs, spare boxes, cable and stool. Same 3:2 canvas.",
       "book": 2,
       "chapter": "03",
       "style": "Retro 1990s PC adventure-game pixel illustration. Crisp visible pixel clusters, limited colors, stippled shadows, no smooth painterly gradients. Small book vignette, landscape 3:2, isolated with a transparent outer margin while preserving a concrete background fragment. No text, logos, readable UI, floating symbols, headsets, or comic metaphors. Physical equipment and hands must be plausible. Defender faces visible in front three-quarter view; screen faces the person using it.",
       "path": "assets/illustrations/diversity/v2-c03-permission.png",
-      "generation_file": "exec-96102d2b-17de-4430-8d34-19654c9308cb.png",
+      "generation_file": "exec-b32693b2-0994-4bd0-9a4c-728b02497dcf.png",
       "image_size": [
         1536,
         1024
       ],
       "manuscript": "volume02-chapter03",
-      "sha256": "42139ae7be32a927c264015155861a05176ab5ce1805b989eb1844470248f976"
+      "sha256": "bddf175b5d40db0b9022cd5e59fdb4ea32210693ab1793be3f1978c871ae9355",
+      "previous_sha256": "42139ae7be32a927c264015155861a05176ab5ce1805b989eb1844470248f976",
+      "physical_review": "2026-11-03",
+      "transparency_prompt": "Edit the FIRST image only to restore transparency at the outermost border. The second image is its original transparency reference. Keep ALL interior content and corrected human anatomy/object orientations from the FIRST image pixel-for-pixel: do not revert to second image poses, paper fronts or extra arms. Preserve same 1536x1024 canvas, crisp pixel art, interior colors and shading. Preserve the concrete interior background (walls, equipment, floor) from the first image. Make only its thin outer empty margin transparent, with a modest pixel-edged vignette boundary like the second reference. No added white, black or grey opaque backdrop. Do not change faces, hands, papers, objects, framing, text or the scene."
     }
   ]
 }
