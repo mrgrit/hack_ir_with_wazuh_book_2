@@ -182,6 +182,13 @@
     "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:(\"4732\" OR \"4733\")\nAND data.win.eventdata.targetSid:\"S-1-5-32-544\""
   },
   {
+    "id": "Q03-09",
+    "file": "Q03-09.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "만든 계정이 실제로 사용되었는지 확인",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4624\"\nAND data.win.eventdata.targetUserSid:\n \"S-1-5-21-3937859836-2530084332-1215515481-1002\""
+  },
+  {
     "id": "C03-21",
     "file": "C03-21.txt",
     "where": "Windows 실습 게스트 · 관리자 PowerShell",

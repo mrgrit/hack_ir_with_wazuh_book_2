@@ -27,3 +27,12 @@
 - [Q06-08.dql](Q06-08.dql) — Windows PC · Wazuh Discover · wazuh-archives-* · DQL
 - [Q06-09.dql](Q06-09.dql) — Windows PC · Wazuh Discover · wazuh-archives-* · DQL
 - [C06-16.txt](C06-16.txt) — Windows 실습 게스트 · 관리자 Windows PowerShell
+
+## 분석 보강 입력
+
+기간·데이터 보기·ID는 본문의 절차와 맞춘다. 0건은 선택한 보존 범위의 결과다.
+
+- [Q06-10.dql](Q06-10.dql) — Windows PC · Wazuh Discover · wazuh-archives-* · DQL · 수집된 원본과 저장된 경보의 직접 비교
+- [Q06-11.dql](Q06-11.dql) — Windows PC · Wazuh Discover · wazuh-archives-* · DQL · HTTP 연결을 생성 명령과 연결
+- [Q06-12.dql](Q06-12.dql) — Windows PC · Wazuh Discover · wazuh-archives-* · DQL · DNS 질의 프로세스와 후속 연결 조회
+- [Q06-13.dql](Q06-13.dql) — Windows PC · Wazuh Discover · wazuh-archives-* · DQL · DNS 질의 프로세스와 후속 연결 조회

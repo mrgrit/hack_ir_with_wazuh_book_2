@@ -1,0 +1,292 @@
+[
+  {
+    "input": {
+      "size": 0,
+      "track_total_hits": true,
+      "query": {
+        "bool": {
+          "filter": [
+            {
+              "range": {
+                "timestamp": {
+                  "gte": "2026-11-02T00:00:00+09:00",
+                  "lt": "2026-11-04T00:00:00+09:00"
+                }
+              }
+            },
+            {
+              "bool": {
+                "minimum_should_match": 1,
+                "should": [
+                  {
+                    "term": {
+                      "data.srcip": "192.168.0.108"
+                    }
+                  },
+                  {
+                    "term": {
+                      "data.src_ip": "192.168.0.108"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "aggs": {
+        "max_level": {
+          "max": {
+            "field": "rule.level"
+          }
+        },
+        "sensors": {
+          "terms": {
+            "field": "agent.name",
+            "size": 50
+          }
+        },
+        "rules": {
+          "terms": {
+            "field": "rule.id",
+            "size": 100
+          }
+        },
+        "level_5_or_higher": {
+          "filter": {
+            "range": {
+              "rule.level": {
+                "gte": 5
+              }
+            }
+          }
+        },
+        "days": {
+          "date_histogram": {
+            "field": "timestamp",
+            "calendar_interval": "day",
+            "time_zone": "Asia/Seoul",
+            "min_doc_count": 1
+          }
+        }
+      }
+    },
+    "response": {
+      "took": 5,
+      "timed_out": false,
+      "_shards": {
+        "total": 6,
+        "successful": 6,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": {
+        "total": {
+          "value": 69,
+          "relation": "eq"
+        },
+        "max_score": null,
+        "hits": []
+      },
+      "aggregations": {
+        "sensors": {
+          "doc_count_error_upper_bound": 0,
+          "sum_other_doc_count": 0,
+          "buckets": [
+            {
+              "key": "bastion",
+              "doc_count": 56
+            },
+            {
+              "key": "web",
+              "doc_count": 9
+            },
+            {
+              "key": "kt66-host",
+              "doc_count": 4
+            }
+          ]
+        },
+        "max_level": {
+          "value": 10.0
+        },
+        "days": {
+          "buckets": [
+            {
+              "key_as_string": "2026-11-02T00:00:00.000+09:00",
+              "key": 1793545200000,
+              "doc_count": 58
+            },
+            {
+              "key_as_string": "2026-11-03T00:00:00.000+09:00",
+              "key": 1793631600000,
+              "doc_count": 11
+            }
+          ]
+        },
+        "rules": {
+          "doc_count_error_upper_bound": 0,
+          "sum_other_doc_count": 0,
+          "buckets": [
+            {
+              "key": "5715",
+              "doc_count": 20
+            },
+            {
+              "key": "5503",
+              "doc_count": 12
+            },
+            {
+              "key": "5760",
+              "doc_count": 12
+            },
+            {
+              "key": "5710",
+              "doc_count": 8
+            },
+            {
+              "key": "30411",
+              "doc_count": 3
+            },
+            {
+              "key": "31101",
+              "doc_count": 3
+            },
+            {
+              "key": "2502",
+              "doc_count": 2
+            },
+            {
+              "key": "5758",
+              "doc_count": 2
+            },
+            {
+              "key": "31106",
+              "doc_count": 1
+            },
+            {
+              "key": "31164",
+              "doc_count": 1
+            },
+            {
+              "key": "31166",
+              "doc_count": 1
+            },
+            {
+              "key": "4151",
+              "doc_count": 1
+            },
+            {
+              "key": "5763",
+              "doc_count": 1
+            },
+            {
+              "key": "651",
+              "doc_count": 1
+            },
+            {
+              "key": "652",
+              "doc_count": 1
+            }
+          ]
+        },
+        "level_5_or_higher": {
+          "doc_count": 47
+        }
+      }
+    },
+    "file": "examples/chapter12/observed-ip-profile.http",
+    "request_line": "GET wazuh-alerts-*/_search",
+    "verification": "executed on indexer _search via read-only GET; not executed in Dev Tools UI"
+  },
+  {
+    "input": {
+      "size": 0,
+      "track_total_hits": true,
+      "query": {
+        "bool": {
+          "filter": [
+            {
+              "range": {
+                "timestamp": {
+                  "gte": "2026-11-02T20:00:00+09:00",
+                  "lt": "2026-11-02T21:00:00+09:00"
+                }
+              }
+            },
+            {
+              "bool": {
+                "minimum_should_match": 1,
+                "should": [
+                  {
+                    "term": {
+                      "data.srcip": "192.168.0.108"
+                    }
+                  },
+                  {
+                    "term": {
+                      "data.src_ip": "192.168.0.108"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "aggs": {
+        "levels": {
+          "terms": {
+            "field": "rule.level",
+            "size": 20
+          }
+        }
+      }
+    },
+    "response": {
+      "took": 4,
+      "timed_out": false,
+      "_shards": {
+        "total": 6,
+        "successful": 6,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": {
+        "total": {
+          "value": 49,
+          "relation": "eq"
+        },
+        "max_score": null,
+        "hits": []
+      },
+      "aggregations": {
+        "levels": {
+          "doc_count_error_upper_bound": 0,
+          "sum_other_doc_count": 0,
+          "buckets": [
+            {
+              "key": 5,
+              "doc_count": 32
+            },
+            {
+              "key": 3,
+              "doc_count": 12
+            },
+            {
+              "key": 10,
+              "doc_count": 3
+            },
+            {
+              "key": 8,
+              "doc_count": 2
+            }
+          ]
+        }
+      }
+    },
+    "file": "examples/chapter13/observed-hour.http",
+    "request_line": "GET wazuh-alerts-*/_search",
+    "verification": "executed on indexer _search via read-only GET; not executed in Dev Tools UI"
+  }
+]

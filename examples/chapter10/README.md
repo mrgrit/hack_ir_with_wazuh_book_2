@@ -21,3 +21,9 @@ Linux 컨테이너는 본문 순서대로 진입하고 exit로 나온다. 조회
 - [Q10-06.dql](Q10-06.dql) — Windows PC · Wazuh Discover · wazuh-alerts-* · DQL
 - [C10-10.txt](C10-10.txt) — kt66-bastion 컨테이너 · root Bash
 - [C10-11.txt](C10-11.txt) — kt66-bastion 컨테이너 · root Bash
+
+## 분석 보강 입력
+
+기간·데이터 보기·ID는 본문의 절차와 맞춘다. 0건은 선택한 보존 범위의 결과다.
+
+- [Q10-07.dql](Q10-07.dql) — Windows PC · Wazuh Discover · wazuh-alerts-* · DQL · 대응 입력 한 쌍의 조사 결과

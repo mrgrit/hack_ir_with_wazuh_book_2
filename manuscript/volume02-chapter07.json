@@ -1,11 +1,7 @@
 {
   "title": "7장 로그 삭제와 보호 기능의 대응",
   "series": "해킹·침해대응 실무 with Wazuh 2권",
-  "comments": [
-    "Module 01 실습 38·49, 412~419·517~526쪽. 원전 화면과 현재 환경의 기존 기록을 구분한다.",
-    "신규 로그 삭제·보호 해제·EICAR 생성·공격 실행 없음. 조회·검색·EVTX 보존만 확인했다.",
-    "검증 범위와 수정 근거는 editorial/chapter07-review.md에 보관한다."
-  ],
+  "comments": "['Module 01 실습 38·49, 412~419·517~526쪽. 원전 화면과 현재 환경의 기존 기록을 구분한다.', '신규 로그 삭제·보호 해제·EICAR 생성·공격 실행 없음. 조회·검색·EVTX 보존만 확인했다.', '검증 범위와 수정 근거는 editorial/chapter07-review.md에 보관한다.'] 2026-11-04 분석 보강. 범위·실측·미확인은 editorial/analysis-revision-review.md.",
   "pages": [
     {
       "title": "7장  로그 삭제와 보호 기능의 대응",
@@ -665,6 +661,62 @@
           "text": "테스트 파일 탐지는 백신에서 중앙 경보까지의 경로를 점검한 결과다. 이를 실제 악성코드 침입이나 모든 위협 차단의 증명으로 보고하지 않는다. 격리된 원전 파일을 결과 확인을 위해 복원하거나 다시 실행할 필요도 없다."
         }
       ]
+    },
+    {
+      "title": "탐지와 조치를 연결한 조사 메모",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "현재 사례의 원본 1116과 1117은 같은 Detection ID를 가진다. Windows 원본에는 두 단계가 있고, 보존된 중앙 자료에는 1117만 있다. 따라서 “중앙에 탐지가 없었다”와 “Windows에서 탐지하지 않았다”를 구분한다."
+        },
+        {
+          "type": "table",
+          "head": [
+            "확인 대상",
+            "관찰과 판단"
+          ],
+          "rows": [
+            [
+              "대상",
+              "C:\\Tools\\defender-off.ps1, Trojan:Win32/BatTamper.A"
+            ],
+            [
+              "탐지",
+              "원본 Detection Time 2026-11-02 09:56:49.206Z"
+            ],
+            [
+              "조치",
+              "1117의 action Name 격리, error Code 0x00000000, 추가 작업 없음"
+            ],
+            [
+              "남은 조사",
+              "파일의 유입·실행 여부와 현재 보호 상태, 중앙 1116의 관측 공백"
+            ]
+          ],
+          "widths": [
+            34,
+            93
+          ],
+          "keep": true
+        },
+        {
+          "type": "query",
+          "id": "Q07-09",
+          "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+          "text": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Windows Defender/Operational\"\nAND data.win.system.eventID:(1116 OR 1118 OR 1119)\nAND \"data.win.eventdata.threat Name\":\n \"Trojan:Win32/BatTamper.A\"\nAND timestamp >= \"2026-11-02T18:58:00+09:00\"\nAND timestamp < \"2026-11-04T00:00:00+09:00\"",
+          "why": "조치 뒤 같은 위협명의 재탐지·조치 오류 후보를 archives에서 찾는다. 새 탐지는 Detection ID가 달라질 수 있으므로 앞선 탐지 ID 필터를 제거한다.",
+          "result": "보존 자료는 0건이다. 현재 파일·보호 상태와 원본 채널의 보존 범위를 함께 대조한다. 같은 이름의 다른 경로가 나오면 별도 탐지로 조사한다.",
+          "revision": "analysis-2026-11-04"
+        },
+        {
+          "type": "p",
+          "text": "종결 메모는 “해당 탐지의 격리 성공 기록 확인, 중앙 재탐지·오류 후보 없음, 현재 보호 상태 확인”처럼 범위를 적는다. 1116 중앙 부재의 원인은 수집 설정·시작·보존 자료가 더 필요하다. 탐지 파일이 실제 실행되었는지 확인하지 못했다면 그 항목을 남긴다."
+        }
+      ],
+      "revision": "analysis-2026-11-04"
     },
     {
       "title": "7.5  보호 변경과 현재 상태 확인",

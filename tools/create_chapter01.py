@@ -288,6 +288,8 @@ page('참고자료 계속',
       'https://documentation.wazuh.com/current/user-manual/capabilities/log-data-collection/configuration.html'))
 
 def main():
+    from revise_analysis import revise
+    revise(1,pages)
     data={'title':'Windows 실습 환경과 로그 수집','series':'해킹·침해대응 실무 with Wazuh 2권',
           'comments':'2026-11-03 초안. 가동 중인 Windows의 읽기 조회와 원본·Wazuh 경보 대조. 신규 설치·공격·DQL UI 실행 미검증. 신규 UI 촬영 없음.',
           'pages':pages}

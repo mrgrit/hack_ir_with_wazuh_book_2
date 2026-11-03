@@ -1,7 +1,7 @@
 {
   "title": "취약점과 보안 설정의 우선순위",
   "series": "해킹·침해대응 실무 with Wazuh 2권",
-  "comments": "Module 01 51~53; 현재 상태·기존 경보·읽기 전용 명령. 공격·패치·보안 설정 변경은 수행하지 않았다. 상세 검증 범위는 editorial/chapter08-review.md.",
+  "comments": "Module 01 51~53; 현재 상태·기존 경보·읽기 전용 명령. 공격·패치·보안 설정 변경은 수행하지 않았다. 상세 검증 범위는 editorial/chapter08-review.md. 2026-11-04 분석 보강. 범위·실측·미확인은 editorial/analysis-revision-review.md.",
   "pages": [
     {
       "title": "8장  취약점과 보안 설정의 우선순위",
@@ -915,6 +915,58 @@
           "text": "패키지 갱신도 같은 원칙으로 수행한다. 공식 배포 경로와 호환성, 필요한 재시작·재부팅, 원상복구 방법을 준비한다. 실습망에서는 수업에 쓰는 기능이 영향을 받는지 확인한 뒤 별도 유지보수 작업으로 진행한다. 이번 조회 절차의 완료 조건은 보완 계획 작성까지다."
         }
       ]
+    },
+    {
+      "title": "취약점과 SCA의 종결 근거를 작성",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "query",
+          "id": "Q08-10",
+          "where": "Windows PC · Wazuh Discover · wazuh-states-vulnerabilities-* · DQL",
+          "text": "vulnerability.id:\"CVE-2025-54289\"",
+          "why": "Inventory에서 확인한 CVE로 Discover의 취약점 상태 데이터 보기를 검색한다. agent.name 필터를 제거하여 다른 에이전트에도 같은 후보가 있는지 읽는다. 환경에 등록된 실제 상태 데이터 보기 이름을 사용한다.",
+          "result": "각 행의 agent.name·package.name·package.version과 설치 방식을 비교한다. 같은 CVE라도 호스트별 버전·노출·업무가 다르면 보완 순서를 따로 정한다.",
+          "revision": "analysis-2026-11-04"
+        },
+        {
+          "type": "table",
+          "head": [
+            "확인 대상",
+            "관찰과 판단"
+          ],
+          "rows": [
+            [
+              "LXD 후보",
+              "kt66-host의 snap LXD 5.0.11과 해당 CVE 문서를 대조했다. 현재 패키지를 갱신한 결과는 아니므로 수정 완료로 종결하지 않는다."
+            ],
+            [
+              "SSH 검사",
+              "28638의 failed와 sshd -T의 without-password를 대조했다. 정책이 요구하는 no와 달라 실패한 근거가 있다."
+            ],
+            [
+              "확인할 영향",
+              "LXD 접근 권한·업무 사용과 SSH의 root 공개키 사용·대체 관리 계정을 담당자에게 확인한다."
+            ]
+          ],
+          "widths": [
+            34,
+            93
+          ],
+          "keep": true
+        },
+        {
+          "type": "p",
+          "text": "보완 담당자는 변경 전 버전·정책·실효 설정·검사 시각을 기록한다. 변경 후에는 같은 패키지와 검사 ID로 재수집 결과를 확인하고 새 스캔의 종료 시각을 남긴다. 과거 failed 경보가 검색되더라도 새 정책 결과가 Passed이고 실효 설정·정상 접속이 확인되면 과거 이력과 현재 상태를 나누어 보고한다."
+        },
+        {
+          "type": "p",
+          "text": "취약점 문서가 사라졌는데 패키지 목록과 최근 수집 시각도 비었다면 해결보다 수집 장애를 먼저 조사한다. 설정을 바꿀 수 없는 경우에는 예외 사유·보완 통제·담당자·만료일을 적고 재점검 날짜를 정한다."
+        }
+      ],
+      "revision": "analysis-2026-11-04"
     },
     {
       "title": "보완 후 재확인과 예외 관리",

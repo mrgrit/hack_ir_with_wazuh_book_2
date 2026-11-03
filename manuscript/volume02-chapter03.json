@@ -1,7 +1,7 @@
 {
   "title": "자격증명과 계정 권한의 변화",
   "series": "해킹·침해대응 실무 with Wazuh 2권",
-  "comments": "2026-11-03 초안. Module 01 실습 35~37·50. 정상 자격증명과 API의 관찰 재현이며 해시 공격을 수행하지 않음. 범위는 editorial/chapter03-review.md.",
+  "comments": "2026-11-03 초안. Module 01 실습 35~37·50. 정상 자격증명과 API의 관찰 재현이며 해시 공격을 수행하지 않음. 범위는 editorial/chapter03-review.md. 2026-11-04 분석 보강. 범위·실측·미확인은 editorial/analysis-revision-review.md.",
   "pages": [
     {
       "title": "3장 자격증명과 계정 권한의 변화",
@@ -656,6 +656,62 @@
           "text": "4732는 보안이 설정된 로컬 그룹의 구성원 추가다. 4728은 보안이 설정된 글로벌 그룹의 구성원 추가이며 도메인 환경에서 구분해 조사한다. 로컬 시험에서 Domain Admins 변경까지 검증했다고 확장하지 않는다."
         }
       ]
+    },
+    {
+      "title": "만든 계정이 실제로 사용되었는지 확인",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "계정 생성과 관리자 그룹 편입은 권한 상태의 변화다. 그 계정으로 로그온했는지는 4624에서 별도로 확인한다. 이름이 재사용될 수 있으므로 4720의 targetSid를 4624의 targetUserSid와 비교한다. 4732에서는 같은 구성원을 memberSid로 표시한다."
+        },
+        {
+          "type": "query",
+          "id": "Q03-09",
+          "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+          "text": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4624\"\nAND data.win.eventdata.targetUserSid:\n \"S-1-5-21-3937859836-2530084332-1215515481-1002\"",
+          "why": "2026년 11월 3일의 생성·삭제 구간을 포함한다. SID 전체를 자신의 4720 기록 값으로 바꾼다. 계정 이름 조건과 대상 그룹 SID를 대신 넣지 않는다.",
+          "result": "보존 자료에서는 0건이다. 생성 때 Enabled=False였던 사실과 함께 기록하되, 검색 결과만으로 과거 모든 기간의 사용 부재를 증명하지 않는다.",
+          "revision": "analysis-2026-11-04"
+        },
+        {
+          "type": "table",
+          "head": [
+            "확인 대상",
+            "관찰과 판단"
+          ],
+          "rows": [
+            [
+              "변경한 계정",
+              "book2_ch03, 끝자리 1002인 SID"
+            ],
+            [
+              "변경 수행자",
+              "kt66student, subjectLogonId 0x1e38ea7"
+            ],
+            [
+              "변경의 순서",
+              "4720 생성\n4732 편입\n4733 제거\n4726 삭제"
+            ],
+            [
+              "사용 여부",
+              "대상 SID의 4624는 선택 범위에서 없음"
+            ]
+          ],
+          "widths": [
+            34,
+            93
+          ],
+          "keep": true
+        },
+        {
+          "type": "p",
+          "text": "완료 기록에는 비활성 계정의 생성·그룹 편입·제거·삭제와 사후 계정 부재를 적는다. 4672의 특수 권한은 변경 수행자의 세션에 부여된 것이므로 새 계정의 관리자 로그온으로 읽지 않는다. 비인가 변경이라면 수행자 세션과 변경 요청을 먼저 대조하고, 사용 흔적과 영향에 따라 계정 통제 범위를 결정한다."
+        }
+      ],
+      "revision": "analysis-2026-11-04"
     },
     {
       "title": "계정 변경의 침해 판단과 대응",

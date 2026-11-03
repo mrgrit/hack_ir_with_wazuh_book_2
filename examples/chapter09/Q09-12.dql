@@ -1,0 +1,5 @@
+agent.name:"web" AND
+(syscheck.path:
+ "/var/www/html/uploads/invoice.pdf.exe" OR
+ data.virustotal.source.file:
+ "/var/www/html/uploads/invoice.pdf.exe")

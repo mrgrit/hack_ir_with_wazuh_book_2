@@ -1,0 +1,209 @@
+[
+  {
+    "id": "Q01-05",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.computer:\"KT66-WIN-01\"\nAND data.win.system.eventID:\"4624\"\nAND data.win.system.eventRecordID:\"9115\"",
+    "index": "wazuh-archives-*",
+    "hits": "1",
+    "noResults": false,
+    "error": [],
+    "queriedAt": "2026-11-03T23:04:13.942Z"
+  },
+  {
+    "id": "Q02-08",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.computer:\"KT66-WIN-01\"\nAND (data.win.eventdata.subjectLogonId:\"0x1ca2207\"\n OR data.win.eventdata.targetLogonId:\"0x1ca2207\")\nAND timestamp >= \"2026-11-03T12:05:00+09:00\"\nAND timestamp < \"2026-11-03T12:20:00+09:00\"",
+    "index": "wazuh-archives-*",
+    "hits": "2",
+    "noResults": false,
+    "error": [],
+    "queriedAt": "2026-11-03T23:03:07.910Z"
+  },
+  {
+    "id": "Q03-09",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4624\"\nAND data.win.eventdata.targetUserSid:\n \"S-1-5-21-3937859836-2530084332-1215515481-1002\"",
+    "index": "wazuh-archives-*",
+    "hits": null,
+    "noResults": true,
+    "error": [],
+    "queriedAt": "2026-11-03T23:03:08.929Z"
+  },
+  {
+    "id": "Q04-08",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:(1 OR 13)\nAND data.win.eventdata.processGuid:\n \"{af6e9a1f-765d-6ae9-4006-000000000300}\"",
+    "index": "wazuh-archives-*",
+    "hits": "2",
+    "noResults": false,
+    "error": [],
+    "queriedAt": "2026-11-03T23:03:10.183Z"
+  },
+  {
+    "id": "Q04-09",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:(12 OR 13)\nAND data.win.eventdata.targetObject:*book2_ch04_run",
+    "index": "wazuh-archives-*",
+    "hits": "2",
+    "noResults": false,
+    "error": [],
+    "queriedAt": "2026-11-03T23:03:11.413Z"
+  },
+  {
+    "id": "Q05-12",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"1\"\nAND data.win.eventdata.processId:\"5228\"\nAND timestamp >= \"2026-11-03T14:58:00+09:00\"\nAND timestamp < \"2026-11-03T15:00:00+09:00\"",
+    "index": "wazuh-archives-*",
+    "hits": "1",
+    "noResults": false,
+    "error": [],
+    "queriedAt": "2026-11-03T23:04:15.400Z"
+  },
+  {
+    "id": "Q05-13",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:(1 OR 3 OR 11 OR 22)\nAND (data.win.eventdata.processGuid:\n \"{af6e9a1f-780c-6ae9-7406-000000000300}\"\n OR data.win.eventdata.parentProcessGuid:\n \"{af6e9a1f-780c-6ae9-7406-000000000300}\")",
+    "index": "wazuh-archives-*",
+    "hits": "2",
+    "noResults": false,
+    "error": [],
+    "queriedAt": "2026-11-03T23:03:21.676Z"
+  },
+  {
+    "id": "Q06-10",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventRecordID:\n (9407 OR 9451 OR 9454 OR 9455 OR 9461 OR 9462)\nAND timestamp >= \"2026-11-03T16:00:00+09:00\"\nAND timestamp < \"2026-11-03T17:00:00+09:00\"",
+    "index": "wazuh-archives-*",
+    "hits": "6",
+    "noResults": false,
+    "error": [],
+    "queriedAt": "2026-11-03T23:03:22.814Z"
+  },
+  {
+    "id": "Q06-11",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:(1 OR 3 OR 11 OR 22)\nAND data.win.eventdata.processGuid:\n \"{af6e9a1f-8d82-6ae9-d106-000000000300}\"",
+    "index": "wazuh-archives-*",
+    "hits": "5",
+    "noResults": false,
+    "error": [],
+    "queriedAt": "2026-11-03T23:04:53.711Z"
+  },
+  {
+    "id": "Q06-12",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:(1 OR 3 OR 11 OR 22)\nAND data.win.eventdata.processGuid:\n \"{af6e9a1f-8d8d-6ae9-d406-000000000300}\"",
+    "index": "wazuh-archives-*",
+    "hits": "4",
+    "noResults": false,
+    "error": [],
+    "queriedAt": "2026-11-03T23:03:25.367Z"
+  },
+  {
+    "id": "Q06-13",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"3\"\nAND data.win.eventdata.processGuid:\n \"{af6e9a1f-8d8d-6ae9-d406-000000000300}\"\nAND data.win.eventdata.destinationIp:\n (\"104.20.23.154\" OR \"172.66.147.243\")",
+    "index": "wazuh-archives-*",
+    "hits": null,
+    "noResults": true,
+    "error": [],
+    "queriedAt": "2026-11-03T23:03:26.374Z"
+  },
+  {
+    "id": "Q07-09",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Windows Defender/Operational\"\nAND data.win.system.eventID:(1116 OR 1118 OR 1119)\nAND \"data.win.eventdata.threat Name\":\n \"Trojan:Win32/BatTamper.A\"\nAND timestamp >= \"2026-11-02T18:58:00+09:00\"\nAND timestamp < \"2026-11-04T00:00:00+09:00\"",
+    "index": "wazuh-archives-*",
+    "hits": null,
+    "noResults": true,
+    "error": [],
+    "queriedAt": "2026-11-03T23:03:27.327Z"
+  },
+  {
+    "id": "Q08-10",
+    "query": "vulnerability.id:\"CVE-2025-54289\"",
+    "index": "wazuh-states-vulnerabilities-*",
+    "hits": "1",
+    "noResults": false,
+    "error": [],
+    "queriedAt": "2026-11-03T23:04:16.827Z"
+  },
+  {
+    "id": "Q09-12",
+    "query": "agent.name:\"web\" AND\n(syscheck.path:\n \"/var/www/html/uploads/invoice.pdf.exe\" OR\n data.virustotal.source.file:\n \"/var/www/html/uploads/invoice.pdf.exe\")",
+    "index": "wazuh-alerts-*",
+    "hits": null,
+    "noResults": true,
+    "error": [],
+    "queriedAt": "2026-11-03T23:03:35.593Z"
+  },
+  {
+    "id": "Q10-07",
+    "query": "rule.id:(651 OR 652) AND\ndata.parameters.alert.id:\"1793619097.12602015\"",
+    "index": "wazuh-alerts-*",
+    "hits": "2",
+    "noResults": false,
+    "error": [],
+    "queriedAt": "2026-11-03T23:03:37.000Z"
+  },
+  {
+    "id": "Q11-10",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventRecordID:\"10755\"",
+    "index": "wazuh-alerts-*",
+    "hits": "1",
+    "noResults": false,
+    "error": [],
+    "queriedAt": "2026-11-03T23:04:19.401Z"
+  },
+  {
+    "id": "Q11-11",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND (data.win.eventdata.subjectLogonId:\"0x1e38ea7\"\n OR data.win.eventdata.targetLogonId:\"0x1e38ea7\")\nAND data.win.system.eventID:\n (4624 OR 4672 OR 4720 OR 4732 OR 4733 OR 4726 OR 4634)\nAND timestamp >= \"2026-11-03T12:45:00+09:00\"\nAND timestamp < \"2026-11-03T12:50:00+09:00\"",
+    "index": "wazuh-archives-*",
+    "hits": "7",
+    "noResults": false,
+    "error": [],
+    "queriedAt": "2026-11-03T23:03:41.293Z"
+  },
+  {
+    "id": "Q12-13",
+    "query": "(data.srcip:\"192.168.0.108\" OR\n data.src_ip:\"192.168.0.108\")\nAND timestamp >= \"2026-11-02T00:00:00+09:00\"\nAND timestamp < \"2026-11-04T00:00:00+09:00\"",
+    "index": "wazuh-alerts-*",
+    "hits": "69",
+    "noResults": false,
+    "error": [],
+    "queriedAt": "2026-11-03T23:03:44.938Z"
+  },
+  {
+    "id": "Q12-14",
+    "query": "agent.name:\"bastion\" AND rule.id:5760\nAND data.srcip:\"192.168.0.108\"\nAND timestamp >= \"2026-11-02T20:29:00+09:00\"\nAND timestamp < \"2026-11-02T20:31:00+09:00\"",
+    "index": "wazuh-alerts-*",
+    "hits": "3",
+    "noResults": false,
+    "error": [],
+    "queriedAt": "2026-11-03T23:03:46.247Z"
+  },
+  {
+    "id": "Q13-05",
+    "query": "(data.srcip:\"192.168.0.108\" OR\n data.src_ip:\"192.168.0.108\")\nAND timestamp >= \"2026-11-02T20:00:00+09:00\"\nAND timestamp < \"2026-11-02T21:00:00+09:00\"",
+    "index": "wazuh-alerts-*",
+    "hits": "49",
+    "noResults": false,
+    "error": [],
+    "queriedAt": "2026-11-03T23:03:47.661Z"
+  },
+  {
+    "id": "Q13-06",
+    "query": "agent.name:\"bastion\"\nAND data.srcip:\"192.168.0.108\"\nAND rule.id:(5715 OR 5763)\nAND timestamp >= \"2026-11-02T20:00:00+09:00\"\nAND timestamp < \"2026-11-02T21:00:00+09:00\"",
+    "index": "wazuh-alerts-*",
+    "hits": "11",
+    "noResults": false,
+    "error": [],
+    "queriedAt": "2026-11-03T23:03:49.393Z"
+  },
+  {
+    "id": "Q13-07",
+    "query": "(data.srcip:\"192.168.0.108\" OR\n data.src_ip:\"192.168.0.108\")\nAND timestamp >= \"2026-10-05T00:00:00+09:00\"\nAND timestamp < \"2026-11-02T00:00:00+09:00\"",
+    "index": "wazuh-alerts-*",
+    "hits": null,
+    "noResults": true,
+    "error": [],
+    "queriedAt": "2026-11-03T23:03:50.592Z"
+  },
+  {
+    "id": "Q06-10-alerts",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventRecordID:\n (9407 OR 9451 OR 9454 OR 9455 OR 9461 OR 9462)\nAND timestamp >= \"2026-11-03T16:00:00+09:00\"\nAND timestamp < \"2026-11-03T17:00:00+09:00\"",
+    "index": "wazuh-alerts-*",
+    "hits": null,
+    "noResults": true,
+    "error": [],
+    "queriedAt": "2026-11-03T23:04:20.833Z"
+  }
+]

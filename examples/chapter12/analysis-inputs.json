@@ -1,0 +1,8 @@
+[
+  {
+    "file": "observed-ip-profile.http",
+    "where": "Windows PC · Wazuh Dev Tools · GET 검색",
+    "scope": "보존된 실습 기록. 합성 데이터와 별도 모집단.",
+    "input": "GET wazuh-alerts-*/_search\n{\n  \"size\": 0, \"track_total_hits\": true,\n  \"query\": {\"bool\": {\"filter\": [\n    {\"range\": {\"timestamp\": {\n      \"gte\": \"2026-11-02T00:00:00+09:00\",\n      \"lt\": \"2026-11-04T00:00:00+09:00\"\n    }}},\n    {\"bool\": {\"minimum_should_match\": 1,\n      \"should\": [\n        {\"term\": {\"data.srcip\":\n          \"192.168.0.108\"}},\n        {\"term\": {\"data.src_ip\":\n          \"192.168.0.108\"}}\n      ]}}\n  ]}},\n  \"aggs\": {\n    \"max_level\": {\"max\": {\n      \"field\": \"rule.level\"}},\n    \"sensors\": {\"terms\": {\n      \"field\": \"agent.name\", \"size\": 50}},\n    \"rules\": {\"terms\": {\n      \"field\": \"rule.id\", \"size\": 100}},\n    \"level_5_or_higher\": {\"filter\": {\n      \"range\": {\"rule.level\": {\"gte\": 5}}}},\n    \"days\": {\"date_histogram\": {\n      \"field\": \"timestamp\",\n      \"calendar_interval\": \"day\",\n      \"time_zone\": \"Asia/Seoul\",\n      \"min_doc_count\": 1}}\n  }\n}\n"
+  }
+]

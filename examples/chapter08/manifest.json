@@ -133,6 +133,13 @@
     "input": "sudo /usr/sbin/sshd -t\necho $?"
   },
   {
+    "id": "Q08-10",
+    "file": "Q08-10.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-states-vulnerabilities-* · DQL",
+    "section": "취약점과 SCA의 종결 근거를 작성",
+    "input": "vulnerability.id:\"CVE-2025-54289\""
+  },
+  {
     "id": "C08-11",
     "file": "C08-11.txt",
     "where": "kt66 Ubuntu VM · 터미널",

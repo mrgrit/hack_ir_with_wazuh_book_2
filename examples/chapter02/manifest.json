@@ -189,6 +189,13 @@
     "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4624\"\nAND data.win.eventdata.logonType:\"10\"\nAND data.win.eventdata.targetUserName:\"victim\"\nAND data.win.eventdata.ipAddress:\"10.20.30.202\""
   },
   {
+    "id": "Q02-08",
+    "file": "Q02-08.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "로그온 뒤 같은 세션의 종료 확인",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.computer:\"KT66-WIN-01\"\nAND (data.win.eventdata.subjectLogonId:\"0x1ca2207\"\n OR data.win.eventdata.targetLogonId:\"0x1ca2207\")\nAND timestamp >= \"2026-11-03T12:05:00+09:00\"\nAND timestamp < \"2026-11-03T12:20:00+09:00\""
+  },
+  {
     "id": "C02-22",
     "file": "C02-22.txt",
     "where": "Windows 실습 게스트 · 관리자 PowerShell",

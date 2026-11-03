@@ -1,0 +1,5 @@
+agent.name:"windows-user"
+AND data.win.system.channel:"Security"
+AND data.win.system.computer:"KT66-WIN-01"
+AND data.win.system.eventID:"4624"
+AND data.win.system.eventRecordID:"9115"

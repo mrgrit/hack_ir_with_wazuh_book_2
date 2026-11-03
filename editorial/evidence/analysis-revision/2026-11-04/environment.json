@@ -1,0 +1,29 @@
+{
+  "observed_utc": "2026-11-03T22:45:39.067887+00:00",
+  "source": "read-only preflight of existing lab",
+  "agents_active": [
+    "bastion",
+    "web",
+    "fw",
+    "ips",
+    "windows-user",
+    "kt66-host"
+  ],
+  "manager": "Active/Local",
+  "configuration": {
+    "logall": "no",
+    "logall_json": "yes",
+    "jsonout_output": "yes",
+    "alerts_log": "yes",
+    "log_alert_level": 3
+  },
+  "available_alert_dates": [
+    "2026-11-02",
+    "2026-11-03"
+  ],
+  "available_archive_dates": [
+    "2026-11-02",
+    "2026-11-03"
+  ],
+  "logtest_limit": "Three offline full_log JSON inputs reached generic JSON decoding; not evidence of identical production EventChannel pipeline or exact exclusion rule."
+}

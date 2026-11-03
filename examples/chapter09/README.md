@@ -32,3 +32,9 @@ C09-10~12·14·16은 독자의 선택 시험 절차다. 저자는 이번 집필�
 - [C09-16.txt](C09-16.txt) — kt66-web 컨테이너 · root Bash
 - [Q09-11.dql](Q09-11.dql) — Windows PC · Wazuh Discover · wazuh-alerts-* · DQL
 - [C09-17.txt](C09-17.txt) — kt66-web 컨테이너 · root Bash
+
+## 분석 보강 입력
+
+기간·데이터 보기·ID는 본문의 절차와 맞춘다. 0건은 선택한 보존 범위의 결과다.
+
+- [Q09-12.dql](Q09-12.dql) — Windows PC · Wazuh Discover · wazuh-alerts-* · DQL · 파일 이름과 원인 경보를 교차 확인

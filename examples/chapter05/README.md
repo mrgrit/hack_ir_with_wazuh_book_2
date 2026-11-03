@@ -32,3 +32,10 @@
 - [C05-17.txt](C05-17.txt) — Windows 실습 게스트 · 관리자 Windows PowerShell
 - [C05-18.txt](C05-18.txt) — Windows 실습 게스트 · 관리자 Windows PowerShell
 - [C05-19.txt](C05-19.txt) — Windows 실습 게스트 · 관리자 Windows PowerShell
+
+## 분석 보강 입력
+
+기간·데이터 보기·ID는 본문의 절차와 맞춘다. 0건은 선택한 보존 범위의 결과다.
+
+- [Q05-12.dql](Q05-12.dql) — Windows PC · Wazuh Discover · wazuh-archives-* · DQL · 4104를 실행 프로세스에 연결
+- [Q05-13.dql](Q05-13.dql) — Windows PC · Wazuh Discover · wazuh-archives-* · DQL · 처리 코드 이후의 파일과 통신 조회

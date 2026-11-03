@@ -45,3 +45,9 @@
 - [C02-26.txt](C02-26.txt) — kt66-attacker 컨테이너 · Bash
 - [C02-26A.txt](C02-26A.txt) — kt66-attacker 컨테이너 · Bash
 - [C02-27.txt](C02-27.txt) — kt66-attacker 컨테이너 · Bash
+
+## 분석 보강 입력
+
+기간·데이터 보기·ID는 본문의 절차와 맞춘다. 0건은 선택한 보존 범위의 결과다.
+
+- [Q02-08.dql](Q02-08.dql) — Windows PC · Wazuh Discover · wazuh-archives-* · DQL · 로그온 뒤 같은 세션의 종료 확인

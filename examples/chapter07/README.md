@@ -28,3 +28,9 @@
 - [C07-17.txt](C07-17.txt) — Windows 실습 게스트 · 관리자 Windows PowerShell
 - [Q07-08.dql](Q07-08.dql) — Windows PC · Wazuh Discover · wazuh-alerts-* · DQL
 - [C07-18.txt](C07-18.txt) — Windows 실습 게스트 · 관리자 Windows PowerShell
+
+## 분석 보강 입력
+
+기간·데이터 보기·ID는 본문의 절차와 맞춘다. 0건은 선택한 보존 범위의 결과다.
+
+- [Q07-09.dql](Q07-09.dql) — Windows PC · Wazuh Discover · wazuh-archives-* · DQL · 탐지와 조치를 연결한 조사 메모

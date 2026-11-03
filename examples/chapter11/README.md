@@ -18,3 +18,10 @@
 - [Q11-07.dql](Q11-07.dql) — Windows PC · Wazuh Discover · wazuh-alerts-* · DQL
 - [Q11-08.dql](Q11-08.dql) — Windows PC · Wazuh Discover · wazuh-alerts-* · DQL
 - [Q11-09.dql](Q11-09.dql) — Windows PC · Wazuh Discover · wazuh-alerts-* · DQL
+
+## 분석 보강 입력
+
+기간·데이터 보기·ID는 본문의 절차와 맞춘다. 0건은 선택한 보존 범위의 결과다.
+
+- [Q11-10.dql](Q11-10.dql) — Windows PC · Wazuh Discover · wazuh-alerts-* · DQL · 고위험 경보에서 낮은 레벨의 원인으로
+- [Q11-11.dql](Q11-11.dql) — Windows PC · Wazuh Discover · wazuh-archives-* · DQL · 고위험 경보에서 낮은 레벨의 원인으로

@@ -96,5 +96,19 @@
     "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
     "section": "11.3  실습 61 일일 관제의 시작",
     "input": "rule.level >= 12 AND NOT\nrule.groups:(sca OR vulnerability-detector OR rootcheck)"
+  },
+  {
+    "id": "Q11-10",
+    "file": "Q11-10.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "고위험 경보에서 낮은 레벨의 원인으로",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventRecordID:\"10755\""
+  },
+  {
+    "id": "Q11-11",
+    "file": "Q11-11.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "고위험 경보에서 낮은 레벨의 원인으로",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND (data.win.eventdata.subjectLogonId:\"0x1e38ea7\"\n OR data.win.eventdata.targetLogonId:\"0x1e38ea7\")\nAND data.win.system.eventID:\n (4624 OR 4672 OR 4720 OR 4732 OR 4733 OR 4726 OR 4634)\nAND timestamp >= \"2026-11-03T12:45:00+09:00\"\nAND timestamp < \"2026-11-03T12:50:00+09:00\""
   }
 ]

@@ -1,0 +1,4 @@
+agent.name:"bastion" AND rule.id:5760
+AND data.srcip:"192.168.0.108"
+AND timestamp >= "2026-11-02T20:29:00+09:00"
+AND timestamp < "2026-11-02T20:31:00+09:00"

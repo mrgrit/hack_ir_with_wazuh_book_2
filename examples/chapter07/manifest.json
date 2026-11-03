@@ -154,6 +154,13 @@
     "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Windows Defender/Operational\"\nAND data.win.system.eventID:(1118 OR 1119)"
   },
   {
+    "id": "Q07-09",
+    "file": "Q07-09.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "탐지와 조치를 연결한 조사 메모",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Windows Defender/Operational\"\nAND data.win.system.eventID:(1116 OR 1118 OR 1119)\nAND \"data.win.eventdata.threat Name\":\n \"Trojan:Win32/BatTamper.A\"\nAND timestamp >= \"2026-11-02T18:58:00+09:00\"\nAND timestamp < \"2026-11-04T00:00:00+09:00\""
+  },
+  {
     "id": "C07-16",
     "file": "C07-16.txt",
     "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",

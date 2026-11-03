@@ -1,0 +1,3262 @@
+{
+  "scope": "기존 자료의 읽기 조회. 민감할 수 있는 전체 명령줄·full_log는 제외하고 분석 필드만 보존.",
+  "observed_utc": "2026-11-03T22:50:58.664882+00:00",
+  "records": [
+    {
+      "case": "ch01-record",
+      "index": "wazuh-archives-*",
+      "query": {
+        "size": 200,
+        "track_total_hits": true,
+        "query": {
+          "bool": {
+            "filter": [
+              {
+                "term": {
+                  "agent.name": "windows-user"
+                }
+              },
+              {
+                "term": {
+                  "data.win.system.channel": "Security"
+                }
+              },
+              {
+                "term": {
+                  "data.win.system.eventRecordID": "9115"
+                }
+              }
+            ]
+          }
+        },
+        "sort": [
+          {
+            "timestamp": "asc"
+          }
+        ]
+      },
+      "total": {
+        "value": 1,
+        "relation": "eq"
+      },
+      "timed_out": false,
+      "shards": {
+        "total": 6,
+        "successful": 6,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": [
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "fTAJn6EBb-mjh6PaFS5b",
+          "id": "1793669533.3748593",
+          "timestamp": "2026-11-03T01:32:13.124+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "IIS NetworkCleartext Logon Success",
+            "id": "60200"
+          },
+          "system": {
+            "eventID": "4624",
+            "channel": "Security",
+            "systemTime": "2026-11-03T01:32:12.0920342Z",
+            "eventRecordID": "9115",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x3e7",
+            "targetLogonId": "0x194d15f",
+            "targetUserName": "kt66student",
+            "processId": "0x169c",
+            "targetUserSid": "S-1-5-21-3937859836-2530084332-1215515481-1000",
+            "subjectUserName": "KT66-WIN-01$"
+          }
+        }
+      ],
+      "aggregations": null
+    },
+    {
+      "case": "ch02-session",
+      "index": "wazuh-archives-*",
+      "query": {
+        "size": 200,
+        "track_total_hits": true,
+        "query": {
+          "bool": {
+            "filter": [
+              {
+                "term": {
+                  "agent.name": "windows-user"
+                }
+              },
+              {
+                "term": {
+                  "data.win.system.channel": "Security"
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "data.win.eventdata.subjectLogonId": "0x1ca2207"
+                      }
+                    },
+                    {
+                      "term": {
+                        "data.win.eventdata.targetLogonId": "0x1ca2207"
+                      }
+                    }
+                  ],
+                  "minimum_should_match": 1
+                }
+              },
+              {
+                "range": {
+                  "timestamp": {
+                    "gte": "2026-11-03T12:05:00+09:00",
+                    "lt": "2026-11-03T12:20:00+09:00"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "sort": [
+          {
+            "timestamp": "asc"
+          }
+        ]
+      },
+      "total": {
+        "value": 2,
+        "relation": "eq"
+      },
+      "timed_out": false,
+      "shards": {
+        "total": 6,
+        "successful": 6,
+        "skipped": 3,
+        "failed": 0
+      },
+      "hits": [
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "PDBhn6EBb-mjh6Pa_Fvh",
+          "id": "1793675360.7988575",
+          "timestamp": "2026-11-03T03:09:20.580+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "User: WORKGROUP\\victim logged using Remote Desktop Connection (RDP) from ip:10.20.30.202.",
+            "id": "92653"
+          },
+          "system": {
+            "eventID": "4624",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:09:19.7808046Z",
+            "eventRecordID": "10207",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x3e7",
+            "targetLogonId": "0x1ca2207",
+            "targetUserName": "victim",
+            "processId": "0x860",
+            "targetUserSid": "S-1-5-21-3937859836-2530084332-1215515481-1001",
+            "subjectUserName": "KT66-WIN-01$"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "aDBin6EBb-mjh6PaVlsK",
+          "id": "1793675383.8048996",
+          "timestamp": "2026-11-03T03:09:43.003+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "Non service account logged off.",
+            "id": "67023"
+          },
+          "system": {
+            "eventID": "4634",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:09:42.2353985Z",
+            "eventRecordID": "10222",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "targetLogonId": "0x1ca2207",
+            "targetUserName": "victim",
+            "targetUserSid": "S-1-5-21-3937859836-2530084332-1215515481-1001"
+          }
+        }
+      ],
+      "aggregations": null
+    },
+    {
+      "case": "ch03-account-logon",
+      "index": "wazuh-archives-*",
+      "query": {
+        "size": 200,
+        "track_total_hits": true,
+        "query": {
+          "bool": {
+            "filter": [
+              {
+                "term": {
+                  "agent.name": "windows-user"
+                }
+              },
+              {
+                "term": {
+                  "data.win.system.channel": "Security"
+                }
+              },
+              {
+                "term": {
+                  "data.win.system.eventID": "4624"
+                }
+              },
+              {
+                "term": {
+                  "data.win.eventdata.targetUserSid": "S-1-5-21-3937859836-2530084332-1215515481-1002"
+                }
+              }
+            ]
+          }
+        },
+        "sort": [
+          {
+            "timestamp": "asc"
+          }
+        ]
+      },
+      "total": {
+        "value": 0,
+        "relation": "eq"
+      },
+      "timed_out": false,
+      "shards": {
+        "total": 6,
+        "successful": 6,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": [],
+      "aggregations": null
+    },
+    {
+      "case": "ch04-writer",
+      "index": "wazuh-archives-*",
+      "query": {
+        "size": 200,
+        "track_total_hits": true,
+        "query": {
+          "bool": {
+            "filter": [
+              {
+                "term": {
+                  "agent.name": "windows-user"
+                }
+              },
+              {
+                "term": {
+                  "data.win.system.channel": "Microsoft-Windows-Sysmon/Operational"
+                }
+              },
+              {
+                "term": {
+                  "data.win.eventdata.processGuid": "{af6e9a1f-765d-6ae9-4006-000000000300}"
+                }
+              }
+            ]
+          }
+        },
+        "sort": [
+          {
+            "timestamp": "asc"
+          }
+        ]
+      },
+      "total": {
+        "value": 2,
+        "relation": "eq"
+      },
+      "timed_out": false,
+      "shards": {
+        "total": 6,
+        "successful": 6,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": [
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "ljD2n6EBb-mjh6PaY5qk",
+          "id": "1793685085.14495940",
+          "timestamp": "2026-11-03T05:51:25.892+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 10,
+            "description": "Value added to registry key has Base64-like pattern",
+            "id": "92041"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T05:51:25.2259431Z",
+            "eventRecordID": "8886",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\reg.exe",
+            "parentProcessGuid": "{af6e9a1f-765b-6ae9-3f06-000000000300}",
+            "processGuid": "{af6e9a1f-765d-6ae9-4006-000000000300}",
+            "parentProcessId": "7600",
+            "processId": "9140",
+            "utcTime": "2026-11-03 05:51:25.217",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "lzD2n6EBb-mjh6PaY5qk",
+          "id": "1793685085.14495940",
+          "timestamp": "2026-11-03T05:51:25.904+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 6,
+            "description": "Registry entry to be executed on next logon was modified using command line application reg.exe",
+            "id": "92302"
+          },
+          "system": {
+            "eventID": "13",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T05:51:25.2327153Z",
+            "eventRecordID": "8887",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\WINDOWS\\\\system32\\\\reg.exe",
+            "targetObject": "HKU\\\\S-1-5-21-3937859836-2530084332-1215515481-1000\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Run\\\\book2_ch04_run",
+            "processGuid": "{af6e9a1f-765d-6ae9-4006-000000000300}",
+            "processId": "9140",
+            "utcTime": "2026-11-03 05:51:25.221",
+            "details": "C:\\\\Windows\\\\Temp\\\\book2_ch04_missing.exe",
+            "eventType": "SetValue"
+          }
+        }
+      ],
+      "aggregations": null
+    },
+    {
+      "case": "ch05-pid",
+      "index": "wazuh-archives-*",
+      "query": {
+        "size": 200,
+        "track_total_hits": true,
+        "query": {
+          "bool": {
+            "filter": [
+              {
+                "term": {
+                  "agent.name": "windows-user"
+                }
+              },
+              {
+                "term": {
+                  "data.win.system.channel": "Microsoft-Windows-Sysmon/Operational"
+                }
+              },
+              {
+                "term": {
+                  "data.win.system.eventID": "1"
+                }
+              },
+              {
+                "term": {
+                  "data.win.eventdata.processId": "5228"
+                }
+              },
+              {
+                "range": {
+                  "timestamp": {
+                    "gte": "2026-11-03T14:58:00+09:00",
+                    "lt": "2026-11-03T15:00:00+09:00"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "sort": [
+          {
+            "timestamp": "asc"
+          }
+        ]
+      },
+      "total": {
+        "value": 1,
+        "relation": "eq"
+      },
+      "timed_out": false,
+      "shards": {
+        "total": 6,
+        "successful": 6,
+        "skipped": 3,
+        "failed": 0
+      },
+      "hits": [
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "qTD8n6EBb-mjh6Pa-6bY",
+          "id": "1793685517.15911648",
+          "timestamp": "2026-11-03T05:58:37.574+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Powershell.exe spawned a powershell process which executed a base64 encoded command",
+            "id": "92057"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T05:58:36.7388784Z",
+            "eventRecordID": "8995",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "parentProcessGuid": "{af6e9a1f-780b-6ae9-7306-000000000300}",
+            "processGuid": "{af6e9a1f-780c-6ae9-7406-000000000300}",
+            "parentProcessId": "7060",
+            "processId": "5228",
+            "utcTime": "2026-11-03 05:58:36.718",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe"
+          }
+        }
+      ],
+      "aggregations": null
+    },
+    {
+      "case": "ch06-original-archives",
+      "index": "wazuh-archives-*",
+      "query": {
+        "size": 200,
+        "track_total_hits": true,
+        "query": {
+          "bool": {
+            "filter": [
+              {
+                "term": {
+                  "agent.name": "windows-user"
+                }
+              },
+              {
+                "term": {
+                  "data.win.system.channel": "Microsoft-Windows-Sysmon/Operational"
+                }
+              },
+              {
+                "terms": {
+                  "data.win.system.eventRecordID": [
+                    "9407",
+                    "9451",
+                    "9454",
+                    "9455",
+                    "9461",
+                    "9462"
+                  ]
+                }
+              },
+              {
+                "range": {
+                  "timestamp": {
+                    "gte": "2026-11-03T16:00:00+09:00",
+                    "lt": "2026-11-03T17:00:00+09:00"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "sort": [
+          {
+            "timestamp": "asc"
+          }
+        ]
+      },
+      "total": {
+        "value": 6,
+        "relation": "eq"
+      },
+      "timed_out": false,
+      "shards": {
+        "total": 6,
+        "successful": 6,
+        "skipped": 3,
+        "failed": 0
+      },
+      "hits": [
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "zzBMoKEBb-mjh6Pae70J",
+          "id": "1793690728.17458829",
+          "timestamp": "2026-11-03T07:25:28.069+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "10",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:25:27.8941042Z",
+            "eventRecordID": "9407",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "grantedAccess": "0x1fffff",
+            "targetProcessGUID": "{af6e9a1f-6c2e-6ae8-0c00-000000000300}",
+            "utcTime": "2026-11-03 07:25:27.878",
+            "sourceImage": "C:\\\\Program Files\\\\osquery\\\\osqueryd\\\\osqueryd.exe",
+            "targetImage": "C:\\\\WINDOWS\\\\system32\\\\lsass.exe",
+            "sourceProcessGUID": "{af6e9a1f-6c34-6ae8-6200-000000000300}"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "MTBQoKEBb-mjh6Pa4MFu",
+          "id": "1793691016.17878321",
+          "timestamp": "2026-11-03T07:30:16.308+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "3",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:15.9481881Z",
+            "eventRecordID": "9451",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "destinationPort": "80",
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "sourcePort": "57522",
+            "initiated": "true",
+            "destinationIp": "10.20.32.80",
+            "processGuid": "{af6e9a1f-8d82-6ae9-d106-000000000300}",
+            "sourceIp": "172.30.70.2",
+            "processId": "8080",
+            "utcTime": "2026-11-03 07:30:12.232"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "ODBQoKEBb-mjh6Pa6MFA",
+          "id": "1793691017.17930144",
+          "timestamp": "2026-11-03T07:30:17.379+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "3",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:16.9640601Z",
+            "eventRecordID": "9454",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "destinationPort": "80",
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "sourcePort": "57523",
+            "initiated": "true",
+            "destinationIp": "10.20.32.80",
+            "processGuid": "{af6e9a1f-8d82-6ae9-d106-000000000300}",
+            "sourceIp": "172.30.70.2",
+            "processId": "8080",
+            "utcTime": "2026-11-03 07:30:14.564"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "PzBQoKEBb-mjh6Pa8MER",
+          "id": "1793691019.17981959",
+          "timestamp": "2026-11-03T07:30:19.635+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "3",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:18.7762645Z",
+            "eventRecordID": "9455",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "destinationPort": "80",
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "sourcePort": "57524",
+            "initiated": "true",
+            "destinationIp": "10.20.32.80",
+            "processGuid": "{af6e9a1f-8d82-6ae9-d106-000000000300}",
+            "sourceIp": "172.30.70.2",
+            "processId": "8080",
+            "utcTime": "2026-11-03 07:30:16.626"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "ezBRoKEBb-mjh6PaC8Fx",
+          "id": "1793691026.18086607",
+          "timestamp": "2026-11-03T07:30:26.665+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "22",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:25.7934159Z",
+            "eventRecordID": "9461",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "processGuid": "{af6e9a1f-8d8d-6ae9-d406-000000000300}",
+            "queryStatus": "0",
+            "processId": "1540",
+            "utcTime": "2026-11-03 07:30:22.716",
+            "queryName": "example.com",
+            "queryResults": "104.20.23.154;172.66.147.243;"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "fDBRoKEBb-mjh6PaC8Fx",
+          "id": "1793691026.18086607",
+          "timestamp": "2026-11-03T07:30:26.706+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "22",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:25.7934824Z",
+            "eventRecordID": "9462",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "processGuid": "{af6e9a1f-8d8d-6ae9-d406-000000000300}",
+            "queryStatus": "9003",
+            "processId": "1540",
+            "utcTime": "2026-11-03 07:30:22.828",
+            "queryName": "book2-ch06.invalid",
+            "queryResults": "type: 6 a.root-servers.net;"
+          }
+        }
+      ],
+      "aggregations": null
+    },
+    {
+      "case": "ch06-original-alerts",
+      "index": "wazuh-alerts-*",
+      "query": {
+        "size": 200,
+        "track_total_hits": true,
+        "query": {
+          "bool": {
+            "filter": [
+              {
+                "term": {
+                  "agent.name": "windows-user"
+                }
+              },
+              {
+                "term": {
+                  "data.win.system.channel": "Microsoft-Windows-Sysmon/Operational"
+                }
+              },
+              {
+                "terms": {
+                  "data.win.system.eventRecordID": [
+                    "9407",
+                    "9451",
+                    "9454",
+                    "9455",
+                    "9461",
+                    "9462"
+                  ]
+                }
+              },
+              {
+                "range": {
+                  "timestamp": {
+                    "gte": "2026-11-03T16:00:00+09:00",
+                    "lt": "2026-11-03T17:00:00+09:00"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "sort": [
+          {
+            "timestamp": "asc"
+          }
+        ]
+      },
+      "total": {
+        "value": 0,
+        "relation": "eq"
+      },
+      "timed_out": false,
+      "shards": {
+        "total": 6,
+        "successful": 6,
+        "skipped": 3,
+        "failed": 0
+      },
+      "hits": [],
+      "aggregations": null
+    },
+    {
+      "case": "ch11-session",
+      "index": "wazuh-archives-*",
+      "query": {
+        "size": 200,
+        "track_total_hits": true,
+        "query": {
+          "bool": {
+            "filter": [
+              {
+                "term": {
+                  "agent.name": "windows-user"
+                }
+              },
+              {
+                "term": {
+                  "data.win.system.channel": "Security"
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "data.win.eventdata.subjectLogonId": "0x1e38ea7"
+                      }
+                    },
+                    {
+                      "term": {
+                        "data.win.eventdata.targetLogonId": "0x1e38ea7"
+                      }
+                    }
+                  ],
+                  "minimum_should_match": 1
+                }
+              },
+              {
+                "range": {
+                  "timestamp": {
+                    "gte": "2026-11-03T12:45:00+09:00",
+                    "lt": "2026-11-03T12:50:00+09:00"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "sort": [
+          {
+            "timestamp": "asc"
+          }
+        ]
+      },
+      "total": {
+        "value": 25,
+        "relation": "eq"
+      },
+      "timed_out": false,
+      "shards": {
+        "total": 6,
+        "successful": 6,
+        "skipped": 3,
+        "failed": 0
+      },
+      "hits": [
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "iTCEn6EBb-mjh6PavHLC",
+          "id": "1793677637.10971014",
+          "timestamp": "2026-11-03T03:47:17.060+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "IIS NetworkCleartext Logon Success",
+            "id": "60200"
+          },
+          "system": {
+            "eventID": "4624",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:16.6901408Z",
+            "eventRecordID": "10744",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x3e7",
+            "targetLogonId": "0x1e38ea7",
+            "targetUserName": "kt66student",
+            "processId": "0x994",
+            "targetUserSid": "S-1-5-21-3937859836-2530084332-1215515481-1000",
+            "subjectUserName": "KT66-WIN-01$"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "ijCEn6EBb-mjh6PavHLC",
+          "id": "1793677637.10979086",
+          "timestamp": "2026-11-03T03:47:17.076+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "Special privileges assigned to new logon.",
+            "id": "67028"
+          },
+          "system": {
+            "eventID": "4672",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:16.6901486Z",
+            "eventRecordID": "10745",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "izCEn6EBb-mjh6PavHLC",
+          "id": "1793677637.10979086",
+          "timestamp": "2026-11-03T03:47:17.091+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:16.7279495Z",
+            "eventRecordID": "10746",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x3e7",
+            "targetLogonId": "0x1e38ea7",
+            "targetUserName": "kt66student",
+            "processId": "0x994",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "KT66-WIN-01$"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "jDCEn6EBb-mjh6PavHLC",
+          "id": "1793677637.10988838",
+          "timestamp": "2026-11-03T03:47:17.108+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:16.8033924Z",
+            "eventRecordID": "10747",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetLogonId": "0x0",
+            "processId": "0x1f78",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "jTCEn6EBb-mjh6PavHLC",
+          "id": "1793677637.10988838",
+          "timestamp": "2026-11-03T03:47:17.125+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:16.8271923Z",
+            "eventRecordID": "10748",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetLogonId": "0x0",
+            "processId": "0x6fc",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "OzCEn6EBb-mjh6PaxHSM",
+          "id": "1793677638.11127927",
+          "timestamp": "2026-11-03T03:47:18.785+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:17.9476420Z",
+            "eventRecordID": "10749",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetLogonId": "0x0",
+            "processId": "0x6fc",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "UDCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11174200",
+          "timestamp": "2026-11-03T03:47:21.015+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 5,
+            "description": "Domain Users Group Changed",
+            "id": "60160"
+          },
+          "system": {
+            "eventID": "4728",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.1656033Z",
+            "eventRecordID": "10750",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "없음",
+            "memberSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-513",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "UTCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11177400",
+          "timestamp": "2026-11-03T03:47:21.017+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 8,
+            "description": "User account enabled or created",
+            "id": "60109"
+          },
+          "system": {
+            "eventID": "4720",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.1667464Z",
+            "eventRecordID": "10751",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "book2_ch03",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "UjCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11182895",
+          "timestamp": "2026-11-03T03:47:21.028+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 8,
+            "description": "User account changed",
+            "id": "60110"
+          },
+          "system": {
+            "eventID": "4738",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.1712220Z",
+            "eventRecordID": "10752",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "book2_ch03",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "UzCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11188095",
+          "timestamp": "2026-11-03T03:47:21.044+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 8,
+            "description": "User account changed",
+            "id": "60110"
+          },
+          "system": {
+            "eventID": "4738",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.2032639Z",
+            "eventRecordID": "10753",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "book2_ch03",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "VDCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11188095",
+          "timestamp": "2026-11-03T03:47:21.059+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "4724",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.2032735Z",
+            "eventRecordID": "10754",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "book2_ch03",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "VTCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11191965",
+          "timestamp": "2026-11-03T03:47:21.083+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Administrators Group Changed",
+            "id": "60154"
+          },
+          "system": {
+            "eventID": "4732",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.5783521Z",
+            "eventRecordID": "10755",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "Administrators",
+            "memberSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "targetSid": "S-1-5-32-544",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "VjCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11191965",
+          "timestamp": "2026-11-03T03:47:21.106+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "4799",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.5936496Z",
+            "eventRecordID": "10756",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "Administrators",
+            "targetSid": "S-1-5-32-544",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "VzCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11195052",
+          "timestamp": "2026-11-03T03:47:21.122+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Administrators Group Changed",
+            "id": "60154"
+          },
+          "system": {
+            "eventID": "4733",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.6122215Z",
+            "eventRecordID": "10757",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "Administrators",
+            "memberSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "targetSid": "S-1-5-32-544",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "WDCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11198145",
+          "timestamp": "2026-11-03T03:47:21.138+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 5,
+            "description": "Domain Users Group Changed",
+            "id": "60160"
+          },
+          "system": {
+            "eventID": "4729",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.6287558Z",
+            "eventRecordID": "10758",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "없음",
+            "memberSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-513",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "WTCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11201351",
+          "timestamp": "2026-11-03T03:47:21.153+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 8,
+            "description": "User account disabled or deleted",
+            "id": "60111"
+          },
+          "system": {
+            "eventID": "4726",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.6293489Z",
+            "eventRecordID": "10759",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "book2_ch03",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "WjCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11201351",
+          "timestamp": "2026-11-03T03:47:21.169+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "4799",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.6368115Z",
+            "eventRecordID": "10760",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "Administrators",
+            "targetSid": "S-1-5-32-544",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "WzCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11204195",
+          "timestamp": "2026-11-03T03:47:21.184+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.7446620Z",
+            "eventRecordID": "10761",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetLogonId": "0x0",
+            "processId": "0x1f78",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "XDCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11214462",
+          "timestamp": "2026-11-03T03:47:21.200+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:21.0683313Z",
+            "eventRecordID": "10762",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetLogonId": "0x0",
+            "processId": "0x628",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "azCEn6EBb-mjh6Pa1HQu",
+          "id": "1793677643.11224069",
+          "timestamp": "2026-11-03T03:47:23.000+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:22.1598368Z",
+            "eventRecordID": "10763",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetLogonId": "0x0",
+            "processId": "0x628",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "eDCEn6EBb-mjh6Pa3HQC",
+          "id": "1793677645.11249994",
+          "timestamp": "2026-11-03T03:47:25.547+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:24.7134130Z",
+            "eventRecordID": "10764",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetLogonId": "0x0",
+            "processId": "0x1f78",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "eTCEn6EBb-mjh6Pa3HQC",
+          "id": "1793677645.11262685",
+          "timestamp": "2026-11-03T03:47:25.550+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:24.7319473Z",
+            "eventRecordID": "10765",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetLogonId": "0x0",
+            "processId": "0xa10",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "gzCEn6EBb-mjh6Pa33Tp",
+          "id": "1793677646.11269484",
+          "timestamp": "2026-11-03T03:47:26.703+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:25.8600455Z",
+            "eventRecordID": "10766",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetLogonId": "0x0",
+            "processId": "0xa10",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "rTCEn6EBb-mjh6Pa63St",
+          "id": "1793677648.11291449",
+          "timestamp": "2026-11-03T03:47:28.907+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:28.0638938Z",
+            "eventRecordID": "10767",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetLogonId": "0x0",
+            "processId": "0x218c",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "vzCEn6EBb-mjh6Pa73SQ",
+          "id": "1793677649.11309633",
+          "timestamp": "2026-11-03T03:47:29.999+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "4634",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:29.1617463Z",
+            "eventRecordID": "10768",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "targetLogonId": "0x1e38ea7",
+            "targetUserName": "kt66student",
+            "targetUserSid": "S-1-5-21-3937859836-2530084332-1215515481-1000"
+          }
+        }
+      ],
+      "aggregations": null
+    },
+    {
+      "case": "ch12-live-all",
+      "index": "wazuh-alerts-*",
+      "query": {
+        "size": 200,
+        "track_total_hits": true,
+        "query": {
+          "bool": {
+            "filter": [
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "data.srcip": "192.168.0.108"
+                      }
+                    },
+                    {
+                      "term": {
+                        "data.src_ip": "192.168.0.108"
+                      }
+                    }
+                  ],
+                  "minimum_should_match": 1
+                }
+              },
+              {
+                "range": {
+                  "timestamp": {
+                    "gte": "2026-11-02T00:00:00+09:00",
+                    "lt": "2026-11-04T00:00:00+09:00"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "sort": [
+          {
+            "timestamp": "asc"
+          }
+        ],
+        "aggs": {
+          "rules": {
+            "terms": {
+              "field": "rule.id",
+              "size": 100
+            }
+          },
+          "agents": {
+            "terms": {
+              "field": "agent.name",
+              "size": 100
+            }
+          },
+          "max_level": {
+            "max": {
+              "field": "rule.level"
+            }
+          },
+          "hours": {
+            "date_histogram": {
+              "field": "timestamp",
+              "fixed_interval": "1h",
+              "time_zone": "+09:00"
+            },
+            "aggs": {
+              "risk": {
+                "sum": {
+                  "script": {
+                    "source": "doc['rule.level'].size()==0 ? 0 : (doc['rule.level'].value >= 5 ? doc['rule.level'].value * doc['rule.level'].value : 0)"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "total": {
+        "value": 69,
+        "relation": "eq"
+      },
+      "timed_out": false,
+      "shards": {
+        "total": 6,
+        "successful": 6,
+        "skipped": 0,
+        "failed": 0
+      },
+      "hits": [
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "zS-8m6EBb-mjh6Pa-AkW",
+          "id": "1793614213.9685708",
+          "timestamp": "2026-11-02T10:10:13.269+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 5,
+            "description": "Web server 400 error code.",
+            "id": "31101"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "zi-8m6EBb-mjh6Pa-AkW",
+          "id": "1793614213.9686232",
+          "timestamp": "2026-11-02T10:10:13.282+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 6,
+            "description": "Shellshock attack attempt",
+            "id": "31166"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "zy-8m6EBb-mjh6Pa-AkW",
+          "id": "1793614213.9686645",
+          "timestamp": "2026-11-02T10:10:13.282+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 5,
+            "description": "Web server 400 error code.",
+            "id": "31101"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "0C-8m6EBb-mjh6Pa-AkW",
+          "id": "1793614213.9687145",
+          "timestamp": "2026-11-02T10:10:13.282+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 5,
+            "description": "Web server 400 error code.",
+            "id": "31101"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "-i-8m6EBb-mjh6Pa-wn2",
+          "id": "1793614213.9687609",
+          "timestamp": "2026-11-02T10:10:13.289+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 7,
+            "description": "ModSecurity: Rejected a query",
+            "id": "30411"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "-y-8m6EBb-mjh6Pa-wn2",
+          "id": "1793614213.9688419",
+          "timestamp": "2026-11-02T10:10:13.295+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 7,
+            "description": "ModSecurity: Rejected a query",
+            "id": "30411"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "_C-8m6EBb-mjh6Pa-wn2",
+          "id": "1793614213.9689267",
+          "timestamp": "2026-11-02T10:10:13.303+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 7,
+            "description": "ModSecurity: Rejected a query",
+            "id": "30411"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Cy-9m6EBb-mjh6PaAwrN",
+          "id": "1793614215.9690099",
+          "timestamp": "2026-11-02T10:10:15.264+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 6,
+            "description": "A web attack returned code 200 (success).",
+            "id": "31106"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "DC-9m6EBb-mjh6PaAwrN",
+          "id": "1793614215.9690593",
+          "timestamp": "2026-11-02T10:10:15.266+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 6,
+            "description": "SQL injection attempt.",
+            "id": "31164"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "-y8EnKEBb-mjh6Pacxnx",
+          "id": "1793618893.12588194",
+          "timestamp": "2026-11-02T11:28:13.009+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "IC8FnKEBb-mjh6Pavxr7",
+          "id": "1793618975.12590173",
+          "timestamp": "2026-11-02T11:29:35.026+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "IS8FnKEBb-mjh6Pavxr7",
+          "id": "1793618976.12590707",
+          "timestamp": "2026-11-02T11:29:36.982+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Iy8FnKEBb-mjh6Pa-hqX",
+          "id": "1793618995.12591646",
+          "timestamp": "2026-11-02T11:29:55.038+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 8,
+            "description": "Maximum authentication attempts exceeded.",
+            "id": "5758"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "JS8FnKEBb-mjh6Pa-hqX",
+          "id": "1793618995.12592413",
+          "timestamp": "2026-11-02T11:29:55.038+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 10,
+            "description": "syslog: User missed the password more than one time",
+            "id": "2502"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Ji8FnKEBb-mjh6Pa-hqX",
+          "id": "1793618997.12592954",
+          "timestamp": "2026-11-02T11:29:57.000+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Li8FnKEBb-mjh6Pa_hp_",
+          "id": "1793618999.12593488",
+          "timestamp": "2026-11-02T11:29:59.002+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "ZC8GnKEBb-mjh6PaXBqR",
+          "id": "1793619017.12594427",
+          "timestamp": "2026-11-02T11:30:17.166+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 10,
+            "description": "syslog: User missed the password more than one time",
+            "id": "2502"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Zi8GnKEBb-mjh6PaXBqR",
+          "id": "1793619017.12595350",
+          "timestamp": "2026-11-02T11:30:17.166+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 8,
+            "description": "Maximum authentication attempts exceeded.",
+            "id": "5758"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Zy8GnKEBb-mjh6PaXBqR",
+          "id": "1793619019.12595735",
+          "timestamp": "2026-11-02T11:30:19.023+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "aC8GnKEBb-mjh6PaXBqR",
+          "id": "1793619023.12596269",
+          "timestamp": "2026-11-02T11:30:23.026+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "hy8HnKEBb-mjh6PagRqZ",
+          "id": "1793619093.12596748",
+          "timestamp": "2026-11-02T11:31:33.122+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "iC8HnKEBb-mjh6PagRqZ",
+          "id": "1793619093.12597282",
+          "timestamp": "2026-11-02T11:31:33.122+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "iS8HnKEBb-mjh6PagRqZ",
+          "id": "1793619093.12597816",
+          "timestamp": "2026-11-02T11:31:33.122+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "ii8HnKEBb-mjh6PagRqZ",
+          "id": "1793619093.12598350",
+          "timestamp": "2026-11-02T11:31:33.122+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "iy8HnKEBb-mjh6PagRqZ",
+          "id": "1793619095.12598884",
+          "timestamp": "2026-11-02T11:31:35.104+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "jC8HnKEBb-mjh6PagRqZ",
+          "id": "1793619095.12599363",
+          "timestamp": "2026-11-02T11:31:35.146+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "jS8HnKEBb-mjh6PagRqZ",
+          "id": "1793619095.12599842",
+          "timestamp": "2026-11-02T11:31:35.146+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "ji8HnKEBb-mjh6PagRqZ",
+          "id": "1793619095.12600321",
+          "timestamp": "2026-11-02T11:31:35.146+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "jy8HnKEBb-mjh6PagRqZ",
+          "id": "1793619097.12600800",
+          "timestamp": "2026-11-02T11:31:37.080+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 10,
+            "description": "sshd: brute force trying to get access to the system. Authentication failed.",
+            "id": "5763"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "kC8HnKEBb-mjh6PagRqZ",
+          "id": "1793619097.12602015",
+          "timestamp": "2026-11-02T11:31:37.080+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "kS8HnKEBb-mjh6PagRqZ",
+          "id": "1793619097.12602494",
+          "timestamp": "2026-11-02T11:31:37.082+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "ki8HnKEBb-mjh6PagRqZ",
+          "id": "1793619097.12602973",
+          "timestamp": "2026-11-02T11:31:37.130+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "ky8HnKEBb-mjh6PagRqZ",
+          "id": "1793619097.12603452",
+          "timestamp": "2026-11-02T11:31:37.189+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "Host Blocked by firewall-drop Active Response",
+            "id": "651"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc",
+            "origin": {
+              "module": "wazuh-execd",
+              "name": "node01"
+            },
+            "command": "add"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "ui8KnKEBb-mjh6PaVBpO",
+          "id": "1793619279.12608071",
+          "timestamp": "2026-11-02T11:34:39.258+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "Host Unblocked by firewall-drop Active Response",
+            "id": "652"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc",
+            "origin": {
+              "module": "wazuh-execd",
+              "name": "node01"
+            },
+            "command": "delete"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "_C8LnKEBb-mjh6Pasxrv",
+          "id": "1793619371.12639121",
+          "timestamp": "2026-11-02T11:36:11.277+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: Attempt to login using a non-existent user",
+            "id": "5710"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "_S8LnKEBb-mjh6Pasxrv",
+          "id": "1793619371.12639653",
+          "timestamp": "2026-11-02T11:36:11.318+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: Attempt to login using a non-existent user",
+            "id": "5710"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "_i8LnKEBb-mjh6Pasxrv",
+          "id": "1793619371.12640208",
+          "timestamp": "2026-11-02T11:36:11.375+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: Attempt to login using a non-existent user",
+            "id": "5710"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "_y8LnKEBb-mjh6Pasxrv",
+          "id": "1793619371.12640740",
+          "timestamp": "2026-11-02T11:36:11.375+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: Attempt to login using a non-existent user",
+            "id": "5710"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "AC8LnKEBb-mjh6Pasxvv",
+          "id": "1793619371.12641272",
+          "timestamp": "2026-11-02T11:36:11.378+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: Attempt to login using a non-existent user",
+            "id": "5710"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "AS8LnKEBb-mjh6Pasxvv",
+          "id": "1793619371.12641804",
+          "timestamp": "2026-11-02T11:36:11.407+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Ai8LnKEBb-mjh6Pasxvv",
+          "id": "1793619371.12642319",
+          "timestamp": "2026-11-02T11:36:11.411+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Ay8LnKEBb-mjh6Pasxvv",
+          "id": "1793619371.12642834",
+          "timestamp": "2026-11-02T11:36:11.416+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "CS8LnKEBb-mjh6PatxvV",
+          "id": "1793619375.12643349",
+          "timestamp": "2026-11-02T11:36:15.288+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: Attempt to login using a non-existent user",
+            "id": "5710"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Cy8LnKEBb-mjh6PatxvV",
+          "id": "1793619375.12644431",
+          "timestamp": "2026-11-02T11:36:15.330+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: Attempt to login using a non-existent user",
+            "id": "5710"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Ci8LnKEBb-mjh6PatxvV",
+          "id": "1793619375.12643890",
+          "timestamp": "2026-11-02T11:36:15.330+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: Attempt to login using a non-existent user",
+            "id": "5710"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "IS8MnKEBb-mjh6Pakhs2",
+          "id": "1793619423.12644972",
+          "timestamp": "2026-11-02T11:37:03.370+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Ii8MnKEBb-mjh6Pakhs2",
+          "id": "1793619425.12645506",
+          "timestamp": "2026-11-02T11:37:05.325+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "JC8MnKEBb-mjh6PanRvx",
+          "id": "1793619433.12646445",
+          "timestamp": "2026-11-02T11:37:13.330+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "KC8MnKEBb-mjh6PaoRvY",
+          "id": "1793619433.12648157",
+          "timestamp": "2026-11-02T11:37:13.453+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "US8NnKEBb-mjh6PafBue",
+          "id": "1793619485.12651352",
+          "timestamp": "2026-11-02T11:38:05.389+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "root"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Uy8NnKEBb-mjh6PafBue",
+          "id": "1793619485.12652188",
+          "timestamp": "2026-11-02T11:38:05.431+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "root"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "VC8NnKEBb-mjh6PafBue",
+          "id": "1793619487.12652724",
+          "timestamp": "2026-11-02T11:38:07.394+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "root"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Vi8NnKEBb-mjh6PagBuG",
+          "id": "1793619491.12653205",
+          "timestamp": "2026-11-02T11:38:11.377+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "ZS8NnKEBb-mjh6Pa4hsx",
+          "id": "1793619515.12654477",
+          "timestamp": "2026-11-02T11:38:35.459+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "cS8NnKEBb-mjh6Pa5hsb",
+          "id": "1793619517.12660548",
+          "timestamp": "2026-11-02T11:38:37.401+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "dC8NnKEBb-mjh6Pa5hsb",
+          "id": "1793619517.12661820",
+          "timestamp": "2026-11-02T11:38:37.414+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "fy8NnKEBb-mjh6Pa5hsb",
+          "id": "1793619517.12666848",
+          "timestamp": "2026-11-02T11:38:37.456+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "hS8NnKEBb-mjh6Pa7Rv0",
+          "id": "1793619519.12669453",
+          "timestamp": "2026-11-02T11:38:39.401+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Ai90nqEBb-mjh6PaTm0v",
+          "id": "1793659775.17385949",
+          "timestamp": "2026-11-02T22:49:35.388+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Ly90nqEBb-mjh6PaTm08",
+          "id": "1793659779.17454353",
+          "timestamp": "2026-11-02T22:49:39.531+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Bi90nqEBb-mjh6Pa9nYc",
+          "id": "1793659821.17890564",
+          "timestamp": "2026-11-02T22:50:21.424+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "8i90nqEBb-mjh6Pa9njo",
+          "id": "1793659827.18287384",
+          "timestamp": "2026-11-02T22:50:27.428+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "bS92nqEBb-mjh6PaK4Ik",
+          "id": "1793659903.18663514",
+          "timestamp": "2026-11-02T22:51:43.516+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Li92nqEBb-mjh6Pa3oOS",
+          "id": "1793659947.18976259",
+          "timestamp": "2026-11-02T22:52:27.818+0000",
+          "agent": {
+            "ip": "10.20.32.254",
+            "name": "kt66-host",
+            "id": "006"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "TC93nqEBb-mjh6Pao5Aq",
+          "id": "1793659998.19415134",
+          "timestamp": "2026-11-02T22:53:18.682+0000",
+          "agent": {
+            "ip": "10.20.32.254",
+            "name": "kt66-host",
+            "id": "006"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "XS93nqEBb-mjh6Pao5Gq",
+          "id": "1793660002.19965559",
+          "timestamp": "2026-11-02T22:53:22.085+0000",
+          "agent": {
+            "ip": "10.20.32.254",
+            "name": "kt66-host",
+            "id": "006"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "3S93nqEBb-mjh6PatZjt",
+          "id": "1793660007.20325203",
+          "timestamp": "2026-11-02T22:53:27.597+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Ey93nqEBb-mjh6Pazp8z",
+          "id": "1793660013.20414969",
+          "timestamp": "2026-11-02T22:53:33.602+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "6y-gnqEBb-mjh6PaUN-g",
+          "id": "1793662667.24962457",
+          "timestamp": "2026-11-02T23:37:47.380+0000",
+          "agent": {
+            "ip": "10.20.32.254",
+            "name": "kt66-host",
+            "id": "006"
+          },
+          "rule": {
+            "level": 10,
+            "description": "Multiple Firewall drop events from same source.",
+            "id": "4151"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        }
+      ],
+      "aggregations": {
+        "hours": {
+          "buckets": [
+            {
+              "key_as_string": "2026-11-02T19:00:00.000+09:00",
+              "key": 1793613600000,
+              "doc_count": 9,
+              "risk": {
+                "value": 330.0
+              }
+            },
+            {
+              "key_as_string": "2026-11-02T20:00:00.000+09:00",
+              "key": 1793617200000,
+              "doc_count": 49,
+              "risk": {
+                "value": 1228.0
+              }
+            },
+            {
+              "key_as_string": "2026-11-02T21:00:00.000+09:00",
+              "key": 1793620800000,
+              "doc_count": 0,
+              "risk": {
+                "value": 0.0
+              }
+            },
+            {
+              "key_as_string": "2026-11-02T22:00:00.000+09:00",
+              "key": 1793624400000,
+              "doc_count": 0,
+              "risk": {
+                "value": 0.0
+              }
+            },
+            {
+              "key_as_string": "2026-11-02T23:00:00.000+09:00",
+              "key": 1793628000000,
+              "doc_count": 0,
+              "risk": {
+                "value": 0.0
+              }
+            },
+            {
+              "key_as_string": "2026-11-03T00:00:00.000+09:00",
+              "key": 1793631600000,
+              "doc_count": 0,
+              "risk": {
+                "value": 0.0
+              }
+            },
+            {
+              "key_as_string": "2026-11-03T01:00:00.000+09:00",
+              "key": 1793635200000,
+              "doc_count": 0,
+              "risk": {
+                "value": 0.0
+              }
+            },
+            {
+              "key_as_string": "2026-11-03T02:00:00.000+09:00",
+              "key": 1793638800000,
+              "doc_count": 0,
+              "risk": {
+                "value": 0.0
+              }
+            },
+            {
+              "key_as_string": "2026-11-03T03:00:00.000+09:00",
+              "key": 1793642400000,
+              "doc_count": 0,
+              "risk": {
+                "value": 0.0
+              }
+            },
+            {
+              "key_as_string": "2026-11-03T04:00:00.000+09:00",
+              "key": 1793646000000,
+              "doc_count": 0,
+              "risk": {
+                "value": 0.0
+              }
+            },
+            {
+              "key_as_string": "2026-11-03T05:00:00.000+09:00",
+              "key": 1793649600000,
+              "doc_count": 0,
+              "risk": {
+                "value": 0.0
+              }
+            },
+            {
+              "key_as_string": "2026-11-03T06:00:00.000+09:00",
+              "key": 1793653200000,
+              "doc_count": 0,
+              "risk": {
+                "value": 0.0
+              }
+            },
+            {
+              "key_as_string": "2026-11-03T07:00:00.000+09:00",
+              "key": 1793656800000,
+              "doc_count": 10,
+              "risk": {
+                "value": 0.0
+              }
+            },
+            {
+              "key_as_string": "2026-11-03T08:00:00.000+09:00",
+              "key": 1793660400000,
+              "doc_count": 1,
+              "risk": {
+                "value": 100.0
+              }
+            }
+          ]
+        },
+        "max_level": {
+          "value": 10.0
+        },
+        "rules": {
+          "doc_count_error_upper_bound": 0,
+          "sum_other_doc_count": 0,
+          "buckets": [
+            {
+              "key": "5715",
+              "doc_count": 20
+            },
+            {
+              "key": "5503",
+              "doc_count": 12
+            },
+            {
+              "key": "5760",
+              "doc_count": 12
+            },
+            {
+              "key": "5710",
+              "doc_count": 8
+            },
+            {
+              "key": "30411",
+              "doc_count": 3
+            },
+            {
+              "key": "31101",
+              "doc_count": 3
+            },
+            {
+              "key": "2502",
+              "doc_count": 2
+            },
+            {
+              "key": "5758",
+              "doc_count": 2
+            },
+            {
+              "key": "31106",
+              "doc_count": 1
+            },
+            {
+              "key": "31164",
+              "doc_count": 1
+            },
+            {
+              "key": "31166",
+              "doc_count": 1
+            },
+            {
+              "key": "4151",
+              "doc_count": 1
+            },
+            {
+              "key": "5763",
+              "doc_count": 1
+            },
+            {
+              "key": "651",
+              "doc_count": 1
+            },
+            {
+              "key": "652",
+              "doc_count": 1
+            }
+          ]
+        },
+        "agents": {
+          "doc_count_error_upper_bound": 0,
+          "sum_other_doc_count": 0,
+          "buckets": [
+            {
+              "key": "bastion",
+              "doc_count": 56
+            },
+            {
+              "key": "web",
+              "doc_count": 9
+            },
+            {
+              "key": "kt66-host",
+              "doc_count": 4
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

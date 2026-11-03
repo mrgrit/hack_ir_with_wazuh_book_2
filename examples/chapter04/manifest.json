@@ -147,6 +147,20 @@
     "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"13\"\nAND data.win.eventdata.targetObject:*book2_ch04_run"
   },
   {
+    "id": "Q04-08",
+    "file": "Q04-08.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "Run 값을 쓴 프로세스와 삭제 기록",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:(1 OR 13)\nAND data.win.eventdata.processGuid:\n \"{af6e9a1f-765d-6ae9-4006-000000000300}\""
+  },
+  {
+    "id": "Q04-09",
+    "file": "Q04-09.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "Run 값을 쓴 프로세스와 삭제 기록",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:(12 OR 13)\nAND data.win.eventdata.targetObject:*book2_ch04_run"
+  },
+  {
     "id": "C04-17",
     "file": "C04-17.txt",
     "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",

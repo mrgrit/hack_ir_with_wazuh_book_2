@@ -1,0 +1,32 @@
+[
+  {
+    "source": "build/analysis-revision/alerts-zero-full.jpg",
+    "source_sha256": "64eed21e81ba97c75b8c8bde3c43552529b885f6e7108b7029ec1be1e3c34c32",
+    "crop_xywh": [
+      272,
+      160,
+      650,
+      59
+    ],
+    "asset": "assets/screenshots/analysis-revision/alerts-zero.jpg",
+    "asset_sha256": "5e86e1758e4b2e321360164cc8b3210a12bbeaf9b95fb0cacdc637933570bf24",
+    "query": "Q06-10",
+    "index": "wazuh-alerts-*",
+    "provenance": "actual Wazuh Discover screenshot; exact rectangular crop; no synthesized UI values"
+  },
+  {
+    "source": "build/analysis-revision/http-linked-full.jpg",
+    "source_sha256": "eed0ee7031164fd7ffba9b5825f281bdd2ba104e53e9d3c66300a5e7a52186d5",
+    "crop_xywh": [
+      712,
+      412,
+      560,
+      273
+    ],
+    "asset": "assets/screenshots/analysis-revision/http-record-rule.jpg",
+    "asset_sha256": "8e7fd60cf4560e26b6572432a523dec414f0a1e3d55d35e560e5cc44280da391",
+    "query": "Q06-11",
+    "index": "wazuh-archives-*",
+    "provenance": "actual Wazuh Discover screenshot; exact rectangular crop; no synthesized UI values"
+  }
+]

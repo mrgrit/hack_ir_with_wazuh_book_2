@@ -1,7 +1,7 @@
 {
   "title": "Windows 실습 환경과 로그 수집",
   "series": "해킹·침해대응 실무 with Wazuh 2권",
-  "comments": "2026-11-03 초안. 가동 중인 Windows의 읽기 조회와 원본·Wazuh 경보 대조. 신규 설치·공격·DQL UI 실행 미검증. 신규 UI 촬영 없음.",
+  "comments": "2026-11-03 초안. 가동 중인 Windows의 읽기 조회와 원본·Wazuh 경보 대조. 신규 설치·공격·DQL UI 실행 미검증. 신규 UI 촬영 없음. 2026-11-04 분석 보강. 범위·실측·미확인은 editorial/analysis-revision-review.md.",
   "pages": [
     {
       "title": "Windows 침해 탐지와\n통합 보안관제",
@@ -750,6 +750,36 @@
           "text": "이 환경에서 agent.ip는 172.30.70.2였다. 내부 접속 대상 10.20.70.10은 Windows를 실행하는 컨테이너 측 주소다. 주소가 다르다는 이유만으로 다른 컴퓨터라고 판단하지 말고 agent.name·computer·채널·시각을 함께 확인한다."
         }
       ]
+    },
+    {
+      "title": "같은 원본의 수집과 경보를 따로 확인하기",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Q01-03의 Security RecordId 9115를 펼쳐 컴퓨터 KT66-WIN-01, 이벤트 4624, 원본 시각과 계정 kt66student를 대조한다. Wazuh의 rule.id는 60200이며 로그온 유형은 8이다. 이 결과는 해당 로그온 이벤트가 수집되어 경보로 저장되었다는 뜻이다. 암호 노출이나 비인가 접속의 판정은 인증 방식과 접속 프로그램을 더 조사해야 한다."
+        },
+        {
+          "type": "p",
+          "text": "3장에서 archives 저장과 색인 준비를 확인한 환경이라면 아래 검색으로 같은 원본의 보존 여부도 비교한다. 준비하지 않은 환경에서는 현재 alerts 대조까지 기록하고, archives 검색은 준비 후 수행한다."
+        },
+        {
+          "type": "query",
+          "id": "Q01-05",
+          "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+          "text": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.computer:\"KT66-WIN-01\"\nAND data.win.system.eventID:\"4624\"\nAND data.win.system.eventRecordID:\"9115\"",
+          "why": "데이터 보기를 archives로 바꾸고 2026년 11월 3일을 포함한다. 기존 검색 필터를 해제한다. 자신의 기록 번호와 원본 시각으로 바꿀 때에도 채널 조건을 유지한다.",
+          "result": "보존 자료에서는 1건이다. alerts와 archives에 각각 있는 같은 원본을 두 번의 로그온으로 세지 않는다.",
+          "revision": "analysis-2026-11-04"
+        },
+        {
+          "type": "p",
+          "text": "두 데이터 보기에서 모두 찾으면 수집과 경보 저장을 확인한 것이다. archives에만 있으면 수집된 원본과 규칙·경보 저장 조건을 조사한다. 둘 다 없으면 Windows 원본 존재 여부부터 수집 경로를 확인한다. 원본이 없는 상태에서 중앙 수집 실패를 먼저 확정하지 않는다."
+        }
+      ],
+      "revision": "analysis-2026-11-04"
     },
     {
       "title": "검색 결과가 없을 때 확인할 순서",

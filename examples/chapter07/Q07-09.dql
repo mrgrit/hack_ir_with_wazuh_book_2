@@ -1,0 +1,8 @@
+agent.name:"windows-user"
+AND data.win.system.channel:
+ "Microsoft-Windows-Windows Defender/Operational"
+AND data.win.system.eventID:(1116 OR 1118 OR 1119)
+AND "data.win.eventdata.threat Name":
+ "Trojan:Win32/BatTamper.A"
+AND timestamp >= "2026-11-02T18:58:00+09:00"
+AND timestamp < "2026-11-04T00:00:00+09:00"

@@ -8,7 +8,7 @@
 - C03-14 삭제는 이번 실습 연결이 있을 때만 수행한다.
 - C03-15에서 계정 부재와 사전 구성원을 확인한 뒤 생성한다. C03-18·19로 원상복구한다.
 - C03-22는 사전 Success and Failure인 실습 게스트에서만 수행하고 즉시 원상복구한다.
-- Q03-03은 wazuh-archives-*, 나머지는 wazuh-alerts-*에서 사용한다. 번호·SID·로그온 ID는 자신의 기록으로 바꾼다.
+- Q03-03·Q03-09는 wazuh-archives-*, 나머지는 본문의 wazuh-alerts-*에서 사용한다. 번호·SID·로그온 ID는 자신의 기록으로 바꾼다.
 
 - [C03-01.txt](C03-01.txt) — Windows 실습 게스트 · 관리자 PowerShell
 - [C03-02.txt](C03-02.txt) — Windows 실습 게스트 · 관리자 PowerShell
@@ -43,3 +43,9 @@
 - [C03-24.txt](C03-24.txt) — Windows 실습 게스트 · 관리자 PowerShell
 - [Q03-07.dql](Q03-07.dql) — Windows PC · Wazuh Discover · DQL
 - [Q03-08.dql](Q03-08.dql) — Windows PC · Wazuh Discover · DQL
+
+## 분석 보강 입력
+
+기간·데이터 보기·ID는 본문의 절차와 맞춘다. 0건은 선택한 보존 범위의 결과다.
+
+- [Q03-09.dql](Q03-09.dql) — Windows PC · Wazuh Discover · wazuh-archives-* · DQL · 만든 계정이 실제로 사용되었는지 확인

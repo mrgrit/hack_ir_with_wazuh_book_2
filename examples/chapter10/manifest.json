@@ -112,6 +112,13 @@
     "input": "iptables -S"
   },
   {
+    "id": "Q10-07",
+    "file": "Q10-07.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "대응 입력 한 쌍의 조사 결과",
+    "input": "rule.id:(651 OR 652) AND\ndata.parameters.alert.id:\"1793619097.12602015\""
+  },
+  {
     "id": "C10-11",
     "file": "C10-11.txt",
     "where": "kt66-bastion 컨테이너 · root Bash",

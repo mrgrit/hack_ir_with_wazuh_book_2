@@ -32,3 +32,9 @@
 | [Q01-04.dql](Q01-04.dql) | Windows PC의 Wazuh Discover 검색창 |
 
 검증 범위는 [저자용 기록](../../editorial/chapter01-review.md)을 참조한다. 신규 설치·공격·DQL UI 검증은 수행하지 않았다.
+
+## 분석 보강 입력
+
+기간·데이터 보기·ID는 본문의 절차와 맞춘다. 0건은 선택한 보존 범위의 결과다.
+
+- [Q01-05.dql](Q01-05.dql) — Windows PC · Wazuh Discover · wazuh-archives-* · DQL · 같은 원본의 수집과 경보를 따로 확인하기

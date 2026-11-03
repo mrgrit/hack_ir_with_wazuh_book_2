@@ -1,7 +1,7 @@
 {
   "title": "로그온 실패와 원격 접속",
   "series": "해킹·침해대응 실무 with Wazuh 2권",
-  "comments": "2026-11-03 초안. Module 01 실습 31~34. 제한된 입력 재현·원본 이벤트·Wazuh DQL·실제 화면 대조. 상세 범위는 editorial/chapter02-review.md.",
+  "comments": "2026-11-03 초안. Module 01 실습 31~34. 제한된 입력 재현·원본 이벤트·Wazuh DQL·실제 화면 대조. 상세 범위는 editorial/chapter02-review.md. 2026-11-04 분석 보강. 범위·실측·미확인은 editorial/analysis-revision-review.md.",
   "pages": [
     {
       "title": "2장 로그온 실패와 원격 접속",
@@ -766,6 +766,36 @@
       ]
     },
     {
+      "title": "로그온 뒤 같은 세션의 종료 확인",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "4624의 targetLogonId는 만들어진 로그온 세션을 식별한다. 예시의 10207번 기록에서는 0x1ca2207이다. 같은 컴퓨터의 짧은 시간 범위에서 수행 세션을 뜻하는 subjectLogonId와 대상 세션을 뜻하는 targetLogonId를 함께 찾는다."
+        },
+        {
+          "type": "query",
+          "id": "Q02-08",
+          "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+          "text": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.computer:\"KT66-WIN-01\"\nAND (data.win.eventdata.subjectLogonId:\"0x1ca2207\"\n OR data.win.eventdata.targetLogonId:\"0x1ca2207\")\nAND timestamp >= \"2026-11-03T12:05:00+09:00\"\nAND timestamp < \"2026-11-03T12:20:00+09:00\"",
+          "why": "시간 선택기도 이 구간을 포함한다. >=는 시작 포함, <는 끝 제외이며 +09:00은 KST다. OR로 두 필드 중 하나가 일치하는 문서를 찾는다.",
+          "result": "archives에서 4624·RecordId 10207과 4634·RecordId 10222를 찾는다. Time을 오름차순으로 정렬하고 각 문서의 systemTime·targetUserName·targetLogonId를 비교한다.",
+          "revision": "analysis-2026-11-04"
+        },
+        {
+          "type": "p",
+          "text": "이 사례는 victim의 원격 대화형 로그온과 같은 세션의 로그오프가 기록된 경우다. 4634는 해당 로그온 세션의 종료를 뒷받침한다. 다른 세션까지 모두 종료되었다는 뜻은 아니므로 다음 절의 현재 세션 조회도 수행한다."
+        },
+        {
+          "type": "p",
+          "text": "같은 주소의 앞선 실패와 이번 성공은 조사 후보로 연결한다. 암호 대입이 성공 원인이었는지는 승인된 시험 입력과 계정 사용 내역을 대조한다. 로그오프가 없으면 세션이 계속 열린 경우와 기록 부재를 구분하고 현재 세션·수집 범위를 확인한다."
+        }
+      ],
+      "revision": "analysis-2026-11-04"
+    },
+    {
       "title": "RDP 세션 원상복구",
       "kind": "body",
       "level": "section",
@@ -1026,6 +1056,20 @@
           "url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/logoff"
         }
       ]
+    },
+    {
+      "title": "참고자료 보충",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "link",
+          "text": "Microsoft Learn — 이벤트 4634와 로그온 세션의 종료",
+          "url": "https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4634"
+        }
+      ],
+      "revision": "analysis-2026-11-04"
     }
   ]
 }

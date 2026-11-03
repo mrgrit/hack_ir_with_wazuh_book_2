@@ -35,3 +35,10 @@
 - [C04-25.txt](C04-25.txt) — Windows 실습 게스트 · 관리자 Windows PowerShell
 - [Q04-07.dql](Q04-07.dql) — Windows PC · Wazuh Discover · wazuh-alerts-* · DQL
 - [C04-26.txt](C04-26.txt) — Windows 실습 게스트 · 관리자 Windows PowerShell
+
+## 분석 보강 입력
+
+기간·데이터 보기·ID는 본문의 절차와 맞춘다. 0건은 선택한 보존 범위의 결과다.
+
+- [Q04-08.dql](Q04-08.dql) — Windows PC · Wazuh Discover · wazuh-archives-* · DQL · Run 값을 쓴 프로세스와 삭제 기록
+- [Q04-09.dql](Q04-09.dql) — Windows PC · Wazuh Discover · wazuh-archives-* · DQL · Run 값을 쓴 프로세스와 삭제 기록

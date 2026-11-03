@@ -24,3 +24,12 @@ ip-profile.http는 D12-03·04를 합친 GET 요청이다. CSV는 빈 조사 양�
 - [D12-03.txt](D12-03.txt) — Windows PC · Wazuh · Indexer management → Dev Tools
 - [D12-04.txt](D12-04.txt) — Windows PC · Wazuh · Indexer management → Dev Tools
 - [D12-05.txt](D12-05.txt) — Windows PC · Wazuh · Indexer management → Dev Tools
+
+## 분석 보강 입력
+
+기간·데이터 보기·ID는 본문의 절차와 맞춘다. 0건은 선택한 보존 범위의 결과다.
+
+- [Q12-13.dql](Q12-13.dql) — Windows PC · Wazuh Discover · wazuh-alerts-* · DQL · 보존된 한 IP로 집계 결과까지 확인
+- [Q12-14.dql](Q12-14.dql) — Windows PC · Wazuh Discover · wazuh-alerts-* · DQL · 집계에서 원문과 시간 간격으로 돌아가기
+
+- [observed-ip-profile.http](observed-ip-profile.http) — 보존된 실제 IP 사례의 완성 GET 요청. 합성 자료 요청과 별도로 사용한다. [입력 기록](analysis-inputs.json).

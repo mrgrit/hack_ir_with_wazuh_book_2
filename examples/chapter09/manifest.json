@@ -175,6 +175,13 @@
     "input": "less /usr/local/bin/kt66-clamav\nless /etc/clamav/clamd.conf"
   },
   {
+    "id": "Q09-12",
+    "file": "Q09-12.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "파일 이름과 원인 경보를 교차 확인",
+    "input": "agent.name:\"web\" AND\n(syscheck.path:\n \"/var/www/html/uploads/invoice.pdf.exe\" OR\n data.virustotal.source.file:\n \"/var/www/html/uploads/invoice.pdf.exe\")"
+  },
+  {
     "id": "C09-16",
     "file": "C09-16.txt",
     "where": "kt66-web 컨테이너 · root Bash",

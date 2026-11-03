@@ -70,6 +70,13 @@
     "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"1\"\nAND data.win.eventdata.processGuid:\n \"{af6e9a1f-6c34-6ae8-6200-000000000300}\""
   },
   {
+    "id": "Q06-10",
+    "file": "Q06-10.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "수집된 원본과 저장된 경보의 직접 비교",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventRecordID:\n (9407 OR 9451 OR 9454 OR 9455 OR 9461 OR 9462)\nAND timestamp >= \"2026-11-03T16:00:00+09:00\"\nAND timestamp < \"2026-11-03T17:00:00+09:00\""
+  },
+  {
     "id": "C06-08",
     "file": "C06-08.txt",
     "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
@@ -110,6 +117,13 @@
     "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
     "section": "연결 방향과 출발지 포트 해석",
     "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"3\"\nAND data.win.eventdata.processGuid:\n \"{af6e9a1f-8d82-6ae9-d106-000000000300}\""
+  },
+  {
+    "id": "Q06-11",
+    "file": "Q06-11.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "HTTP 연결을 생성 명령과 연결",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:(1 OR 3 OR 11 OR 22)\nAND data.win.eventdata.processGuid:\n \"{af6e9a1f-8d82-6ae9-d106-000000000300}\""
   },
   {
     "id": "Q06-06",
@@ -166,6 +180,20 @@
     "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
     "section": "원전 도메인 검색의 범위 조정",
     "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"22\"\nAND data.win.eventdata.queryName:(\n ngrok.io OR *.ngrok.io OR\n duckdns.org OR *.duckdns.org OR\n pastebin.com OR *.pastebin.com)"
+  },
+  {
+    "id": "Q06-12",
+    "file": "Q06-12.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "DNS 질의 프로세스와 후속 연결 조회",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:(1 OR 3 OR 11 OR 22)\nAND data.win.eventdata.processGuid:\n \"{af6e9a1f-8d8d-6ae9-d406-000000000300}\""
+  },
+  {
+    "id": "Q06-13",
+    "file": "Q06-13.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "DNS 질의 프로세스와 후속 연결 조회",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"3\"\nAND data.win.eventdata.processGuid:\n \"{af6e9a1f-8d8d-6ae9-d406-000000000300}\"\nAND data.win.eventdata.destinationIp:\n (\"104.20.23.154\" OR \"172.66.147.243\")"
   },
   {
     "id": "C06-16",

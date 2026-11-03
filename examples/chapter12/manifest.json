@@ -138,5 +138,19 @@
     "where": "Windows PC · Wazuh · Indexer management → Dev Tools",
     "section": "업무외 비율의 계산 기준",
     "input": "GET wazuh-alerts-*/_search\n{\n \"size\": 0,\n \"query\": {\"term\": {\"synthetic.flag\": true}},\n \"aggs\": {\"scope\": {\n  \"filters\": {\"filters\": {\"all\": {\"range\": {\n   \"timestamp\": {\n    \"gte\": \"2026-08-01T00:00:00+09:00\",\n    \"lt\": \"2026-11-01T00:00:00+09:00\"\n   }}}}},\n  \"aggs\": {\n   \"off\": {\"filter\": {\"script\": {\"script\": {\n    \"source\": \"def t = doc['timestamp'].value.withZoneSameInstant(ZoneId.of('Asia/Seoul')); return t.getDayOfWeek().getValue() >= 6 || t.getHour() < 9 || t.getHour() >= 18;\"\n   }}}},\n   \"ratio\": {\"bucket_script\": {\n    \"buckets_path\": {\"n\":\"off>_count\",\"d\":\"_count\"},\n    \"script\":\"params.d > 0 ? 1.0 * params.n / params.d : null\"\n   }}\n  }\n }}\n}"
+  },
+  {
+    "id": "Q12-13",
+    "file": "Q12-13.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "보존된 한 IP로 집계 결과까지 확인",
+    "input": "(data.srcip:\"192.168.0.108\" OR\n data.src_ip:\"192.168.0.108\")\nAND timestamp >= \"2026-11-02T00:00:00+09:00\"\nAND timestamp < \"2026-11-04T00:00:00+09:00\""
+  },
+  {
+    "id": "Q12-14",
+    "file": "Q12-14.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "집계에서 원문과 시간 간격으로 돌아가기",
+    "input": "agent.name:\"bastion\" AND rule.id:5760\nAND data.srcip:\"192.168.0.108\"\nAND timestamp >= \"2026-11-02T20:29:00+09:00\"\nAND timestamp < \"2026-11-02T20:31:00+09:00\""
   }
 ]

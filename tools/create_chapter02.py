@@ -276,6 +276,8 @@ page('참고자료 계속',
  link('Microsoft Learn · logoff', 'https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/logoff'),br=True)
 
 def main():
+ from revise_analysis import revise
+ revise(2,pages)
  data={'title':'로그온 실패와 원격 접속','series':'해킹·침해대응 실무 with Wazuh 2권','comments':'2026-11-03 초안. Module 01 실습 31~34. 제한된 입력 재현·원본 이벤트·Wazuh DQL·실제 화면 대조. 상세 범위는 editorial/chapter02-review.md.','pages':pages}
  (ROOT/'manuscript/volume02-chapter02.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
  ex=ROOT/'examples/chapter02';ex.mkdir(parents=True,exist_ok=True);manifest=[]

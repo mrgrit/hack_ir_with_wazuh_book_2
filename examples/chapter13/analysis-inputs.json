@@ -1,0 +1,8 @@
+[
+  {
+    "file": "observed-hour.http",
+    "where": "Windows PC · Wazuh Dev Tools · GET 검색",
+    "scope": "보존된 실습 기록. 합성 데이터와 별도 모집단.",
+    "input": "GET wazuh-alerts-*/_search\n{\n \"size\": 0, \"track_total_hits\": true,\n \"query\": {\"bool\": {\"filter\": [\n  {\"range\": {\"timestamp\": {\n   \"gte\": \"2026-11-02T20:00:00+09:00\",\n   \"lt\": \"2026-11-02T21:00:00+09:00\"\n  }}},\n  {\"bool\": {\"minimum_should_match\": 1,\n   \"should\": [\n    {\"term\": {\"data.srcip\": \"192.168.0.108\"}},\n    {\"term\": {\"data.src_ip\": \"192.168.0.108\"}}\n   ]}}\n ]}},\n \"aggs\": {\"levels\": {\"terms\": {\n  \"field\": \"rule.level\", \"size\": 20\n }}}\n}\n"
+  }
+]

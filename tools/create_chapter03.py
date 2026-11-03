@@ -258,6 +258,8 @@ page('참고자료 계속',
  link('kt66 Windows 센서 준비 코드 · 기준 커밋','https://github.com/mrgrit/kt66/blob/63d4180b1d6866de986ef263a3bd831d6082b5d5/endpoints/windows/oem/sensors.ps1'),br=True)
 
 def main():
+ from revise_analysis import revise
+ revise(3,pages)
  data={'title':'자격증명과 계정 권한의 변화','series':'해킹·침해대응 실무 with Wazuh 2권','comments':'2026-11-03 초안. Module 01 실습 35~37·50. 정상 자격증명과 API의 관찰 재현이며 해시 공격을 수행하지 않음. 범위는 editorial/chapter03-review.md.','pages':pages}
  (ROOT/'manuscript/volume02-chapter03.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
  ex=ROOT/'examples/chapter03';ex.mkdir(parents=True,exist_ok=True);manifest=[]
@@ -267,7 +269,7 @@ def main():
    name=b['id']+('.dql' if b['type']=='query' else '.txt');(ex/name).write_text(b['text']+'\n',encoding='utf8')
    manifest.append({'id':b['id'],'file':name,'where':b['where'],'section':pg['title'],'input':b['text']})
  (ex/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
- (ex/'README.md').write_text('# 3장 복사용 입력\n\n본문의 사전 확인과 함께 한 블록씩 사용한다. 전체를 자동 실행하지 않는다.\n\n- WIN: Windows 실습 게스트 관리자 PowerShell. HOST: kt66 Ubuntu VM. SIEM: 진입한 kt66-siem Bash.\n- C03-03을 각 실습 시작에 갱신한다. 같은 창의 변수와 생성 객체를 유지한다.\n- C03-08을 정의한 뒤 C03-09를 실행하고 핸들을 닫는다. 외부 인증을 수행하지 않는다.\n- C03-14 삭제는 이번 실습 연결이 있을 때만 수행한다.\n- C03-15에서 계정 부재와 사전 구성원을 확인한 뒤 생성한다. C03-18·19로 원상복구한다.\n- C03-22는 사전 Success and Failure인 실습 게스트에서만 수행하고 즉시 원상복구한다.\n- Q03-03은 wazuh-archives-*, 나머지는 wazuh-alerts-*에서 사용한다. 번호·SID·로그온 ID는 자신의 기록으로 바꾼다.\n\n'+ '\n'.join(f"- [{m['file']}]({m['file']}) — {m['where']}" for m in manifest)+'\n',encoding='utf8')
+ (ex/'README.md').write_text('# 3장 복사용 입력\n\n본문의 사전 확인과 함께 한 블록씩 사용한다. 전체를 자동 실행하지 않는다.\n\n- WIN: Windows 실습 게스트 관리자 PowerShell. HOST: kt66 Ubuntu VM. SIEM: 진입한 kt66-siem Bash.\n- C03-03을 각 실습 시작에 갱신한다. 같은 창의 변수와 생성 객체를 유지한다.\n- C03-08을 정의한 뒤 C03-09를 실행하고 핸들을 닫는다. 외부 인증을 수행하지 않는다.\n- C03-14 삭제는 이번 실습 연결이 있을 때만 수행한다.\n- C03-15에서 계정 부재와 사전 구성원을 확인한 뒤 생성한다. C03-18·19로 원상복구한다.\n- C03-22는 사전 Success and Failure인 실습 게스트에서만 수행하고 즉시 원상복구한다.\n- Q03-03·Q03-09는 wazuh-archives-*, 나머지는 본문의 wazuh-alerts-*에서 사용한다. 번호·SID·로그온 ID는 자신의 기록으로 바꾼다.\n\n'+ '\n'.join(f"- [{m['file']}]({m['file']}) — {m['where']}" for m in manifest)+'\n',encoding='utf8')
  (ex/'observation-template.md').write_text('# 3장 관찰 기록\n\n- 입력과 실행 위치, 시작·종료 시각/시간대:\n- 사전 계정·그룹·감사·서비스 상태:\n- 명령 응답과 실제 접근 결과:\n- 원본 컴퓨터·채널·EventID·EventRecordID:\n- 계정 SID / 그룹 SID / 구성원 SID:\n- 수행자 로그온 ID와 원본 시각:\n- Wazuh 데이터 보기·대응 필드:\n- 확인된 사실·승인 여부·추가 조사:\n- 공유·토큰·계정·그룹·감사 정책 원상복구:\n',encoding='utf8')
  print(len(pages),'sections;',len(manifest),'examples')
 if __name__=='__main__':main()

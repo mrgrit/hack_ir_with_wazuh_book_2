@@ -15,6 +15,8 @@ def cmd(cid,text,why,result,where=WIN):return {'type':'command','id':cid,'where'
 def query(qid,text,why,result,index='wazuh-archives-*'):return {'type':'query','id':qid,'where':'Windows PC · Wazuh Discover · '+index+' · DQL','text':text,'why':why,'result':result}
 def link(title,url):return {'type':'link','text':title,'url':url}
 def save(chapter,title,pages,notes):
+ from revise_analysis import revise
+ revise(chapter,pages)
  stem=f'volume02-chapter{chapter:02}'
  data={'title':title,'series':'해킹·침해대응 실무 with Wazuh 2권','comments':notes,'pages':pages}
  (ROOT/'manuscript'/f'{stem}.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf8')

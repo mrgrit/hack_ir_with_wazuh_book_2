@@ -1,0 +1,2 @@
+rule.id:(651 OR 652) AND
+data.parameters.alert.id:"1793619097.12602015"

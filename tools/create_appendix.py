@@ -67,7 +67,9 @@ page('참고자료',
  link('OpenSearch — DQL','https://docs.opensearch.org/2.13/dashboards/dql/'),
  link('OpenSearch — Field capabilities','https://docs.opensearch.org/latest/api-reference/search-apis/field-caps/'))
 pages[-1]['break']=True
-data={'title':'부록 필드·검색·점검표','series':'해킹·침해대응 실무 with Wazuh 2권','comments':'각 장 및 Module01 pp722~726 대응 부록. 검증 범위 editorial/appendix-review.md.','pages':pages}
+from revise_analysis import revise
+revise('appendix',pages)
+data={'title':'부록 필드·검색·점검표','series':'해킹·침해대응 실무 with Wazuh 2권','comments':'각 장 및 Module01 pp722~726 대응 부록. 검증 범위 editorial/appendix-review.md 및 editorial/analysis-revision-review.md.','pages':pages}
 (ROOT/'manuscript/volume02-appendix.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
 dest=ROOT/'examples/appendix';dest.mkdir(parents=True,exist_ok=True);manifest=[]
 for pg in pages:

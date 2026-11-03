@@ -1,0 +1,5 @@
+agent.name:"windows-user"
+AND data.win.system.channel:"Security"
+AND data.win.system.eventID:"4624"
+AND data.win.eventdata.targetUserSid:
+ "S-1-5-21-3937859836-2530084332-1215515481-1002"

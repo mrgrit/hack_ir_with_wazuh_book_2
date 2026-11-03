@@ -1,7 +1,7 @@
 {
   "title": "9장 호스트 이상과 파일 판정",
   "series": "해킹·침해대응 실무 with Wazuh 2권",
-  "comments": "Module01 실습54~56. 원전 기존 결과와 현재 읽기 관찰을 구분한 초안. EICAR 입력·검사·삭제 및 VirusTotal 활성화·조회는 미실행. 검증 범위는 editorial/chapter09-review.md 참조.",
+  "comments": "Module01 실습54~56. 원전 기존 결과와 현재 읽기 관찰을 구분한 초안. EICAR 입력·검사·삭제 및 VirusTotal 활성화·조회는 미실행. 검증 범위는 editorial/chapter09-review.md 참조. 2026-11-04 분석 보강. 범위·실측·미확인은 editorial/analysis-revision-review.md.",
   "pages": [
     {
       "title": "9장  호스트 이상과 파일 판정",
@@ -966,6 +966,66 @@
           "text": "이번 원전은 컨테이너에서 파일을 놓은 시험이다. 경로 이름이 uploads라는 점과 두 탐지 결과만으로 원격 HTTP 업로드 성공을 확정하지 않는다. 확인된 범위는 “해당 경로의 시험 파일에 대한 두 탐지 경로의 결과”다."
         }
       ]
+    },
+    {
+      "title": "파일 이름과 원인 경보를 교차 확인",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "원전의 VirusTotal 화면에 표시된 파일은 /var/www/html/uploads/invoice.pdf.exe다. 선택 실습의 invoice-ch09.pdf.exe와 이름이 다르다. 원전 기록을 찾을 때에는 원전 경로를, 자기 실습에서는 실제 생성 경로를 사용한다."
+        },
+        {
+          "type": "query",
+          "id": "Q09-12",
+          "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+          "text": "agent.name:\"web\" AND\n(syscheck.path:\n \"/var/www/html/uploads/invoice.pdf.exe\" OR\n data.virustotal.source.file:\n \"/var/www/html/uploads/invoice.pdf.exe\")",
+          "why": "alerts에서 원전 날짜를 포함하여 FIM과 VirusTotal 문서를 함께 찾는다. rule.id:87105 필터는 제거하여 원인 FIM 문서도 결과에 남긴다.",
+          "result": "현재 보존 인덱스에는 원전의 해당 양성 사례가 없다. 원전 화면의 positives 66과 현재 조회 0건을 같은 실행 결과로 기록하지 않는다.",
+          "revision": "analysis-2026-11-04"
+        },
+        {
+          "type": "p",
+          "text": "같은 경로가 검색되면 VirusTotal의 source.alert_id를 FIM의 id와, source.md5를 syscheck.md5_after와 비교한다. 경로만 같은 덮어쓰기 파일은 내용이 달라질 수 있다. 원인 FIM 문서를 못 찾으면 “조회 결과는 있으나 원인 FIM 미확인”으로 연결을 보류한다."
+        },
+        {
+          "type": "table",
+          "head": [
+            "확인 대상",
+            "관찰과 판단"
+          ],
+          "rows": [
+            [
+              "동일 파일 후보",
+              "같은 에이전트·전체 경로·내용 해시·발생 순서"
+            ],
+            [
+              "평판 결과",
+              "found·malicious·positives/total·scan_date로 보고서의 존재·판정·시점을 구분"
+            ],
+            [
+              "로컬 검사",
+              "ClamAV의 경로·FOUND·시그니처와 검사 시각을 확인"
+            ],
+            [
+              "실제 영향",
+              "프로세스 생성·웹 요청·권한 사용과 연결해야 실행·침해 범위를 판단"
+            ]
+          ],
+          "widths": [
+            34,
+            93
+          ],
+          "keep": true
+        },
+        {
+          "type": "p",
+          "text": "원전 양성 결과는 해시 보고서의 탐지와 로컬 EICAR 검사다. 실행 성공·자동 격리·호스트 전체 무결성까지 확인한 자료는 아니다. 현재 Rootcheck 권한 경보는 별도로 실제 권한과 승인 내역을 대조하고 파일 평판 사례에 자동으로 합치지 않는다."
+        }
+      ],
+      "revision": "analysis-2026-11-04"
     },
     {
       "title": "판정과 대응 범위 정하기",

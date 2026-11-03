@@ -1,7 +1,7 @@
 {
   "title": "PowerShell과 정상 프로그램 악용",
   "series": "해킹·침해대응 실무 with Wazuh 2권",
-  "comments": "Module 01 실습 41·42·45·46. 문구 출력·문구 파일 변환·모의 부모 프로그램을 관찰했다. 실제 악성코드·Office 매크로 실행이 아니다. 상세 범위는 editorial/chapter05-review.md.",
+  "comments": "Module 01 실습 41·42·45·46. 문구 출력·문구 파일 변환·모의 부모 프로그램을 관찰했다. 실제 악성코드·Office 매크로 실행이 아니다. 상세 범위는 editorial/chapter05-review.md. 2026-11-04 분석 보강. 범위·실측·미확인은 editorial/analysis-revision-review.md.",
   "pages": [
     {
       "title": "5장  PowerShell과 정상 프로그램 악용",
@@ -394,6 +394,58 @@
           "text": "경보를 늘리기 위해 보호 기능을 해제하거나 난독화 기법을 반복할 필요는 없다. 수집이 안 보이면 Windows 원본, 채널 수집 설정, 관리자 archives 로그, Filebeat 색인 설정, Discover의 데이터 보기와 시간 범위를 순서대로 확인한다."
         }
       ]
+    },
+    {
+      "title": "4104를 실행 프로세스에 연결",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Q05-03의 4104에는 processGuid가 없다. 이 PowerShell 채널에서 data.win.system.processID는 스크립트를 처리한 PowerShell 프로세스 PID이며 예시 값은 5228이다. Sysmon 채널의 System ProcessID는 Sysmon 공급자 프로세스이므로 같은 방식으로 연결하면 안 된다."
+        },
+        {
+          "type": "query",
+          "id": "Q05-12",
+          "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+          "text": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"1\"\nAND data.win.eventdata.processId:\"5228\"\nAND timestamp >= \"2026-11-03T14:58:00+09:00\"\nAND timestamp < \"2026-11-03T15:00:00+09:00\"",
+          "why": "같은 컴퓨터와 짧은 시각 범위에서 Sysmon eventdata.processId를 찾는다. 생성이 더 이르면 범위를 앞쪽으로 넓히고 종료·재사용 여부를 확인한다.",
+          "result": "RecordId 8995, GUID 끝부분 7406-000000000300을 찾는다. commandLine은 인코딩 입력이고 rule.id는 92057이다. 4104 RecordId 2530의 처리 코드와 대조한다.",
+          "revision": "analysis-2026-11-04"
+        },
+        {
+          "type": "p",
+          "text": "이 코드의 VirtualAlloc은 변수에 넣어 출력한 문자열이다. 92057은 인코딩된 PowerShell 실행을 분류한 경보이고, 4104 자체에는 같은 경보가 없다. 문자열 존재·프로세스 생성·실제 API 호출은 서로 다른 사실이다."
+        }
+      ],
+      "revision": "analysis-2026-11-04"
+    },
+    {
+      "title": "처리 코드 이후의 파일과 통신 조회",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "query",
+          "id": "Q05-13",
+          "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+          "text": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:(1 OR 3 OR 11 OR 22)\nAND (data.win.eventdata.processGuid:\n \"{af6e9a1f-780c-6ae9-7406-000000000300}\"\n OR data.win.eventdata.parentProcessGuid:\n \"{af6e9a1f-780c-6ae9-7406-000000000300}\")",
+          "why": "2026년 11월 3일 14:58~15:00 KST로 조회한다. processGuid는 해당 프로세스의 활동, parentProcessGuid는 직접 자식의 생성 후보를 찾는다. 손자 이하까지 자동으로 확장되는 검색은 아니다.",
+          "result": "각 문서의 이벤트 번호를 읽고 파일은 targetFilename, 연결은 destinationIp·destinationPort, 질의는 queryName을 기록한다. 자식이 발견되면 그 자식 GUID로 다시 조회한다.",
+          "revision": "analysis-2026-11-04"
+        },
+        {
+          "type": "p",
+          "text": "문구 출력 사례에서는 인코딩 실행과 처리 코드를 연결해 조사한다. 예상하지 않은 파일·자식·연결이 있으면 경로·내용·승인 작업을 더 확인한다. 단순히 출력 문자열이 의심 API 이름이라는 이유로 메모리 주입이 성공했다고 판정하지 않는다."
+        },
+        {
+          "type": "p",
+          "text": "파일·통신 이벤트가 없으면 해당 시각에 Sysmon 11·3·22가 수집되도록 설정되었는지 확인한다. 필터로 빠진 활동의 부재까지 증명할 수는 없다. 확인된 코드와 관측 가능 범위를 남긴 뒤 실습 파일의 원상복구 절차로 진행한다."
+        }
+      ],
+      "revision": "analysis-2026-11-04"
     },
     {
       "title": "5.5  정상 프로그램을 이용한 파일 처리",
