@@ -1,0 +1,337 @@
+{
+  "date": "2026-11-03",
+  "chapter": 8,
+  "status": "draft reviewed",
+  "docx": "manuscript/volume02-chapter08.docx",
+  "docx_sha256": "0879fad81e0308d0a8358fb232e97803a182a9b6581d03b8ac419189a937e37c",
+  "manuscript_sha256": "0d5ebf1cd3b93a6e51bfa952c860ce42392c6c0e14decc56f9203fc55eb50f81",
+  "page_count": 34,
+  "internal_render": "build/ch08/chapter08-final.pdf",
+  "internal_render_sha256": "ab12aa72a7d1a7d05e06fa0ad57db3e525a5094c8ca15792c2f80f0e6c1197d0",
+  "render_method": "Hidden Microsoft Word COM PDF export and pypdfium2; bundled soffice.exe unavailable.",
+  "template_sha256": "2506e3b2036c3bfa18f84a1f3b6185bff52c0273d4c2c526dd3c68d9adb5b18b",
+  "geometry_twips": {
+    "pgSz": {
+      "w": "10660",
+      "h": "14912",
+      "code": "190"
+    },
+    "pgMar": {
+      "top": "1588",
+      "right": "1588",
+      "bottom": "2438",
+      "left": "1588",
+      "header": "851",
+      "footer": "907",
+      "gutter": "284"
+    }
+  },
+  "first_section_matches_template": true,
+  "theme_matches_template": true,
+  "first_paragraph_style": "Title",
+  "pdf_fonts": [
+    "/BCDEEE+BookkMyungjo-Lt",
+    "/BCDFEE+BookkGothic-Lt",
+    "/BCDGEE+BookkGothic-Lt",
+    "/BCDHEE+BookkMyungjo-Lt",
+    "/BCDIEE+Consolas"
+  ],
+  "copy_inputs": {
+    "commands": 11,
+    "dql": 9,
+    "manifest_matches": true,
+    "all_input_text_in_render": true,
+    "bash_parse_errors": 0,
+    "powershell_parse_errors": 0,
+    "ui_queries": "chapter08-query-ui.json"
+  },
+  "full_urls_verified_in_docx_and_pdf": [
+    "https://docs.google.com/presentation/d/1o0H_2DDHBp8p2HvlSnEPbx6-jdURYzew",
+    "https://documentation.wazuh.com/current/user-manual/capabilities/vulnerability-detection/how-it-works.html",
+    "https://documentation.wazuh.com/current/user-manual/capabilities/vulnerability-detection/configuring-scans.html",
+    "https://documentation.wazuh.com/current/user-manual/capabilities/sec-config-assessment/how-it-works.html",
+    "https://documentation.wazuh.com/current/user-manual/capabilities/sec-config-assessment/creating-custom-policies.html",
+    "https://documentation.wazuh.com/current/user-manual/reference/ossec-conf/sca.html",
+    "https://ubuntu.com/security/CVE-2024-3094",
+    "https://github.com/canonical/lxd/security/advisories/GHSA-3g72-chj4-2228",
+    "https://www.first.org/cvss/v3.1/user-guide",
+    "https://manpages.ubuntu.com/manpages/jammy/man5/sshd_config.5.html",
+    "https://github.com/mrgrit/kt66/tree/63d4180b1d6866de986ef263a3bd831d6082b5d5"
+  ],
+  "images": [
+    {
+      "path": "assets/illustrations/chapter08/inventory.png",
+      "sha256": "087c06f976a9aed0e6490750f7f6dbab83590c99d69f803f55f154d8c12cd4ba",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/figures/chapter08/vulnerability-flow.png",
+      "sha256": "50ae93540c820bc15e38154c22bb61b6d81eb28a3a5a2afe1d446dd7b4fe9a93",
+      "size": [
+        1280,
+        810
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter08/vuln-package.png",
+      "sha256": "0ddd28971ad4475a649286f169c9aacec0c7a9d8b859ed874136d0a513b77617",
+      "size": [
+        610,
+        192
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter08/vuln-score.png",
+      "sha256": "b8ea4bbd9a34d1b8fcdcea4ceb495171aa309f1589a840fae73252c78dac8697",
+      "size": [
+        610,
+        216
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter08/vuln-zero.png",
+      "sha256": "08617e16f64457e79ae23beee9dc98e12d9ddfc5ce5be3a9a5a4a38416644ec1",
+      "size": [
+        632,
+        227
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/figures/chapter08/missing-results.png",
+      "sha256": "69977359e3706fe37f1dede4bd8636f5603e323b71d8b7f294f4fe071cd9135c",
+      "size": [
+        1280,
+        1000
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter08/sca-summary.png",
+      "sha256": "6a29f020feb2b7c92c260f74cb16a33604ca3169b4a01dc7550fcf63449e90c6",
+      "size": [
+        762,
+        196
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/figures/chapter08/sca-state.png",
+      "sha256": "64204536d23980ffaf10e10ffcfecd1d5de62bec0696d2c12e8b171b9576c49f",
+      "size": [
+        1280,
+        670
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter08/sca-root.png",
+      "sha256": "d1c6b07b31924ec8f9e3ffcbebd832d493aa1ee7e2db41fa5ababe2e6e9729c3",
+      "size": [
+        738,
+        217
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/illustrations/chapter08/maintenance.png",
+      "sha256": "ce7544b1be2bc6c5b4f24fe8a4667cc232db3d3e182580df4ea4e8490d4f82d2",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    }
+  ],
+  "illustration_review": {
+    "originals_individually_inspected": true,
+    "selected_originals": {
+      "inventory": "exec-8657d6d3-113b-4f11-ae00-e150f3f17899.png",
+      "maintenance": "exec-ce6ec3fe-6c74-4af5-a479-8095601fd268.png"
+    },
+    "original_bytes_match_assets": true,
+    "docx_pages": [
+      1,
+      30
+    ],
+    "checks": [
+      "two arms and hands; shoulder-elbow-wrist continuity",
+      "tablet support and screen facing its user",
+      "table, tower and person have coherent contact/perspective",
+      "two legs distinct from furniture",
+      "transparency, aspect, embedded hash and actual book placement"
+    ]
+  },
+  "visual_review": {
+    "initial_pages_individually_reviewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34
+    ],
+    "changed_pages_individually_rechecked": [
+      9,
+      11,
+      12,
+      13,
+      14,
+      15,
+      17,
+      18,
+      20,
+      21,
+      23,
+      24
+    ],
+    "unchanged_pages_verified_by_hash": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      10,
+      16,
+      19,
+      22,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34
+    ],
+    "final_page_sha256": {
+      "page-01.png": "160faeb98e936c7fb81beefad7bcdd8d1d8fed332276ca420cbb903acb7f50c0",
+      "page-02.png": "ee2fea3b9d391fbbc055581e0c8c4130ecd8469605378866192b7f43feaf32ac",
+      "page-03.png": "223b74419b5249f41ace84b8640cce351db35730dc88a7a4df7d40f4d0352a38",
+      "page-04.png": "8a0c64e1121072ddfb8ef16dea7b0901cb1023732fbc3a92323ca13fabafaa0a",
+      "page-05.png": "b6dbc5b6b9d08c47db098be00a5390ad61741d0b6c9b911bbfdc48bb32878e7f",
+      "page-06.png": "a2cfcf4c44846cdb2cc94966e736e39a6cebc0ca5fb424ef461532b77904b436",
+      "page-07.png": "374f6774803f964555b268166bfc1a423ac565cd265ca76810194267ca2216b8",
+      "page-08.png": "7dfd36ce35a7158d16bdc3b70bb62cd0f838ba4039c391e34e6b8b29ed4c5f30",
+      "page-09.png": "01ea6c1a9de544abeef41519deac4bc6a98af3a5e4044f4b550f7deacfd3d345",
+      "page-10.png": "aa77422943cac3a10eeb28cf3a11d4c2e43d2c7891bd2b7bb0d64f482d3d7c6d",
+      "page-11.png": "2f0808548f468f98bafe93c0955f296c75ac6fdb9b1f59607d8ce062513cce33",
+      "page-12.png": "e7ae7f457e97241076c7f8140cd99d4f4fdb9d5f4261f4b6872e19fddb52b291",
+      "page-13.png": "b685f2c991af9af643f0900e19f1a8262ed1e303359982c362dcac4f552b6fae",
+      "page-14.png": "92181424a723381ee7a58708c774152ab5cea0ffd90044f43e5304ffc5eb599b",
+      "page-15.png": "b43fce44b05bac1b4626027d664ae8b1748f7717df0b56b87af45a6c35b4a1b8",
+      "page-16.png": "f9bc2095f8568e11e6837d0478d201a8d125f3ddad4bfcf07a78ed4d7d44e7b4",
+      "page-17.png": "549f7ce80e1d2a088fa48d9c515b5af93c0344b694c0d85cb2041cd7ce7946f2",
+      "page-18.png": "7d35cc3671758139bb3cfc1ee2b8317ae26459149d0e7d49836867165a138c7e",
+      "page-19.png": "71b4dea5333be6b8d9ce6a47d9bc4813b720b996f18732c61ef738130b559654",
+      "page-20.png": "833ee4edb58527e69b862eb3cea824cb53862664fb6470311f2ac4168557af83",
+      "page-21.png": "cbf80fdbb80f2bca462ca01677206c6c3b3c662d75ed46c45de8781927497792",
+      "page-22.png": "1794c24b3308bf2ff795f8dd147aae6b2c86714ab4eb6baf74260efa6956d4e6",
+      "page-23.png": "34ba18dbdd9a1c138aa8f723babba7feb5c64879454053c95b1d4921a794182f",
+      "page-24.png": "1acd318dc48862e0f99fb2e2eea12998245039536051fb0355d12c5269e01d7a",
+      "page-25.png": "b16082584727f833502bbc2e0878f7c16d10ec38b1ce0167ef94ae8f3e78dcd2",
+      "page-26.png": "9ce5daa24322827282a2afa7ae528a58a13a6730c8f41ac49e9f939160e8be1d",
+      "page-27.png": "53c875cf4c3496d92fa23b38bacf0bc7afa77bdd0b94abfb4eaac3c1807d00f5",
+      "page-28.png": "708101f06c8778ead6bc9de6476df3f5d1461aec905cb73c1f127f5f7210d35c",
+      "page-29.png": "9ebde256fd57513091f23e1fce7687a2e4e88b499eb3bcac52cb533416db986e",
+      "page-30.png": "45f0e2cf52d3332eb6d7003b0eb5babcfc128f67ed11e88a81f0f244fb8ca6c0",
+      "page-31.png": "be0bd8ff75b2e1de7ca8f52fc35a2ba825cb86e13842775e2478acda27a5d468",
+      "page-32.png": "aecad9841108789f24a515108586b22fa7ec084912556bbca0b807b8d65b4f00",
+      "page-33.png": "1d59f2506f3a881f0a587e8fa5394f8eed21589a3cd8a984b52079fa12ca8a89",
+      "page-34.png": "1c758008805edac9e0977d76c6874b0949064de656d05398519862e393901eae"
+    },
+    "result": "No clipped text, detached captions, missing URL characters or distorted illustrations observed. Long grep expression split with valid shell continuation and re-executed."
+  },
+  "scope": {
+    "prior_chapters_unchanged": true,
+    "rev01_unchanged": true,
+    "no_combined_book": true,
+    "no_distributed_pdf": true
+  },
+  "final_host_state": {
+    "wazuh_agent_and_ssh_active": true,
+    "sshd_effective_values_and_config_permissions_unchanged": true,
+    "no_packages_or_security_settings_modified": true
+  },
+  "credential_pattern_scan": {
+    "result": "no matches",
+    "scope": "new and changed text plus DOCX XML, token/private-key signatures; author authentication helpers excluded"
+  },
+  "validation_limits": "Read-only host and manager state plus existing alerts and nine DQL UI searches. No exploit, package update, SSH/firewall/policy change or service restart. Interactive less keys, Windows ssh.exe first trust dialog, every failure branch and post-remediation behavior were not fully replayed. See chapter08-review.md."
+}

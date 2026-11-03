@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-03",
+  "style": "retro pixel art, coherent physical perspective",
+  "images": [
+    {
+      "asset": "assets/illustrations/chapter08/inventory.png",
+      "source": "exec-8657d6d3-113b-4f11-ae00-e150f3f17899.png",
+      "prompt": "Use case: editorial illustration. Asset type: small vignette for a Korean beginner cybersecurity engineering textbook about checking asset inventory before vulnerability triage. Scene: a Korean woman technician in her late twenties at a locked outdoor communications cabinet beside a red brick campus building, small utility paving area and a leafy tree in the background. She wears a practical muted blue work jacket, straight dark trousers and flat shoes, dark hair in a short ponytail, no headset. She stands upright front three-quarter view, face visible, looking down at ONE rugged tablet held naturally in her left hand at waist height. The tablet screen faces her; the reader sees only its solid unmarked back. Right arm hangs relaxed with an empty hand. Exactly two arms, two hands, two separate legs and planted feet. Tablet supported by its lower edge, no fingers poking through it, no clicking on its back. Cabinet remains closed, no exposed live parts or confusing cable tangle. Crisp retro PC adventure game pixel art, clearly visible square pixels, limited teal brick ochre charcoal palette, flat color clusters and restrained dither shading, no smooth gradients. Compact square composition with a transparent exterior around the vignette. No text, numbers, logos, interface, labels or arrows. No fantasy equipment. Physically coherent perspective."
+    },
+    {
+      "asset": "assets/illustrations/chapter08/maintenance.png",
+      "source": "exec-ce6ec3fe-6c74-4af5-a479-8095601fd268.png",
+      "prompt": "Use case: editorial illustration. Asset type: small vignette for a Korean cybersecurity engineering textbook about planning maintenance after configuration assessment. Scene: a Korean male IT maintainer in his fifties, short salt-and-pepper hair, thin rectangular glasses, mustard cardigan over a pale shirt, dark trousers and practical shoes, standing in a compact computer repair workshop. Front three-quarter view, face visible. He studies a powered-off tower workstation resting securely on a waist-high sturdy service bench; right hand rests flat on the top of the closed tower case, left arm hangs relaxed with an empty hand. Exactly two arms, two hands, two separate legs and feet visibly planted on the floor. No pointing, no tools in hands, no laptop. Background: shelves of distinct old PC towers and spare network switches, wall calendar with blank squares and storage boxes, modest workshop window. Rack hardware and PC cases look mechanically plausible with intact covers. Perspective and shadows coherent, furniture legs separate from human legs, hand does not intersect the case. Crisp old PC adventure game pixel art with visible square pixels, limited muted ochre teal gray charcoal palette, flat color clusters and restrained dithering, no smooth painterly gradients. Compact square-ish full-body composition with real transparent exterior around the scene. No text, symbols, logos, watermark, labels or fake interface."
+    }
+  ]
+}

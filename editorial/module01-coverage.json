@@ -169,21 +169,24 @@
       "chapter": 8,
       "slide_start_1_based": 541,
       "source_title": "51 치명적 취약점 보유 호스트",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter08-review.md"
     },
     {
       "exercise": 52,
       "chapter": 8,
       "slide_start_1_based": 546,
       "source_title": "52 특정 CVE 노출 확인",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter08-review.md"
     },
     {
       "exercise": 53,
       "chapter": 8,
       "slide_start_1_based": 551,
       "source_title": "53 SCA 보안 설정 점검 실패",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter08-review.md"
     },
     {
       "exercise": 54,

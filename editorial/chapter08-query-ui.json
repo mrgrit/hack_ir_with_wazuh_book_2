@@ -1,0 +1,79 @@
+{
+  "date": "2026-11-03",
+  "method": "CUA UI, DQL, no synthetic results",
+  "records": [
+    {
+      "id": "Q08-01",
+      "query": "vulnerability.severity:(Critical OR High)",
+      "view": "Inventory",
+      "hits": 3603,
+      "parser_error": false,
+      "time": "current state (no time picker)"
+    },
+    {
+      "id": "Q08-02",
+      "query": "agent.name:\"kt66-host\" AND vulnerability.severity:(Critical OR High)",
+      "view": "Inventory",
+      "hits": 1039,
+      "parser_error": false,
+      "time": "current state (no time picker)"
+    },
+    {
+      "id": "Q08-03",
+      "query": "agent.name:\"kt66-host\" AND vulnerability.id:\"CVE-2025-54289\"",
+      "view": "Inventory",
+      "hits": 1,
+      "parser_error": false,
+      "time": "current state (no time picker)"
+    },
+    {
+      "id": "Q08-04",
+      "query": "rule.groups:\"vulnerability-detector\"",
+      "view": "Discover/wazuh-alerts-*",
+      "time": "Last 1 week (now-1w to now)",
+      "hits": 0,
+      "parser_error": false
+    },
+    {
+      "id": "Q08-05",
+      "query": "package.name:(*openssh* OR *xz* OR *log4j*)",
+      "view": "Inventory",
+      "hits": 0,
+      "parser_error": false,
+      "time": "current state (no time picker)"
+    },
+    {
+      "id": "Q08-06",
+      "query": "vulnerability.id:\"CVE-2024-3094\"",
+      "hits": 0,
+      "view": "Inventory",
+      "parser_error": false,
+      "time": "current state (no time picker)"
+    },
+    {
+      "id": "Q08-07",
+      "query": "rule.groups:sca AND data.sca.check.result:failed AND data.sca.check.title:(*SSH* OR *password* OR *root* OR *firewall*)",
+      "view": "Discover/wazuh-alerts-*",
+      "time": "Last 1 week (now-1w to now)",
+      "hits": 147,
+      "parser_error": false
+    },
+    {
+      "id": "Q08-08",
+      "query": "agent.name:\"kt66-host\" AND rule.groups:sca AND data.sca.check.result:failed AND data.sca.check.title:(*SSH* OR *password* OR *root* OR *firewall*)",
+      "view": "Discover/wazuh-alerts-*",
+      "time": "Last 1 week (now-1w to now)",
+      "hits": 22,
+      "parser_error": false
+    },
+    {
+      "id": "Q08-09",
+      "query": "agent.name:\"kt66-host\" AND rule.groups:sca AND data.sca.check.id:28638",
+      "view": "Discover/wazuh-alerts-*",
+      "time": "Last 1 week (now-1w to now)",
+      "hits": 1,
+      "parser_error": false
+    }
+  ],
+  "notes": "Queries were renumbered into manuscript order after UI review. Text and conditions preserved; manuscript uses line breaks. Initial date entry produced Last 17 days and was corrected to Last 1 week before recording final Discover results. Q08-04 reconfirmed after correction."
+}

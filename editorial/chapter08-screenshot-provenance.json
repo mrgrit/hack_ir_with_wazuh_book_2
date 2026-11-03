@@ -1,0 +1,75 @@
+{
+  "date": "2026-11-03",
+  "screenshots": [
+    {
+      "asset": "assets/screenshots/chapter08/vuln-package.png",
+      "source": "build/ch08/screens/vuln-package-full.png",
+      "crop": [
+        660,
+        525,
+        1270,
+        717
+      ],
+      "source_sha256": "3543e3462190824f60a5fed37d4a674c689d788dfad391a77633225e039b688b",
+      "asset_sha256": "0ddd28971ad4475a649286f169c9aacec0c7a9d8b859ed874136d0a513b77617",
+      "origin": "Current Wazuh 4.10.0 UI, 2026-11-03, CUA browser screenshot",
+      "editing": "crop only"
+    },
+    {
+      "asset": "assets/screenshots/chapter08/vuln-score.png",
+      "source": "build/ch08/screens/vuln-score-full.png",
+      "crop": [
+        660,
+        425,
+        1270,
+        641
+      ],
+      "source_sha256": "6fe55ea38f9468149ac2813b2efa338f672efaf7cb955bae9fa09c652b3d7fe9",
+      "asset_sha256": "b8ea4bbd9a34d1b8fcdcea4ceb495171aa309f1589a840fae73252c78dac8697",
+      "origin": "Current Wazuh 4.10.0 UI, 2026-11-03, CUA browser screenshot",
+      "editing": "crop only"
+    },
+    {
+      "asset": "assets/screenshots/chapter08/vuln-zero.png",
+      "source": "build/ch08/screens/vuln-package-zero-full.png",
+      "crop": [
+        8,
+        55,
+        640,
+        282
+      ],
+      "source_sha256": "7697c72f6c8763a4ed575dfc942a82bad7a6e5bb7d474266e96b0f39afec3dc4",
+      "asset_sha256": "08617e16f64457e79ae23beee9dc98e12d9ddfc5ce5be3a9a5a4a38416644ec1",
+      "origin": "Current Wazuh 4.10.0 UI, 2026-11-03, CUA browser screenshot",
+      "editing": "crop only"
+    },
+    {
+      "asset": "assets/screenshots/chapter08/sca-summary.png",
+      "source": "build/ch08/screens/sca-summary-full.png",
+      "crop": [
+        465,
+        145,
+        1227,
+        341
+      ],
+      "source_sha256": "11d8972019ac2962e5debedc1315d917ac65eb11a1ac4297c1f67a943e4f8f62",
+      "asset_sha256": "6a29f020feb2b7c92c260f74cb16a33604ca3169b4a01dc7550fcf63449e90c6",
+      "origin": "Current Wazuh 4.10.0 UI, 2026-11-03, CUA browser screenshot",
+      "editing": "crop only"
+    },
+    {
+      "asset": "assets/screenshots/chapter08/sca-root.png",
+      "source": "build/ch08/screens/sca-root-full.png",
+      "crop": [
+        480,
+        96,
+        1218,
+        313
+      ],
+      "source_sha256": "58a673720cdaacbe41b8e2d6580c2e5048465fce1efe7621343b0686667046b3",
+      "asset_sha256": "d1c6b07b31924ec8f9e3ffcbebd832d493aa1ee7e2db41fa5ababe2e6e9729c3",
+      "origin": "Current Wazuh 4.10.0 UI, 2026-11-03, CUA browser screenshot",
+      "editing": "crop only"
+    }
+  ]
+}

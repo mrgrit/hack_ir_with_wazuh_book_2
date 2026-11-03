@@ -1,0 +1,2 @@
+agent.name:"kt66-host"
+AND vulnerability.severity:(Critical OR High)

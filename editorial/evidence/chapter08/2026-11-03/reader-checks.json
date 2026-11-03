@@ -1,0 +1,37 @@
+{
+  "started_utc": "2026-11-03T09:28:44.386774+00:00",
+  "records": [
+    {
+      "id": "reader-identity",
+      "where": "host",
+      "text": "hostname\ncat /etc/os-release\nuname -r\nsystemctl is-active wazuh-agent ssh",
+      "stdout": "ccc\nPRETTY_NAME=\"Ubuntu 22.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"22.04\"\nVERSION=\"22.04.5 LTS (Jammy Jellyfish)\"\nVERSION_CODENAME=jammy\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=jammy\n5.15.0-202-generic\nactive\nactive\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "reader-packages",
+      "where": "host",
+      "text": "dpkg-query -W -f='${binary:Package}\\t${Version}\\t${Architecture}\\n' xz-utils liblzma5 openssh-client openssh-server\napt-cache policy xz-utils openssh-server\nsnap list lxd",
+      "stdout": "liblzma5:amd64\t5.2.5-2ubuntu1.2\tamd64\nopenssh-client\t1:8.9p1-3ubuntu0.18\tamd64\nopenssh-server\t1:8.9p1-3ubuntu0.18\tamd64\nxz-utils\t5.2.5-2ubuntu1.2\tamd64\nxz-utils:\n  Installed: 5.2.5-2ubuntu1.2\n  Candidate: 5.2.5-2ubuntu1.2\n  Version table:\n *** 5.2.5-2ubuntu1.2 500\n        500 http://kr.archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages\n        500 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages\n        100 /var/lib/dpkg/status\n     5.2.5-2ubuntu1 500\n        500 http://kr.archive.ubuntu.com/ubuntu jammy/main amd64 Packages\nopenssh-server:\n  Installed: 1:8.9p1-3ubuntu0.18\n  Candidate: 1:8.9p1-3ubuntu0.18\n  Version table:\n *** 1:8.9p1-3ubuntu0.18 500\n        500 http://kr.archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages\n        500 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages\n        100 /var/lib/dpkg/status\n     1:8.9p1-3 500\n        500 http://kr.archive.ubuntu.com/ubuntu jammy/main amd64 Packages\nName  Version         Rev    Tracking      Publisher    Notes\nlxd   5.0.11-e42d773  41283  5.0/stable/…  canonical**  -\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "reader-ssh-check",
+      "where": "host",
+      "text": "sudo -S -p '' /usr/sbin/sshd -t\nprintf 'syntax_exit=%s\\n' $?\nsudo -S -p '' grep -nE '^[[:space:]]*(Include|Match|PermitRootLogin)[[:space:]]' /etc/ssh/sshd_config\nstat -c '%a %U:%G %n' /etc/ssh/sshd_config",
+      "stdout": "syntax_exit=0\n12:Include /etc/ssh/sshd_config.d/*.conf\n644 root:root /etc/ssh/sshd_config\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "vulnerability-rules",
+      "where": "siem",
+      "text": "grep -n -A 12 -B 3 'vulnerability.cve' /var/ossec/ruleset/rules/0475-vulnerability-detector_rules.xml | head -n 100",
+      "stdout": "",
+      "stderr": "grep: /var/ossec/ruleset/rules/0475-vulnerability-detector_rules.xml: No such file or directory\n",
+      "exit_code": 0
+    }
+  ]
+}

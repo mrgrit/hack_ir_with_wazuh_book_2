@@ -1,0 +1,13 @@
+{
+  "started_utc": "2026-11-03T09:29:12.156908+00:00",
+  "records": [
+    {
+      "id": "find-vulnerability-rules",
+      "where": "siem",
+      "text": "find /var/ossec/ruleset/rules -maxdepth 1 -iname '*vulner*' -print",
+      "stdout": "/var/ossec/ruleset/rules/0520-vulnerability-detector_rules.xml\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ]
+}

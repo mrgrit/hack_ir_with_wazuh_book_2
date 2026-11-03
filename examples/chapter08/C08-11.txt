@@ -1,0 +1,2 @@
+systemctl is-active wazuh-agent ssh
+exit

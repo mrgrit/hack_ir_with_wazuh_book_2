@@ -1,0 +1,148 @@
+{
+  "started_utc": "2026-11-03T09:42:05.477732+00:00",
+  "records": [
+    {
+      "id": "C08-01-bash-parse",
+      "where": "host",
+      "text": "printf %s c3NoIGNjY0AxOTIuMTY4LjAuMTA3 | base64 -d | bash -n",
+      "reader_input": "ssh ccc@192.168.0.107",
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C08-02-bash-parse",
+      "where": "host",
+      "text": "printf %s aG9zdG5hbWUKY2F0IC9ldGMvb3MtcmVsZWFzZQp1bmFtZSAtcgpzeXN0ZW1jdGwgaXMtYWN0aXZlIHdhenVoLWFnZW50IHNzaA== | base64 -d | bash -n",
+      "reader_input": "hostname\ncat /etc/os-release\nuname -r\nsystemctl is-active wazuh-agent ssh",
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C08-03-bash-parse",
+      "where": "host",
+      "text": "printf %s c3VkbyBsZXNzIC92YXIvb3NzZWMvZXRjL29zc2VjLmNvbmY= | base64 -d | bash -n",
+      "reader_input": "sudo less /var/ossec/etc/ossec.conf",
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C08-04-bash-parse",
+      "where": "host",
+      "text": "printf %s c25hcCBsaXN0IGx4ZA== | base64 -d | bash -n",
+      "reader_input": "snap list lxd",
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C08-05-bash-parse",
+      "where": "host",
+      "text": "printf %s ZHBrZy1xdWVyeSAtVyBcCiAtZj0nJHtiaW5hcnk6UGFja2FnZX1cdCR7VmVyc2lvbn1cdCR7QXJjaGl0ZWN0dXJlfVxuJyBcCiB4ei11dGlscyBsaWJsem1hNSBvcGVuc3NoLWNsaWVudCBvcGVuc3NoLXNlcnZlcg== | base64 -d | bash -n",
+      "reader_input": "dpkg-query -W \\\n -f='${binary:Package}\\t${Version}\\t${Architecture}\\n' \\\n xz-utils liblzma5 openssh-client openssh-server",
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C08-06-bash-parse",
+      "where": "host",
+      "text": "printf %s YXB0LWNhY2hlIHBvbGljeSB4ei11dGlscyBvcGVuc3NoLXNlcnZlcg== | base64 -d | bash -n",
+      "reader_input": "apt-cache policy xz-utils openssh-server",
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C08-07-bash-parse",
+      "where": "host",
+      "text": "printf %s c3VkbyAvdXNyL3NiaW4vc3NoZCAtVCB8CiBncmVwIC1FIFwKICdeKHBlcm1pdHJvb3Rsb2dpbnxwYXNzd29yZGF1dGhlbnRpY2F0aW9ufCdcCidwdWJrZXlhdXRoZW50aWNhdGlvbnxwZXJtaXRlbXB0eXBhc3N3b3JkcykgJw== | base64 -d | bash -n",
+      "reader_input": "sudo /usr/sbin/sshd -T |\n grep -E \\\n '^(permitrootlogin|passwordauthentication|'\\\n'pubkeyauthentication|permitemptypasswords) '",
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C08-08-bash-parse",
+      "where": "host",
+      "text": "printf %s c3VkbyBncmVwIC1uRSBcCiAnXltbOnNwYWNlOl1dKihJbmNsdWRlfE1hdGNofFBlcm1pdFJvb3RMb2dpbilbWzpzcGFjZTpdXScgXAogL2V0Yy9zc2gvc3NoZF9jb25maWc= | base64 -d | bash -n",
+      "reader_input": "sudo grep -nE \\\n '^[[:space:]]*(Include|Match|PermitRootLogin)[[:space:]]' \\\n /etc/ssh/sshd_config",
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C08-09-bash-parse",
+      "where": "host",
+      "text": "printf %s c3RhdCAtYyAnJWEgJVU6JUcgJW4nIC9ldGMvc3NoL3NzaGRfY29uZmln | base64 -d | bash -n",
+      "reader_input": "stat -c '%a %U:%G %n' /etc/ssh/sshd_config",
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C08-10-bash-parse",
+      "where": "host",
+      "text": "printf %s c3VkbyAvdXNyL3NiaW4vc3NoZCAtdAplY2hvICQ/ | base64 -d | bash -n",
+      "reader_input": "sudo /usr/sbin/sshd -t\necho $?",
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C08-11-bash-parse",
+      "where": "host",
+      "text": "printf %s c3lzdGVtY3RsIGlzLWFjdGl2ZSB3YXp1aC1hZ2VudCBzc2gKZXhpdA== | base64 -d | bash -n",
+      "reader_input": "systemctl is-active wazuh-agent ssh\nexit",
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C08-05-read",
+      "where": "host",
+      "text": "dpkg-query -W \\\n -f='${binary:Package}\\t${Version}\\t${Architecture}\\n' \\\n xz-utils liblzma5 openssh-client openssh-server",
+      "reader_input": "dpkg-query -W \\\n -f='${binary:Package}\\t${Version}\\t${Architecture}\\n' \\\n xz-utils liblzma5 openssh-client openssh-server",
+      "stdout": "liblzma5:amd64\t5.2.5-2ubuntu1.2\tamd64\nopenssh-client\t1:8.9p1-3ubuntu0.18\tamd64\nopenssh-server\t1:8.9p1-3ubuntu0.18\tamd64\nxz-utils\t5.2.5-2ubuntu1.2\tamd64\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C08-07-read",
+      "where": "host",
+      "text": "sudo -S -p '' /usr/sbin/sshd -T |\n grep -E \\\n '^(permitrootlogin|passwordauthentication|'\\\n'pubkeyauthentication|permitemptypasswords) '",
+      "reader_input": "sudo /usr/sbin/sshd -T |\n grep -E \\\n '^(permitrootlogin|passwordauthentication|'\\\n'pubkeyauthentication|permitemptypasswords) '",
+      "stdout": "permitrootlogin without-password\npubkeyauthentication yes\npasswordauthentication yes\npermitemptypasswords no\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C08-10-read",
+      "where": "host",
+      "text": "sudo -S -p '' /usr/sbin/sshd -t\necho $?",
+      "reader_input": "sudo /usr/sbin/sshd -t\necho $?",
+      "stdout": "0\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C08-11-read",
+      "where": "host",
+      "text": "systemctl is-active wazuh-agent ssh\nexit",
+      "reader_input": "systemctl is-active wazuh-agent ssh\nexit",
+      "stdout": "active\nactive\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "less-and-final-state",
+      "where": "host",
+      "text": "command -v less\nstat -c '%a %U:%G %n' /etc/ssh/sshd_config\nsudo -S -p '' /usr/sbin/sshd -T | grep -E '^(permitrootlogin|passwordauthentication|pubkeyauthentication|permitemptypasswords) '\nsystemctl is-active wazuh-agent ssh",
+      "stdout": "/usr/bin/less\n644 root:root /etc/ssh/sshd_config\npermitrootlogin without-password\npubkeyauthentication yes\npasswordauthentication yes\npermitemptypasswords no\nactive\nactive\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ]
+}

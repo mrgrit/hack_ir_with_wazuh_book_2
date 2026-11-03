@@ -1,0 +1,32 @@
+{
+  "started_utc": "2026-11-03T09:18:40.536463+00:00",
+  "records": [
+    {
+      "id": "host-syscollector-sca-complete",
+      "where": "host",
+      "text": "sudo -S -p '' python3 -c 'from pathlib import Path;import re;s=Path('\"'\"'/var/ossec/etc/ossec.conf'\"'\"').read_text();print('\"'\"'\\n'\"'\"'.join(re.findall(r'\"'\"'<wodle name=\"syscollector\">.*?</wodle>|<sca>.*?</sca>'\"'\"',s,re.S)))'",
+      "print_chars": 2200,
+      "stdout": "<wodle name=\"syscollector\">\n    <disabled>no</disabled>\n    <interval>1h</interval>\n    <scan_on_start>yes</scan_on_start>\n    <hardware>yes</hardware>\n    <os>yes</os>\n    <network>yes</network>\n    <packages>yes</packages>\n    <ports all=\"no\">yes</ports>\n    <processes>yes</processes>\n\n    <!-- Database synchronization settings -->\n    <synchronization>\n      <max_eps>10</max_eps>\n    </synchronization>\n  </wodle>\n<sca>\n    <enabled>yes</enabled>\n    <scan_on_start>yes</scan_on_start>\n    <interval>12h</interval>\n    <skip_nfs>yes</skip_nfs>\n  </sca>\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "host-ssh-effective-state",
+      "where": "host",
+      "text": "sudo -S -p '' /usr/sbin/sshd -T | grep -E '^(permitrootlogin|passwordauthentication|pubkeyauthentication|permitemptypasswords) '; stat -c '%a %U:%G %n' /etc/ssh/sshd_config; snap list lxd; snap info lxd | head -n 24",
+      "print_chars": 3000,
+      "stdout": "permitrootlogin without-password\npubkeyauthentication yes\npasswordauthentication yes\npermitemptypasswords no\n644 root:root /etc/ssh/sshd_config\nName  Version         Rev    Tracking      Publisher    Notes\nlxd   5.0.11-e42d773  41283  5.0/stable/…  canonical**  -\nname:      lxd\nsummary:   LXD - container and VM manager\npublisher: Canonical**\nstore-url: https://snapcraft.io/lxd\ncontact:   lxd@lists.canonical.com\nlicense:   unset\ndescription: |\n  LXD is a system container and virtual machine manager.\n  \n  It offers a simple CLI and REST API to manage local or remote instances,\n  uses an image based workflow and support for a variety of advanced\n  features.\n  \n  Images are available for all Ubuntu releases and architectures as well\n  as for a wide number of other Linux distributions. Existing\n  integrations with many deployment and operation tools, makes it work\n  just like a public cloud, except everything is under your control.\n  \n  LXD containers are lightweight, secure by default and a great\n  alternative to virtual machines when running Linux on Linux.\n  \n  LXD virtual machines are modern and secure, using UEFI and secure-boot\n  by default and a great choice when a different kernel or operating\n  system is needed.\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "sca-check-detail",
+      "where": "siem",
+      "text": "python3 - <<'PY'\nimport sqlite3,json\nc=sqlite3.connect('file:/var/ossec/queue/db/006.db?mode=ro',uri=True);c.row_factory=sqlite3.Row\nprint(json.dumps({'check':[dict(r) for r in c.execute('select * from sca_check where id in (28634,28638)')],'rules':[dict(r) for r in c.execute('select * from sca_check_rules where id_check in (28634,28638)')]},ensure_ascii=False))\nPY",
+      "print_chars": 6000,
+      "stdout": "{\"check\": [{\"scan_id\": 377107091, \"id\": 28634, \"policy_id\": \"cis_ubuntu22-04\", \"title\": \"Ensure permissions on /etc/ssh/sshd_config are configured.\", \"description\": \"The /etc/ssh/sshd_config file contains configuration specifications for sshd. The command below sets the owner and group of the file to root.\", \"rationale\": \"The /etc/ssh/sshd_config file needs to be protected from unauthorized changes by non-privileged users.\", \"remediation\": \"Run the following commands to set ownership and permissions on /etc/ssh/sshd_config: # chown root:root /etc/ssh/sshd_config # chmod og-rwx /etc/ssh/sshd_config.\", \"file\": null, \"process\": null, \"directory\": null, \"registry\": null, \"command\": \"stat /etc/ssh/sshd_config\", \"references\": null, \"result\": \"failed\", \"reason\": \"\", \"condition\": \"all\"}, {\"scan_id\": 377107091, \"id\": 28638, \"policy_id\": \"cis_ubuntu22-04\", \"title\": \"Ensure SSH root login is disabled.\", \"description\": \"The PermitRootLogin parameter specifies if the root user can log in using SSH. The default is prohibit-password.\", \"rationale\": \"Disallowing root logins over SSH requires system admins to authenticate using their own individual account, then escalating to root. This limits opportunity for non-repudiation and provides a clear audit trail in the event of a security incident.\", \"remediation\": \"Edit the /etc/ssh/sshd_config file to set the parameter as follows: PermitRootLogin no.\", \"file\": null, \"process\": null, \"directory\": null, \"registry\": null, \"command\": \"sshd -T\", \"references\": null, \"result\": \"failed\", \"reason\": \"\", \"condition\": \"all\"}], \"rules\": [{\"id_check\": 28634, \"type\": \"command\", \"rule\": \"c:stat /etc/ssh/sshd_config -> r:Access:\\\\s*\\\\t*\\\\(0600/-rw-------\\\\)\\\\s*\\\\t*Uid:\\\\s*\\\\t*\\\\(\\\\s*\\\\t*0/\\\\s*root\\\\)\\\\s*Gid:\\\\s*\\\\t*\\\\(\\\\s*\\\\t*0/\\\\s*\\\\t*root\\\\)\"}, {\"id_check\": 28638, \"type\": \"command\", \"rule\": \"c:sshd -T -> r:^permitrootlogin no\"}, {\"id_check\": 28638, \"type\": \"file\", \"rule\": \"f:/etc/ssh/sshd_config -> r:^\\\\s*\\\\t*PermitRootLogin\\\\s*\\\\t*no\"}]}\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ]
+}
