@@ -1,0 +1,7 @@
+agent.name:"windows-user"
+AND data.win.system.channel:
+ "Microsoft-Windows-Sysmon/Operational"
+AND data.win.system.eventID:"22"
+AND data.win.eventdata.processGuid:
+ "{af6e9a1f-8d8d-6ae9-d406-000000000300}"
+AND data.win.eventdata.queryName:"example.com"

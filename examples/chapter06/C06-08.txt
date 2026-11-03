@@ -1,0 +1,7 @@
+Get-NetIPConfiguration
+Get-NetRoute -DestinationPrefix '0.0.0.0/0' |
+ Format-Table InterfaceAlias,NextHop
+$netStart = Get-Date
+$netStart.ToUniversalTime().ToString('o')
+$PID
+$url = 'http://10.20.32.80/?book=book2-ch06'

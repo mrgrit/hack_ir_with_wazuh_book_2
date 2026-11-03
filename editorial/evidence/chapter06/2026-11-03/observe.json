@@ -1,0 +1,29 @@
+{
+  "started_utc": "2026-11-03T07:30:01.908570+00:00",
+  "records": [
+    {
+      "id": "protection-explicit",
+      "text": "Get-ItemProperty 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Lsa' | Select-Object RunAsPPL,RunAsPPLBoot | ConvertTo-Json; Get-CimInstance -Namespace root\\Microsoft\\Windows\\DeviceGuard -ClassName Win32_DeviceGuard | Select-Object VirtualizationBasedSecurityStatus,SecurityServicesConfigured,SecurityServicesRunning | ConvertTo-Json; Get-DnsClientServerAddress -AddressFamily IPv4 | Select-Object InterfaceAlias,ServerAddresses | ConvertTo-Json; Get-NetRoute -DestinationPrefix '0.0.0.0/0' | Select-Object InterfaceAlias,NextHop | ConvertTo-Json",
+      "print_chars": 2200,
+      "stdout": "{\r\n    \"RunAsPPL\":  0,\r\n    \"RunAsPPLBoot\":  0\r\n}\r\n{\r\n    \"VirtualizationBasedSecurityStatus\":  0,\r\n    \"SecurityServicesConfigured\":  [\r\n                                       0\r\n                                   ],\r\n    \"SecurityServicesRunning\":  [\r\n                                    0\r\n                                ]\r\n}\r\n[\r\n    {\r\n        \"InterfaceAlias\":  \"이더넷\",\r\n        \"ServerAddresses\":  [\r\n                                \"172.30.70.1\"\r\n                            ]\r\n    },\r\n    {\r\n        \"InterfaceAlias\":  \"Loopback Pseudo-Interface 1\",\r\n        \"ServerAddresses\":  [\r\n\r\n                            ]\r\n    }\r\n]\r\n{\r\n    \"InterfaceAlias\":  \"이더넷\",\r\n    \"NextHop\":  \"172.30.70.1\"\r\n}\r\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "bounded-http",
+      "text": "$start=Get-Date; $start.ToUniversalTime().ToString('o'); $PID; $url='http://10.20.32.80/?book=book2-ch06'; 1..3 | ForEach-Object { $sent=(Get-Date).ToUniversalTime().ToString('o'); $r=Invoke-WebRequest -Uri $url -UseBasicParsing -DisableKeepAlive -TimeoutSec 10; [pscustomobject]@{SentUtc=$sent;Status=$r.StatusCode;Uri=$r.BaseResponse.ResponseUri.AbsoluteUri;Bytes=$r.RawContentLength}; Start-Sleep -Seconds 2 } | ConvertTo-Json",
+      "print_chars": 2000,
+      "stdout": "2026-11-03T07:30:12.9320414Z\r\n8080\r\n[\r\n    {\r\n        \"SentUtc\":  \"2026-11-03T07:30:13.1039010Z\",\r\n        \"Status\":  200,\r\n        \"Uri\":  \"http://10.20.32.80/?book=book2-ch06\",\r\n        \"Bytes\":  23181\r\n    },\r\n    {\r\n        \"SentUtc\":  \"2026-11-03T07:30:15.5574851Z\",\r\n        \"Status\":  200,\r\n        \"Uri\":  \"http://10.20.32.80/?book=book2-ch06\",\r\n        \"Bytes\":  23181\r\n    },\r\n    {\r\n        \"SentUtc\":  \"2026-11-03T07:30:17.6196711Z\",\r\n        \"Status\":  200,\r\n        \"Uri\":  \"http://10.20.32.80/?book=book2-ch06\",\r\n        \"Bytes\":  23181\r\n    }\r\n]\r\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "bounded-dns",
+      "text": "$PID; (Get-Date).ToUniversalTime().ToString('o'); Resolve-DnsName -Name example.com -Type A -DnsOnly -NoHostsFile | Format-Table Name,Type,IPAddress; Resolve-DnsName -Name book2-ch06.invalid -Type A -DnsOnly -NoHostsFile -QuickTimeout",
+      "print_chars": 2000,
+      "stdout": "1540\r\n2026-11-03T07:30:23.0729772Z\r\n\r\nName        Type IPAddress     \r\n----        ---- ---------     \r\nexample.com    A 104.20.23.154 \r\nexample.com    A 172.66.147.243\r\n\r\n\r\n",
+      "stderr": "#< CLIXML\r\n<Objs Version=\"1.1.0.1\" xmlns=\"http://schemas.microsoft.com/powershell/2004/04\"><S S=\"Error\">Resolve-DnsName : book2-ch06.invalid : DNS name does not exist_x000D__x000A_</S><S S=\"Error\">위치 줄:1 문자:252_x000D__x000A_</S><S S=\"Error\">+ ... ,IPAddress; Resolve-DnsName -Name book2-ch06.invalid -Type A -DnsOnly ..._x000D__x000A_</S><S S=\"Error\">+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~_x000D__x000A_</S><S S=\"Error\">    + CategoryInfo          : ResourceUnavailable: (book2-ch06.invalid:String) [Resolve-DnsName], Win32Exception_x000D__x000A_</S><S S=\"Error\">    + FullyQualifiedErrorId : DNS_ERROR_RCODE_NAME_ERROR,Microsoft.DnsClient.Commands.ResolveDnsName_x000D__x000A_</S><S S=\"Error\"> _x000D__x000A_</S></Objs>",
+      "exit_code": 1
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+$boot = (Get-CimInstance Win32_OperatingSystem).LastBootUpTime
+$boot.ToUniversalTime().ToString('o')
+Get-WinEvent -FilterHashtable @{
+ LogName='System'
+ ProviderName='Microsoft-Windows-Wininit'
+ Id=12;StartTime=$boot
+} | Format-List TimeCreated,Id,Message

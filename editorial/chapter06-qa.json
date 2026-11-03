@@ -1,0 +1,368 @@
+{
+  "date": "2026-11-03",
+  "chapter": 6,
+  "status": "draft reviewed",
+  "docx": "manuscript/volume02-chapter06.docx",
+  "docx_sha256": "19e4f156621f0fc0907edfb4f9e293ecdb56a5ac5163368b46288d00a1a1a4a5",
+  "manuscript_sha256": "a6ea324cb36f3b7d54c75634af3269a0d8c7e91863ded72b4f4fe3cff31ed07b",
+  "page_count": 38,
+  "internal_render": "build/ch06/chapter06-final2.pdf",
+  "internal_render_sha256": "12a0fda7bac2198999f06ed79dd319bb1acbb523ce3052c0b9060197f6b4d7af",
+  "render_method": "Hidden Microsoft Word COM PDF export, pypdfium2 page PNGs; bundled renderer unavailable because soffice.exe is absent.",
+  "template_sha256": "2506e3b2036c3bfa18f84a1f3b6185bff52c0273d4c2c526dd3c68d9adb5b18b",
+  "first_section_matches_template": true,
+  "geometry_twips": {
+    "pgSz": {
+      "w": "10660",
+      "h": "14912",
+      "code": "190"
+    },
+    "pgMar": {
+      "top": "1588",
+      "right": "1588",
+      "bottom": "2438",
+      "left": "1588",
+      "header": "851",
+      "footer": "907",
+      "gutter": "284"
+    }
+  },
+  "theme_matches_template": true,
+  "theme_sha256": "da3b998e12788e96cb878004ee497c96991d2bd0454ae28a5878020ff9054f5d",
+  "first_paragraph_style": "Title",
+  "pdf_fonts": [
+    "/BCDEEE+BookkMyungjo-Lt",
+    "/BCDFEE+BookkGothic-Lt",
+    "/BCDGEE+BookkGothic-Lt",
+    "/BCDHEE+BookkMyungjo-Lt",
+    "/BCDIEE+Consolas"
+  ],
+  "copy_inputs": {
+    "commands": 16,
+    "dql": 9,
+    "manifest_files_manuscript_match": true,
+    "powershell_parse_errors": 0,
+    "dql_ui_review": "chapter06-query-ui.json"
+  },
+  "full_urls_verified_in_docx_and_pdf": [
+    "https://docs.google.com/presentation/d/1o0H_2DDHBp8p2HvlSnEPbx6-jdURYzew",
+    "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+    "https://learn.microsoft.com/en-us/sysinternals/downloads/procdump",
+    "https://learn.microsoft.com/en-us/windows/win32/procthread/process-security-and-access-rights",
+    "https://learn.microsoft.com/en-us/windows-server/security/credentials-protection-and-management/configuring-additional-lsa-protection",
+    "https://learn.microsoft.com/en-us/windows/security/identity-protection/credential-guard/configure",
+    "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-webrequest?view=powershell-5.1",
+    "https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname?view=windowsserver2025-ps",
+    "https://learn.microsoft.com/en-us/windows/win32/debug/system-error-codes--9000-11999-",
+    "https://www.iana.org/help/private-addresses",
+    "https://www.rfc-editor.org/rfc/rfc6761.html",
+    "https://www.rfc-editor.org/rfc/rfc7686.html",
+    "https://github.com/mrgrit/kt66/tree/63d4180b1d6866de986ef263a3bd831d6082b5d5"
+  ],
+  "images": [
+    {
+      "path": "assets/illustrations/chapter06/network.png",
+      "sha256": "ecfdf70d4010def258fad2edaa5bec9350c433f8c960e792f684f03b7dcecca6",
+      "size": [
+        1311,
+        1200
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/figures/chapter06/evidence.png",
+      "sha256": "73f6de5e549cb2398b298f8080b214819818f6fe0f67d77183f28241579fb89f",
+      "size": [
+        1280,
+        650
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter06/lsass.png",
+      "sha256": "f527b4623d14221c2d965c755c2fc0d83e3b1d31980a4e5e19c8e7b1b428259f",
+      "size": [
+        686,
+        344
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/figures/chapter06/lsass.png",
+      "sha256": "437d99c819a6cc882148327824459b5ca5b710a8b832705d05f253163c034292",
+      "size": [
+        1280,
+        600
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/figures/chapter06/network.png",
+      "sha256": "443e665dd15306405add2e279a1567abc9ffb288044bc5dd0000bb32ee2f76da",
+      "size": [
+        1280,
+        630
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter06/network-destination.png",
+      "sha256": "2caded6aa312c0c767c9cdd31cb2e2f3124931c399d7d9f7c2d887149085fc49",
+      "size": [
+        626,
+        216
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter06/network-source.png",
+      "sha256": "2cb8423c118fdf22742bd67eecfe77a59f5564916f88685d9591ea08245fd4f2",
+      "size": [
+        626,
+        430
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/figures/chapter06/dns.png",
+      "sha256": "44acf2c06deb83f6faa4985cdc28a6347e29f62984928d4306d7cad0c753d141",
+      "size": [
+        1280,
+        680
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter06/dns-success.png",
+      "sha256": "6a440e2a5e709f90b2480dc55f6be216afc4f9b3b1b0f299daca39bd9d8d5cc7",
+      "size": [
+        626,
+        301
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter06/dns-failure.png",
+      "sha256": "fb493d4c993380cddc91bafe89070b3d1ab4503fb560c338c1c376ee65462e2a",
+      "size": [
+        626,
+        301
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/illustrations/chapter06/dns.png",
+      "sha256": "89b0f2f722f2c77f09ed4642811ffcde4adee99c596b374bf2994b995438f265",
+      "size": [
+        1312,
+        1199
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/figures/chapter06/correlation.png",
+      "sha256": "3a6a5e5a22ab23d3831ea9016d821bc3d38f8dba4bbb41f2c3e69f067e2c0502",
+      "size": [
+        1280,
+        670
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    }
+  ],
+  "illustration_review": {
+    "originals_individually_inspected": true,
+    "approved_woman": "exec-c08458b6-aeeb-40e6-a3dc-209feff48050.png",
+    "user_approval": "ㅇㅋ 됐다",
+    "other_selected": "exec-80a814d7-5c10-4f8b-bcd2-c87ad729d89f.png",
+    "original_bytes_match_assets": true,
+    "docx_pages": [
+      2,
+      33
+    ],
+    "checks": [
+      "arm-hand connections and count",
+      "natural prop orientation and support",
+      "coherent viewpoint",
+      "transparency and preserved aspect ratio",
+      "actual book placement"
+    ]
+  },
+  "visual_review": {
+    "initial_pages_individually_reviewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38
+    ],
+    "changed_pages_individually_rechecked": [
+      1,
+      3,
+      4,
+      7,
+      8,
+      10,
+      11,
+      12,
+      14,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      34,
+      35,
+      36
+    ],
+    "unchanged_pages_verified_by_hash": [
+      2,
+      5,
+      6,
+      9,
+      13,
+      15,
+      32,
+      33,
+      37,
+      38
+    ],
+    "final_page_sha256": {
+      "page-01.png": "61788bb9ba1823c68bc9f4b286aa0616400da46d7bc51d509a6c9a8aae9c744d",
+      "page-02.png": "3511fd4e633af25488befafa8efaf06bafc6aa8b79fcbc773ce186775549cd42",
+      "page-03.png": "5d07a739571bb414f50319041e30ce8d3f8c3e35df25b0a5db970d1522f41ec9",
+      "page-04.png": "d071aa4f27951fe8bc43cb6789c0d7cbfa84fdaf61c72a9eff6cefa92bdc6b70",
+      "page-05.png": "d17e9251dfaa220d73f2d3be2f2a42d0fbe14a3e189e440890ebd1b5158b91ea",
+      "page-06.png": "29307a89e51fea649d69e69c90b97afd19101387273576b70991c47a39609679",
+      "page-07.png": "48761788fe4e0220f6541b6d211a0eb9f4b485b65258056bc638f879b1343f73",
+      "page-08.png": "f261be84d3b36ba66e35f0f5701e4885b848820b0d0b0bbd9d253dc4770519e9",
+      "page-09.png": "a89f7a5e2147a1b33c6cf847708a053ae154e70bebfa7c554ac1a551f624cbf9",
+      "page-10.png": "4fd492a60ed62be589a0b705c1af948ac7be33fbc4e44be38c9df0e0ce62c14b",
+      "page-11.png": "3ee08d060fda893debc5bd9151a187373a93dc957042cf05b7a461d96e3394ce",
+      "page-12.png": "fe61a5187dc3441f2a15c58196419232250b89028e4fd2aa1f4fc94e0e63c626",
+      "page-13.png": "b62cad1f16bf449505349589db08ec95e160b5e9b2b2d77bdfc3eca667ae6f2f",
+      "page-14.png": "91db9ec7dfd147607e81b20a82927f1b272b48368457710a3d4e2cd3770849a1",
+      "page-15.png": "cae59c2ba240e3a1c4b084d961c3b21d24c1344742976705ba93b1e23bc122b5",
+      "page-16.png": "c57c25dbebac6f2099af7e9192e5c099bf9fd3913e20e8093cb288f6e5d8dc39",
+      "page-17.png": "2377c91df0060b1f7e75d8a6bb21da95d3c9cfa828e4118c5df5f06d4482e1d0",
+      "page-18.png": "9580ead90bf99b422b83a4f464e6705813e417c3bd287e8562b5ba9de8ab3aed",
+      "page-19.png": "1a5cf1436ce9cf407db7b6c9fe9e09c7dd6de5746580fea7c7d7a9876d5e157a",
+      "page-20.png": "9ecd0679f12c513067bfc2a95242d1717631bfe8601a4b2b9ff6e1670092990e",
+      "page-21.png": "6bb78fa5d789671d989d5a51dc7ef56cab94d1d99bfb11ad8a5c75a99fb2bf4f",
+      "page-22.png": "d1867211bbfc2663c5e9a2d80b23cf4109138cf2391e54951bcca8e10d536851",
+      "page-23.png": "e18953a2385800dbd59cc52eabb3c15cae7994db1b3d5ae8f1c1ff30a3811367",
+      "page-24.png": "04fb9a932421f9984f7918b6b392d6709bcaf2b1566147546f39d4ef0a74027c",
+      "page-25.png": "66040e1ee105cd46988b4dce4ea4b6b9f31f16cf61acc0c12f4eaca7dfa4d92a",
+      "page-26.png": "694010fea34b6b4df0d76e51b302f59e33a618fa8e668d60ad6a2748c45f05ab",
+      "page-27.png": "3a78421d6b1f18b8e18099e010e4f16b0511a1223f7436b68f31b0a9de813bfd",
+      "page-28.png": "80d797339c67c3ee3113e706bb2752b72035c3b1012cd90f692c382c8af08ff5",
+      "page-29.png": "41aa1d317b3c70f239536c0d574fdec2e2623f12760a5bb1f408bb0a49a52f4f",
+      "page-30.png": "aeb30d309601501287f157f881fb72e64e398d8f060c8c7c2abe513d413e4dd8",
+      "page-31.png": "cbd0f040721909f0edd7790e9dd3769c3a23f07e995216784da8c44e7227b2e7",
+      "page-32.png": "3e3af3076960535bc7f3fdde260738384bce5208a6bfb2a1c70b2a02b4647717",
+      "page-33.png": "dfe5b0474e7ec5befbb2e9b44038dd69b5a895637302b7374b1ee2d4a80c2783",
+      "page-34.png": "d8ff3536bcef0cf0a1656b257f14e32e48c5cd95a2dccf4b3e4e832c73bd780e",
+      "page-35.png": "e571e5f70105ec5b2d4e883b7d15957813df126f9f9ae5129b23656b825dc149",
+      "page-36.png": "ce170e42269f349ce27625eea446f3724b46cfe5046f9a07de8dda267b8b2d4e",
+      "page-37.png": "157de68f4dd4dde3252851fa8215888298cf9be7270a5769ed0fdc6c1898ac15",
+      "page-38.png": "fb204af239f68d0fbfeca062c06a2b69d2688b47aceec5284ac3a57193217239"
+    },
+    "result": "No clipped text, covered screenshot fields, separated captions, blank pages, or missing URL portions observed."
+  },
+  "scope": {
+    "prior_chapter_files_unchanged": true,
+    "rev01_unchanged": true,
+    "no_combined_book": true,
+    "no_distributed_pdf": true
+  },
+  "credential_pattern_scan": {
+    "result": "no matches",
+    "scope": "new and modified text files plus DOCX XML; token/private-key signatures"
+  },
+  "validation_limits": "Read-only state checks and three benign internal HTTP requests plus two DNS queries were observed. No credential dump, extraction, protection disablement, or attack execution. Final command strings were syntax-checked; this is not a full rerun of every reader procedure or failure path. See chapter06-review.md."
+}

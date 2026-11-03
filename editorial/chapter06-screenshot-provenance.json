@@ -1,0 +1,67 @@
+[
+  {
+    "asset": "assets/screenshots/chapter06/lsass.png",
+    "source": "build/ch06/screens/lsass-full.png",
+    "source_sha256": "15126c15e4aa26dbcfae5f038c693b745dd04320ddf064592ae374c60e40190b",
+    "crop_ltrb": [
+      414,
+      368,
+      1100,
+      712
+    ],
+    "sha256": "f527b4623d14221c2d965c755c2fc0d83e3b1d31980a4e5e19c8e7b1b428259f",
+    "method": "Actual Wazuh UI screenshot. Rectangular crop only. Tooltips dismissed through UI before capture. No compositing."
+  },
+  {
+    "asset": "assets/screenshots/chapter06/network-destination.png",
+    "source": "build/ch06/screens/network-destination-full.png",
+    "source_sha256": "6f9f8bc653b231bca6da67546f98764e0235bfba2c6495b75b061572770378da",
+    "crop_ltrb": [
+      414,
+      324,
+      1040,
+      540
+    ],
+    "sha256": "2caded6aa312c0c767c9cdd31cb2e2f3124931c399d7d9f7c2d887149085fc49",
+    "method": "Actual Wazuh UI screenshot. Rectangular crop only. Tooltips dismissed through UI before capture. No compositing."
+  },
+  {
+    "asset": "assets/screenshots/chapter06/network-source.png",
+    "source": "build/ch06/screens/network-source-full.png",
+    "source_sha256": "f28651521810854e743424d206bb968f962bd53956dfe9503e19ff511fd73696",
+    "crop_ltrb": [
+      414,
+      67,
+      1040,
+      497
+    ],
+    "sha256": "2cb8423c118fdf22742bd67eecfe77a59f5564916f88685d9591ea08245fd4f2",
+    "method": "Actual Wazuh UI screenshot. Rectangular crop only. Tooltips dismissed through UI before capture. No compositing."
+  },
+  {
+    "asset": "assets/screenshots/chapter06/dns-failure.png",
+    "source": "build/ch06/screens/dns-failure-full.png",
+    "source_sha256": "2f01cb2680e329140984f917323dd32bb5c609657137ae6f1045a0abdfe5ea55",
+    "crop_ltrb": [
+      414,
+      281,
+      1040,
+      582
+    ],
+    "sha256": "fb493d4c993380cddc91bafe89070b3d1ab4503fb560c338c1c376ee65462e2a",
+    "method": "Actual Wazuh UI screenshot. Rectangular crop only. Tooltips dismissed through UI before capture. No compositing."
+  },
+  {
+    "asset": "assets/screenshots/chapter06/dns-success.png",
+    "source": "build/ch06/screens/dns-success-full.png",
+    "source_sha256": "e5885dfb731972a9b1f003141e7f388847659e02d61825229e1415ebb35850f4",
+    "crop_ltrb": [
+      414,
+      281,
+      1040,
+      582
+    ],
+    "sha256": "6a440e2a5e709f90b2480dc55f6be216afc4f9b3b1b0f299daca39bd9d8d5cc7",
+    "method": "Actual Wazuh UI screenshot. Rectangular crop only. Tooltips dismissed through UI before capture. No compositing."
+  }
+]

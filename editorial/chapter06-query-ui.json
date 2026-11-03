@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-03",
+  "index": "wazuh-archives-*",
+  "time_range": "Last 24 hours",
+  "records": [
+    {
+      "id": "Q06-01",
+      "hits": 5529,
+      "query": "agent.name:\"windows-user\"\r\nAND data.win.system.channel:\r\n \"Microsoft-Windows-Sysmon/Operational\"\r\nAND data.win.system.eventID:\"10\"\r\nAND data.win.eventdata.targetImage:*lsass.exe\r\n"
+    },
+    {
+      "id": "Q06-02",
+      "hits": 1,
+      "query": "agent.name:\"windows-user\"\r\nAND data.win.system.channel:\r\n \"Microsoft-Windows-Sysmon/Operational\"\r\nAND data.win.system.eventRecordID:\"9407\"\r\n"
+    },
+    {
+      "id": "Q06-03",
+      "hits": 1,
+      "query": "agent.name:\"windows-user\"\r\nAND data.win.system.channel:\r\n \"Microsoft-Windows-Sysmon/Operational\"\r\nAND data.win.system.eventID:\"1\"\r\nAND data.win.eventdata.processGuid:\r\n \"{af6e9a1f-6c34-6ae8-6200-000000000300}\"\r\n"
+    },
+    {
+      "id": "Q06-04",
+      "hits": 3,
+      "query": "agent.name:\"windows-user\"\r\nAND data.win.system.channel:\r\n \"Microsoft-Windows-Sysmon/Operational\"\r\nAND data.win.system.eventID:\"3\"\r\nAND data.win.eventdata.image:*powershell.exe\r\nAND data.win.eventdata.destinationIp:\"10.20.32.80\"\r\nAND data.win.eventdata.destinationPort:\"80\"\r\n"
+    },
+    {
+      "id": "Q06-05",
+      "hits": 3,
+      "query": "agent.name:\"windows-user\"\r\nAND data.win.system.channel:\r\n \"Microsoft-Windows-Sysmon/Operational\"\r\nAND data.win.system.eventID:\"3\"\r\nAND data.win.eventdata.processGuid:\r\n \"{af6e9a1f-8d82-6ae9-d106-000000000300}\"\r\n"
+    },
+    {
+      "id": "Q06-06",
+      "hits": 3,
+      "query": "agent.name:\"windows-user\"\r\nAND data.win.system.channel:\r\n \"Microsoft-Windows-Sysmon/Operational\"\r\nAND data.win.system.eventID:\"3\"\r\nAND data.win.eventdata.image:(*powershell.exe OR\r\n *rundll32.exe OR *regsvr32.exe OR *mshta.exe OR\r\n *wscript.exe OR *certutil.exe)\r\n"
+    },
+    {
+      "id": "Q06-07",
+      "hits": 1,
+      "query": "agent.name:\"windows-user\"\r\nAND data.win.system.channel:\r\n \"Microsoft-Windows-Sysmon/Operational\"\r\nAND data.win.system.eventID:\"22\"\r\nAND data.win.eventdata.processGuid:\r\n \"{af6e9a1f-8d8d-6ae9-d406-000000000300}\"\r\nAND data.win.eventdata.queryName:\"example.com\"\r\n"
+    },
+    {
+      "id": "Q06-08",
+      "hits": 1,
+      "query": "agent.name:\"windows-user\"\r\nAND data.win.system.channel:\r\n \"Microsoft-Windows-Sysmon/Operational\"\r\nAND data.win.system.eventID:\"22\"\r\nAND data.win.eventdata.queryName:\"book2-ch06.invalid\"\r\n"
+    },
+    {
+      "id": "Q06-09",
+      "hits": 0,
+      "query": "agent.name:\"windows-user\"\r\nAND data.win.system.channel:\r\n \"Microsoft-Windows-Sysmon/Operational\"\r\nAND data.win.system.eventID:\"22\"\r\nAND data.win.eventdata.queryName:(\r\n ngrok.io OR *.ngrok.io OR\r\n duckdns.org OR *.duckdns.org OR\r\n pastebin.com OR *.pastebin.com)\r\n"
+    }
+  ],
+  "notes": "Each query executed in Discover and completed results read. Counts vary with time. Final whitespace-only line wrapping retested with Q06-05 (3 hits). No security or persistent settings changed."
+}

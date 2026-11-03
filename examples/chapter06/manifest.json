@@ -1,0 +1,177 @@
+[
+  {
+    "id": "C06-01",
+    "file": "C06-01.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "실습 환경과 수집 준비",
+    "input": "hostname\nwhoami.exe\n$PSVersionTable.PSVersion\nGet-Service WazuhSvc,Sysmon64,osqueryd |\n Format-Table Name,Status\n$sysmonLog = 'Microsoft-Windows-Sysmon/Operational'"
+  },
+  {
+    "id": "C06-02",
+    "file": "C06-02.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "실습 환경과 수집 준비",
+    "input": "Get-WinEvent -ListLog $sysmonLog |\n Format-List LogName,IsEnabled\nTest-Path -LiteralPath 'C:\\Tools\\Sysmon64.exe'\n& 'C:\\Tools\\Sysmon64.exe' -c"
+  },
+  {
+    "id": "C06-03",
+    "file": "C06-03.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "6.2  LSASS 보호 상태 확인",
+    "input": "Get-ItemProperty 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Lsa' |\n Format-List RunAsPPL,RunAsPPLBoot\nGet-MpComputerStatus |\n Format-List RealTimeProtectionEnabled,IsTamperProtected"
+  },
+  {
+    "id": "C06-04",
+    "file": "C06-04.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "설정값과 실제 시작 기록 대조",
+    "input": "$boot = (Get-CimInstance Win32_OperatingSystem).LastBootUpTime\n$boot.ToUniversalTime().ToString('o')\nGet-WinEvent -FilterHashtable @{\n LogName='System'\n ProviderName='Microsoft-Windows-Wininit'\n Id=12;StartTime=$boot\n} | Format-List TimeCreated,Id,Message"
+  },
+  {
+    "id": "C06-05",
+    "file": "C06-05.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "설정값과 실제 시작 기록 대조",
+    "input": "$ns = 'root\\Microsoft\\Windows\\DeviceGuard'\nGet-CimInstance -Namespace $ns -ClassName Win32_DeviceGuard |\n Format-List VirtualizationBasedSecurityStatus,\n SecurityServicesConfigured,SecurityServicesRunning"
+  },
+  {
+    "id": "C06-06",
+    "file": "C06-06.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "기존 LSASS 접근 이벤트 읽기",
+    "input": "Get-WinEvent -FilterHashtable @{\n LogName=$sysmonLog;Id=10\n} -MaxEvents 20 |\n Format-List TimeCreated,Id,RecordId,Message"
+  },
+  {
+    "id": "Q06-01",
+    "file": "Q06-01.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "기존 LSASS 접근 이벤트 읽기",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"10\"\nAND data.win.eventdata.targetImage:*lsass.exe"
+  },
+  {
+    "id": "Q06-02",
+    "file": "Q06-02.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "기존 LSASS 접근 이벤트 읽기",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventRecordID:\"9407\""
+  },
+  {
+    "id": "C06-07",
+    "file": "C06-07.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "접근 권한과 프로그램의 실제 역할",
+    "input": "$exe = 'C:\\Program Files\\osquery\\osqueryd\\osqueryd.exe'\nGet-AuthenticodeSignature -FilePath $exe |\n Format-List Status,Path,SignerCertificate\n(Get-Item -LiteralPath $exe).VersionInfo |\n Format-List CompanyName,ProductName,FileVersion"
+  },
+  {
+    "id": "Q06-03",
+    "file": "Q06-03.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "LSASS 접근 조사와 대응",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"1\"\nAND data.win.eventdata.processGuid:\n \"{af6e9a1f-6c34-6ae8-6200-000000000300}\""
+  },
+  {
+    "id": "C06-08",
+    "file": "C06-08.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "HTTP 요청 전 주소와 시각 확인",
+    "input": "Get-NetIPConfiguration\nGet-NetRoute -DestinationPrefix '0.0.0.0/0' |\n Format-Table InterfaceAlias,NextHop\n$netStart = Get-Date\n$netStart.ToUniversalTime().ToString('o')\n$PID\n$url = 'http://10.20.32.80/?book=book2-ch06'"
+  },
+  {
+    "id": "C06-09",
+    "file": "C06-09.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "세 번의 웹 요청과 응답 읽기",
+    "input": "1..3 | ForEach-Object {\n $sent = (Get-Date).ToUniversalTime().ToString('o')\n $r = Invoke-WebRequest -Uri $url `\n  -UseBasicParsing -DisableKeepAlive -TimeoutSec 10\n [pscustomobject]@{\n  SentUtc=$sent\n  Status=$r.StatusCode\n  Uri=$r.BaseResponse.ResponseUri.AbsoluteUri\n  Bytes=$r.RawContentLength\n }\n Start-Sleep -Seconds 2\n} | Format-List"
+  },
+  {
+    "id": "C06-10",
+    "file": "C06-10.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "세 번의 웹 요청과 응답 읽기",
+    "input": "$r.Content"
+  },
+  {
+    "id": "C06-11",
+    "file": "C06-11.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "네트워크 원본과 Wazuh 연결",
+    "input": "Get-WinEvent -FilterHashtable @{\n LogName=$sysmonLog;Id=3;StartTime=$netStart\n} | Format-List TimeCreated,Id,RecordId,Message"
+  },
+  {
+    "id": "Q06-04",
+    "file": "Q06-04.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "네트워크 원본과 Wazuh 연결",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"3\"\nAND data.win.eventdata.image:*powershell.exe\nAND data.win.eventdata.destinationIp:\"10.20.32.80\"\nAND data.win.eventdata.destinationPort:\"80\""
+  },
+  {
+    "id": "Q06-05",
+    "file": "Q06-05.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "연결 방향과 출발지 포트 해석",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"3\"\nAND data.win.eventdata.processGuid:\n \"{af6e9a1f-8d82-6ae9-d106-000000000300}\""
+  },
+  {
+    "id": "Q06-06",
+    "file": "Q06-06.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "외부 연결 후보의 조사와 대응",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"3\"\nAND data.win.eventdata.image:(*powershell.exe OR\n *rundll32.exe OR *regsvr32.exe OR *mshta.exe OR\n *wscript.exe OR *certutil.exe)"
+  },
+  {
+    "id": "C06-12",
+    "file": "C06-12.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "정상 이름과 실패할 이름 준비",
+    "input": "$sysmonLog = 'Microsoft-Windows-Sysmon/Operational'\n$dnsStart = Get-Date\n$dnsStart.ToUniversalTime().ToString('o')\n$PID\nGet-DnsClientServerAddress -AddressFamily IPv4 |\n Format-Table InterfaceAlias,ServerAddresses"
+  },
+  {
+    "id": "C06-13",
+    "file": "C06-13.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "DNS 응답 확인",
+    "input": "Resolve-DnsName -Name example.com -Type A -DnsOnly -NoHostsFile |\n Format-Table Name,Type,IPAddress"
+  },
+  {
+    "id": "C06-14",
+    "file": "C06-14.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "DNS 응답 확인",
+    "input": "Resolve-DnsName -Name book2-ch06.invalid -Type A `\n -DnsOnly -NoHostsFile -QuickTimeout"
+  },
+  {
+    "id": "C06-15",
+    "file": "C06-15.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "DNS 응답 확인",
+    "input": "Get-WinEvent -FilterHashtable @{\n LogName=$sysmonLog;Id=22;StartTime=$dnsStart\n} | Format-List TimeCreated,Id,RecordId,Message"
+  },
+  {
+    "id": "Q06-07",
+    "file": "Q06-07.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "성공한 질의를 Wazuh에서 확인",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"22\"\nAND data.win.eventdata.processGuid:\n \"{af6e9a1f-8d8d-6ae9-d406-000000000300}\"\nAND data.win.eventdata.queryName:\"example.com\""
+  },
+  {
+    "id": "Q06-08",
+    "file": "Q06-08.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "실패한 질의도 결과로 읽기",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"22\"\nAND data.win.eventdata.queryName:\"book2-ch06.invalid\""
+  },
+  {
+    "id": "Q06-09",
+    "file": "Q06-09.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "원전 도메인 검색의 범위 조정",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"22\"\nAND data.win.eventdata.queryName:(\n ngrok.io OR *.ngrok.io OR\n duckdns.org OR *.duckdns.org OR\n pastebin.com OR *.pastebin.com)"
+  },
+  {
+    "id": "C06-16",
+    "file": "C06-16.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "원상복구와 완료 확인",
+    "input": "Get-Service WazuhSvc,Sysmon64,osqueryd |\n Format-Table Name,Status\nGet-MpComputerStatus |\n Format-List RealTimeProtectionEnabled,IsTamperProtected\nGet-ItemProperty 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Lsa' |\n Format-List RunAsPPL,RunAsPPLBoot"
+  }
+]

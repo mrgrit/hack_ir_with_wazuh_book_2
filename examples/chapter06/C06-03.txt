@@ -1,0 +1,4 @@
+Get-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa' |
+ Format-List RunAsPPL,RunAsPPLBoot
+Get-MpComputerStatus |
+ Format-List RealTimeProtectionEnabled,IsTamperProtected

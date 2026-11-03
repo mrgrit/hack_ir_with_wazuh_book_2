@@ -1,0 +1,4 @@
+$ns = 'root\Microsoft\Windows\DeviceGuard'
+Get-CimInstance -Namespace $ns -ClassName Win32_DeviceGuard |
+ Format-List VirtualizationBasedSecurityStatus,
+ SecurityServicesConfigured,SecurityServicesRunning

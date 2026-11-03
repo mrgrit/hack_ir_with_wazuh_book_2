@@ -104,7 +104,8 @@
       "chapter": 6,
       "slide_start_1_based": 464,
       "source_title": "43 LSASS 접근 (Sysmon 10, 자격증명 덤프)",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter06-review.md"
     },
     {
       "exercise": 44,
@@ -135,14 +136,16 @@
       "chapter": 6,
       "slide_start_1_based": 500,
       "source_title": "47 수상한 프로세스의 외부 네트워크 연결 (Sysmon 3)",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter06-review.md"
     },
     {
       "exercise": 48,
       "chapter": 6,
       "slide_start_1_based": 508,
       "source_title": "48 DNS 질의로 C2·터널링 탐지 (Sysmon 22)",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter06-review.md"
     },
     {
       "exercise": 49,

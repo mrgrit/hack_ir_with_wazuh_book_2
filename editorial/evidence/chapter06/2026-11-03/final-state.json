@@ -1,0 +1,13 @@
+{
+  "started_utc": "2026-11-03T07:46:32.859175+00:00",
+  "records": [
+    {
+      "id": "boot-protection-sensor",
+      "text": "Get-CimInstance Win32_OperatingSystem | Select-Object LastBootUpTime | ConvertTo-Json; Get-WinEvent -FilterHashtable @{LogName='System';ProviderName='Microsoft-Windows-Wininit';Id=12} -MaxEvents 3 | ForEach-Object { $_.ToXml() }; Get-Item 'C:\\Tools\\*Sysmon*' | Select-Object FullName | ConvertTo-Json; Get-Service WazuhSvc,Sysmon64,osqueryd | Select-Object Name,Status | ConvertTo-Json; Get-MpComputerStatus | Select-Object RealTimeProtectionEnabled,IsTamperProtected | ConvertTo-Json; Get-ItemProperty 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Lsa' | Select-Object RunAsPPL,RunAsPPLBoot | ConvertTo-Json",
+      "print_chars": 2500,
+      "stdout": "{\r\n    \"LastBootUpTime\":  \"\\/Date(1793616937500)\\/\"\r\n}\r\n<Event xmlns='http://schemas.microsoft.com/win/2004/08/events/event'><System><Provider Name='Microsoft-Windows-Wininit' Guid='{206f6dea-d3c5-4d10-bc72-989f03c8b84b}'/><EventID>12</EventID><Version>0</Version><Level>4</Level><Task>0</Task><Opcode>0</Opcode><Keywords>0x4000000000000000</Keywords><TimeCreated SystemTime='2026-11-02T09:30:01.9204635Z'/><EventRecordID>178</EventRecordID><Correlation/><Execution ProcessID='784' ThreadID='788'/><Channel>System</Channel><Computer>KT66-WIN-01</Computer><Security UserID='S-1-5-18'/></System><EventData><Data Name='Level'>4</Data></EventData></Event>\r\n<Event xmlns='http://schemas.microsoft.com/win/2004/08/events/event'><System><Provider Name='Microsoft-Windows-Wininit' Guid='{206f6dea-d3c5-4d10-bc72-989f03c8b84b}'/><EventID>12</EventID><Version>0</Version><Level>4</Level><Task>0</Task><Opcode>0</Opcode><Keywords>0x4000000000000000</Keywords><TimeCreated SystemTime='2026-11-02T09:28:23.2854206Z'/><EventRecordID>30</EventRecordID><Correlation/><Execution ProcessID='720' ThreadID='724'/><Channel>System</Channel><Computer>KT66STU-L0M4PLD</Computer><Security UserID='S-1-5-18'/></System><EventData><Data Name='Level'>4</Data></EventData></Event>\r\n[\r\n    {\r\n        \"FullName\":  \"C:\\\\Tools\\\\Sysmon.exe\"\r\n    },\r\n    {\r\n        \"FullName\":  \"C:\\\\Tools\\\\Sysmon64.exe\"\r\n    },\r\n    {\r\n        \"FullName\":  \"C:\\\\Tools\\\\Sysmon64a.exe\"\r\n    }\r\n]\r\n[\r\n    {\r\n        \"Name\":  \"osqueryd\",\r\n        \"Status\":  4\r\n    },\r\n    {\r\n        \"Name\":  \"Sysmon64\",\r\n        \"Status\":  4\r\n    },\r\n    {\r\n        \"Name\":  \"WazuhSvc\",\r\n        \"Status\":  4\r\n    }\r\n]\r\n{\r\n    \"RealTimeProtectionEnabled\":  true,\r\n    \"IsTamperProtected\":  true\r\n}\r\n{\r\n    \"RunAsPPL\":  0,\r\n    \"RunAsPPLBoot\":  0\r\n}\r\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+1..3 | ForEach-Object {
+ $sent = (Get-Date).ToUniversalTime().ToString('o')
+ $r = Invoke-WebRequest -Uri $url `
+  -UseBasicParsing -DisableKeepAlive -TimeoutSec 10
+ [pscustomobject]@{
+  SentUtc=$sent
+  Status=$r.StatusCode
+  Uri=$r.BaseResponse.ResponseUri.AbsoluteUri
+  Bytes=$r.RawContentLength
+ }
+ Start-Sleep -Seconds 2
+} | Format-List
