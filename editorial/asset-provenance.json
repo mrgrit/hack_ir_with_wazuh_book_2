@@ -1,0 +1,48 @@
+{
+  "assets": [
+    {
+      "path": "assets/illustrations/chapter01/evidence.png",
+      "kind": "reused illustration",
+      "source_repo": "https://github.com/mrgrit/hack_ir_with_wazuh_book_1",
+      "source_commit": "9dd106e119ef1e3216e6f9e96bca2330617dc18a",
+      "source_path": "assets/illustrations/chapter02/evidence.png",
+      "sha256": "162cdf4780d61ca4751ea1b77f006913ceed84267cca9d2af55008c3c7559fec"
+    },
+    {
+      "path": "assets/illustrations/chapter01/field-check.png",
+      "kind": "reused illustration",
+      "source_repo": "https://github.com/mrgrit/hack_ir_with_wazuh_book_1",
+      "source_commit": "9dd106e119ef1e3216e6f9e96bca2330617dc18a",
+      "source_path": "assets/illustrations/chapter04/field-check.png",
+      "sha256": "46a5ffbdfa2e9d5cca7900bb773bf012e12d8b9272b0c436251ad59978b0e024"
+    },
+    {
+      "path": "assets/figures/chapter01/event-model.png",
+      "kind": "generated relationship diagram",
+      "generator": "tools/build_chapter01.py",
+      "sha256": "eacbf4f10621caf0b16933377ea380351fc14e7271f7a9ae6ff1e2c3742d808e"
+    },
+    {
+      "path": "assets/figures/chapter01/readiness.png",
+      "kind": "generated relationship diagram",
+      "generator": "tools/build_chapter01.py",
+      "sha256": "f3684d8fc2ec8aca26d8be56732ac7853a6b45a392f2f084542d4dae1f2a0a91"
+    },
+    {
+      "path": "assets/figures/chapter01/topology.png",
+      "kind": "generated relationship diagram",
+      "generator": "tools/build_chapter01.py",
+      "sha256": "a585e38ec4c11e5e4292cb8705082da2b7f9b45340f9d522ce4a9dccc4b00f7a"
+    },
+    {
+      "path": "assets/figures/chapter01/troubleshoot.png",
+      "kind": "generated relationship diagram",
+      "generator": "tools/build_chapter01.py",
+      "sha256": "dc4744f121dbc7aaa267c2353a6ac4734fa1071d9505990f6b8664fc24a895fd"
+    }
+  ],
+  "template": {
+    "path": "tools/assets/bookk-B5.docx",
+    "sha256": "2506e3b2036c3bfa18f84a1f3b6185bff52c0273d4c2c526dd3c68d9adb5b18b"
+  }
+}

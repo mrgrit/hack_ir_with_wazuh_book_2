@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-03",
+  "artifact": "manuscript/volume02-chapter01.docx",
+  "sha256": "4604cdd27e2e0697657aadd46a9d3496a4df441793873506c407ca2974428ae2",
+  "pages": 30,
+  "render": "Word COM ExportAsFixedFormat then pypdfium2 scale 1.7; canonical renderer failed because soffice.exe was absent",
+  "visual_review": "All 30 pages inspected at full rendered resolution. Final diagram correction changed only page 9, and PowerShell introduction correction changed only page 6. Both changed pages re-inspected. Other 28 page PNGs byte-identical.",
+  "checks": [
+    "B5 geometry matches retained template",
+    "19 copy inputs match manuscript JSON",
+    "6 inserted images and captions",
+    "all full reference URLs present in DOCX and rendered PDF",
+    "2 original XML events matched to Wazuh fields",
+    "all 32 planned exercises covered exactly once",
+    "Windows read-query checks exit 0; DQL UI not executed"
+  ],
+  "pdf_fonts": [
+    "/BCDEEE+BookkMyungjo-Lt",
+    "/BCDFEE+BookkGothic-Lt",
+    "/BCDGEE+BookkGothic-Lt",
+    "/BCDHEE+BookkMyungjo-Lt",
+    "/BCDIEE+Consolas"
+  ],
+  "distribution": "DOCX only; temporary PDF/PNG excluded"
+}

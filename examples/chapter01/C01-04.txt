@@ -1,0 +1,2 @@
+Get-Service WazuhSvc,Sysmon64,osqueryd |
+  Select-Object Name,Status,StartType

@@ -1,0 +1,4 @@
+agent.name:"windows-user" AND
+data.win.system.channel:
+"Microsoft-Windows-Sysmon/Operational" AND
+data.win.system.eventID:"1"

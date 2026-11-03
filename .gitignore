@@ -1,0 +1,9 @@
+build/
+__pycache__/
+*.pyc
+*.pdf
+~$*.docx
+.venv/
+.env
+*.pem
+*.key

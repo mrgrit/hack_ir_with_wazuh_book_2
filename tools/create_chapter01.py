@@ -1,0 +1,311 @@
+"""2권 1장 원고와 독자용 개별 예제 파일을 생성한다. 실습은 실행하지 않는다."""
+import json
+from pathlib import Path
+
+ROOT=Path(__file__).resolve().parents[1]
+pages=[]
+def p(text): return {'type':'p','text':text}
+def h(text): return {'type':'h','text':text}
+def code(text): return {'type':'code','text':text}
+def image(name,caption,width=127):
+    return {'type':'image','path':f'assets/figures/chapter01/{name}.png','caption':caption,'width_mm':width}
+def art(name,caption,width=60):
+    return {'type':'image','path':f'assets/illustrations/chapter01/{name}.png','caption':caption,'width_mm':width}
+def table(head,rows,widths): return {'type':'table','head':head,'rows':rows,'widths':widths}
+def cmd(cid,where,text,why,result):
+    return {'type':'command','id':cid,'where':where,'text':text,'why':why,'result':result}
+def query(qid,text,why,result):
+    return {'type':'query','id':qid,'where':'Windows PC의 Wazuh Discover 검색창','text':text,'why':why,'result':result}
+def page(title,*blocks,kind='body',level='section'):
+    newpage=len(pages)<3 or title.startswith('참고자료')
+    pages.append({'title':title,'kind':kind,'level':level,'break':newpage,'blocks':list(blocks)})
+def link(title,url): return {'type':'link','text':title,'url':url}
+GUEST='Windows 실습 게스트의 관리자 PowerShell'
+HOST='kt66 Ubuntu VM의 터미널'
+
+page('Windows 침해 탐지와\n통합 보안관제',
+ p('해킹·침해대응 실무 with Wazuh 2권'),
+ p('1장 Windows 실습 환경과 로그 수집'),
+ p('챕터별 교정용 초안'),kind='cover')
+
+page('머리말',
+ p('1권에서는 웹 요청과 Linux의 인증·명령·파일 기록을 따라 침투 흔적을 조사했다. 2권에서는 Windows의 로그온, 프로세스 실행, 서비스와 예약 작업을 같은 흐름으로 조사한다. 이어 취약점과 보안 설정, 백신과 네트워크 경보를 종합해 대응 우선순위를 정한다.'),
+ p('Windows에서는 같은 숫자의 이벤트 ID가 서로 다른 채널과 공급자에서 쓰일 수 있다. 경보 제목에 특정 프로그램 이름이 있어도 원본 이벤트의 프로세스가 다른 경우가 있다. 먼저 기록을 만든 컴퓨터와 채널을 확인하고, 계정·프로세스·시각을 대조해야 한다.'),
+ p('실습은 1권의 kt66 환경을 이어 사용한다. Windows 게스트가 추가되므로 독자가 조작하는 Windows PC와 조사 대상 Windows를 구분한다. 각 입력 앞의 실행 위치를 확인하고, 응답에서 다음 판단에 필요한 값을 읽는다.'),
+ p('첫 장의 목표는 로그 수집 준비를 끝내는 것이다. 이미 기록된 이벤트로 수집 경로를 확인한 뒤 다음 장에서 로그온 실패와 원격 접속을 다룬다. 경보가 나타났다는 사실과 침해가 확인됐다는 판단을 구분한다.'),
+ art('evidence','그림 1-1  조사 기록과 수집 자료의 대조',56))
+
+page('1장 Windows 실습 환경과 로그 수집',
+ p('공격 실습에 앞서 Windows에서 만들어진 이벤트가 Wazuh까지 도착하는지 확인한다. 게스트 이름과 센서 상태를 기록하고, 원본 이벤트 한 건의 채널·기록 번호·시각을 Wazuh 경보와 대조한다.'),
+ image('readiness','그림 1-2  Windows 로그 수집 준비의 확인 순서'),
+ h('선행 조건'),
+ p('1권의 kt66와 Wazuh가 가동 중이어야 한다. 선택 구성인 Windows 게스트도 설치가 끝나 로그인할 수 있어야 한다. Windows 관리자 권한과 kt66의 Docker 관리 권한이 필요하다. Windows PC의 브라우저에서는 1권과 같이 HTTPS 5601번 포트의 Wazuh에 접속한다.'),
+ h('완료 조건'),
+ p('Windows 식별 정보, 센서 서비스, 채널과 감사 상태를 확인한다. 이어 Windows 원본과 Wazuh에서 같은 기록을 찾는다. 확인되지 않은 단계가 있으면 해당 수집 구간부터 점검하고 다음 장의 공격 입력은 보류한다.'))
+
+page('Windows 게스트가 있는 위치',
+ p('독자가 사용하는 Windows PC 위에서 VMware의 Ubuntu VM이 실행된다. kt66는 이 Ubuntu 안의 Docker 환경이다. kt66-windows-user 컨테이너는 QEMU/KVM으로 별도의 Windows 운영체제를 실행한다. Windows 프로그램은 이 게스트 안에서 동작한다.'),
+ image('topology','그림 1-3  Windows PC와 kt66 내부 Windows 게스트의 관계'),
+ p('kt66-windows-console은 Windows 화면을 브라우저로 전달한다. 기본 접속 주소는 http://192.168.0.107:8090 이다. 192.168.0.107은 이 책의 kt66 VM 예시 주소이므로 자신의 VM 주소로 바꾼다.'),
+ p('외부 공격자 Ubuntu VM과 kt66-attacker 컨테이너는 별개다. Windows 대상 10.20.70.10으로 향하는 실습 경로는 kt66 내부 망을 사용한다. 외부 VM에서 이 내부 주소에 바로 접속할 수 있다고 가정하지 않는다.'))
+
+page('설치 상태와 터미널 준비',
+ p('Windows 구성은 kt66의 선택 항목이다. 설치되지 않았다면 1권의 환경 준비 절차와 저장소의 WINDOWS-ENDPOINT.ko.md를 따라 Windows 설치를 먼저 마친다. 기본 자원 예시는 2 vCPU·메모리 4GiB·가상 디스크 64GiB이며, 검증된 최소 요구사항을 뜻하지 않는다. Ubuntu VM에 KVM 가속 장치가 제공되는지도 확인한다.'),
+ p('kt66 호스트 터미널에서 Docker의 실행 상태를 읽는다. docker는 컨테이너를 관리하는 도구다. ps는 실행 중인 컨테이너 목록, --filter는 목록 조건이다. sudo는 이 조회를 관리자 권한으로 실행한다.'),
+ cmd('C01-01',HOST,
+     "sudo docker ps --filter name=kt66-windows",
+     'name=kt66-windows는 이름에 이 문자열이 포함된 컨테이너를 고른다. 설정이나 파일을 바꾸지 않고 현재 목록을 출력한다.',
+     'kt66-windows-user와 kt66-windows-console의 STATUS를 읽는다. 컨테이너가 Up이어도 Windows 부팅·센서 준비는 별도로 확인해야 한다.'),
+ p('브라우저 콘솔에서 kt66student 계정으로 Windows 게스트에 로그인한다. 암호는 자신의 kt66 설치 때 생성한 값을 사용한다. Windows 관리 명령을 실행하는 셸인 PowerShell을 사용한다. 게스트 시작 메뉴에서 Windows PowerShell을 검색해 관리자 권한으로 연다.'),
+ p('설치용 sensors.ps1에는 센서 설치 외의 보안 설정도 포함된다. 단순 상태 확인을 위해 전체 설치 스크립트를 다시 실행하지 않는다. 먼저 다음 절의 읽기 명령으로 부족한 항목을 확인한다.'))
+
+page('이름과 시각으로 대상 식별하기',
+ p('hostname.exe는 현재 컴퓨터 이름을, whoami.exe는 현재 명령을 실행하는 계정을 출력한다. 게스트에서 실행했을 때의 컴퓨터 이름은 KT66-WIN-01이다. 계정 출력의 역슬래시(\\) 앞은 컴퓨터나 도메인, 뒤는 계정 이름이다.'),
+ cmd('C01-02',GUEST,'hostname.exe\nwhoami.exe',
+     '두 명령을 차례로 입력한다. PowerShell의 명령 뒤에 .exe를 적어 해당 Windows 실행 파일을 호출한다.',
+     '이 환경에서는 KT66-WIN-01과 kt66-win-01\\kt66student가 출력된다. 자신의 PC 이름이 나오면 게스트 PowerShell로 옮긴다.'),
+ p('Get-Date는 현재 시각을, Get-TimeZone은 시간대 설정을 읽는 PowerShell 명령이다. -Format o는 시각을 날짜·시간·UTC 오프셋이 포함된 형식으로 표시한다.'),
+ cmd('C01-03',GUEST,'Get-Date -Format o\nGet-TimeZone | Select-Object Id',
+     '파이프(|)는 앞 명령의 결과 객체를 다음 명령에 전달한다. Select-Object Id는 시간대 객체에서 Id 속성만 고른다.',
+     '예시 시간대는 Korea Standard Time이며 시각 끝의 +09:00은 UTC보다 9시간 빠르다는 뜻이다. 조사 기록에 자신의 확인 시각과 시간대를 함께 적는다.'),
+ p('Wazuh의 agent.name은 windows-user이다. Docker 이름 kt66-windows-user와 Windows 컴퓨터 이름 KT66-WIN-01은 각각 다른 계층의 식별자다. 이름이 서로 같아야 연결되는 것은 아니다.'))
+
+page('센서가 준비됐는지 확인하기',
+ p('Wazuh 에이전트는 Windows 로그를 매니저로 전달한다. Sysmon은 프로세스 실행 등 상세 활동을 이벤트로 남긴다. osquery는 운영체제 상태를 SQL로 조회하며, 지속화 조사에서 사용한다. 실행 중인 센서와 이벤트 생성·수집 성공은 각각 확인해야 한다.'),
+ cmd('C01-04',GUEST,
+     'Get-Service WazuhSvc,Sysmon64,osqueryd |\n  Select-Object Name,Status,StartType',
+     'Get-Service는 서비스 상태를 조회한다. 쉼표(,)로 세 이름을 나열하고, 파이프 뒤에서 표시할 속성을 고른다. 파이프 뒤 줄바꿈은 같은 명령의 연속이다.',
+     '확인한 환경에서는 세 서비스가 Running, 시작 유형이 Automatic이다. 이름을 찾지 못하면 설치 여부와 실제 서비스 이름을 먼저 확인한다. Stopped이면 해당 센서의 로그를 읽어 원인을 좁힌다.'),
+ table(['서비스','역할','다음 확인'],[
+     ['WazuhSvc','이벤트 수집·전송','ossec.conf와 ossec.log'],
+     ['Sysmon64','상세 활동 기록','Sysmon Operational 채널'],
+     ['osqueryd','운영체제 상태 조회','지속화 장에서 예약 조회 확인']], [28,47,52]),
+ p('kt66 기준 코드에서는 Windows 설치 과정의 install.ps1이 sensors.ps1을 호출한다. 따라서 독자가 각 도구를 먼저 설치했다고 가정하지 않고, 준비된 서비스가 있는지부터 확인한다. 세 서비스가 보이더라도 수집 채널과 필터 검사는 계속한다.'))
+
+page('이벤트를 구분하는 세 가지 값',
+ p('Windows 이벤트 로그는 운영체제와 프로그램의 활동 기록이다. 채널은 기록을 저장하는 구분이며, 공급자는 그 기록을 만든 구성 요소다. 이벤트 ID는 해당 공급자가 정의한 사건의 종류다. 같은 ID라도 공급자가 다르면 뜻이 달라진다.'),
+ image('event-model','그림 1-4  이벤트 종류와 개별 기록을 구분하는 값'),
+ p('Security 채널의 공급자 Microsoft-Windows-Security-Auditing이 남긴 4624는 로그온 성공이다. Sysmon 공급자의 이벤트 1은 프로세스 생성이다. 숫자만 검색하기 전에 컴퓨터와 채널을 함께 정한다.'),
+ p('EventRecordID는 한 채널 안의 개별 기록 번호다. EventID가 사건 종류라면 EventRecordID는 그 채널의 어떤 기록을 읽었는지 식별하는 값이다. 다른 컴퓨터나 채널의 같은 번호와 섞지 않는다. 로그 초기화 등으로 번호가 재사용될 수 있어 시각도 대조한다.'),
+ p('Wazuh의 rule.id는 분석 규칙의 번호다. Windows의 EventID와 서로 대체할 수 없다. 같은 Windows 이벤트 종류라도 조건에 따라 다른 Wazuh 규칙이 적용될 수 있다.'))
+
+page('이벤트 채널의 준비 상태 읽기',
+ p('Get-WinEvent는 Windows 이벤트와 로그 정보를 읽는 PowerShell 명령이다. -ListLog는 이벤트 내용 대신 채널 정보를 조회한다. 여러 채널을 먼저 변수에 담아 같은 조건으로 확인한다.'),
+ cmd('C01-05',GUEST,
+     "$channels = 'Security', 'System',\n  'Microsoft-Windows-Sysmon/Operational',\n  'Microsoft-Windows-PowerShell/Operational'\nGet-WinEvent -ListLog $channels |\n  Select-Object LogName,IsEnabled,RecordCount",
+     '달러 기호($)는 변수 이름의 시작이다. 등호(=)로 값을 저장하고, 작은따옴표로 채널 이름 문자열을 감싼다. 쉼표로 연결한 네 이름을 $channels에 저장한다.',
+     'IsEnabled가 True인지 확인한다. RecordCount는 채널에 현재 보관된 기록 수이며 공격 횟수가 아니다. 채널을 찾지 못하면 이름과 해당 구성 요소의 설치 상태를 확인한다.'),
+ p('Security는 로그온·계정·감사 기록, System은 운영체제와 서비스 기록을 담는다. Sysmon Operational에는 Sysmon이 수집하도록 설정한 활동이 들어간다. PowerShell Operational에서는 PowerShell의 동작 기록을 확인한다.'),
+ p('채널이 활성화됐다고 모든 종류의 이벤트가 생성되는 것은 아니다. Security는 감사 정책, Sysmon은 이벤트 필터, PowerShell 4104는 스크립트 블록 로깅 설정도 확인해야 한다. 지금은 채널 자체와 다음 절의 로그온 감사부터 점검한다.'))
+
+page('로그온 감사와 보호 상태 읽기',
+ p('감사 정책은 어떤 보안 활동을 Security 이벤트로 기록할지 정한다. auditpol.exe는 이 정책을 조회하거나 변경하는 Windows 도구다. 여기서는 /get으로 현재 정책만 읽는다. 하위 범주의 GUID를 쓰면 Windows 표시 언어에 영향을 덜 받는다.'),
+ cmd('C01-06',GUEST,
+     '$logonGuid = \'{0CCE9215-69AE-11D9-BED3-505054503030}\'\nauditpol.exe /get /subcategory:$logonGuid',
+     'GUID는 대상을 구분하는 식별 값이다. 이 값은 로그온 감사 하위 범주를 가리킨다. /subcategory: 뒤에 변수의 값을 전달한다. 중괄호는 여기서 식별자 문자열의 일부다.',
+     '로그온 항목에 성공과 실패 감사가 모두 표시되는지 확인한다. 한쪽이 빠지면 해당 결과의 이벤트가 기대대로 남지 않을 수 있다. 변경 전에 현재 값을 기록한다.'),
+ p('Microsoft Defender는 악성 행위를 탐지하거나 차단하는 Windows 보호 기능이다. Get-MpComputerStatus는 보호 기능의 현재 상태를 읽는다.'),
+ cmd('C01-07',GUEST,
+     'Get-MpComputerStatus | Select-Object `\n  IsTamperProtected,RealTimeProtectionEnabled,`\n  BehaviorMonitorEnabled',
+     '백틱(`)은 PowerShell에서 다음 줄로 명령을 이어 준다. 각 줄 끝의 백틱 뒤에 공백을 붙이지 않는다. 세 속성은 변조 방지, 실시간 보호, 행위 감시 상태다.',
+     '확인한 환경에서는 세 값이 모두 True였다. 자신의 값을 기록한다. 로그 수집 준비를 확인하는 동안 이 상태를 유지한다.'),
+ p('보호 기능이 실행을 막아도 차단 이전의 활동이나 Defender의 탐지·조치 기록이 남을 수 있다. 이후 실습에서 예상한 실행 결과와 보호 기능의 차단 결과를 구분해 조사한다.'))
+
+page('로그온 성공 이벤트 한 건 읽기',
+ p('이미 남아 있는 로그온 기록으로 필드를 읽는다. 4624는 성공한 로그온 세션에 관한 이벤트다. 사용자 로그인뿐 아니라 서비스 등 정상 활동으로도 발생한다. 최신 한 건이 방금 수행한 작업이라고 단정하지 않고 시각과 계정을 읽는다.'),
+ cmd('C01-08',GUEST,
+     "$filter = @{ LogName = 'Security'; Id = 4624 }\n$event = Get-WinEvent -FilterHashtable $filter `\n  -MaxEvents 1\n$event | Format-List TimeCreated,Id,RecordId,Message",
+     '@{ }는 이름과 값을 묶은 해시 테이블이다. 세미콜론(;)은 LogName과 Id 항목을 구분한다. -FilterHashtable은 이 조건으로 조회하고 -MaxEvents 1은 최신 한 건을 반환한다. Format-List는 선택한 속성을 항목별로 펼쳐 표시한다.',
+     'TimeCreated·Id·RecordId를 적고 Message에서 새 로그온 계정과 로그온 유형을 읽는다. 일치하는 이벤트가 없으면 감사 상태·실제 로그온 발생·채널을 순서대로 확인한다.'),
+ p('Message의 주체 계정은 로그온을 요청한 쪽의 보안 문맥이다. 새 로그온 계정은 만들어진 세션의 계정이다. 둘이 다르면 어느 항목을 읽는지 구분한다. 계정 이름만 복사하면 주체와 대상을 뒤바꾸기 쉽다.'),
+ p('Get-WinEvent의 읽기 결과는 화면에 표시되며 $event에도 남는다. 파일이나 이벤트 로그는 변경하지 않는다. 다음 절에서도 같은 PowerShell 창을 사용한다.'))
+
+page('원본 XML에서 필드 찾기',
+ p('XML은 이름이 붙은 요소와 속성으로 데이터를 표현하는 형식이다. 이벤트의 System에는 공급자·시각·채널 등 공통 정보가, EventData에는 사건별 값이 담긴다. 표시 문장의 번역과 별개로 원본 필드 이름을 확인할 수 있다.'),
+ cmd('C01-09',GUEST,'$event.ToXml()',
+     '마침표(.) 뒤의 ToXml은 이벤트 객체를 XML 문자열로 바꾸는 메서드다. 괄호( )는 이 메서드의 호출이며 이번에는 인수를 넣지 않는다. 앞 절의 $event를 사용한다.',
+     'System의 EventID·EventRecordID·Computer와 EventData의 TargetUserName·LogonType을 찾는다. 창을 새로 열었다면 C01-08을 먼저 수행한다.'),
+ h('Security 기록 9115의 주요 값'),
+ code('<EventID>4624</EventID>\n<EventRecordID>9115</EventRecordID>\n<Channel>Security</Channel>\n<Computer>KT66-WIN-01</Computer>\n<Data Name="TargetUserName">kt66student</Data>\n<Data Name="LogonType">8</Data>'),
+ p('Data 요소의 Name 속성이 필드 이름이며 태그 사이가 값이다. 위 기록의 ProcessName은 C:\\Program Files\\OpenSSH\\sshd.exe이다. 이 프로그램 경로는 로그인 처리에 관여한 프로세스를 확인하는 근거가 된다.'),
+ p('독자의 RecordId와 시각은 실행 때마다 달라진다. 책의 번호를 찾는 대신 자신의 이벤트 번호를 적어 다음 Wazuh 대조에 사용한다.'))
+
+page('Windows 필드와 Wazuh 필드 연결하기',
+ p('Wazuh는 Windows 이벤트의 공통 정보를 data.win.system 아래에, 사건별 값을 data.win.eventdata 아래에 둔다. 마침표는 중첩된 필드의 경로를 나타낸다. Windows XML의 이름과 Wazuh 필드의 대소문자를 각각 확인한다.'),
+ table(['Windows 원본','Wazuh 경로'],[
+     ['System / EventID','data.win.system.eventID'],
+     ['System / EventRecordID','data.win.system.eventRecordID'],
+     ['System / Channel','data.win.system.channel'],
+     ['System / Computer','data.win.system.computer'],
+     ['System / TimeCreated의 SystemTime','data.win.system.systemTime'],
+     ['EventData / TargetUserName','data.win.eventdata.targetUserName'],
+     ['EventData / LogonType','data.win.eventdata.logonType'],
+     ['EventData / ProcessName','data.win.eventdata.processName']], [48,79]),
+ p('위 Security 기록의 원본 시각은 2026-11-03T01:32:12.0920342Z이다. Z는 UTC를 뜻하므로 한국 시각은 같은 날 10시 32분 12초다. Wazuh 경보의 timestamp는 2026-11-03T01:32:13.124+0000으로 약 1초 뒤였다.'),
+ p('systemTime은 원본 이벤트 시각이고 timestamp는 Wazuh 경보에 기록된 시각이다. 두 값이 항상 같지는 않다. 시간대와 지연을 고려해 검색 구간을 정하고, 채널·컴퓨터·기록 번호를 함께 대조한다.'))
+
+page('규칙 제목과 로그온 유형 해석하기',
+ p('기록 9115에 적용된 Wazuh 규칙은 60200이며 제목은 IIS NetworkCleartext Logon Success였다. 그러나 원본 ProcessName은 OpenSSH의 sshd.exe였다. 규칙 제목에 IIS가 있다고 해서 IIS 접속이라고 결론 내릴 수 없다.'),
+ table(['로그온 유형','의미','함께 확인할 값'],[
+     ['2','대화형 로그온','계정·컴퓨터·시각'],
+     ['3','네트워크 로그온','인증 패키지·원본 주소'],
+     ['8','NetworkCleartext','로그온 프로세스·프로그램 경로'],
+     ['9','새 자격증명','명시적 자격증명 관련 기록'],
+     ['10','원격 대화형 로그온','RDP 관련 기록·원본 주소']], [23,44,60]),
+ p('유형 8은 인증 패키지에 전달되는 자격증명의 형태와 관련된 분류다. 이 값만으로 네트워크에서 암호가 평문으로 전송됐다고 판단하지 않는다. 실제 사용한 프로토콜과 프로그램을 확인한다. 여기서는 OpenSSH를 통한 관리 접속 기록과 일치한다.'),
+ p('유형 3도 SMB 전용 표시는 아니다. 원격 인증 과정에서 여러 서비스가 이 유형을 사용할 수 있다. 유형 10은 원격 대화형 세션의 단서이지만 접속자가 공격자인지는 계정·출발지·시각과 앞뒤 활동으로 조사한다.'),
+ p('이 사례에서 확정할 수 있는 것은 KT66-WIN-01에 kt66student의 성공 로그온이 기록됐다는 사실이다. 경보 제목, 계정, 유형 중 하나만으로 침해 여부를 결정하지 않는다.'))
+
+page('Sysmon 프로세스 이벤트 읽기',
+ p('Sysmon 이벤트 1에는 새로 만들어진 프로세스의 경로·명령줄·사용자와 부모 프로세스가 들어간다. 경로가 같아도 인수와 부모가 다르면 실행 목적이 달라질 수 있다. 먼저 최신 기록 한 건의 전체 메시지를 읽는다.'),
+ cmd('C01-10',GUEST,
+     "$sysmon = 'Microsoft-Windows-Sysmon/Operational'\n$filter = @{ LogName = $sysmon; Id = 1 }\n$processEvent = Get-WinEvent `\n  -FilterHashtable $filter -MaxEvents 1\n$processEvent |\n  Format-List TimeCreated,Id,RecordId,Message",
+     '긴 채널 이름을 $sysmon에 담고 해시 테이블의 LogName 값으로 사용한다. $processEvent는 Security 이벤트를 담은 $event와 별개이므로 두 기록을 구분해 읽을 수 있다.',
+     'Image·CommandLine·User·ParentImage를 찾는다. 조회에 사용한 PowerShell이나 정상 관리 프로그램의 기록이 나올 수도 있다. 자신의 실제 값을 적는다.'),
+ p('Image는 실행 파일 경로, CommandLine은 인수를 포함한 명령줄이다. ParentImage는 이 프로세스를 만든 부모의 경로다. User는 해당 프로세스의 실행 계정이다. 한 필드만 보기보다 이 네 값을 묶어 해석한다.'),
+ p('ProcessGuid는 프로세스 생성 인스턴스를 연관시키는 식별자다. Windows는 종료된 프로세스의 숫자 PID를 나중에 다시 사용할 수 있다. 서로 다른 시각의 같은 PID를 자동으로 같은 프로세스로 연결하지 않는다.'))
+
+page('이름이 비슷한 프로세스 ID 구분하기',
+ p('Sysmon 이벤트에도 System의 Execution ProcessID와 EventData의 ProcessId가 함께 들어간다. 전자는 이벤트를 생성한 실행 문맥의 프로세스 ID이고, 후자는 이 이벤트가 관찰한 새 프로세스의 ID다. Wazuh의 필드 경로도 다르다.'),
+ cmd('C01-11',GUEST,'$processEvent.ToXml()',
+     'C01-10에서 읽은 Sysmon 이벤트를 XML로 표시한다. System의 Execution 속성과 EventData 안의 ProcessId를 각각 찾는다.',
+     '두 값이 다를 수 있다. 관찰 대상 프로그램의 PID를 찾을 때는 EventData의 ProcessId와 Image를 함께 읽는다.'),
+ table(['기록 6744의 항목','실제 값'],[
+     ['System / Execution ProcessID','4440'],
+     ['EventData / ProcessId','8752'],
+     ['EventData / Image','C:\\Windows\\System32\\sdbinst.exe'],
+     ['EventData / ParentImage','C:\\Windows\\System32\\svchost.exe']], [61,66]),
+ p('이 기록에서 Wazuh의 data.win.system.processID는 4440이고 data.win.eventdata.processId는 8752였다. ID와 Id의 대소문자도 다르다. sdbinst.exe의 실행을 조사할 때 4440을 대상 PID로 쓰면 다른 문맥을 조사하게 된다.'),
+ p('Wazuh는 이 실행에 규칙 92058과 레벨 12를 적용했다. 명령줄은 sdbinst.exe -m -bg였고 부모 명령줄에는 PcaSvc가 있었다. 이 정보만으로 악성 호환성 데이터베이스 설치를 확정할 수 없다. 실행 계기·인수·관련 파일과 변경 기록을 추가로 확인한다.'))
+
+page('에이전트가 읽는 채널 확인하기',
+ p('Windows에 이벤트가 남아 있어도 Wazuh 에이전트의 수집 대상에서 제외돼 있으면 매니저에 전달되지 않는다. ossec.conf는 에이전트 설정 파일이다. Test-Path로 실제 경로를 확인한 뒤 Get-Content로 내용을 읽는다.'),
+ cmd('C01-12',GUEST,
+     "$agentDir = 'C:\\Program Files (x86)\\ossec-agent'\nTest-Path -LiteralPath \"$agentDir\\ossec.conf\"\nGet-Content -LiteralPath \"$agentDir\\ossec.conf\"",
+     '-LiteralPath는 경로를 와일드카드로 해석하지 않고 그대로 사용한다. 큰따옴표 안의 $agentDir는 변수 값으로 바뀐다. 공백이 있는 경로 전체를 따옴표로 감싼다.',
+     'Test-Path가 True일 때 내용을 읽는다. False면 설치 경로와 파일 존재 여부부터 확인한다. localfile 블록의 location·log_format·query를 찾는다.'),
+ code('<localfile>\n  <location>Microsoft-Windows-Sysmon/Operational</location>\n  <log_format>eventchannel</log_format>\n</localfile>'),
+ p('location은 읽을 채널, eventchannel은 Windows 이벤트 채널을 수집하는 형식이다. 설정된 Security·System·Sysmon·PowerShell 채널을 앞에서 확인한 실제 채널과 대조한다. 위 코드는 현재 설정을 읽을 때 찾을 Sysmon 블록의 형태다.'),
+ p('Security 블록의 query에는 XPath 조건이 있다. XPath는 XML에서 필요한 요소를 고르는 표현식이다. Event/System[...]의 대괄호 안이 선택 조건이며, !=는 같지 않음, and는 조건을 모두 만족함을 뜻한다. 이 설정은 EventID != 5156처럼 일부 ID를 제외하고, 4624는 이 제외 목록에 없다.'),
+ p('채널 이름과 필터 조건을 함께 대조한다. 특정 기록이 제외된다면 수집 대상 채널에 원본이 존재해도 그 기록은 이 경로로 전송되지 않는다.'))
+
+page('연결 로그와 매니저 상태 확인하기',
+ p('ossec.log는 에이전트 자신의 동작 로그다. 수집 대상의 Windows 이벤트와 다르다. 접속 오류나 채널 읽기 오류가 반복되는지 확인할 때 사용한다.'),
+ cmd('C01-13',GUEST,
+     'Get-Content -LiteralPath "$agentDir\\ossec.log" `\n  -Tail 20',
+     'C01-12에서 설정한 $agentDir를 사용한다. -Tail 20은 파일 끝의 20줄만 표시한다. 이 명령은 파일을 계속 감시하지 않고 한 번 읽어 끝난다.',
+     '최근 시각의 연결·수집 메시지를 읽는다. 오래된 성공 메시지와 현재 오류를 구분한다. 파일이 없으면 경로와 서비스 상태부터 확인한다.'),
+ p('kt66-siem은 Wazuh 매니저 컨테이너다. kt66 호스트에서 Docker의 exec로 실행 중인 컨테이너 안의 셸을 연다. -i는 입력을 연결하고 -t는 터미널을 할당한다. /bin/bash는 사용할 셸의 경로다.'),
+ cmd('C01-14',HOST,
+     'sudo docker exec -it kt66-siem /bin/bash',
+     '앞서 확인한 kt66 Ubuntu VM의 터미널에서 실행한다. 진입 후에는 다음 명령을 매니저 컨테이너 안에서 입력한다.',
+     '프롬프트가 컨테이너의 셸로 바뀌는지 확인한다.'),
+ cmd('C01-15','kt66-siem 컨테이너의 Bash',
+     '/var/ossec/bin/agent_control -l\nexit',
+     'agent_control은 매니저가 관리하는 에이전트를 확인하는 도구다. -l은 전체 목록을 표시한다. 읽은 뒤 exit로 셸을 닫고 kt66 호스트로 돌아온다.',
+     'windows-user가 Active인지 확인한다. Active는 매니저 연결 상태이며 모든 채널의 전송 성공을 보장하지 않는다.'))
+
+page('Wazuh에서 같은 범위 검색하기',
+ p('1권에서 사용한 Wazuh Discover를 Windows PC 브라우저에서 연다. 경보 데이터 보기 wazuh-alerts-*와 DQL 모드를 선택한다. 검색 기간은 자신이 읽은 이벤트 시각을 포함하도록 지정한다. 예시 기록을 비교할 때는 2026년 11월 3일의 해당 시각을 포함해야 한다.'),
+ p('DQL은 표시할 문서를 고르는 검색식이다. 콜론(:)은 필드와 조건 값을 연결하고 큰따옴표는 문자열을 묶는다. AND는 양쪽 조건을 모두 만족하는 문서를 고른다. 먼저 에이전트를 고른 뒤 채널과 사건 종류를 더한다.'),
+ query('Q01-01','agent.name:"windows-user"',
+     '에이전트 이름을 정확하게 지정한다. 자신의 환경에서 이름이 다르면 에이전트 목록에 표시된 값으로 바꾼다.',
+     '결과에서 agent.name과 data.win.system.computer를 함께 확인한다. 검색 결과가 없으면 시간 범위와 에이전트 이름부터 확인한다.'),
+ query('Q01-02',
+     'agent.name:"windows-user" AND\ndata.win.system.channel:"Security" AND\ndata.win.system.eventID:"4624"',
+     'Security 채널의 성공 로그온으로 범위를 좁힌다. 각 줄은 하나의 검색식에 포함되는 조건이며 셸 명령이 아니다.',
+     '이벤트를 펼쳐 computer·eventRecordID·systemTime과 targetUserName·logonType을 읽는다. Windows에서 적은 기록과 대조한다.'),
+ p('원본 이벤트가 Wazuh 경보로 저장되려면 수집·분석·경보 저장 조건을 통과해야 한다. Windows에 있는 모든 이벤트가 wazuh-alerts-*에 같은 수로 나타난다고 기대하지 않는다.'))
+
+page('기록 번호로 좁혀 대조하기',
+ p('원본과 비교할 때는 기록 번호에 컴퓨터와 채널을 함께 붙인다. 아래 검색식의 9115는 책에서 읽은 기록 번호다. 자신의 C01-08 결과에 나온 RecordId로 바꾼다.'),
+ query('Q01-03',
+     'agent.name:"windows-user" AND\ndata.win.system.computer:"KT66-WIN-01" AND\ndata.win.system.channel:"Security" AND\ndata.win.system.eventRecordID:"9115"',
+     '같은 컴퓨터의 같은 채널에서 해당 기록 번호를 고른다. 화면의 검색 기간도 원본 시각에 맞춘다.',
+     'eventID 4624, targetUserName, logonType, systemTime이 원본과 일치하는지 확인한다. 값이 다르면 번호만 같고 다른 기록인지 조사한다.'),
+ query('Q01-04',
+     'agent.name:"windows-user" AND\ndata.win.system.channel:\n"Microsoft-Windows-Sysmon/Operational" AND\ndata.win.system.eventID:"1"',
+     'Sysmon 프로세스 생성 경보를 찾는다. 결과의 Image에 해당하는 Wazuh 필드는 data.win.eventdata.image다.',
+     'image·commandLine·parentImage와 이벤트 시각을 비교한다. 레벨과 규칙 제목은 적용된 탐지 조건을 읽는 자료로 사용한다.'),
+ p('이 환경에서 agent.ip는 172.30.70.2였다. 내부 접속 대상 10.20.70.10은 Windows를 실행하는 컨테이너 측 주소다. 주소가 다르다는 이유만으로 다른 컴퓨터라고 판단하지 말고 agent.name·computer·채널·시각을 함께 확인한다.'))
+
+page('검색 결과가 없을 때 확인할 순서',
+ image('troubleshoot','그림 1-5  이벤트 생성부터 검색까지의 점검 구간'),
+ p('첫째, Windows에서 같은 채널과 이벤트 종류가 실제로 존재하는지 확인한다. 없다면 감사 정책·Sysmon 필터·해당 활동의 발생 여부를 점검한다. 조회 권한 오류는 이벤트 0건과 다르므로 관리자 PowerShell인지 확인한다.'),
+ p('둘째, 이벤트가 있으면 ossec.conf의 채널과 query 조건을 대조한다. 다음으로 WazuhSvc와 ossec.log, 매니저의 에이전트 상태를 확인한다. 연결이 끊겼다면 IP·서비스·통신 경로를 조사한다.'),
+ p('셋째, Wazuh의 데이터 보기·시간대·기간을 확인하고 검색 조건을 agent.name 하나까지 줄인다. 매니저가 받은 이벤트가 경보 조건을 만족했는지도 확인한다. 원본 이벤트 수와 경보 수의 차이를 곧바로 전송 손실로 계산하지 않는다.'),
+ p('수집 중단이나 필터 누락이 확인되면 조치 전 설정과 오류 시각을 기록한다. 수정은 문제가 있는 구간으로 한정하고, 같은 종류의 정상 기록이 다시 도착하는지 확인한다. 로그 전체 삭제나 보안 기능 해제로 수집 문제를 우회하지 않는다.'))
+
+page('확인 결과 기록과 원상복구',
+ p('조사 기록에는 대상·입력·시각·관찰·판정을 나누어 적는다. 값이 다르다는 이유만으로 실패로 표시하지 말고 그 값이 다른 대상이나 다른 시각을 가리키는지 먼저 확인한다.'),
+ table(['기록 항목','이번 환경의 예시'],[
+     ['대상','KT66-WIN-01 / windows-user'],
+     ['서비스','WazuhSvc·Sysmon64·osqueryd 실행 중'],
+     ['Security 원본','4624 / RecordId 9115 / 유형 8'],
+     ['대조 근거','컴퓨터·채널·기록 번호·시각 일치'],
+     ['판정','성공 로그온 수집 확인. 침해 여부는 별도 조사'],
+     ['후속 확인','계정 사용 목적·접속 프로그램·앞뒤 활동']], [35,92]),
+ h('원상복구'),
+ p('이 장의 입력은 상태와 로그를 읽는다. 열어 둔 컨테이너 셸에서는 exit로 나오고, PowerShell 창을 닫는다. 창을 닫으면 $event 등 세션 변수도 사라진다. 저장소의 기록 양식에 확인 결과를 남긴다.'),
+ p('조회와 관리 접속 자체도 정상 활동 로그를 남길 수 있다. 확인 후 Security·Sysmon 로그를 지우지 않는다. 실습 전에 적어 둔 Defender 상태와 서비스 상태가 유지되는지 C01-04·C01-07로 다시 확인한다.'),
+ art('field-check','그림 1-6  수집 상태를 확인하고 조사 기록에 남기는 작업',56))
+
+page('점검 문제',
+ h('문제 1'),
+ p('Windows 이름은 KT66-WIN-01인데 Wazuh의 agent.name은 windows-user이다. 다른 장비의 이벤트라고 판단해도 되는가? 어떤 값을 추가로 확인해야 하는가?'),
+ h('문제 2'),
+ p('규칙 제목에 IIS가 있고 logonType이 8이다. 원본 ProcessName은 sshd.exe이다. 이 기록만으로 IIS에서 암호가 평문 전송됐다고 결론 내릴 수 있는가?'),
+ h('문제 3'),
+ p('Sysmon 이벤트의 data.win.system.processID가 4440이고 data.win.eventdata.processId가 8752이다. 이벤트에 기록된 sdbinst.exe를 조사할 때 어느 값을 선택하는가?'),
+ h('해설'),
+ p('1. 서로 다른 역할의 이름이다. computer·agent.name·채널·기록 번호와 시각을 연결해 대조한다. 내부 접속 주소와 agent.ip도 네트워크 계층에 따라 다를 수 있다.'),
+ p('2. 결론 내릴 수 없다. 프로그램 경로와 실제 접속 프로토콜을 조사한다. 유형 8과 규칙 제목만으로 IIS 사용이나 네트워크 평문 전송을 확정하지 않는다.'),
+ p('3. 관찰 대상 프로세스는 EventData의 8752이다. System의 4440은 이벤트를 생성한 실행 문맥에 속한다. PID는 재사용될 수 있으므로 컴퓨터·시각·ProcessGuid를 함께 확인한다.'),
+ p('다음 장에서는 수집 준비가 확인된 환경에서 로그온 실패·계정 열거·잠금과 원격 접속 성공을 연결한다. 실패 횟수를 세는 데서 멈추지 않고 실패 사유와 이후 성공 여부까지 조사한다.'))
+
+page('참고자료',
+ p('기준 환경은 kt66 커밋 63d4180b1d6866de986ef263a3bd831d6082b5d5이다. 아래 자료에서 Windows 구성과 이벤트의 의미를 확인할 수 있다.'),
+ link('Module 01 강의 슬라이드 Windows 위협 기초 및 준비 자료',
+      'https://docs.google.com/presentation/d/1o0H_2DDHBp8p2HvlSnEPbx6-jdURYzew'),
+ link('kt66 Windows 실습 환경 설명',
+      'https://github.com/mrgrit/kt66/blob/63d4180b1d6866de986ef263a3bd831d6082b5d5/docs/WINDOWS-ENDPOINT.ko.md'),
+ link('kt66 Windows 설치 진입 스크립트',
+      'https://github.com/mrgrit/kt66/blob/63d4180b1d6866de986ef263a3bd831d6082b5d5/endpoints/windows/oem/install.ps1'),
+ link('kt66 Windows 센서 준비 스크립트',
+      'https://github.com/mrgrit/kt66/blob/63d4180b1d6866de986ef263a3bd831d6082b5d5/endpoints/windows/oem/sensors.ps1'))
+
+page('참고자료 계속',
+ link('Microsoft Learn Get-WinEvent',
+      'https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent?view=powershell-5.1'),
+ link('Microsoft Learn auditpol get',
+      'https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/auditpol-get'),
+ link('Microsoft Learn 이벤트 4624',
+      'https://learn.microsoft.com/windows/security/threat-protection/auditing/event-4624'),
+ link('Microsoft Sysinternals Sysmon',
+      'https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon'),
+ link('Wazuh Log data collection configuration',
+      'https://documentation.wazuh.com/current/user-manual/capabilities/log-data-collection/configuration.html'))
+
+def main():
+    data={'title':'Windows 실습 환경과 로그 수집','series':'해킹·침해대응 실무 with Wazuh 2권',
+          'comments':'2026-11-03 초안. 가동 중인 Windows의 읽기 조회와 원본·Wazuh 경보 대조. 신규 설치·공격·DQL UI 실행 미검증. 신규 UI 촬영 없음.',
+          'pages':pages}
+    (ROOT/'manuscript/volume02-chapter01.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf8',newline='\n')
+    ex=ROOT/'examples/chapter01';ex.mkdir(parents=True,exist_ok=True)
+    manifest=[]
+    for pg in pages:
+        for b in pg['blocks']:
+            if b['type'] not in ('command','query'):continue
+            suffix='.dql' if b['type']=='query' else '.txt'
+            target=b['id']+suffix
+            (ex/target).write_text(b['text']+'\n',encoding='utf8',newline='\n')
+            manifest.append({'id':b['id'],'file':target,'where':b['where'],'chapter_section':pg['title'],'input':b['text']})
+    (ex/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf8',newline='\n')
+    rows=['# 1장 복사용 예제','','본문 순서에 맞춰 각 파일의 명령을 한 줄 또는 한 명령 블록씩 입력한다. 전체 실습을 자동 실행하는 스크립트가 아니다. 실행 위치와 선행 변수는 본문에서 먼저 확인한다.','','- C01-01·14: kt66 Ubuntu VM.','- C01-15: C01-14로 들어간 kt66-siem 컨테이너. exit로 나온다.','- 나머지 C01: Windows **실습 게스트**의 관리자 PowerShell. 독자의 Windows PC와 구분한다.','- C01-09는 C01-08의 $event, C01-11은 C01-10의 $processEvent, C01-13은 C01-12의 $agentDir를 같은 창에서 사용한다.','- Q01: Wazuh Discover의 DQL 검색창. 명령 셸에서 실행하지 않는다.','- Q01-03의 기록 번호·컴퓨터 이름은 자신의 관찰 값으로 바꾼다. 검색 기간도 맞춘다.','','| 파일 | 실행 위치 |','|---|---|']
+    rows += [f"| [{x['file']}]({x['file']}) | {x['where']} |" for x in manifest]
+    rows += ['','검증 범위는 [저자용 기록](../../editorial/chapter01-review.md)을 참조한다. 신규 설치·공격·DQL UI 검증은 수행하지 않았다.']
+    (ex/'README.md').write_text('\n'.join(rows)+'\n',encoding='utf8',newline='\n')
+    (ex/'observation-template.md').write_text('# 1장 관찰 기록\n\n- 확인 시각과 시간대:\n- Windows 컴퓨터와 계정:\n- Wazuh 에이전트 이름:\n- 서비스·채널·감사 상태:\n- Defender 상태:\n- 원본 채널·공급자·이벤트 ID·기록 번호:\n- 원본 시각과 Wazuh 시각:\n- 계정 또는 프로세스 핵심 값:\n- 일치한 값과 확인되지 않은 값:\n- 관찰로 확인한 사실:\n- 추가 조사할 항목:\n- 종료 후 서비스·보호 상태:\n',encoding='utf8',newline='\n')
+    print(len(pages),'source sections;',len(manifest),'copy examples')
+
+if __name__=='__main__':main()

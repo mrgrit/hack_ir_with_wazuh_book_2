@@ -1,0 +1,116 @@
+[
+  {
+    "timestamp": "2026-11-03T01:02:13.211+0000",
+    "agent": {
+      "id": "005",
+      "name": "windows-user",
+      "ip": "172.30.70.2"
+    },
+    "rule": {
+      "id": "92058",
+      "level": 12,
+      "description": "Application Compatibility Database launched"
+    },
+    "data": {
+      "win": {
+        "system": {
+          "providerName": "Microsoft-Windows-Sysmon",
+          "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+          "eventID": "1",
+          "version": "5",
+          "level": "4",
+          "task": "1",
+          "opcode": "0",
+          "keywords": "0x8000000000000000",
+          "systemTime": "2026-11-03T01:02:12.3905252Z",
+          "eventRecordID": "6744",
+          "processID": "4440",
+          "threadID": "5056",
+          "channel": "Microsoft-Windows-Sysmon/Operational",
+          "computer": "KT66-WIN-01",
+          "severityValue": "INFORMATION"
+        },
+        "eventdata": {
+          "utcTime": "2026-11-03 01:02:12.381",
+          "processGuid": "{af6e9a1f-3294-6ae9-8c03-000000000300}",
+          "processId": "8752",
+          "image": "C:\\\\Windows\\\\System32\\\\sdbinst.exe",
+          "fileVersion": "10.0.26100.1301 (WinBuild.160101.0800)",
+          "description": "Application Compatibility Database Installer",
+          "product": "Microsoft® Windows® Operating System",
+          "company": "Microsoft Corporation",
+          "originalFileName": "sdbinst.exe",
+          "commandLine": "C:\\\\WINDOWS\\\\System32\\\\sdbinst.exe -m -bg",
+          "currentDirectory": "C:\\\\WINDOWS\\\\system32\\\\",
+          "user": "NT AUTHORITY\\\\SYSTEM",
+          "logonGuid": "{af6e9a1f-6c2e-6ae8-e703-000000000000}",
+          "logonId": "0x3e7",
+          "terminalSessionId": "0",
+          "integrityLevel": "System",
+          "hashes": "MD5=9B29824A91F35B25CA95613264B30AB9,SHA256=C666DCF6B410A239B6D17122424ABED819A8B8372248B469A73FC11D1E1E2762,IMPHASH=2946BAC02F0097C89E6692739186C303",
+          "parentProcessGuid": "{af6e9a1f-7bbc-6ae8-6e01-000000000300}",
+          "parentProcessId": "5656",
+          "parentImage": "C:\\\\Windows\\\\System32\\\\svchost.exe",
+          "parentCommandLine": "C:\\\\WINDOWS\\\\system32\\\\svchost.exe -k LocalSystemNetworkRestricted -p -s PcaSvc",
+          "parentUser": "NT AUTHORITY\\\\SYSTEM"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-11-03T01:32:13.124+0000",
+    "agent": {
+      "id": "005",
+      "name": "windows-user",
+      "ip": "172.30.70.2"
+    },
+    "rule": {
+      "id": "60200",
+      "level": 3,
+      "description": "IIS NetworkCleartext Logon Success"
+    },
+    "data": {
+      "win": {
+        "system": {
+          "providerName": "Microsoft-Windows-Security-Auditing",
+          "providerGuid": "{54849625-5478-4994-a5ba-3e3b0328c30d}",
+          "eventID": "4624",
+          "version": "3",
+          "level": "0",
+          "task": "12544",
+          "opcode": "0",
+          "keywords": "0x8020000000000000",
+          "systemTime": "2026-11-03T01:32:12.0920342Z",
+          "eventRecordID": "9115",
+          "processID": "916",
+          "threadID": "1008",
+          "channel": "Security",
+          "computer": "KT66-WIN-01",
+          "severityValue": "AUDIT_SUCCESS"
+        },
+        "eventdata": {
+          "subjectUserSid": "S-1-5-18",
+          "subjectUserName": "KT66-WIN-01$",
+          "subjectDomainName": "WORKGROUP",
+          "subjectLogonId": "0x3e7",
+          "targetUserSid": "S-1-5-21-3937859836-2530084332-1215515481-1000",
+          "targetUserName": "kt66student",
+          "targetDomainName": "KT66-WIN-01",
+          "targetLogonId": "0x194d15f",
+          "logonType": "8",
+          "logonProcessName": "Advapi",
+          "authenticationPackageName": "Negotiate",
+          "workstationName": "KT66-WIN-01",
+          "logonGuid": "{00000000-0000-0000-0000-000000000000}",
+          "keyLength": "0",
+          "processId": "0x169c",
+          "processName": "C:\\\\Program Files\\\\OpenSSH\\\\sshd.exe",
+          "impersonationLevel": "%%1833",
+          "virtualAccount": "%%1843",
+          "targetLinkedLogonId": "0x0",
+          "elevatedToken": "%%1842"
+        }
+      }
+    }
+  }
+]

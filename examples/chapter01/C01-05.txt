@@ -1,0 +1,5 @@
+$channels = 'Security', 'System',
+  'Microsoft-Windows-Sysmon/Operational',
+  'Microsoft-Windows-PowerShell/Operational'
+Get-WinEvent -ListLog $channels |
+  Select-Object LogName,IsEnabled,RecordCount

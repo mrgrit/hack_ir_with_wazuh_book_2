@@ -1,0 +1,261 @@
+{
+  "source_url": "https://docs.google.com/presentation/d/1o0H_2DDHBp8p2HvlSnEPbx6-jdURYzew",
+  "source_sha256": "21c35b306bf7b48fd02e9fd81dfe9fdc97e370de6b610f5b3b3a0cc11daf0f03",
+  "source_slide_count": 726,
+  "scope": "Module 01 remaining exercises after volume 1",
+  "exercises": [
+    {
+      "exercise": 31,
+      "chapter": 2,
+      "slide_start_1_based": 349,
+      "source_title": "31 로그온 실패 브루트포스 (4625)",
+      "status": "planned"
+    },
+    {
+      "exercise": 32,
+      "chapter": 2,
+      "slide_start_1_based": 358,
+      "source_title": "32 계정 열거 (없는 계정으로 실패)",
+      "status": "planned"
+    },
+    {
+      "exercise": 33,
+      "chapter": 2,
+      "slide_start_1_based": 367,
+      "source_title": "33 계정 잠금 (4740)",
+      "status": "planned"
+    },
+    {
+      "exercise": 34,
+      "chapter": 2,
+      "slide_start_1_based": 376,
+      "source_title": "34 외부에서 RDP 접속 성공 (4624 / 유형 10)",
+      "status": "planned"
+    },
+    {
+      "exercise": 35,
+      "chapter": 3,
+      "slide_start_1_based": 387,
+      "source_title": "35 Pass-the-Hash 징후 (NTLM 네트워크 로그온)",
+      "status": "planned"
+    },
+    {
+      "exercise": 36,
+      "chapter": 3,
+      "slide_start_1_based": 395,
+      "source_title": "36 명시적 자격증명 로그온 (4648, 횡적 이동)",
+      "status": "planned"
+    },
+    {
+      "exercise": 37,
+      "chapter": 3,
+      "slide_start_1_based": 403,
+      "source_title": "37 계정 생성·관리자 그룹 추가 (4720/4732/4728)",
+      "status": "planned"
+    },
+    {
+      "exercise": 38,
+      "chapter": 7,
+      "slide_start_1_based": 412,
+      "source_title": "38 감사 로그 삭제 (1102/104)",
+      "status": "planned"
+    },
+    {
+      "exercise": 39,
+      "chapter": 4,
+      "slide_start_1_based": 420,
+      "source_title": "39 서비스 설치 (7045/4697, PsExec 등)",
+      "status": "planned"
+    },
+    {
+      "exercise": 40,
+      "chapter": 4,
+      "slide_start_1_based": 430,
+      "source_title": "40 스케줄 작업 생성 (4698)",
+      "status": "planned"
+    },
+    {
+      "exercise": 41,
+      "chapter": 5,
+      "slide_start_1_based": 442,
+      "source_title": "41 PowerShell 난독화·다운로드 실행 (Sysmon 1)",
+      "status": "planned"
+    },
+    {
+      "exercise": 42,
+      "chapter": 5,
+      "slide_start_1_based": 452,
+      "source_title": "42 PowerShell 스크립트 블록 로깅 (4104)",
+      "status": "planned"
+    },
+    {
+      "exercise": 43,
+      "chapter": 6,
+      "slide_start_1_based": 464,
+      "source_title": "43 LSASS 접근 (Sysmon 10, 자격증명 덤프)",
+      "status": "planned"
+    },
+    {
+      "exercise": 44,
+      "chapter": 4,
+      "slide_start_1_based": 473,
+      "source_title": "44 레지스트리 Run 키 지속화 (Sysmon 13)",
+      "status": "planned"
+    },
+    {
+      "exercise": 45,
+      "chapter": 5,
+      "slide_start_1_based": 483,
+      "source_title": "45 LOLBin 악용 (certutil, mshta, regsvr32, rundll32)",
+      "status": "planned"
+    },
+    {
+      "exercise": 46,
+      "chapter": 5,
+      "slide_start_1_based": 491,
+      "source_title": "46 Office 문서에서 자식 프로세스 생성 (매크로)",
+      "status": "planned"
+    },
+    {
+      "exercise": 47,
+      "chapter": 6,
+      "slide_start_1_based": 500,
+      "source_title": "47 수상한 프로세스의 외부 네트워크 연결 (Sysmon 3)",
+      "status": "planned"
+    },
+    {
+      "exercise": 48,
+      "chapter": 6,
+      "slide_start_1_based": 508,
+      "source_title": "48 DNS 질의로 C2·터널링 탐지 (Sysmon 22)",
+      "status": "planned"
+    },
+    {
+      "exercise": 49,
+      "chapter": 7,
+      "slide_start_1_based": 518,
+      "source_title": "49 Windows Defender 탐지·치료 실패 (1116/1117/1118)",
+      "status": "planned"
+    },
+    {
+      "exercise": 50,
+      "chapter": 3,
+      "slide_start_1_based": 527,
+      "source_title": "50 감사 정책 변경·특권 로그온 (4719/4672)",
+      "status": "planned"
+    },
+    {
+      "exercise": 51,
+      "chapter": 8,
+      "slide_start_1_based": 541,
+      "source_title": "51 치명적 취약점 보유 호스트",
+      "status": "planned"
+    },
+    {
+      "exercise": 52,
+      "chapter": 8,
+      "slide_start_1_based": 546,
+      "source_title": "52 특정 CVE 노출 확인",
+      "status": "planned"
+    },
+    {
+      "exercise": 53,
+      "chapter": 8,
+      "slide_start_1_based": 551,
+      "source_title": "53 SCA 보안 설정 점검 실패",
+      "status": "planned"
+    },
+    {
+      "exercise": 54,
+      "chapter": 9,
+      "slide_start_1_based": 558,
+      "source_title": "54 루트킷·숨은 프로세스 (Rootcheck)",
+      "status": "planned"
+    },
+    {
+      "exercise": 55,
+      "chapter": 9,
+      "slide_start_1_based": 565,
+      "source_title": "55 VirusTotal 악성 파일 판정",
+      "status": "planned"
+    },
+    {
+      "exercise": 56,
+      "chapter": 9,
+      "slide_start_1_based": 575,
+      "source_title": "56 ClamAV·백신 탐지",
+      "status": "planned"
+    },
+    {
+      "exercise": 57,
+      "chapter": 10,
+      "slide_start_1_based": 584,
+      "source_title": "57 에이전트 연결 끊김·중지 (탐지 회피)",
+      "status": "planned"
+    },
+    {
+      "exercise": 58,
+      "chapter": 10,
+      "slide_start_1_based": 593,
+      "source_title": "58 Active Response 발동 이력",
+      "status": "planned"
+    },
+    {
+      "exercise": 59,
+      "chapter": 11,
+      "slide_start_1_based": 603,
+      "source_title": "59 Suricata IDS 알림 연계",
+      "status": "planned"
+    },
+    {
+      "exercise": 60,
+      "chapter": 11,
+      "slide_start_1_based": 613,
+      "source_title": "60 MITRE ATT&CK 전술·기법별 보기",
+      "status": "planned"
+    },
+    {
+      "exercise": 61,
+      "chapter": 11,
+      "slide_start_1_based": 620,
+      "source_title": "61 고위험 알림 전체 (일일 점검용)",
+      "status": "planned"
+    },
+    {
+      "exercise": 63,
+      "chapter": 4,
+      "slide_start_1_based": 636,
+      "source_title": "63 실습 ① 공격 실행 — osquery 로 Windows 지속화 흔적 찾기 (1/2)",
+      "status": "planned"
+    }
+  ],
+  "preparation": {
+    "chapter": 1,
+    "slides": [
+      340,
+      341,
+      342
+    ],
+    "status": "draft"
+  },
+  "advanced": [
+    {
+      "chapter": 12,
+      "slides": [
+        645,
+        704
+      ],
+      "meaning": "inclusive primary range",
+      "status": "planned"
+    },
+    {
+      "chapter": 13,
+      "slides": [
+        705,
+        726
+      ],
+      "meaning": "inclusive primary range",
+      "status": "planned"
+    }
+  ]
+}

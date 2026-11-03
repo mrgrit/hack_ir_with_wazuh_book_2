@@ -1,0 +1,3 @@
+$agentDir = 'C:\Program Files (x86)\ossec-agent'
+Test-Path -LiteralPath "$agentDir\ossec.conf"
+Get-Content -LiteralPath "$agentDir\ossec.conf"

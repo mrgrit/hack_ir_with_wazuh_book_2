@@ -1,0 +1,2 @@
+/var/ossec/bin/agent_control -l
+exit
