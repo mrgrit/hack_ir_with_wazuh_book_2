@@ -47,7 +47,7 @@
         },
         {
           "type": "image",
-          "path": "assets/illustrations/chapter01/evidence.png",
+          "path": "assets/illustrations/diversity/v2-c01-evidence.png",
           "caption": "그림 1-1  조사 기록과 수집 자료의 대조",
           "width_mm": 56
         }
@@ -842,7 +842,7 @@
         },
         {
           "type": "image",
-          "path": "assets/illustrations/chapter01/field-check.png",
+          "path": "assets/illustrations/diversity/v2-c01-sensors.png",
           "caption": "그림 1-6  수집 상태를 확인하고 조사 기록에 남기는 작업",
           "width_mm": 56
         }

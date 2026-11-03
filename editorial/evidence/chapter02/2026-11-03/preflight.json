@@ -1,0 +1,61 @@
+{
+  "checked_at": "2026-11-03T02:48:05.542145+00:00",
+  "records": [
+    {
+      "id": "attacker_tools",
+      "command": "sudo -S -p \"\" docker exec kt66-attacker bash -lc 'hostname; command -v hydra xfreerdp xvfb-run; hydra -h | head -n 8; xfreerdp /version'",
+      "stdout": "attacker\n/usr/bin/hydra\n/usr/bin/xfreerdp\n/usr/bin/xvfb-run\nHydra v9.2 (c) 2021 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).\n\nSyntax: hydra [[[-l LOGIN|-L FILE] [-p PASS|-P FILE]] | [-C FILE]] [-e nsr] [-o FILE] [-t TASKS] [-M FILE [-T TASKS]] [-w TIME] [-W TIME] [-f] [-s PORT] [-x MIN:MAX:CHARSET] [-c TIME] [-ISOuvVd46] [-m MODULE_OPT] [service://server[:PORT][/OPT]]\n\nOptions:\n  -R        restore a previous aborted/crashed session\n  -I        ignore an existing restore file (don't wait 10 seconds)\n  -S        perform an SSL connect\n",
+      "stderr": "[11:47:49:679] [89:89] [ERROR][com.freerdp.client.x11] - failed to open display: \n[11:47:49:679] [89:89] [ERROR][com.freerdp.client.x11] - Please check that the $DISPLAY environment variable is properly set.\n",
+      "exit_code": 1
+    },
+    {
+      "id": "attacker_ports",
+      "command": "sudo -S -p \"\" docker port kt66-attacker",
+      "stdout": "22/tcp -> 0.0.0.0:2202\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "identity",
+      "command": "[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new(); hostname.exe; Get-Date -Format o",
+      "stdout": "KT66-WIN-01\r\n2026-11-03T11:47:52.0181531+09:00\r\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "lockout_policy",
+      "command": "[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new(); net.exe accounts",
+      "stdout": "Force user logoff how long after time expires?:       Never\r\nMinimum password age (days):                          0\r\nMaximum password age (days):                          42\r\nMinimum password length:                              0\r\nLength of password history maintained:                None\r\nLockout threshold:                                    5\r\nLockout duration (minutes):                           1\r\nLockout observation window (minutes):                 1\r\nComputer role:                                        WORKSTATION\r\nThe command completed successfully.\r\n\r\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "victim_state",
+      "command": "[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new(); Get-LocalUser -Name victim | Select-Object Name,Enabled,LastLogon; Get-CimInstance Win32_UserAccount -Filter \"Name='victim' AND LocalAccount=True\" | Select-Object Name,Lockout; Get-LocalGroupMember -SID 'S-1-5-32-555' | Select-Object Name",
+      "stdout": "\r\nName   Enabled LastLogon\r\n----   ------- ---------\r\nvictim    True          \r\nvictim                  \r\nKT6...                  \r\n\r\n\r\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "missing_names",
+      "command": "[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new(); Get-LocalUser | Select-Object Name",
+      "stdout": "\r\nName              \r\n----              \r\nAdministrator     \r\nDefaultAccount    \r\nGuest             \r\nkt66student       \r\nvictim            \r\nWDAGUtilityAccount\r\n\r\n\r\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "recent_ids",
+      "command": "[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new(); Get-WinEvent -FilterHashtable @{LogName='Security';Id=4625,4740,4624} -MaxEvents 4 | Select-Object TimeCreated,Id,RecordId",
+      "stdout": "\r\nTimeCreated              Id RecordId\r\n-----------              -- --------\r\n2026-11-03 오전 11:47:49 4624     9796\r\n2026-11-03 오전 11:47:49 4624     9791\r\n2026-11-03 오전 11:47:49 4624     9785\r\n2026-11-03 오전 11:35:38 4624     9685\r\n\r\n\r\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "sensor_state",
+      "command": "[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new(); Get-Service WazuhSvc,Sysmon64 | Select-Object Name,Status; Get-MpComputerStatus | Select-Object IsTamperProtected,RealTimeProtectionEnabled",
+      "stdout": "\r\nName      Status\r\n----      ------\r\nSysmon64 Running\r\nWazuhSvc Running\r\n                \r\n\r\n\r\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ]
+}

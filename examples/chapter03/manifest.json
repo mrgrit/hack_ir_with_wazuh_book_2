@@ -1,0 +1,233 @@
+[
+  {
+    "id": "C03-01",
+    "file": "C03-01.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "3.1  조사 대상과 선행 상태",
+    "input": "hostname\nwhoami.exe\nGet-Service WazuhSvc,Sysmon64,LanmanServer,Seclogon |\n  Format-Table Name,Status\nGet-LocalUser -Name victim | Format-List Name,Enabled"
+  },
+  {
+    "id": "C03-02",
+    "file": "C03-02.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "감사 범주와 시작 시각 기록",
+    "input": "$logon = '{0CCE9215-69AE-11D9-BED3-505054503030}'\n$user = '{0CCE9235-69AE-11D9-BED3-505054503030}'\n$group = '{0CCE9237-69AE-11D9-BED3-505054503030}'\n$policy = '{0CCE922F-69AE-11D9-BED3-505054503030}'\nauditpol.exe /get /subcategory:$logon\nauditpol.exe /get /subcategory:$user\nauditpol.exe /get /subcategory:$group\nauditpol.exe /get /subcategory:$policy"
+  },
+  {
+    "id": "C03-03",
+    "file": "C03-03.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "감사 범주와 시작 시각 기록",
+    "input": "$start = Get-Date\n$start.ToString(\"o\")"
+  },
+  {
+    "id": "C03-04",
+    "file": "C03-04.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "3.2  실습 35 · NTLM 인증 기록 만들기",
+    "input": "net.exe use"
+  },
+  {
+    "id": "C03-05",
+    "file": "C03-05.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "3.2  실습 35 · NTLM 인증 기록 만들기",
+    "input": "net.exe use '\\\\127.0.0.1\\IPC$' /user:victim 'Victim!2026'\nnet.exe use"
+  },
+  {
+    "id": "C03-06",
+    "file": "C03-06.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "Windows 원본과 Wazuh의 NTLM 대조",
+    "input": "$filter = @{LogName='Security';Id=4624;StartTime=$start}\nGet-WinEvent -FilterHashtable $filter -MaxEvents 10 |\n  Format-List TimeCreated,Id,RecordId,Message"
+  },
+  {
+    "id": "Q03-01",
+    "file": "Q03-01.dql",
+    "where": "Windows PC · Wazuh Discover · DQL",
+    "section": "Windows 원본과 Wazuh의 NTLM 대조",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4624\"\nAND data.win.eventdata.logonType:\"3\"\nAND data.win.eventdata.authenticationPackageName:\"NTLM\"\nAND data.win.eventdata.targetUserName:\"victim\""
+  },
+  {
+    "id": "C03-07",
+    "file": "C03-07.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "인증 방식과 접속 출발지 해석",
+    "input": "net.exe use '\\\\127.0.0.1\\IPC$' /delete\nnet.exe use"
+  },
+  {
+    "id": "C03-08",
+    "file": "C03-08.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "LogonUserW 호출 정의 준비",
+    "input": "Add-Type -TypeDefinition @'\nusing System;\nusing System.Runtime.InteropServices;\npublic static class BookLogon {\n [DllImport(\"advapi32.dll\", CharSet=CharSet.Unicode,\n  SetLastError=true)]\n public static extern bool LogonUserW(\n  string user, string domain, string password,\n  int type, int provider, out IntPtr token);\n [DllImport(\"kernel32.dll\", SetLastError=true)]\n public static extern bool CloseHandle(IntPtr handle);\n}\n'@"
+  },
+  {
+    "id": "C03-09",
+    "file": "C03-09.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "새 자격증명 토큰 생성과 정리",
+    "input": "$handle = [IntPtr]::Zero\n$ok = [BookLogon]::LogonUserW(\n 'fakeadmin','CORP','x',9,3,[ref]$handle)\n$ok\nif ($ok) { [BookLogon]::CloseHandle($handle) }\nelse { [Runtime.InteropServices.Marshal]::GetLastWin32Error() }"
+  },
+  {
+    "id": "Q03-02",
+    "file": "Q03-02.dql",
+    "where": "Windows PC · Wazuh Discover · DQL",
+    "section": "새 자격증명 토큰 생성과 정리",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4624\"\nAND data.win.eventdata.logonType:\"9\""
+  },
+  {
+    "id": "C03-10",
+    "file": "C03-10.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "3.3  실습 36 · 명시적 자격증명과 접근 거부",
+    "input": "net.exe use '\\\\127.0.0.1\\C$' /user:victim 'Victim!2026'\nnet.exe use"
+  },
+  {
+    "id": "C03-11",
+    "file": "C03-11.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "3.3  실습 36 · 명시적 자격증명과 접근 거부",
+    "input": "$filter = @{LogName='Security';Id=4648,4624;\n StartTime=$start}\nGet-WinEvent -FilterHashtable $filter -MaxEvents 20 |\n Format-List TimeCreated,Id,RecordId,Message"
+  },
+  {
+    "id": "C03-11A",
+    "file": "C03-11A.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "3.3  실습 36 · 명시적 자격증명과 접근 거부",
+    "input": "$event = Get-WinEvent -LogName Security `\n -FilterXPath '*[System[EventRecordID=10676]]'\n$event.ToXml()"
+  },
+  {
+    "id": "C03-12",
+    "file": "C03-12.txt",
+    "where": "kt66 Ubuntu VM · 터미널",
+    "section": "4648 수집과 경보 인덱스 구분",
+    "input": "sudo docker exec -it kt66-siem /bin/bash"
+  },
+  {
+    "id": "C03-13",
+    "file": "C03-13.txt",
+    "where": "kt66-siem 컨테이너 · Bash",
+    "section": "4648 수집과 경보 인덱스 구분",
+    "input": "grep -n -E 'logall|log_alert_level' /var/ossec/etc/ossec.conf\ngrep -n -A 5 -B 3 archives /etc/filebeat/filebeat.yml\nls -l /var/ossec/logs/archives/archives.json\nexit"
+  },
+  {
+    "id": "Q03-03",
+    "file": "Q03-03.dql",
+    "where": "Windows PC · Wazuh Discover · DQL",
+    "section": "archives에서 수행자와 대상 계정 읽기",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4648\"\nAND data.win.eventdata.targetUserName:\"victim\""
+  },
+  {
+    "id": "C03-14",
+    "file": "C03-14.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "접근 판단과 공유 연결 원상복구",
+    "input": "net.exe use\nnet.exe use '\\\\127.0.0.1\\C$' /delete\nnet.exe use"
+  },
+  {
+    "id": "C03-15",
+    "file": "C03-15.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "3.4  실습 37 · 계정과 관리자 그룹",
+    "input": "Get-LocalUser | Where-Object Name -EQ 'book2_ch03'\nGet-LocalGroupMember -SID 'S-1-5-32-544' |\n Format-List Name,SID"
+  },
+  {
+    "id": "C03-16",
+    "file": "C03-16.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "비활성 계정 생성과 SID 기록",
+    "input": "$secret = Read-Host '실습용 새 암호' -AsSecureString\n$created = New-LocalUser -Name 'book2_ch03' `\n -Password $secret -Disabled `\n -Description 'Book chapter03 temporary lab'\n$created | Format-List Name,Enabled,SID"
+  },
+  {
+    "id": "C03-17",
+    "file": "C03-17.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "비활성 계정 생성과 SID 기록",
+    "input": "Get-LocalUser -SID $created.SID |\n Format-List Name,Enabled,SID\nAdd-LocalGroupMember -SID 'S-1-5-32-544' -Member $created\nGet-LocalGroupMember -SID 'S-1-5-32-544' |\n Format-List Name,SID"
+  },
+  {
+    "id": "C03-18",
+    "file": "C03-18.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "그룹과 계정 원상복구",
+    "input": "Get-LocalGroupMember -SID 'S-1-5-32-544' |\n Format-List Name,SID\nRemove-LocalGroupMember -SID 'S-1-5-32-544' `\n -Member $created\nGet-LocalGroupMember -SID 'S-1-5-32-544' |\n Format-List Name,SID"
+  },
+  {
+    "id": "C03-19",
+    "file": "C03-19.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "그룹과 계정 원상복구",
+    "input": "Get-LocalUser -SID $created.SID |\n Format-List Name,Enabled,SID\nRemove-LocalUser -SID $created.SID\nGet-LocalUser | Where-Object Name -EQ 'book2_ch03'\n$secret.Dispose()"
+  },
+  {
+    "id": "C03-20",
+    "file": "C03-20.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "계정과 그룹 변경 이벤트 연결",
+    "input": "$filter = @{LogName='Security';\n Id=4720,4722,4726,4732,4733;StartTime=$start}\nGet-WinEvent -FilterHashtable $filter -MaxEvents 30 |\n Format-List TimeCreated,Id,RecordId,Message"
+  },
+  {
+    "id": "Q03-04",
+    "file": "Q03-04.dql",
+    "where": "Windows PC · Wazuh Discover · DQL",
+    "section": "계정과 그룹 변경 이벤트 연결",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:(\"4720\" OR \"4722\" OR \"4726\")\nAND data.win.eventdata.targetUserName:\"book2_ch03\""
+  },
+  {
+    "id": "Q03-05",
+    "file": "Q03-05.dql",
+    "where": "Windows PC · Wazuh Discover · DQL",
+    "section": "계정과 그룹 변경 이벤트 연결",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:(\"4732\" OR \"4733\")\nAND data.win.eventdata.targetSid:\"S-1-5-32-544\""
+  },
+  {
+    "id": "C03-21",
+    "file": "C03-21.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "3.5  실습 50 · 감사 정책 변경",
+    "input": "auditpol.exe /get /subcategory:$logon"
+  },
+  {
+    "id": "C03-22",
+    "file": "C03-22.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "3.5  실습 50 · 감사 정책 변경",
+    "input": "auditpol.exe /set /subcategory:$logon /success:disable\nauditpol.exe /get /subcategory:$logon\nauditpol.exe /set /subcategory:$logon /success:enable\nauditpol.exe /get /subcategory:$logon"
+  },
+  {
+    "id": "C03-23",
+    "file": "C03-23.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "4719의 변경 방향 읽기",
+    "input": "$filter = @{LogName='Security';Id=4719;StartTime=$start}\nGet-WinEvent -FilterHashtable $filter -MaxEvents 10 |\n Format-List TimeCreated,Id,RecordId,Message"
+  },
+  {
+    "id": "Q03-06",
+    "file": "Q03-06.dql",
+    "where": "Windows PC · Wazuh Discover · DQL",
+    "section": "4719의 변경 방향 읽기",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4719\""
+  },
+  {
+    "id": "C03-24",
+    "file": "C03-24.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "감사 변경의 조사와 복구 확인",
+    "input": "auditpol.exe /get /subcategory:$logon\nGet-Service WazuhSvc,Sysmon64 | Format-Table Name,Status\nGet-MpComputerStatus |\n Format-List IsTamperProtected,RealTimeProtectionEnabled"
+  },
+  {
+    "id": "Q03-07",
+    "file": "Q03-07.dql",
+    "where": "Windows PC · Wazuh Discover · DQL",
+    "section": "3.6  특수 권한 4672와 로그온 연결",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4672\"\nAND data.win.eventdata.subjectLogonId:\"0x1e38ea7\""
+  },
+  {
+    "id": "Q03-08",
+    "file": "Q03-08.dql",
+    "where": "Windows PC · Wazuh Discover · DQL",
+    "section": "같은 세션의 기록을 함께 찾기",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.computer:\"KT66-WIN-01\"\nAND (data.win.eventdata.subjectLogonId:\"0x1e38ea7\"\n OR data.win.eventdata.targetLogonId:\"0x1e38ea7\")"
+  }
+]

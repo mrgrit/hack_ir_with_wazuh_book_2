@@ -1,0 +1,4 @@
+auditpol.exe /set /subcategory:$logon /success:disable
+auditpol.exe /get /subcategory:$logon
+auditpol.exe /set /subcategory:$logon /success:enable
+auditpol.exe /get /subcategory:$logon

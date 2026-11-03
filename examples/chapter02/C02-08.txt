@@ -1,0 +1,2 @@
+$start = Get-Date
+$start.ToString("o")

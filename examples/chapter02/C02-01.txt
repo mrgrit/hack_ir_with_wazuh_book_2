@@ -1,0 +1,5 @@
+Get-LocalUser -Name victim |
+  Format-List Name,Enabled
+Get-CimInstance Win32_UserAccount `
+  -Filter "Name='victim' AND LocalAccount=True" |
+  Format-List Name,Lockout

@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-03",
+  "artifact": "manuscript/volume02-chapter02.docx",
+  "sha256": "44232d75d2e383f3b30226c624ceefa348a53c62d1539cba5340c571f9263179",
+  "pages": 39,
+  "examples": 36,
+  "screenshots": 6,
+  "diagrams": 4,
+  "illustrations": 2,
+  "full_reference_urls_verified": true,
+  "template_geometry_equal": true,
+  "visual_review": "All 38 first-draft pages inspected, all 29 changed pages in second 40-page render re-inspected, final chapter ending and reference pages re-inspected. Final 39 pages.",
+  "pdf_fonts": [
+    "/BCDEEE+BookkMyungjo-Lt",
+    "/BCDFEE+BookkGothic-Lt",
+    "/BCDGEE+BookkGothic-Lt",
+    "/BCDHEE+BookkMyungjo-Lt",
+    "/BCDIEE+Consolas"
+  ],
+  "execution_scope": "editorial/chapter02-review.md"
+}

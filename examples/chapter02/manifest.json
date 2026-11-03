@@ -1,0 +1,254 @@
+[
+  {
+    "id": "C02-01",
+    "file": "C02-01.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "실습용 계정과 잠금 정책 확인",
+    "input": "Get-LocalUser -Name victim |\n  Format-List Name,Enabled\nGet-CimInstance Win32_UserAccount `\n  -Filter \"Name='victim' AND LocalAccount=True\" |\n  Format-List Name,Lockout"
+  },
+  {
+    "id": "C02-02",
+    "file": "C02-02.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "실습용 계정과 잠금 정책 확인",
+    "input": "net.exe accounts"
+  },
+  {
+    "id": "C02-03",
+    "file": "C02-03.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "감사와 RDP 권한 확인",
+    "input": "$accountAudit = '{0CCE9235-69AE-11D9-BED3-505054503030}'\nauditpol.exe /get /subcategory:$accountAudit\nGet-LocalGroupMember -SID 'S-1-5-32-555' |\n  Format-List Name"
+  },
+  {
+    "id": "C02-04",
+    "file": "C02-04.txt",
+    "where": "kt66 Ubuntu VM · 터미널",
+    "section": "공격자 컨테이너와 도구 준비",
+    "input": "sudo docker exec -it kt66-attacker /bin/bash"
+  },
+  {
+    "id": "C02-05",
+    "file": "C02-05.txt",
+    "where": "kt66-attacker 컨테이너 · Bash",
+    "section": "공격자 컨테이너와 도구 준비",
+    "input": "hostname\ncommand -v hydra xfreerdp xvfb-run timeout"
+  },
+  {
+    "id": "C02-06",
+    "file": "C02-06.txt",
+    "where": "kt66-attacker 컨테이너 · Bash",
+    "section": "실습 파일과 시각 마련하기",
+    "input": "ls -ld /tmp/wazuh-book2-ch02"
+  },
+  {
+    "id": "C02-07",
+    "file": "C02-07.txt",
+    "where": "kt66-attacker 컨테이너 · Bash",
+    "section": "실습 파일과 시각 마련하기",
+    "input": "mkdir /tmp/wazuh-book2-ch02\ncd /tmp/wazuh-book2-ch02\npwd"
+  },
+  {
+    "id": "C02-08",
+    "file": "C02-08.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "실습 파일과 시각 마련하기",
+    "input": "$start = Get-Date\n$start.ToString(\"o\")"
+  },
+  {
+    "id": "C02-09",
+    "file": "C02-09.txt",
+    "where": "kt66-attacker 컨테이너 · Bash",
+    "section": "2.2  실습 31 · 잘못된 암호 입력",
+    "input": "ls -l pw-two.txt\nprintf '%s\\n' Book2WrongA Book2WrongB > pw-two.txt\ncat pw-two.txt"
+  },
+  {
+    "id": "C02-10",
+    "file": "C02-10.txt",
+    "where": "kt66-attacker 컨테이너 · Bash",
+    "section": "2.2  실습 31 · 잘못된 암호 입력",
+    "input": "hydra -l victim -P pw-two.txt -t 1 rdp://10.20.70.10"
+  },
+  {
+    "id": "C02-11",
+    "file": "C02-11.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "Windows 원본에서 실패 사유 읽기",
+    "input": "$filter = @{ LogName='Security'; Id=4625;\n  StartTime=$start }\n$event = Get-WinEvent -FilterHashtable $filter `\n  -MaxEvents 1\n$event | Format-List TimeCreated,Id,RecordId,Message\n$event.ToXml()"
+  },
+  {
+    "id": "Q02-01",
+    "file": "Q02-01.dql",
+    "where": "Windows PC · Wazuh Discover · DQL",
+    "section": "Wazuh에서 같은 실패 찾기",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4625\"\nAND data.win.eventdata.targetUserName:\"victim\""
+  },
+  {
+    "id": "Q02-02",
+    "file": "Q02-02.dql",
+    "where": "Windows PC · Wazuh Discover · DQL",
+    "section": "Wazuh에서 같은 실패 찾기",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4625\"\nAND data.win.eventdata.targetUserName:\"victim\"\nAND (data.win.eventdata.status:\"0xc000006a\"\n  OR data.win.eventdata.subStatus:\"0xc000006a\")"
+  },
+  {
+    "id": "C02-12",
+    "file": "C02-12.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "2.3  실습 32 · 존재하지 않는 계정",
+    "input": "Get-LocalUser |\n  Where-Object Name -Like 'book2_missing_*' |\n  Select-Object Name"
+  },
+  {
+    "id": "C02-13",
+    "file": "C02-13.txt",
+    "where": "kt66-attacker 컨테이너 · Bash",
+    "section": "2.3  실습 32 · 존재하지 않는 계정",
+    "input": "ls -l users-three.txt\nprintf '%s\\n' book2_missing_a book2_missing_b \\\n  book2_missing_c > users-three.txt\ncat users-three.txt"
+  },
+  {
+    "id": "C02-14",
+    "file": "C02-14.txt",
+    "where": "kt66-attacker 컨테이너 · Bash",
+    "section": "2.3  실습 32 · 존재하지 않는 계정",
+    "input": "hydra -L users-three.txt -p Book2WrongA -t 1 \\\n  rdp://10.20.70.10"
+  },
+  {
+    "id": "Q02-03",
+    "file": "Q02-03.dql",
+    "where": "Windows PC · Wazuh Discover · DQL",
+    "section": "계정 부재와 암호 오류 구분",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4625\"\nAND (data.win.eventdata.status:\"0xc0000064\"\n  OR data.win.eventdata.subStatus:\"0xc0000064\")"
+  },
+  {
+    "id": "C02-15",
+    "file": "C02-15.txt",
+    "where": "kt66-attacker 컨테이너 · Bash",
+    "section": "잠금을 만드는 제한된 입력",
+    "input": "ls -l pw-five.txt\nprintf '%s\\n' Book2Wrong1 Book2Wrong2 Book2Wrong3 \\\n  Book2Wrong4 Book2Wrong5 > pw-five.txt\ncat pw-five.txt"
+  },
+  {
+    "id": "C02-16",
+    "file": "C02-16.txt",
+    "where": "kt66-attacker 컨테이너 · Bash",
+    "section": "잠금을 만드는 제한된 입력",
+    "input": "hydra -l victim -P pw-five.txt -t 1 rdp://10.20.70.10"
+  },
+  {
+    "id": "C02-17",
+    "file": "C02-17.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "잠금을 만드는 제한된 입력",
+    "input": "$lockFilter = @{ LogName='Security'; Id=4740;\n  StartTime=$start }\n$lockEvent = Get-WinEvent `\n  -FilterHashtable $lockFilter -MaxEvents 1\n$lockEvent | Format-List TimeCreated,RecordId,Message\n$lockEvent.ToXml()"
+  },
+  {
+    "id": "Q02-04",
+    "file": "Q02-04.dql",
+    "where": "Windows PC · Wazuh Discover · DQL",
+    "section": "잠금 이벤트의 주체와 호출자",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4740\"\nAND data.win.eventdata.targetUserName:\"victim\""
+  },
+  {
+    "id": "Q02-05",
+    "file": "Q02-05.dql",
+    "where": "Windows PC · Wazuh Discover · DQL",
+    "section": "필드 이름만으로 호출자를 판단하지 않기",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4625\"\nAND data.win.eventdata.targetUserName:\"victim\"\nAND (data.win.eventdata.status:\"0xc0000234\"\n  OR data.win.eventdata.subStatus:\"0xc0000234\")"
+  },
+  {
+    "id": "C02-18",
+    "file": "C02-18.txt",
+    "where": "kt66-attacker 컨테이너 · Bash",
+    "section": "2.5  실습 34 · 원격 대화형 로그온",
+    "input": "ls -l /root/.config/freerdp/known_hosts2"
+  },
+  {
+    "id": "C02-19",
+    "file": "C02-19.txt",
+    "where": "kt66-attacker 컨테이너 · Bash",
+    "section": "2.5  실습 34 · 원격 대화형 로그온",
+    "input": "cp -p /root/.config/freerdp/known_hosts2 \\\n  /tmp/wazuh-book2-ch02/known_hosts2.before\nls -l /tmp/wazuh-book2-ch02/known_hosts2.before"
+  },
+  {
+    "id": "C02-20",
+    "file": "C02-20.txt",
+    "where": "kt66-attacker 컨테이너 · Bash",
+    "section": "시간을 제한한 RDP 입력",
+    "input": "timeout --signal=INT 25s xvfb-run -a xfreerdp \\\n  /v:10.20.70.10 /u:victim /p:'Victim!2026' \\\n  /cert:tofu"
+  },
+  {
+    "id": "C02-21",
+    "file": "C02-21.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "시간을 제한한 RDP 입력",
+    "input": "$successFilter = @{ LogName='Security'; Id=4624;\n  StartTime=$start }\nGet-WinEvent -FilterHashtable $successFilter `\n  -MaxEvents 20 |\n  Format-List TimeCreated,RecordId,Message"
+  },
+  {
+    "id": "Q02-06",
+    "file": "Q02-06.dql",
+    "where": "Windows PC · Wazuh Discover · DQL",
+    "section": "Wazuh에서 원격 로그온 확인",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4624\"\nAND data.win.eventdata.logonType:\"10\"\nAND data.win.eventdata.targetUserName:\"victim\"\nAND data.win.eventdata.ipAddress:\"10.20.30.202\""
+  },
+  {
+    "id": "C02-22",
+    "file": "C02-22.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "RDP 세션 원상복구",
+    "input": "quser.exe"
+  },
+  {
+    "id": "C02-23",
+    "file": "C02-23.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "RDP 세션 원상복구",
+    "input": "logoff.exe <확인한_victim_세션_ID>\nquser.exe"
+  },
+  {
+    "id": "Q02-07",
+    "file": "Q02-07.dql",
+    "where": "Windows PC · Wazuh Discover · DQL",
+    "section": "2.6  실패·잠금·성공을 시간순으로 연결",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.eventdata.targetUserName:\"victim\"\nAND data.win.system.eventID:(\"4625\" OR \"4740\" OR \"4624\")"
+  },
+  {
+    "id": "C02-24",
+    "file": "C02-24.txt",
+    "where": "kt66-attacker 컨테이너 · Bash",
+    "section": "목록 파일과 인증서 캐시 원상복구",
+    "input": "pwd\nls -la /tmp/wazuh-book2-ch02\ncat /root/.config/freerdp/known_hosts2"
+  },
+  {
+    "id": "C02-25",
+    "file": "C02-25.txt",
+    "where": "kt66-attacker 컨테이너 · Bash",
+    "section": "목록 파일과 인증서 캐시 원상복구",
+    "input": "cp -p known_hosts2.before \\\n  /root/.config/freerdp/known_hosts2\ncat /root/.config/freerdp/known_hosts2"
+  },
+  {
+    "id": "C02-25A",
+    "file": "C02-25A.txt",
+    "where": "kt66-attacker 컨테이너 · Bash",
+    "section": "목록 파일과 인증서 캐시 원상복구",
+    "input": "rm /root/.config/freerdp/known_hosts2\nls -l /root/.config/freerdp/known_hosts2"
+  },
+  {
+    "id": "C02-26",
+    "file": "C02-26.txt",
+    "where": "kt66-attacker 컨테이너 · Bash",
+    "section": "목록 파일과 인증서 캐시 원상복구",
+    "input": "rm pw-two.txt users-three.txt pw-five.txt\nls -la /tmp/wazuh-book2-ch02"
+  },
+  {
+    "id": "C02-26A",
+    "file": "C02-26A.txt",
+    "where": "kt66-attacker 컨테이너 · Bash",
+    "section": "목록 파일과 인증서 캐시 원상복구",
+    "input": "ls -l known_hosts2.before\nrm known_hosts2.before\nls -l known_hosts2.before"
+  },
+  {
+    "id": "C02-27",
+    "file": "C02-27.txt",
+    "where": "kt66-attacker 컨테이너 · Bash",
+    "section": "목록 파일과 인증서 캐시 원상복구",
+    "input": "cd /tmp\nrmdir /tmp/wazuh-book2-ch02\nls -ld /tmp/wazuh-book2-ch02\nexit"
+  }
+]

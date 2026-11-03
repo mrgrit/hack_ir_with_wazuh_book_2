@@ -1,0 +1,5 @@
+agent.name:"windows-user"
+AND data.win.system.channel:"Security"
+AND data.win.system.computer:"KT66-WIN-01"
+AND (data.win.eventdata.subjectLogonId:"0x1e38ea7"
+ OR data.win.eventdata.targetLogonId:"0x1e38ea7")

@@ -1,0 +1,4 @@
+agent.name:"windows-user"
+AND data.win.system.channel:"Security"
+AND data.win.system.eventID:("4720" OR "4722" OR "4726")
+AND data.win.eventdata.targetUserName:"book2_ch03"

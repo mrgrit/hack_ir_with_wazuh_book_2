@@ -1,0 +1,3 @@
+cp -p known_hosts2.before \
+  /root/.config/freerdp/known_hosts2
+cat /root/.config/freerdp/known_hosts2

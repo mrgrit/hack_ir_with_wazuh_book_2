@@ -1,0 +1,3 @@
+ls -l pw-two.txt
+printf '%s\n' Book2WrongA Book2WrongB > pw-two.txt
+cat pw-two.txt

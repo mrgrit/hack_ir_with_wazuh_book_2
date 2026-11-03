@@ -1,0 +1,4 @@
+auditpol.exe /get /subcategory:$logon
+Get-Service WazuhSvc,Sysmon64 | Format-Table Name,Status
+Get-MpComputerStatus |
+ Format-List IsTamperProtected,RealTimeProtectionEnabled

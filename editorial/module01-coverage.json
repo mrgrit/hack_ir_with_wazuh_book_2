@@ -9,49 +9,56 @@
       "chapter": 2,
       "slide_start_1_based": 349,
       "source_title": "31 로그온 실패 브루트포스 (4625)",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter02-review.md"
     },
     {
       "exercise": 32,
       "chapter": 2,
       "slide_start_1_based": 358,
       "source_title": "32 계정 열거 (없는 계정으로 실패)",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter02-review.md"
     },
     {
       "exercise": 33,
       "chapter": 2,
       "slide_start_1_based": 367,
       "source_title": "33 계정 잠금 (4740)",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter02-review.md"
     },
     {
       "exercise": 34,
       "chapter": 2,
       "slide_start_1_based": 376,
       "source_title": "34 외부에서 RDP 접속 성공 (4624 / 유형 10)",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter02-review.md"
     },
     {
       "exercise": 35,
       "chapter": 3,
       "slide_start_1_based": 387,
       "source_title": "35 Pass-the-Hash 징후 (NTLM 네트워크 로그온)",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter03-review.md"
     },
     {
       "exercise": 36,
       "chapter": 3,
       "slide_start_1_based": 395,
       "source_title": "36 명시적 자격증명 로그온 (4648, 횡적 이동)",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter03-review.md"
     },
     {
       "exercise": 37,
       "chapter": 3,
       "slide_start_1_based": 403,
       "source_title": "37 계정 생성·관리자 그룹 추가 (4720/4732/4728)",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter03-review.md"
     },
     {
       "exercise": 38,
@@ -142,7 +149,8 @@
       "chapter": 3,
       "slide_start_1_based": 527,
       "source_title": "50 감사 정책 변경·특권 로그온 (4719/4672)",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter03-review.md"
     },
     {
       "exercise": 51,

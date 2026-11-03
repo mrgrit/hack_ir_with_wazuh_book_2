@@ -1,0 +1,3 @@
+Get-LocalUser |
+  Where-Object Name -Like 'book2_missing_*' |
+  Select-Object Name

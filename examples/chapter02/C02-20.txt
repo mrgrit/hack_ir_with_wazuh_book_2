@@ -1,0 +1,3 @@
+timeout --signal=INT 25s xvfb-run -a xfreerdp \
+  /v:10.20.70.10 /u:victim /p:'Victim!2026' \
+  /cert:tofu

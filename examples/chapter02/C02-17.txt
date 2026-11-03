@@ -1,0 +1,6 @@
+$lockFilter = @{ LogName='Security'; Id=4740;
+  StartTime=$start }
+$lockEvent = Get-WinEvent `
+  -FilterHashtable $lockFilter -MaxEvents 1
+$lockEvent | Format-List TimeCreated,RecordId,Message
+$lockEvent.ToXml()

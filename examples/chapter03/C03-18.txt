@@ -1,0 +1,6 @@
+Get-LocalGroupMember -SID 'S-1-5-32-544' |
+ Format-List Name,SID
+Remove-LocalGroupMember -SID 'S-1-5-32-544' `
+ -Member $created
+Get-LocalGroupMember -SID 'S-1-5-32-544' |
+ Format-List Name,SID

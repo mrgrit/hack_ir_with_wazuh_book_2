@@ -1,0 +1,2 @@
+hostname
+command -v hydra xfreerdp xvfb-run timeout

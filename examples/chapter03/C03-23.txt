@@ -1,0 +1,3 @@
+$filter = @{LogName='Security';Id=4719;StartTime=$start}
+Get-WinEvent -FilterHashtable $filter -MaxEvents 10 |
+ Format-List TimeCreated,Id,RecordId,Message

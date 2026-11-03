@@ -1,0 +1,5 @@
+$secret = Read-Host '실습용 새 암호' -AsSecureString
+$created = New-LocalUser -Name 'book2_ch03' `
+ -Password $secret -Disabled `
+ -Description 'Book chapter03 temporary lab'
+$created | Format-List Name,Enabled,SID

@@ -39,6 +39,174 @@
       "kind": "generated relationship diagram",
       "generator": "tools/build_chapter01.py",
       "sha256": "dc4744f121dbc7aaa267c2353a6ac4734fa1071d9505990f6b8664fc24a895fd"
+    },
+    {
+      "path": "assets/illustrations/diversity/v2-c01-evidence.png",
+      "kind": "generated illustration",
+      "source": "built-in image_gen",
+      "sha256": "9289567480189f913d336cdcef24085a12dc29c564cfb7b42f3d7e68c754384d",
+      "prompt": "editorial/illustration-prompts.json"
+    },
+    {
+      "path": "assets/illustrations/diversity/v2-c01-sensors.png",
+      "kind": "generated illustration",
+      "source": "built-in image_gen",
+      "sha256": "460ab944e7064920b8b883f47382c6d6462acd7d389c8e2fd28a97dc90a1ec41",
+      "prompt": "editorial/illustration-prompts.json"
+    },
+    {
+      "path": "assets/illustrations/diversity/v2-c02-failure.png",
+      "kind": "generated illustration",
+      "source": "built-in image_gen",
+      "sha256": "3c264ea0b1f1ee292a60bf115deedb45a93b9938a29e4ececd635f6f18df3b0c",
+      "prompt": "editorial/illustration-prompts.json"
+    },
+    {
+      "path": "assets/illustrations/diversity/v2-c02-response.png",
+      "kind": "generated illustration",
+      "source": "built-in image_gen",
+      "sha256": "430ca2a37e1435018ce4c84a37dad74d18a03f1ef0a63efb123d4830551ef1ae",
+      "prompt": "editorial/illustration-prompts.json"
+    },
+    {
+      "path": "assets/screenshots/chapter02/4624-account.jpg",
+      "kind": "actual Wazuh screenshot",
+      "source": "192.168.0.107:5601, CUA, 2026-11-03",
+      "sha256": "e14b99caae55da9f426b07f4e041ecc1110ebf3ece17943b386ed16e6d322919"
+    },
+    {
+      "path": "assets/screenshots/chapter02/4624-type.jpg",
+      "kind": "actual Wazuh screenshot",
+      "source": "192.168.0.107:5601, CUA, 2026-11-03",
+      "sha256": "7c075293e1c87993d7237a9aa01f9bcae1301777936499476361bb0ee73a21e7"
+    },
+    {
+      "path": "assets/screenshots/chapter02/4625-detail.jpg",
+      "kind": "actual Wazuh screenshot",
+      "source": "192.168.0.107:5601, CUA, 2026-11-03",
+      "sha256": "29e2031ed06e7b9d51832e001122121114761e0767851b62a21f0fb6f2628597"
+    },
+    {
+      "path": "assets/screenshots/chapter02/4625-record.jpg",
+      "kind": "actual Wazuh screenshot",
+      "source": "192.168.0.107:5601, CUA, 2026-11-03",
+      "sha256": "7fadd94ad97c236b553d229e0368c8fdb73c95375a3b146000c3b1a490dbbfe5"
+    },
+    {
+      "path": "assets/screenshots/chapter02/4740-detail.jpg",
+      "kind": "actual Wazuh screenshot",
+      "source": "192.168.0.107:5601, CUA, 2026-11-03",
+      "sha256": "d2eb2ab3edf749d149dd761a89378a3d48531b0344dbdfb766e6e3e9fc938491"
+    },
+    {
+      "path": "assets/screenshots/chapter02/missing-detail.jpg",
+      "kind": "actual Wazuh screenshot",
+      "source": "192.168.0.107:5601, CUA, 2026-11-03",
+      "sha256": "5a80fa2e6973118c52ad3c43bb32f135f294fecee008f2029d2d63859bba4e84"
+    },
+    {
+      "path": "assets/illustrations/diversity/v2-c03-identity.png",
+      "kind": "generated illustration",
+      "source": "built-in image_gen",
+      "sha256": "6f9c68461010297c6a8b5e3657d52b6cd8a5c7bb5e0200be9c0beda76f2573e4",
+      "prompt": "editorial/illustration-prompts.json"
+    },
+    {
+      "path": "assets/illustrations/diversity/v2-c03-permission.png",
+      "kind": "generated illustration",
+      "source": "built-in image_gen",
+      "sha256": "42139ae7be32a927c264015155861a05176ab5ce1805b989eb1844470248f976",
+      "prompt": "editorial/illustration-prompts.json"
+    },
+    {
+      "path": "assets/figures/chapter02/decision.png",
+      "kind": "generated relationship diagram",
+      "generator": "tools/build_chapter02.py",
+      "sha256": "dca3a2205090264b5d9c49f977ea0102c418601be59b1d5993a6bd95936d34d0"
+    },
+    {
+      "path": "assets/figures/chapter02/lockout.png",
+      "kind": "generated relationship diagram",
+      "generator": "tools/build_chapter02.py",
+      "sha256": "fd55d3a348eb51eea55452506edfd59b5297230a25765b76a329a85e55f3ab80"
+    },
+    {
+      "path": "assets/figures/chapter02/path.png",
+      "kind": "generated relationship diagram",
+      "generator": "tools/build_chapter02.py",
+      "sha256": "be7eb52d2bd240f64d130000bbf33f28f80fce314bdbb1554dfa3c6b0e592d57"
+    },
+    {
+      "path": "assets/figures/chapter02/sequence.png",
+      "kind": "generated relationship diagram",
+      "generator": "tools/build_chapter02.py",
+      "sha256": "ba325f3c7c330a883e95f0f981039a3c6704ebb0bc8b24a9c98a7b8caf13b4cf"
+    },
+    {
+      "path": "assets/figures/chapter03/access.png",
+      "kind": "generated relationship diagram",
+      "generator": "tools/build_chapter03.py",
+      "sha256": "46219013b3e0e3db5beac9e6ffc340af0bfa85293b9490ec9ee051c2eff19f77"
+    },
+    {
+      "path": "assets/figures/chapter03/credentials.png",
+      "kind": "generated relationship diagram",
+      "generator": "tools/build_chapter03.py",
+      "sha256": "56572474ccc6e8d0e8582f74552695c2f8f8115f267de8400a9de17490ae0392"
+    },
+    {
+      "path": "assets/figures/chapter03/membership.png",
+      "kind": "generated relationship diagram",
+      "generator": "tools/build_chapter03.py",
+      "sha256": "518b443e2d9344100d00a8e76ae2530f9e0464521e0d8bd73279f625b816120d"
+    },
+    {
+      "path": "assets/figures/chapter03/questions.png",
+      "kind": "generated relationship diagram",
+      "generator": "tools/build_chapter03.py",
+      "sha256": "8acb2c7366ecb4d33b71f444de57b70bd51c092923fc40cdf64b425b53d46d4b"
+    },
+    {
+      "path": "assets/screenshots/chapter03/explicit-fields.jpg",
+      "kind": "actual Wazuh screenshot",
+      "source": "192.168.0.107:5601, CUA, 2026-11-03",
+      "sha256": "f0ade10ac755def0ddb4a00f504f1ffb9967301b599735268f5e04a03be8483b"
+    },
+    {
+      "path": "assets/screenshots/chapter03/group-fields.jpg",
+      "kind": "actual Wazuh screenshot",
+      "source": "192.168.0.107:5601, CUA, 2026-11-03",
+      "sha256": "90f7768baabd1180049d94b34b43eb80653f19a5c6afebbde44692f53096948e"
+    },
+    {
+      "path": "assets/screenshots/chapter03/ntlm-fields.jpg",
+      "kind": "actual Wazuh screenshot",
+      "source": "192.168.0.107:5601, CUA, 2026-11-03",
+      "sha256": "d8f24253baa35c6253c89fe8595740a728f5bf87016369f5a62384a35fed83a1"
+    },
+    {
+      "path": "assets/screenshots/chapter03/policy-fields.jpg",
+      "kind": "actual Wazuh screenshot",
+      "source": "192.168.0.107:5601, CUA, 2026-11-03",
+      "sha256": "572519fe256262d414da0cfcb08f0a98271663ebe2cd19ddd022da8ad3b152b1"
+    },
+    {
+      "path": "assets/screenshots/chapter03/privilege-fields.jpg",
+      "kind": "actual Wazuh screenshot",
+      "source": "192.168.0.107:5601, CUA, 2026-11-03",
+      "sha256": "ce38c163f8c1c238baab7f0314b18c7d3cccd2cc85f44eaa6b5d330cdf3618d3"
+    },
+    {
+      "path": "assets/screenshots/chapter03/type9-fields.jpg",
+      "kind": "actual Wazuh screenshot",
+      "source": "192.168.0.107:5601, CUA, 2026-11-03",
+      "sha256": "561474ea5eedc6b4761f6b3a0af8ff53b64c1cd590039d5d7a564ecedcd778b1"
+    },
+    {
+      "path": "assets/screenshots/chapter03/type9-identity.jpg",
+      "kind": "actual Wazuh screenshot",
+      "source": "192.168.0.107:5601, CUA, 2026-11-03",
+      "sha256": "0a23d8093850285dc3ba44627cadb3699b32a19eee3c8319cb30a26383fb32f6"
     }
   ],
   "template": {

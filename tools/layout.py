@@ -1,4 +1,5 @@
 """부크크 원본 DOCX에서 첫 구역의 판형·여백·테마를 상속하는 저자용 조판기."""
+from illustration_assets import fit_existing_frame
 import argparse
 import json
 from copy import deepcopy
@@ -165,6 +166,7 @@ def build(output,source=None):
                 p=para(doc,'',after=3,keep=True,align=WD_ALIGN_PARAGRAPH.RIGHT if b.get('align')=='right' else WD_ALIGN_PARAGRAPH.CENTER)
                 p.paragraph_format.line_spacing=1
                 shape=p.add_run().add_picture(str(ROOT/b['path']),width=Mm(b.get('width_mm',127)))
+                fit_existing_frame(shape,b['path'])
                 shape._inline.docPr.set('descr',b['caption'])
                 para(doc,b['caption'],size=9,after=7,align=WD_ALIGN_PARAGRAPH.RIGHT if b.get('align')=='right' else None)
             elif typ=='capture_slot':

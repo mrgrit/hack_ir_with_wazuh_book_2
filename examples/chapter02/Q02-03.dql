@@ -1,0 +1,5 @@
+agent.name:"windows-user"
+AND data.win.system.channel:"Security"
+AND data.win.system.eventID:"4625"
+AND (data.win.eventdata.status:"0xc0000064"
+  OR data.win.eventdata.subStatus:"0xc0000064")

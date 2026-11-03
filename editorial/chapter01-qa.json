@@ -1,7 +1,7 @@
 {
   "date": "2026-11-03",
   "artifact": "manuscript/volume02-chapter01.docx",
-  "sha256": "4604cdd27e2e0697657aadd46a9d3496a4df441793873506c407ca2974428ae2",
+  "sha256": "4370df4011bac2a1aaed635fdbcb008dafe65734f0c4ed1c899a879fef1fbaef",
   "pages": 30,
   "render": "Word COM ExportAsFixedFormat then pypdfium2 scale 1.7; canonical renderer failed because soffice.exe was absent",
   "visual_review": "All 30 pages inspected at full rendered resolution. Final diagram correction changed only page 9, and PowerShell introduction correction changed only page 6. Both changed pages re-inspected. Other 28 page PNGs byte-identical.",
@@ -21,5 +21,6 @@
     "/BCDHEE+BookkMyungjo-Lt",
     "/BCDIEE+Consolas"
   ],
-  "distribution": "DOCX only; temporary PDF/PNG excluded"
+  "distribution": "DOCX only; temporary PDF/PNG excluded",
+  "illustration_refresh": "2026-11-03: two replacements; 30 pages and text identical; pages 2 and 27 inspected."
 }

@@ -1,0 +1,5 @@
+Get-LocalUser -SID $created.SID |
+ Format-List Name,Enabled,SID
+Remove-LocalUser -SID $created.SID
+Get-LocalUser | Where-Object Name -EQ 'book2_ch03'
+$secret.Dispose()

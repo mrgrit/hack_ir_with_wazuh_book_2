@@ -1,0 +1,8 @@
+$logon = '{0CCE9215-69AE-11D9-BED3-505054503030}'
+$user = '{0CCE9235-69AE-11D9-BED3-505054503030}'
+$group = '{0CCE9237-69AE-11D9-BED3-505054503030}'
+$policy = '{0CCE922F-69AE-11D9-BED3-505054503030}'
+auditpol.exe /get /subcategory:$logon
+auditpol.exe /get /subcategory:$user
+auditpol.exe /get /subcategory:$group
+auditpol.exe /get /subcategory:$policy

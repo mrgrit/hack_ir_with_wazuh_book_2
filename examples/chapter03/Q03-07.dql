@@ -1,0 +1,4 @@
+agent.name:"windows-user"
+AND data.win.system.channel:"Security"
+AND data.win.system.eventID:"4672"
+AND data.win.eventdata.subjectLogonId:"0x1e38ea7"

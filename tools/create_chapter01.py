@@ -1,4 +1,5 @@
 """2권 1장 원고와 독자용 개별 예제 파일을 생성한다. 실습은 실행하지 않는다."""
+from illustration_assets import resolve_path
 import json
 from pathlib import Path
 
@@ -10,7 +11,7 @@ def code(text): return {'type':'code','text':text}
 def image(name,caption,width=127):
     return {'type':'image','path':f'assets/figures/chapter01/{name}.png','caption':caption,'width_mm':width}
 def art(name,caption,width=60):
-    return {'type':'image','path':f'assets/illustrations/chapter01/{name}.png','caption':caption,'width_mm':width}
+    return {'type':'image','path':resolve_path('01',f'assets/illustrations/chapter01/{name}.png'),'caption':caption,'width_mm':width}
 def table(head,rows,widths): return {'type':'table','head':head,'rows':rows,'widths':widths}
 def cmd(cid,where,text,why,result):
     return {'type':'command','id':cid,'where':where,'text':text,'why':why,'result':result}

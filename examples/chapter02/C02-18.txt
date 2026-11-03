@@ -1,0 +1,1 @@
+ls -l /root/.config/freerdp/known_hosts2

@@ -1,0 +1,4 @@
+cd /tmp
+rmdir /tmp/wazuh-book2-ch02
+ls -ld /tmp/wazuh-book2-ch02
+exit

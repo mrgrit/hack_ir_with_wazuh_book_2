@@ -1,0 +1,51 @@
+[
+  {
+    "id": "Q02-01",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4625\"\nAND data.win.eventdata.targetUserName:\"victim\"",
+    "result": 7,
+    "time_range": "Last 24 hours",
+    "checked_at": "2026-11-03T03:33:42.166Z"
+  },
+  {
+    "id": "Q02-02",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4625\"\nAND data.win.eventdata.targetUserName:\"victim\"\nAND (data.win.eventdata.status:\"0xc000006a\"\n  OR data.win.eventdata.subStatus:\"0xc000006a\")",
+    "result": 7,
+    "time_range": "Last 24 hours",
+    "checked_at": "2026-11-03T03:33:43.137Z"
+  },
+  {
+    "id": "Q02-03",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4625\"\nAND (data.win.eventdata.status:\"0xc0000064\"\n  OR data.win.eventdata.subStatus:\"0xc0000064\")",
+    "result": 3,
+    "time_range": "Last 24 hours",
+    "checked_at": "2026-11-03T03:33:43.875Z"
+  },
+  {
+    "id": "Q02-04",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4740\"\nAND data.win.eventdata.targetUserName:\"victim\"",
+    "result": 1,
+    "time_range": "Last 24 hours",
+    "checked_at": "2026-11-03T03:34:13.740Z"
+  },
+  {
+    "id": "Q02-05",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4625\"\nAND data.win.eventdata.targetUserName:\"victim\"\nAND (data.win.eventdata.status:\"0xc0000234\"\n  OR data.win.eventdata.subStatus:\"0xc0000234\")",
+    "result": 0,
+    "time_range": "Last 24 hours",
+    "checked_at": "2026-11-03T03:33:45.276Z"
+  },
+  {
+    "id": "Q02-06",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4624\"\nAND data.win.eventdata.logonType:\"10\"\nAND data.win.eventdata.targetUserName:\"victim\"\nAND data.win.eventdata.ipAddress:\"10.20.30.202\"",
+    "result": 1,
+    "time_range": "Last 24 hours",
+    "checked_at": "2026-11-03T03:34:14.746Z"
+  },
+  {
+    "id": "Q02-07",
+    "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.eventdata.targetUserName:\"victim\"\nAND data.win.system.eventID:(\"4625\" OR \"4740\" OR \"4624\")",
+    "result": 10,
+    "time_range": "Last 24 hours",
+    "checked_at": "2026-11-03T03:34:16.002Z"
+  }
+]

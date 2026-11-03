@@ -1,0 +1,3 @@
+ls -l known_hosts2.before
+rm known_hosts2.before
+ls -l known_hosts2.before
