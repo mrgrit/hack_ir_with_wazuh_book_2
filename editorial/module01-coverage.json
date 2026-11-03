@@ -193,21 +193,24 @@
       "chapter": 9,
       "slide_start_1_based": 558,
       "source_title": "54 루트킷·숨은 프로세스 (Rootcheck)",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter09-review.md"
     },
     {
       "exercise": 55,
       "chapter": 9,
       "slide_start_1_based": 565,
       "source_title": "55 VirusTotal 악성 파일 판정",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter09-review.md"
     },
     {
       "exercise": 56,
       "chapter": 9,
       "slide_start_1_based": 575,
       "source_title": "56 ClamAV·백신 탐지",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter09-review.md"
     },
     {
       "exercise": 57,

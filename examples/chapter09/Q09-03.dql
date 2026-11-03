@@ -1,0 +1,2 @@
+rule.groups:rootcheck AND agent.name:"web"
+AND data.file:"/var/log/kt66-cmd.log"

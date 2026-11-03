@@ -1,0 +1,17 @@
+{
+  "method": "built-in image_gen",
+  "illustrations": [
+    {
+      "path": "assets/illustrations/chapter09/host-review.png",
+      "original": "exec-6ece2b64-0265-4dc4-b23e-8e8d0125c80c.png",
+      "prompt": "Use case: illustration-story. Create one small textbook vignette in crisp early 1990s PC adventure-game pixel art, limited navy teal cream rust colors and deliberate coarse square pixels with dithered shadows, no smooth gradients, no lettering. Korean university cybersecurity textbook. Scene: a Korean woman technician in her late 30s with short straight black hair, plain olive work jacket and trousers, stands front three-quarter view in a narrow server equipment room, thoughtfully comparing a rack-mounted server's status lights with a small paper checklist resting flat on a waist-high wall shelf. One right hand naturally holds a pencil over the flat paper, her left arm relaxed alongside her body; exactly two arms and two hands, ordinary anatomically coherent fingers, feet grounded. A small rack beside her has realistic horizontal server units, vent grilles and cables. No monitor, no laptop, no headset, no tilted paper facing viewer. This is observing host anomalies before acting, not repairing hardware. Frame a compact self-contained scene with a partial wall and floor, ample transparent margin outside the vignette. Character should read well printed 65mm wide, clean restrained small pixel clusters, balanced physical perspective.",
+      "review": "두 팔/두 손/두 다리. 오른손 연필과 고정 선반의 종이, 왼팔 자연스러운 하강. 서버실. 원본 바이트 유지."
+    },
+    {
+      "path": "assets/illustrations/chapter09/evidence.png",
+      "original": "exec-af5b37f7-c03b-4ee5-b4ba-46436fd9f23e.png",
+      "prompt": "Use case: illustration-story. One small book vignette, crisp 1990s Korean PC adventure game pixel art, limited flat navy teal beige brick colors and visible square pixel dither shadows, no gradients or lettering. Cybersecurity evidence handling. A Korean male security analyst in his twenties, short slightly wavy hair and round glasses, pale blue shirt, dark trousers, is in the evidence storage alcove of a university lab. Front three-quarter view, standing at a sturdy waist-high counter. He gently places a small sealed transparent evidence pouch containing a USB flash drive flat on the counter with his right hand, left arm relaxed at his side. Exactly two arms/two hands, plausible simple natural fingers, two legs with grounded shoes. The pouch lies flat with a small blank label oriented for him; nothing is twisted toward the viewer. Behind him a low row of closed storage drawers, a small lock, no computer or laptop or headset. Compose a compact self-contained waist-to-full-length vignette with a modest floor patch, transparent outside margin; character and props readable at 65mm print width. Ordinary professional documentation action, no dramatic cyber effects, no text, no UI, no magnifying glass.",
+      "review": "두 팔/두 손/두 다리. 오른손과 책상 위 파우치, 왼팔 자연스러운 하강. 증거 보관 공간. 원본 바이트 유지."
+    }
+  ]
+}

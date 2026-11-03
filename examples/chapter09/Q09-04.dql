@@ -1,0 +1,2 @@
+rule.groups:rootcheck
+AND full_log:(*hidden* OR *trojaned*)

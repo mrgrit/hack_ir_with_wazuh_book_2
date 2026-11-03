@@ -1,0 +1,2 @@
+agent.name:"web" AND rule.id:52502
+AND full_log:*invoice-ch09.pdf.exe*

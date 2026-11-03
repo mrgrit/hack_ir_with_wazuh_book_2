@@ -1,0 +1,4 @@
+pgrep -a -x clamd
+ls -l /var/run/clamav/clamd.ctl
+clamdscan --version
+tail -n 5 /var/log/kt66-clamav.log

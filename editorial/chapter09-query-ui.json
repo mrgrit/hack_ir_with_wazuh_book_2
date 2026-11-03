@@ -1,0 +1,117 @@
+{
+  "date": "2026-11-03",
+  "method": "CUA UI; DQL submitted in existing Wazuh data; no synthetic alerts",
+  "records": [
+    {
+      "id": "Q09-01",
+      "query": "rule.groups:rootcheck",
+      "period": "Last 24 hours",
+      "hits": 32,
+      "parser_error": false,
+      "ui_record": "build\\ch09\\ui\\rootcheck-all.txt",
+      "view": "Discover",
+      "index": "wazuh-alerts-*"
+    },
+    {
+      "id": "Q09-02",
+      "query": "rule.groups:rootcheck\nAND agent.name:\"web\"",
+      "period": "Last 24 hours",
+      "hits": 2,
+      "parser_error": false,
+      "ui_record": "build\\ch09\\ui\\rootcheck-web.txt",
+      "view": "Discover",
+      "index": "wazuh-alerts-*"
+    },
+    {
+      "id": "Q09-03",
+      "query": "rule.groups:rootcheck AND agent.name:\"web\"\nAND data.file:\"/var/log/kt66-cmd.log\"",
+      "period": "Last 24 hours",
+      "hits": 2,
+      "parser_error": false,
+      "ui_record": "build\\ch09\\ui\\rootcheck-path.txt",
+      "view": "Discover",
+      "index": "wazuh-alerts-*"
+    },
+    {
+      "id": "Q09-04",
+      "query": "rule.groups:rootcheck\nAND full_log:(*hidden* OR *trojaned*)",
+      "period": "Last 7 days",
+      "hits": 0,
+      "parser_error": false,
+      "ui_record": "build/ch09/ui/Q09-04.txt",
+      "view": "Discover",
+      "index": "wazuh-alerts-*"
+    },
+    {
+      "id": "Q09-05",
+      "query": "agent.name:\"web\" AND rule.groups:syscheck\nAND syscheck.path:\n \"/var/www/html/uploads/invoice-ch09.pdf.exe\"",
+      "period": "Last 7 days",
+      "hits": 0,
+      "parser_error": false,
+      "ui_record": "build/ch09/ui/Q09-05.txt",
+      "view": "Discover",
+      "index": "wazuh-alerts-*"
+    },
+    {
+      "id": "Q09-06",
+      "query": "rule.id:87105 OR rule.groups:virustotal",
+      "period": "Last 7 days",
+      "hits": 0,
+      "parser_error": false,
+      "ui_record": "build\\ch09\\ui\\virustotal-all.txt",
+      "view": "Discover",
+      "index": "wazuh-alerts-*"
+    },
+    {
+      "id": "Q09-07",
+      "query": "agent.name:\"web\" AND rule.id:87105\nAND data.virustotal.source.file:\n \"/var/www/html/uploads/invoice-ch09.pdf.exe\"",
+      "period": "Last 7 days",
+      "hits": 0,
+      "parser_error": false,
+      "ui_record": "build/ch09/ui/Q09-07.txt",
+      "view": "Discover",
+      "index": "wazuh-alerts-*"
+    },
+    {
+      "id": "Q09-08",
+      "query": "rule.id:(87101 OR 87102 OR 87106)",
+      "period": "Last 7 days",
+      "hits": 0,
+      "parser_error": false,
+      "ui_record": "build/ch09/ui/Q09-08.txt",
+      "view": "Discover",
+      "index": "wazuh-alerts-*"
+    },
+    {
+      "id": "Q09-09",
+      "query": "rule.groups:virus OR rule.id:52502",
+      "period": "Last 7 days",
+      "hits": 0,
+      "parser_error": false,
+      "ui_record": "build\\ch09\\ui\\clamav-all.txt",
+      "view": "Discover",
+      "index": "wazuh-alerts-*"
+    },
+    {
+      "id": "Q09-10",
+      "query": "agent.name:\"web\" AND rule.id:52502\nAND full_log:*invoice-ch09.pdf.exe*",
+      "period": "Last 7 days",
+      "hits": 0,
+      "parser_error": false,
+      "ui_record": "build/ch09/ui/Q09-10.txt",
+      "view": "Discover",
+      "index": "wazuh-alerts-*"
+    },
+    {
+      "id": "Q09-11",
+      "query": "agent.name:\"web\" AND rule.id:553\nAND syscheck.path:\n \"/var/www/html/uploads/invoice-ch09.pdf.exe\"",
+      "period": "Last 7 days",
+      "hits": 0,
+      "parser_error": false,
+      "ui_record": "build/ch09/ui/Q09-11.txt",
+      "view": "Discover",
+      "index": "wazuh-alerts-*"
+    }
+  ],
+  "limits": "Zero results validate accepted query syntax and current empty result only, not positive matches or an end-to-end EICAR detection. Source screenshots are separate 2026-10-31 evidence."
+}

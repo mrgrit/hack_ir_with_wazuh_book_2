@@ -1,0 +1,261 @@
+{
+  "utc": "2026-11-03T10:38:14.126062+00:00",
+  "records": [
+    {
+      "id": "C09-01-bash-parse",
+      "text": "bash -n -c 'ssh ccc@192.168.0.107'",
+      "reader_input": "ssh ccc@192.168.0.107",
+      "validation": "syntax only; never executes input",
+      "print_chars": 0,
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-02-bash-parse",
+      "text": "bash -n -c 'sudo docker ps --format \"{{.Names}}\\t{{.Status}}\"\nsudo docker exec -it kt66-web /bin/bash\nhostname'",
+      "reader_input": "sudo docker ps --format \"{{.Names}}\\t{{.Status}}\"\nsudo docker exec -it kt66-web /bin/bash\nhostname",
+      "validation": "syntax only; never executes input",
+      "print_chars": 0,
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-03-bash-parse",
+      "text": "bash -n -c 'less /var/ossec/etc/ossec.conf'",
+      "reader_input": "less /var/ossec/etc/ossec.conf",
+      "validation": "syntax only; never executes input",
+      "print_chars": 0,
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-04-bash-parse",
+      "text": "bash -n -c 'grep -F '\"'\"'rootcheck:'\"'\"' /var/ossec/logs/ossec.log |\n  tail -n 4'",
+      "reader_input": "grep -F 'rootcheck:' /var/ossec/logs/ossec.log |\n  tail -n 4",
+      "validation": "syntax only; never executes input",
+      "print_chars": 0,
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-05-bash-parse",
+      "text": "bash -n -c 'stat -c '\"'\"'%A %a %U:%G %n'\"'\"' /var/log/kt66-cmd.log'",
+      "reader_input": "stat -c '%A %a %U:%G %n' /var/log/kt66-cmd.log",
+      "validation": "syntax only; never executes input",
+      "print_chars": 0,
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-06-bash-parse",
+      "text": "bash -n -c 'ps -ef\nss -lntup'",
+      "reader_input": "ps -ef\nss -lntup",
+      "validation": "syntax only; never executes input",
+      "print_chars": 0,
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-07-bash-parse",
+      "text": "bash -n -c 'exit\nsudo docker exec -it kt66-siem /bin/bash'",
+      "reader_input": "exit\nsudo docker exec -it kt66-siem /bin/bash",
+      "validation": "syntax only; never executes input",
+      "print_chars": 0,
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-08-bash-parse",
+      "text": "bash -n -c 'grep -n -F '\"'\"'<name>virustotal</name>'\"'\"' \\\n  /var/ossec/etc/ossec.conf'",
+      "reader_input": "grep -n -F '<name>virustotal</name>' \\\n  /var/ossec/etc/ossec.conf",
+      "validation": "syntax only; never executes input",
+      "print_chars": 0,
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-09-bash-parse",
+      "text": "bash -n -c 'exit\nsudo docker exec -it kt66-web /bin/bash'",
+      "reader_input": "exit\nsudo docker exec -it kt66-web /bin/bash",
+      "validation": "syntax only; never executes input",
+      "print_chars": 0,
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-10-bash-parse",
+      "text": "bash -n -c 'pwd\nls -ld /var/www/html/uploads\nsample=/var/www/html/uploads/invoice-ch09.pdf.exe\nls -l -- \"$sample\"'",
+      "reader_input": "pwd\nls -ld /var/www/html/uploads\nsample=/var/www/html/uploads/invoice-ch09.pdf.exe\nls -l -- \"$sample\"",
+      "validation": "syntax only; never executes input",
+      "print_chars": 0,
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-11-bash-parse",
+      "text": "bash -n -c 'curl --fail --show-error --location \\\n  --output \"$sample\" \\\n  https://secure.eicar.org/eicar.com.txt'",
+      "reader_input": "curl --fail --show-error --location \\\n  --output \"$sample\" \\\n  https://secure.eicar.org/eicar.com.txt",
+      "validation": "syntax only; never executes input",
+      "print_chars": 0,
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-12-bash-parse",
+      "text": "bash -n -c 'ls -l -- \"$sample\"\nwc -c < \"$sample\"\nmd5sum -- \"$sample\"\nsha256sum -- \"$sample\"'",
+      "reader_input": "ls -l -- \"$sample\"\nwc -c < \"$sample\"\nmd5sum -- \"$sample\"\nsha256sum -- \"$sample\"",
+      "validation": "syntax only; never executes input",
+      "print_chars": 0,
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-13-bash-parse",
+      "text": "bash -n -c 'pgrep -a -x clamd\nls -l /var/run/clamav/clamd.ctl\nclamdscan --version\ntail -n 5 /var/log/kt66-clamav.log'",
+      "reader_input": "pgrep -a -x clamd\nls -l /var/run/clamav/clamd.ctl\nclamdscan --version\ntail -n 5 /var/log/kt66-clamav.log",
+      "validation": "syntax only; never executes input",
+      "print_chars": 0,
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-14-bash-parse",
+      "text": "bash -n -c 'clamdscan --fdpass \"$sample\"\nscan_rc=$?\nprintf \"exit=%s\\n\" \"$scan_rc\"'",
+      "reader_input": "clamdscan --fdpass \"$sample\"\nscan_rc=$?\nprintf \"exit=%s\\n\" \"$scan_rc\"",
+      "validation": "syntax only; never executes input",
+      "print_chars": 0,
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-15-bash-parse",
+      "text": "bash -n -c 'less /usr/local/bin/kt66-clamav\nless /etc/clamav/clamd.conf'",
+      "reader_input": "less /usr/local/bin/kt66-clamav\nless /etc/clamav/clamd.conf",
+      "validation": "syntax only; never executes input",
+      "print_chars": 0,
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-16-bash-parse",
+      "text": "bash -n -c 'ls -l -- \"$sample\"\nsha256sum -- \"$sample\"\nrm -i -- \"$sample\"\nls -l -- \"$sample\"'",
+      "reader_input": "ls -l -- \"$sample\"\nsha256sum -- \"$sample\"\nrm -i -- \"$sample\"\nls -l -- \"$sample\"",
+      "validation": "syntax only; never executes input",
+      "print_chars": 0,
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-17-bash-parse",
+      "text": "bash -n -c 'pgrep -a -x clamd\n/var/ossec/bin/wazuh-control status\nexit'",
+      "reader_input": "pgrep -a -x clamd\n/var/ossec/bin/wazuh-control status\nexit",
+      "validation": "syntax only; never executes input",
+      "print_chars": 0,
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "docker-list",
+      "text": "sudo -S -p \"\" docker ps --format \"{{.Names}}\\t{{.Status}}\"",
+      "print_chars": 700,
+      "stdout": "kt66-windows-console\tUp 25 hours\nkt66-windows-user\tUp 24 hours\nkt66-noc\tUp 26 hours\nkt66-portal\tUp 26 hours\nkt66-envsim\tUp 26 hours\nkt66-injector\tUp 26 hours\nkt66-wazuh-dashboard\tUp 26 hours\nkt66-webmail\tUp 26 hours\nkt66-web\tUp 26 hours\nkt66-gpu-gw\tUp 26 hours\nkt66-agent-observer\tUp 26 hours\nkt66-siem\tUp 26 hours\nkt66-ips\tUp 26 hours\nkt66-mail\tUp 26 hours (healthy)\nkt66-fw\tUp 26 hours\nkt66-juiceshop\tUp 26 hours\nkt66-govportal\tUp 26 hours\nkt66-aicompanion\tUp 26 hours\nkt66-mediforum\tUp 26 hours\nkt66-neobank\tUp 26 hours\nkt66-adminconsole\tUp 26 hours\nkt66-dvwa\tUp 26 hours\nkt66-modelops\tUp 26 hours\nkt66-infraops\tUp 26 hours\nkt66-agentops\tUp 26 hours\nkt66-ntp\tUp 26 hours\nkt66-dns\tUp 26 hours\nkt66-wazuh-indexer\tUp 26 hours\nkt66-attacker\tUp 26 hours\nkt66-bastion\tUp 26 hours\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-04-read",
+      "container": "kt66-web",
+      "text": "grep -F 'rootcheck:' /var/ossec/logs/ossec.log |\n  tail -n 4",
+      "reader_input": "grep -F 'rootcheck:' /var/ossec/logs/ossec.log |\n  tail -n 4",
+      "print_chars": 700,
+      "stdout": "2026/11/03 05:54:11 rootcheck: INFO: Starting rootcheck scan.\n2026/11/03 05:54:24 rootcheck: INFO: Ending rootcheck scan.\n2026/11/03 17:54:25 rootcheck: INFO: Starting rootcheck scan.\n2026/11/03 17:54:38 rootcheck: INFO: Ending rootcheck scan.\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-05-read",
+      "container": "kt66-web",
+      "text": "stat -c '%A %a %U:%G %n' /var/log/kt66-cmd.log",
+      "reader_input": "stat -c '%A %a %U:%G %n' /var/log/kt66-cmd.log",
+      "print_chars": 700,
+      "stdout": "-rw-rw-rw- 666 root:root /var/log/kt66-cmd.log\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-06-read",
+      "container": "kt66-web",
+      "text": "ps -ef\nss -lntup",
+      "reader_input": "ps -ef\nss -lntup",
+      "print_chars": 700,
+      "stdout": "UID          PID    PPID  C STIME TTY          TIME CMD\nroot           1       0  0 Nov02 ?        00:00:00 sshd: /usr/sbin/sshd -D -e [listener] 0 of 10-100 startups\nroot         581       1  0 Nov02 ?        00:00:00 /bin/sh /usr/sbin/apache2ctl -D FOREGROUND\nroot         584     581  0 Nov02 ?        00:00:03 /usr/sbin/apache2 -D FOREGROUND\nroot         585       1  0 Nov02 ?        00:00:12 python3 /opt/modsec_edu_gui/server.py 8080\nroot         587       1  0 Nov02 ?        00:00:05 /bin/bash /usr/local/bin/kt66-clamav\nclamav       591       1  0 Nov02 ?        00:01:10 clamd\nwww-data     592     584  0 Nov02 ?        00:00:00 /usr/sbin/apache2 -D FOREGROUND\nwww-data     593     584  0 Nov02 ?        00:00:00 /usr/sbin/apache2 -D FOREGROUND\nroot        1640       1  0 Nov02 ?        00:00:02 /var/ossec/bin/wazuh-execd\nwazuh       1651       1  0 Nov02 ?        00:00:36 /var/ossec/bin/wazuh-agentd\nroot        1665       1  0 Nov02 ?        00:02:19 /var/ossec/bin/wazuh-syscheckd\nroot        1681       1  0 Nov02 ?        00:00:57 /var/ossec/bin/wazuh-logcollector\nroot        1731       1  0 Nov02 ?        00:00:06 /var/ossec/bin/wazuh-modulesd\nroot       20392     587  0 19:38 ?        00:00:00 sleep 20\nroot       20410       0  0 19:38 ?        00:00:00 bash -lc ps -ef ss -lntup\nroot       20418   20410  0 19:38 ?        00:00:00 ps -ef\nNetid State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess                           \nudp   UNCONN 0      0         127.0.0.11:37113      0.0.0.0:*                                     \ntcp   LISTEN 0      511          0.0.0.0:80         0.0.0.0:*    users:((\"apache2\",pid=584,fd=4)) \ntcp   LISTEN 0      128          0.0.0.0:22         0.0.0.0:*    users:((\"sshd\",pid=1,fd=3))      \ntcp   LISTEN 0      511          0.0.0.0:443        0.0.0.0:*    users:((\"apache2\",pid=584,fd=5)) \ntcp   LISTEN 0      4096      127.0.0.11:36469      0.0.0.0:*                                     \ntcp   LISTEN 0      5            0.0.0.0:8080       0.0.0.0:*    users:((\"python3\",pid=585,fd=3)) \ntcp   LISTEN 0      511          0.0.0.0:8091       0.0.0.0:*    users:((\"apache2\",pid=584,fd=6)) \ntcp   LISTEN 0      511          0.0.0.0:8002       0.0.0.0:*    users:((\"apache2\",pid=584,fd=8)) \ntcp   LISTEN 0      511          0.0.0.0:8003       0.0.0.0:*    users:((\"apache2\",pid=584,fd=9)) \ntcp   LISTEN 0      511          0.0.0.0:8001       0.0.0.0:*    users:((\"apache2\",pid=584,fd=7)) \ntcp   LISTEN 0      511          0.0.0.0:8006       0.0.0.0:*    users:((\"apache2\",pid=584,fd=12))\ntcp   LISTEN 0      511          0.0.0.0:8007       0.0.0.0:*    users:((\"apache2\",pid=584,fd=13))\ntcp   LISTEN 0      511          0.0.0.0:8004       0.0.0.0:*    users:((\"apache2\",pid=584,fd=10))\ntcp   LISTEN 0      511          0.0.0.0:8005       0.0.0.0:*    users:((\"apache2\",pid=584,fd=11))\ntcp   LISTEN 0      128             [::]:22            [::]:*    users:((\"sshd\",pid=1,fd=4))      \n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-08-read",
+      "container": "kt66-siem",
+      "text": "grep -n -F '<name>virustotal</name>' \\\n  /var/ossec/etc/ossec.conf",
+      "reader_input": "grep -n -F '<name>virustotal</name>' \\\n  /var/ossec/etc/ossec.conf",
+      "print_chars": 700,
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 1
+    },
+    {
+      "id": "C09-13-read",
+      "container": "kt66-web",
+      "text": "pgrep -a -x clamd\nls -l /var/run/clamav/clamd.ctl\nclamdscan --version\ntail -n 5 /var/log/kt66-clamav.log",
+      "reader_input": "pgrep -a -x clamd\nls -l /var/run/clamav/clamd.ctl\nclamdscan --version\ntail -n 5 /var/log/kt66-clamav.log",
+      "print_chars": 700,
+      "stdout": "591 clamd\nsrw-rw-rw- 1 clamav clamav 0 Nov  2 17:53 /var/run/clamav/clamd.ctl\nClamAV 1.5.4\nNov  2 17:53:02 web clamd[587]: clamd daemon started\n",
+      "stderr": "WARNING: VERSION command disabled in clamd, printing the local version.\n",
+      "exit_code": 0
+    },
+    {
+      "id": "C09-17-read",
+      "container": "kt66-web",
+      "text": "pgrep -a -x clamd\n/var/ossec/bin/wazuh-control status\nexit",
+      "reader_input": "pgrep -a -x clamd\n/var/ossec/bin/wazuh-control status\nexit",
+      "print_chars": 700,
+      "stdout": "591 clamd\nwazuh-modulesd is running...\nwazuh-logcollector is running...\nwazuh-syscheckd is running...\nwazuh-agentd is running...\nwazuh-execd is running...\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "final-web-state",
+      "container": "kt66-web",
+      "text": "hostname\nstat -c \"%a %U:%G %n\" /var/log/kt66-cmd.log\nls -la /var/www/html/uploads\nwc -c /var/lib/clamav/kt66-seen /var/log/kt66-clamav.log\nsha256sum /usr/local/bin/kt66-clamav /etc/clamav/clamd.conf /var/ossec/etc/ossec.conf",
+      "print_chars": 1400,
+      "stdout": "web\n666 root:root /var/log/kt66-cmd.log\ntotal 12\ndrwxr-xr-x 2 root root 4096 Nov  2 19:10 .\ndrwxr-xr-x 1 root root 4096 Nov  2 19:10 ..\n-rw-r--r-- 1 root root   61 Nov  2 19:10 book07-shell.php\n 0 /var/lib/clamav/kt66-seen\n53 /var/log/kt66-clamav.log\n53 total\n1dcf74b3b385d46c02d79d2447be617fe8d51a99eb39afdaf244253cf5ac0889  /usr/local/bin/kt66-clamav\n010748091d7a8bef9b459dd18fd923382fc2d0ca76f90740755b39946843fa63  /etc/clamav/clamd.conf\nc9a33d701ed3f6ff25bf6555ab844530d8164cbcb06fbc38d72536e56a09cfad  /var/ossec/etc/ossec.conf\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "agents-final",
+      "container": "kt66-siem",
+      "text": "/var/ossec/bin/agent_control -l",
+      "print_chars": 900,
+      "stdout": "\nWazuh agent_control. List of available agents:\n   ID: 000, Name: wazuh.manager (server), IP: 127.0.0.1, Active/Local\n   ID: 001, Name: bastion, IP: any, Active\n   ID: 002, Name: web, IP: any, Active\n   ID: 003, Name: fw, IP: any, Active\n   ID: 004, Name: ips, IP: any, Active\n   ID: 005, Name: windows-user, IP: any, Active\n   ID: 006, Name: kt66-host, IP: any, Active\n\nList of agentless devices:\n\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ]
+}

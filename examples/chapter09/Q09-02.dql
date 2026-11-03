@@ -1,0 +1,2 @@
+rule.groups:rootcheck
+AND agent.name:"web"

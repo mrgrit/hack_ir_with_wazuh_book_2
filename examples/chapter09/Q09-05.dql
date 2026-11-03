@@ -1,0 +1,3 @@
+agent.name:"web" AND rule.groups:syscheck
+AND syscheck.path:
+ "/var/www/html/uploads/invoice-ch09.pdf.exe"

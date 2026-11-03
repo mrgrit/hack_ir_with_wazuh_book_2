@@ -1,0 +1,22 @@
+{
+  "utc": "2026-11-03T10:20:23.289056+00:00",
+  "records": [
+    {
+      "id": "vt-wiring",
+      "text": "cd /home/ccc/kt66 && git grep -n VIRUSTOTAL_API_KEY HEAD -- \":(exclude)agents/*\" \":(exclude)docs/*\" \":(exclude)agentops/*\"",
+      "print_chars": 3000,
+      "stdout": "HEAD:.env.example:80:VIRUSTOTAL_API_KEY=\nBinary file HEAD:bastion/src/data/seed/bastion_audit_seed.db matches\nHEAD:docker-compose.yaml:481:      VIRUSTOTAL_API_KEY: ${VIRUSTOTAL_API_KEY:-}   # 선택 — 실습 55\nHEAD:siem/90-virustotal.sh:2:# cont-init: .env 에 VIRUSTOTAL_API_KEY 가 있으면 VirusTotal 연동을 켠다(멱등).\nHEAD:siem/90-virustotal.sh:7:if [ -z \"${VIRUSTOTAL_API_KEY:-}\" ]; then\nHEAD:siem/90-virustotal.sh:16:    <api_key>${VIRUSTOTAL_API_KEY}</api_key>\nHEAD:siem/Dockerfile:57:# cont-init: VirusTotal 연동(.env 의 VIRUSTOTAL_API_KEY 가 있을 때만)\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "id": "rootcheck-finish",
+      "container": "kt66-web",
+      "text": "grep 'rootcheck:' /var/ossec/logs/ossec.log | tail -n 4; clamdscan --help | tail -n 10; pgrep -a -x clamd; stat -c '%s %n' /var/lib/clamav/kt66-seen; command -v nano",
+      "print_chars": 2000,
+      "stdout": "2026/11/03 05:54:11 rootcheck: INFO: Starting rootcheck scan.\n2026/11/03 05:54:24 rootcheck: INFO: Ending rootcheck scan.\n2026/11/03 17:54:25 rootcheck: INFO: Starting rootcheck scan.\n2026/11/03 17:54:38 rootcheck: INFO: Ending rootcheck scan.\n    --copy=DIRECTORY                   Copy infected files into DIRECTORY\n    --config-file=FILE    -c           Read configuration from FILE.\n    --allmatch            -z           Continue scanning within file after finding a match.\n    --multiscan           -m           Force MULTISCAN mode\n    --infected            -i           Only print infected files\n    --no-summary                       Disable summary at end of scanning\n    --reload                           Request clamd to reload virus database\n    --fdpass                           Pass filedescriptor to clamd (useful if clamd is running as a different user)\n    --stream                           Force streaming files to clamd (for debugging and unit testing)\n\n591 clamd\n0 /var/lib/clamav/kt66-seen\n",
+      "stderr": "",
+      "exit_code": 1
+    }
+  ]
+}

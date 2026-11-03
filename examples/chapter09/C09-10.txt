@@ -1,0 +1,4 @@
+pwd
+ls -ld /var/www/html/uploads
+sample=/var/www/html/uploads/invoice-ch09.pdf.exe
+ls -l -- "$sample"

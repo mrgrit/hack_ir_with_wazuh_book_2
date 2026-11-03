@@ -1,0 +1,4 @@
+ls -l -- "$sample"
+wc -c < "$sample"
+md5sum -- "$sample"
+sha256sum -- "$sample"

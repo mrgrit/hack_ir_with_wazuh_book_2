@@ -1,0 +1,57 @@
+[
+  {
+    "file": "assets/screenshots/chapter09/root-fields.png",
+    "source": "build/ch09/ui/rootcheck-details.png",
+    "crop": [
+      418,
+      49,
+      1025,
+      218
+    ],
+    "origin": "Current Wazuh4.10 UI, 2026-11-03, web 002; Q09-02 Last24h",
+    "source_sha256": "295b69a14c2c742dbeaacfb131302f4405f168de3077917360a3956de31ade7f",
+    "sha256": "24a716c2201d23e7e9b62fe3af71be0321da046400fe91fccc361cd2adf85dc5"
+  },
+  {
+    "file": "assets/screenshots/chapter09/root-rule.png",
+    "source": "build/ch09/ui/rootcheck-details.png",
+    "crop": [
+      418,
+      433,
+      951,
+      691
+    ],
+    "origin": "Same document, rule details",
+    "source_sha256": "295b69a14c2c742dbeaacfb131302f4405f168de3077917360a3956de31ade7f",
+    "sha256": "f91b9dd27e9c616946095807683ee711290f91b5d469c6fce8141db2d6986834"
+  },
+  {
+    "file": "assets/screenshots/chapter09/vt-rules.png",
+    "source": "build/research/ch09-source-images/p571-image276.png",
+    "crop": null,
+    "origin": "Module01 slide571; source screenshot2026-10-31",
+    "source_sha256": "839ff4d72f105c4eb346768f0fea2e470c97df8c9b0b718dedc90dde69a73733",
+    "sha256": "839ff4d72f105c4eb346768f0fea2e470c97df8c9b0b718dedc90dde69a73733"
+  },
+  {
+    "file": "assets/screenshots/chapter09/vt-fields.png",
+    "source": "build/research/ch09-source-images/p572-image274.png",
+    "crop": [
+      0,
+      0,
+      640,
+      183
+    ],
+    "origin": "Module01 slide572; file and positives columns",
+    "source_sha256": "1dadab6475a824fd9f6fdff1682520c2806aa69f6f4aa0ec9f0b0f56f2f21855",
+    "sha256": "30eeeea3ef41a592a9e431713129e0e41d33c44a60645b7be84e0a966b1e2729"
+  },
+  {
+    "file": "assets/screenshots/chapter09/clam-source.png",
+    "source": "build/research/ch09-source-images/p580-image273.png",
+    "crop": null,
+    "origin": "Module01 slide580; blank fields and full_log",
+    "source_sha256": "0e9771c7a4c16365f17a2eb03c32098516c2428031244dac30f4c9e1f82c50e5",
+    "sha256": "0e9771c7a4c16365f17a2eb03c32098516c2428031244dac30f4c9e1f82c50e5"
+  }
+]

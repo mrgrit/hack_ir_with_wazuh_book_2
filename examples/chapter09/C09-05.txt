@@ -1,0 +1,1 @@
+stat -c '%A %a %U:%G %n' /var/log/kt66-cmd.log

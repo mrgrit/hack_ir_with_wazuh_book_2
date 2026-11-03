@@ -1,0 +1,2 @@
+grep -F 'rootcheck:' /var/ossec/logs/ossec.log |
+  tail -n 4
