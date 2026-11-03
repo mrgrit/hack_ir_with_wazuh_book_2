@@ -1,0 +1,242 @@
+"""Module 01 실습 38·49를 로그 보존과 보호 조치 조사로 구성한다."""
+from chapter_authoring import *
+pages=[]
+def page(title,*blocks,br=False):pages.append({'title':title,'kind':'body','level':'section','break':br,'blocks':list(blocks)})
+def screen(name,caption):return image(f'assets/screenshots/chapter07/{name}.png',caption)
+def fig(name,caption):return image(f'assets/figures/chapter07/{name}.png',caption)
+S='data.win.system.'
+E='data.win.eventdata.'
+D=BASE+'\nAND '+S+'channel:\n "Microsoft-Windows-Windows Defender/Operational"'
+DETECT='{EBD2A2EF-E4E2-4682-9CF7-79EEF7D28939}'
+
+page('7장  로그 삭제와 보호 기능의 대응',
+ p('침해를 조사하려면 공격 흔적뿐 아니라 흔적이 남는 조건도 확인해야 한다. 공격자는 로그를 지우거나 보호 기능을 끄려 할 수 있다. 방어자는 남은 원본과 중앙 수집 자료를 보존하고, 삭제·탐지·조치·현재 상태를 서로 다른 사실로 읽는다.'),
+ p('실습 38의 로그 삭제와 실습 49의 Microsoft Defender 기록을 분석한다. 원전의 삭제·테스트 파일 입력을 읽은 뒤 현재 환경의 기존 이벤트를 조회한다. 기록을 EVTX 사본으로 보존하고 Wazuh 문서의 필드와 대조한다.'),
+ table(['실습','조사 대상','완료 기준'],[['38 로그 삭제','Security 1102\nSystem 104','대상 채널·수행 주체·남은 증거 확인'],['49 보호 기능','Defender 탐지·조치·상태','탐지와 처리 결과를 연결하고 현재 보호 확인']],[29,39,59]),
+ image('assets/illustrations/chapter07/preserve.png','그림 7-1  조사 자료를 보관하는 담당자',65))
+
+page('7.1  원본 로그와 중앙 수집 자료',
+ p('Windows 이벤트 로그는 채널별로 기록을 저장한다. Security에는 로그온과 감사 이벤트, System에는 운영체제와 서비스 이벤트가 있다. Defender의 탐지와 조치는 별도의 Operational 채널에 남는다. 이벤트 번호가 같아도 공급자와 채널이 다르면 다른 기록이다.'),
+ p('Wazuh 에이전트가 읽은 이벤트는 관리자 서버의 분석과 저장, 인덱스 생성을 거쳐 검색된다. 이 과정에는 수집 필터·전송 상태·저장 정책이 적용된다. 원본에 있었다는 사실과 중앙에서 지금 검색할 수 있다는 사실을 따로 확인한다.'),
+ fig('preservation','그림 7-2  원본 이벤트에서 중앙 검색까지의 보존 구간'),
+ p('Windows에서 로그를 지워도 이미 중앙에 저장된 문서가 함께 삭제되는 것은 아니다. 그러나 아직 읽지 못한 기록, 전송·저장에 실패한 기록, 보존 기간이 지난 문서까지 중앙에 남는다고 보장할 수는 없다. 원본과 중앙 자료의 시작·끝 시각을 비교해 조사 가능한 범위를 적는다.'))
+
+page('실습 환경과 조회 권한 확인',
+ p('2권 1장의 Windows 게스트와 Wazuh 수집 준비를 마친 상태에서 시작한다. Windows PC 브라우저는 대시보드를 보고, 명령은 KT66-WIN-01 게스트의 관리자 Windows PowerShell에 입력한다. Ubuntu 공격자 VM이나 kt66 내부 attacker 컨테이너와 구분한다.'),
+ cmd('C07-01',"hostname\nwhoami.exe\n$PSVersionTable.PSVersion\nGet-Service EventLog,WazuhSvc,WinDefend,Sysmon64 |\n Format-Table Name,Status\n$defLog = 'Microsoft-Windows-Windows Defender/Operational'",
+ 'hostname과 whoami.exe로 컴퓨터와 계정을 확인한다. Get-Service는 서비스 상태를 읽고 파이프(|)는 결과를 Format-Table로 전달한다. EventLog는 Windows 이벤트 서비스, WazuhSvc는 수집 에이전트, WinDefend는 Defender 서비스다. $defLog에 Defender 채널 이름을 저장한다.',
+ '이번 환경은 Windows 11 Enterprise LTSC와 Windows PowerShell 5.1이며 네 서비스가 Running이었다. 서비스를 찾지 못하면 대상 게스트와 설치 상태부터 확인한다.'))
+
+page('채널의 보존 설정과 수집 설정',
+ cmd('C07-02',"Get-WinEvent -ListLog Security,System,$defLog |\n Format-List LogName,IsEnabled,LogMode,MaximumSizeInBytes,\n RecordCount,OldestRecordNumber",
+ 'Get-WinEvent는 이벤트와 채널 설정을 읽는 PowerShell 명령이다. -ListLog는 쉼표(,)로 나열한 채널의 설정을 조회한다. Format-List는 속성을 줄별로 표시하며 쉼표 다음 줄도 같은 목록이다. 파일 크기 단위는 바이트다. 1 MiB는 1,048,576바이트다.',
+ 'IsEnabled True를 확인한다. 이번 세 채널은 Circular였고 Security·System은 각각 20MiB, Defender는 16MiB였다. Circular는 용량이 차면 오래된 기록부터 덮어쓰는 방식이다. RecordCount는 현재 남은 수이며 전체 발생 수가 아니다.'),
+ p('OldestRecordNumber와 가장 오래된 이벤트 시각은 보존 범위를 살피는 단서다. 번호의 빈 구간이나 낮은 번호 하나로 수동 삭제를 확정하지 않는다. 채널 재생성·수집 시작·조회 조건 등 다른 원인을 함께 조사한다.'),
+ cmd('C07-03',"$agentDir = 'C:\\Program Files (x86)\\ossec-agent'\n$cfgPath = Join-Path $agentDir 'ossec.conf'\nTest-Path -LiteralPath $cfgPath\n[xml]$cfg = Get-Content -LiteralPath $cfgPath -Raw\n$cfg.ossec_config.localfile |\n Format-List location,log_format,query",
+ 'Join-Path는 폴더와 파일 이름을 합친다. Test-Path가 True일 때 다음 줄을 입력한다. Get-Content -Raw는 파일 전체를 하나의 문자열로 읽고 [xml]은 XML 구조로 해석한다. 점(.)으로 ossec_config 아래 localfile 항목을 선택한다. -LiteralPath는 경로를 와일드카드로 해석하지 않는다.',
+ 'Security·System·Defender 채널의 location과 eventchannel 형식을 확인한다. query가 있으면 제외 조건을 읽는다. 이번 Security 필터는 1102를 제외하지 않았고 System·Defender에는 별도 query가 없었다.'))
+
+page('Wazuh 검색 준비',
+ p('Windows PC에서 https://192.168.0.107:5601에 접속해 로그인한다. 왼쪽 메뉴의 **Explore**에서 **Discover**를 열고 데이터 보기를 **wazuh-alerts-***로 선택한다. 검색 언어를 **DQL**로 맞춘다. 실습 직후에는 짧은 범위를, 기존 기록에는 발생 날짜가 포함된 범위를 지정한다.'),
+ p('이 장의 현재 환경 예시는 2026년 11월 2일 기록이다. 원전의 10월 31일 화면은 다른 시점에 수집된 자료다. 예시 날짜를 그대로 찾을 때에는 해당 날짜를 포함하고, 자기 환경에서는 실제 조회 시각으로 바꾼다. 이번 대시보드 검토에는 **Last 7 days**를 사용했다.'),
+ p('검색을 실행한 뒤 결과 행 왼쪽 화살표를 누른다. **Table**은 필드별 값, **JSON**은 문서 구조를 보여 준다. agent.name, data.win.system.computer, 채널, eventID, eventRecordID부터 확인한다. 에이전트 이름이 다르면 식의 windows-user를 수정한다.'),
+ p('alerts는 경보 문서를 찾는 데이터 보기다. 경보가 없으면 **wazuh-archives-***에서도 같은 조건으로 확인한다. archives 저장·색인이 준비되어 있어야 조회할 수 있다. 시간 범위·에이전트·채널·필터·전송·저장 상태를 확인한 뒤 0건의 의미를 판단한다.'))
+
+page('7.2  로그 삭제 입력과 남는 기록',
+ p('wevtutil은 Windows에 포함된 이벤트 로그 관리 도구다. 기본 구조는 wevtutil 하위명령 대상이다. 조회·내보내기·삭제가 같은 도구에 있으므로 프로그램 이름만으로 공격이라고 판단하지 않는다. 원전은 관리자 PowerShell에서 다음 입력으로 Security와 System을 지운다. 아래 구문은 삭제 동작을 분석하기 위한 자료다.'),
+ code('wevtutil cl Security; wevtutil cl System'),
+ p('cl은 clear-log의 약자로 지정한 로그의 기록을 지운다. 세미콜론(;)은 PowerShell에서 두 명령을 차례로 실행하게 한다. 앞 명령의 성공을 조건으로 삼지는 않는다. 두 대상의 결과를 각각 확인해야 한다. 이 구문에는 삭제 전 백업을 만드는 /bu 옵션이 없다.'),
+ p('정상적인 Security 로그 지우기는 Microsoft-Windows-Eventlog 공급자의 1102로 관찰한다. 다른 로그를 지운 기록은 System 채널의 104에서 조사하며, 본문에 든 삭제 대상 채널을 읽는다. 이벤트가 생성되더라도 이후 삭제·덮어쓰기·수집 장애로 관측하지 못할 수 있다.'),
+ fig('clear-target','그림 7-3  삭제 기록의 저장 채널과 삭제 대상'),
+ p('현재 남아 있는 기록을 먼저 조회한다. 아래 두 조회에서 1102·104가 없더라도 원전과 같은 결과를 만들기 위해 로그를 지우지 않는다. 기록 부재와 수집 실패를 구분하는 과정도 조사에 포함된다.'))
+
+page('기존 삭제 이벤트 조회',
+ cmd('C07-04',"Get-WinEvent -FilterHashtable @{\n LogName='Security'\n ProviderName='Microsoft-Windows-Eventlog'\n Id=1102\n} -MaxEvents 5 |\n Format-List TimeCreated,Id,RecordId,Message",
+ '-FilterHashtable의 @{ }는 조회 조건 묶음이다. LogName은 저장 채널, ProviderName은 이벤트를 만든 공급자, Id는 이벤트 종류다. -MaxEvents 5는 최신 결과를 다섯 건까지 읽는다. RecordId는 해당 채널의 개별 기록 번호다.',
+ '메시지의 수행 계정·도메인·로그온 ID를 읽는다. 이번 보존 로그에는 일치 기록이 없었다. NoMatchingEventsFound는 조건에 맞는 기록 부재이며 Access is denied 같은 권한 오류와 구분한다.'),
+ cmd('C07-05',"Get-WinEvent -FilterHashtable @{\n LogName='System'\n ProviderName='Microsoft-Windows-Eventlog'\n Id=104\n} -MaxEvents 5 |\n Format-List TimeCreated,Id,RecordId,Message",
+ 'System 채널의 Eventlog 공급자로 범위를 제한한다. 번호 104만 지정하면 다른 공급자의 같은 번호가 섞일 수 있다.',
+ '메시지에서 어떤 로그를 지웠는지 확인한다. 이번 보존 로그에는 이 조건의 기록도 없었다. 조회 조건과 채널 접근을 확인하고 원전의 보존된 사례를 분석한다.'))
+
+page('삭제 이벤트의 Wazuh 검색',
+ query('Q07-01',BASE+'\nAND '+S+'providerName:\n "Microsoft-Windows-Eventlog"\nAND (('+S+'channel:"Security"\n AND '+S+'eventID:"1102") OR\n ('+S+'channel:"System"\n AND '+S+'eventID:"104"))',
+ 'AND는 조건을 모두 만족하도록 하고 OR는 두 채널·번호 조합 중 하나를 선택한다. 괄호로 각 조합을 묶어 Security의 1102 또는 System의 104만 찾는다. 콜론(:)은 필드와 값을 연결하며 큰따옴표는 값을 하나로 묶는다.',
+ '현재 환경의 해당 조회는 0건이었다. 아래 원전에는 두 경보가 있다. 건수를 맞추는 대신 컴퓨터·시각·채널·번호를 기록별로 확인한다.',index='wazuh-alerts-*'),
+ screen('source-clear-rules','화면 7-1  감사 로그와 시스템 로그 삭제 경보'),
+ p('원전의 2026년 10월 31일 화면에서 63103은 감사 로그 삭제, 63104는 Windows 로그 파일 삭제 경보다. rule.id는 Wazuh 규칙 번호이고 eventID 1102·104는 Windows 이벤트 번호다. 경보 설명이 유사해도 두 번호 체계를 바꾸어 읽지 않는다.'))
+
+page('삭제 대상과 수행 주체 읽기',
+ screen('source-clear-target','화면 7-2  System 로그 삭제의 대상 채널과 클라이언트 PID'),
+ p('원전의 104 문서에는 data.win.logFileCleared.channel이 System이고 clientProcessId가 4516이다. data.win.system.channel은 이벤트가 저장된 채널, logFileCleared.channel은 삭제 대상이다. 다른 채널을 지운 사례에서도 두 값이 항상 같다고 가정하지 않는다.'),
+ p('1102의 원본 XML은 수행 주체를 UserData 아래 LogFileCleared의 SubjectUserSid·SubjectUserName·SubjectDomainName·SubjectLogonId에 둔다. 모든 Windows 이벤트가 EventData 아래 같은 이름으로 저장되는 것은 아니다. Wazuh에서 문서를 펼쳐 logFileCleared 구조와 실제 필드명을 먼저 확인한다.'),
+ cmd('C07-06',"Get-WinEvent -FilterHashtable @{\n LogName='Security'\n ProviderName='Microsoft-Windows-Eventlog'\n Id=1102\n} -MaxEvents 1 | ForEach-Object { $_.ToXml() }",
+ '일치 기록이 있는 환경에서 원본 XML을 읽는다. ForEach-Object는 전달받은 이벤트마다 중괄호의 작업을 수행하고 $_는 현재 이벤트다. ToXml()은 그 이벤트를 XML 문자열로 반환한다.',
+ 'UserData와 LogFileCleared의 위치 및 필드 이름을 확인한다. 이번처럼 1102가 없으면 변환할 이벤트도 없다. 번호가 다른 이벤트를 1102의 검증 결과로 대체하지 않는다.'),
+ p('원전 표에서 eventdata.subjectUserName 열이 빈 것은 그 경로에 값이 없다는 뜻이다. 수행 계정이 없거나 익명이라는 판정으로 바꾸지 않는다. 104의 clientProcessId도 수행자의 신원을 직접 나타내지는 않는다. 같은 컴퓨터와 시각의 프로세스 생성·로그온 기록 및 승인 작업을 대조한다.'))
+
+page('삭제 도구와 승인 작업의 대조',
+ query('Q07-02',BASE+'\nAND '+S+'channel:\n "Microsoft-Windows-Sysmon/Operational"\nAND '+S+'eventID:"1"\nAND '+E+'image:*wevtutil.exe',
+ 'Sysmon 프로세스 생성에서 wevtutil 실행 후보를 찾는다. 별표(*)는 실행 파일 앞의 경로를 허용한다. 삭제 시각 전후로 시간을 좁히고 commandLine·parentImage·user·processGuid를 읽는다.',
+ 'cl은 삭제, epl은 내보내기, gl은 설정 조회다. 아래 보존 실습의 epl도 이 검색에 나타날 수 있다. 도구 실행 후보를 삭제 성공으로 단정하지 않는다.'),
+ p('삭제 계정의 로그온 ID와 4624의 세션을 같은 컴퓨터·부팅·시간 범위에서 연결한다. 관리자 점검표·변경 요청과 비교하고, 미승인 원격 접속·권한 상승·보호 변경이 앞뒤에 있는지 확인한다. PID는 재사용되므로 숫자 일치만으로 실행 주체를 확정하지 않는다.'),
+ p('Event Viewer나 다른 API로 로그를 지울 수도 있어 wevtutil 후보가 없다는 사실만으로 삭제를 부정할 수 없다. 반대로 삭제 명령 문자열이 로그에 있어도 도움말·문서 출력·실패한 시도일 수 있다. 명령과 실제 결과 이벤트를 구분한다.'))
+
+page('7.3  남은 로그의 사본 보존',
+ p('EVTX는 Windows 이벤트 로그의 파일 형식이다. 삭제 전후에 남은 기록을 사본으로 보존하면 이후 조회를 반복할 수 있다. wevtutil의 epl은 export-log의 약자로 원본 기록을 지우지 않고 파일로 내보낸다. 실제 사고에서는 수집자·시각·대상·보관 위치·인계 내역도 함께 기록한다.'),
+ cmd('C07-07',"$stamp = Get-Date -Format 'yyyyMMdd-HHmmss'\n$case = Join-Path $env:USERPROFILE `\n ('Documents\\book2-ch07-' + $stamp)\nTest-Path -LiteralPath $case",
+ 'Get-Date -Format은 연월일과 시분초로 폴더 이름을 만든다. $env:USERPROFILE은 현재 Windows 계정의 홈 폴더다. 더하기(+)는 문자열을 이어 붙인다. 백틱(`)은 다음 줄로 명령을 이어 주며 줄 끝에 둔다. $case는 이번 사본의 폴더 경로다.',
+ 'False이면 아직 없는 경로다. True이면 기존 폴더를 덮어쓰지 말고 새 시각의 이름으로 다시 준비한다. 이후 명령은 같은 PowerShell 창에서 실행한다.'),
+ cmd('C07-08',"New-Item -ItemType Directory -Path $case\nwevtutil epl Security \"$case\\Security.evtx\" /ow:false\n$LASTEXITCODE",
+ 'New-Item은 폴더를 생성하며 -ItemType Directory가 폴더 종류다. 생성이 성공하면 epl의 대상 Security와 출력 파일을 지정한다. 큰따옴표 안의 $case는 실제 경로로 바뀐다. /ow:false는 같은 이름의 파일 덮어쓰기를 허용하지 않는다. $LASTEXITCODE는 직전 외부 프로그램의 종료 코드다.',
+ '폴더 생성 결과와 epl 종료 코드 0을 확인한다. 경로·권한·디스크 공간 오류면 원인을 해결한 뒤 다시 내보낸다. 종료 코드만 보고 증거 사본의 확인을 끝내지 않는다.'))
+
+page('사본의 크기와 해시 확인',
+ cmd('C07-09',"wevtutil epl System \"$case\\System.evtx\" /ow:false\n$LASTEXITCODE\nwevtutil epl \"$defLog\" \"$case\\Defender.evtx\" /ow:false\n$LASTEXITCODE",
+ 'System과 Defender를 각각 다른 파일로 내보낸다. 공백이 있는 채널 이름은 큰따옴표로 묶는다. 각 epl 바로 다음 줄의 종료 코드를 하나씩 확인한다.',
+ '각각 0을 확인한다. 이 실습에서 Security·System·Defender 사본 생성은 모두 성공했다. 원본 채널은 계속 기록될 수 있어 사본 생성 시각 뒤의 이벤트는 해당 파일에 포함되지 않을 수 있다.'),
+ cmd('C07-10',"Get-ChildItem -LiteralPath $case -File |\n Format-Table Name,Length\nGet-FileHash -LiteralPath \"$case\\Security.evtx\",\n \"$case\\System.evtx\",\n \"$case\\Defender.evtx\" -Algorithm SHA256 |\n Format-List Path,Hash",
+ 'Get-ChildItem -File은 폴더 안의 파일을 나열한다. Length는 바이트 단위 크기다. Get-FileHash는 파일 내용의 해시를 계산하고 -Algorithm SHA256으로 알고리즘을 지정한다. 쉼표로 세 경로를 전달한다.',
+ '세 파일의 존재·크기와 각각의 SHA-256을 기록한다. 복사 후 같은 해시인지 대조하면 내용 변경 여부를 확인하는 데 도움이 된다. 해시만으로 원본의 완전성이나 수집 이전 조작 여부를 증명할 수는 없다.'),
+ cmd('C07-11',"$saved = Join-Path $case 'Defender.evtx'\nGet-WinEvent -Path $saved `\n -FilterXPath '*[System[EventRecordID=47]]' |\n Format-List TimeCreated,Id,RecordId,Message",
+ '-Path는 실행 중인 채널 대신 저장한 EVTX 파일을 읽는다. -FilterXPath에는 XML 구조를 검사하는 조건을 지정한다. 별표(*)는 이벤트 요소를 선택하고 대괄호는 System 안 EventRecordID가 47인 조건을 붙인다. 작은따옴표로 식 전체를 전달한다.',
+ '이번 사본에서도 1117·RecordId 47을 읽었다. 자신의 사례에서는 원본에서 확인한 번호로 바꾼다. 사본에 해당 기록이 없으면 내보낸 채널·시각·번호를 다시 대조한다.'))
+
+page('삭제 의심 사건의 조사와 대응',
+ p('보존한 자료에 삭제 시각, 채널, 수행 계정, 클라이언트 PID, 관련 세션과 명령을 연결한다. 중앙에 남은 직전·직후 이벤트와 다른 호스트의 인증·방화벽·프록시 기록도 비교한다. 원본 로그의 삭제 흔적 하나로 이전 침입 경로까지 채워 넣지 않는다.'),
+ p('미승인 삭제와 다른 침해 증거가 함께 확인되면 조직 절차에 따라 호스트 격리와 계정 통제를 결정한다. 조치 시각과 이유를 기록하고 추가 덮어쓰기·재부팅·파일 삭제가 증거에 미칠 영향을 평가한다. 운영 복구가 급한 경우에도 남길 수 있는 자료와 수집하지 못한 범위를 명시한다.'),
+ p('예방 단계에서는 로그 관리 권한을 제한하고 원격 수집 지연·보존 용량·중앙 접근 권한을 점검한다. 정상 수집의 마지막 시각과 수집 장애 경보를 함께 본다. 중앙 저장소도 별도의 접근 통제와 백업이 필요하다.'),
+ p('EVTX 사본 조회는 지워진 원본을 원래 채널에 복원하는 작업과 다르다. 삭제 전에 확보한 사본이 없으면 소실 구간을 그대로 복구했다고 쓰지 않는다. 가상 머신 스냅샷을 되돌리는 방법도 최근 상태와 기록을 잃을 수 있으므로 조사 자료 보존 후 별도로 결정한다.'))
+
+page('7.4  Defender 탐지와 조치의 구분',
+ p('Microsoft Defender Antivirus는 파일·프로세스 등에서 위협을 탐지하고 차단·격리·제거 같은 조치를 수행한다. EICAR 테스트 파일은 이를 지원하는 백신이 시험용으로 인식하도록 만든 표준 테스트 자료다. 실제 악성코드의 모든 탐지 능력을 평가하는 표본은 아니다.'),
+ table(['이벤트','의미','다음 확인'],[['1116','위협 탐지','대상·위협명·탐지 ID'],['1117','보호 조치 수행','조치 종류·오류·추가 작업'],['1118','조치 중 비치명적 오류','오류 원인·잔존 상태'],['1119','조치 중 치명적 오류','실패 범위·대응 우선순위'],['5001','실시간 보호 비활성화','변경 원인·현재 상태']],[21,47,59]),
+ fig('defender-states','그림 7-4  탐지 기록과 조치 결과의 확인'),
+ p('1116이 있으면 탐지를 확인할 수 있지만 악성 동작의 실행 성공까지 의미하지는 않는다. 1117은 어떤 조치를 했는지 읽어야 한다. 허용·조치 없음과 격리·제거는 결과가 다르며, 조치 기록 하나로 호스트 전체의 안전을 확정하지 않는다.'))
+
+page('원전의 EICAR 입력 읽기',
+ p('원전은 Windows 게스트에서 Set-Content로 C:\\Windows\\Temp\\eicar.txt에 테스트 문자열을 쓴다. Set-Content는 경로의 내용을 지정한 값으로 쓰며 기존 파일이 있으면 내용을 바꿀 수 있다. 작은따옴표는 달러($)와 다른 기호를 변수로 확장하지 않고 문자열 그대로 전달한다.'),
+ code("$sample = 'X5O!P%@AP[4\\PZX54(P^)7CC)7}$' +\n 'EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*'\nSet-Content C:\\Windows\\Temp\\eicar.txt $sample"),
+ p('두 문자열을 더하기(+)로 연결해 $sample에 저장한 뒤 파일 내용으로 전달하는 구문이다. 이 입력은 테스트 파일 작성 동작의 분석용이다. Windows PowerShell 5.1의 기본 파일 인코딩과 줄바꿈이 적용된다. EICAR 표준의 핵심 문자열은 68바이트이며 허용되는 뒤쪽 공백을 포함해 최대 128바이트 조건이 있다. 인코딩 표식이 앞에 붙으면 같은 시험 조건이 아니다.'),
+ p('Set-Content는 기본적으로 성공을 나타내는 True를 출력하지 않는다. 명령 출력 하나로 탐지·격리를 판정하지 말고 기록된 위협명·경로·조치와 파일 상태를 대조한다. 생성 시 차단되거나 즉시 격리되면 사후 파일 조회에서 파일을 찾지 못할 수도 있다.'),
+ p('원전의 결과 묶음에는 EICAR뿐 아니라 다른 실습에서 탐지된 Ceprolad·DumpLsass와 보호 변경 기록이 포함되어 있다. 여러 결과를 모두 EICAR 한 번의 실행 결과로 합치지 않는다. 현재 실습에서는 아래의 기존 탐지·조치 기록을 읽는다.'))
+
+page('기존 Defender 이벤트와 원본 필드',
+ cmd('C07-12',"Get-WinEvent -FilterHashtable @{\n LogName=$defLog\n Id=1116,1117,1118,1119\n} -MaxEvents 20 |\n Format-List TimeCreated,Id,RecordId,Message",
+ 'Defender 채널에서 네 이벤트 종류를 조회한다. 최신순 출력이므로 화면의 위아래를 실행 순서로 읽지 않고 TimeCreated를 비교한다. 기록이 많으면 조사 시각으로 범위를 좁힌다.',
+ '이번 원본에는 1116·RecordId 46과 1117·RecordId 47이 있었다. 위협명은 Trojan:Win32/BatTamper.A, 대상은 C:\\Tools\\defender-off.ps1이었다. 이번 장에서 새로 실행한 공격의 결과가 아니라 기존 기록이다.'),
+ cmd('C07-13',"$xpath = '*[System[EventRecordID=47]]'\n$event = Get-WinEvent -LogName $defLog -FilterXPath $xpath\n$event.ToXml()",
+ '개별 기록 번호로 하나의 이벤트를 선택해 $event에 저장한다. 이벤트가 반환된 것을 확인한 뒤 ToXml()을 호출한다. 자기 환경의 번호로 바꾸고 같은 채널에서 조회한다.',
+ 'EventData의 Data Name에 Detection ID, Threat Name, Process Name, Action Name, Error Code처럼 공백이 있는 이름이 있다. 표시용 번역 문구와 XML 필드 이름을 구분한다.'))
+
+page('Defender의 Wazuh 경보 검색',
+ query('Q07-03',D+'\nAND '+S+'eventID:\n (1116 OR 1117 OR 1118 OR 1119 OR 5001)',
+ '공백이 포함된 채널 이름을 큰따옴표로 묶고 탐지·조치·실시간 보호 비활성화 번호를 함께 찾는다. 채널은 이벤트의 역할을 구분하는 조건이다.',
+ '현재 Last 7 days 조회에서는 1117 한 건을 찾았다. 원본에 있던 1116은 같은 기간의 alerts와 보존 archives에서 찾지 못했다. 이 차이는 탐지 부재가 아니라 중앙 관측 범위의 차이로 기록한다.',index='wazuh-alerts-*'),
+ query('Q07-04',D+'\nAND '+S+'eventRecordID:"47"',
+ '원본과 같은 채널의 RecordId 47을 검색한다. agent.name·컴퓨터·시각도 대조한다. 번호는 호스트 전체에 유일한 사건 ID가 아니며 채널 재생성 뒤 재사용될 수 있다.',
+ 'eventID 1117, 컴퓨터 KT66-WIN-01, 원본 시각 2026-11-02 09:57:12.6035151Z를 확인한다. 이 문서는 rule.id 62124·rule.level 3으로 경보에 저장되었다.',index='wazuh-alerts-*'),
+ p('원본의 1116과 1117은 같은 Detection ID를 가진다. 중앙 문서가 하나뿐이면 Windows 원본에서 나머지를 대조하고 수집 시작 시각·필터·전송·보존 조건을 조사한다. 이번 조회만으로 누락 원인을 특정하거나 로그 삭제로 확정하지 않는다.'))
+
+page('공백이 있는 필드 이름의 검색',
+ query('Q07-05',D+'\nAND "'+E+'detection ID":\n "'+DETECT+'"',
+ '공백이 있는 필드 이름 전체를 큰따옴표로 묶고 콜론 뒤에 값을 둔다. 여기서는 "data.win.eventdata.detection ID"가 필드이고 중괄호로 둘러싸인 문자열이 값이다. detectionID처럼 공백을 제거한 다른 이름으로 바꾸지 않는다.',
+ '현재 문서 한 건을 찾는다. 같은 컴퓨터의 탐지와 조치가 중앙에 모두 있으면 이 식으로 함께 조회할 수 있다. Detection ID는 개별 탐지 식별자이며 위협 종류를 가리키는 Threat ID와 다르다.',index='wazuh-alerts-*'),
+ screen('defender-detection','화면 7-3  탐지 식별자와 조치 오류 정보'),
+ p('XML의 Detection ID·Detection Time이 Wazuh의 detection ID·detection Time으로 들어간 것을 확인한다. 예시의 Detection Time은 09:56:49.206Z, 조치 이벤트의 systemTime은 09:57:12.6035151Z다. 같은 문서 안에도 서로 다른 단계의 시각이 있다.'))
+
+page('대상 경로와 관련 프로세스',
+ screen('defender-path','화면 7-4  탐지 대상 경로와 관련 프로세스'),
+ p('path의 file:_ 접두사는 탐지 리소스가 파일임을 나타내며 실제 경로는 C:\\Tools\\defender-off.ps1이다. JSON과 Wazuh 필드에는 역슬래시(\\)가 이스케이프된 형태로 보일 수 있다. 표시 문자열을 그대로 실행 명령에 붙이지 말고 원본 메시지와 경로를 대조한다.'),
+ p('process Name에는 powershell.exe의 경로가 들어 있다. 탐지와 관련된 프로세스 이름이며 파일 작성자·공격자·명령 전체를 혼자 증명하지는 않는다. Sysmon 프로세스 생성과 스크립트 기록, 승인된 준비 작업을 같은 시각에서 대조한다. Path가 CmdLine이나 webfile 등 다른 리소스를 나타내는 사례도 구분한다.'),
+ query('Q07-06',D+'\nAND "'+E+'threat Name":\n "Trojan:Win32/BatTamper.A"',
+ '실제 필드명 threat Name을 사용해 같은 위협 분류의 기록을 찾는다. 값 안의 콜론은 큰따옴표 안 문자열의 일부다. 위협 이름을 자기 기록의 값으로 바꿔 조사한다.',
+ '같은 위협명이라도 다른 파일·사용자·시각의 탐지일 수 있다. 같은 사건을 연결할 때에는 Detection ID·컴퓨터·리소스를 추가로 대조한다.',index='wazuh-alerts-*'))
+
+page('격리 결과와 현재 잔존 상태',
+ screen('defender-action','화면 7-5  Defender의 격리 조치와 추가 작업 상태'),
+ p('현재 1117의 action Name은 격리, action ID는 2, error Code는 0x00000000이며 추가 작업 문자열은 No additional actions required다. 이 기록은 해당 시점의 격리 결과를 뒷받침한다. 격리는 원래 위치에서 실행하지 못하도록 관리하는 조치이며 영구 제거와 구분한다.'),
+ cmd('C07-14',"Get-MpThreat | Where-Object {\n $_.ThreatID -eq 2147818424\n} | Format-List ThreatID,ThreatName,IsActive,DidThreatExecute",
+ 'Get-MpThreat는 Defender가 파악한 위협의 상태를 읽는다. Where-Object는 조건이 맞는 항목만 남기며 $_는 현재 항목, -eq는 같음 비교다. ThreatID는 이번 기록의 값으로 지정한다.',
+ '이번 조회는 IsActive False, DidThreatExecute False였다. Defender가 보고한 이 위협의 상태이며 호스트의 모든 악성 행위를 배제하는 결과로 확대하지 않는다.'),
+ cmd('C07-15',"$detection = '"+DETECT+"'\nGet-MpThreatDetection | Where-Object {\n $_.DetectionID -eq $detection\n} | Format-List DetectionID,ThreatID,InitialDetectionTime,\n LastThreatStatusChangeTime,RemediationTime,\n ActionSuccess,Resources",
+ 'Get-MpThreatDetection은 현재와 과거 탐지의 상세 처리 상태를 읽는다. 개별 DetectionID로 선택하고 발생·상태 변경·조치 시각, ActionSuccess, Resources를 표시한다.',
+ '이번에는 ActionSuccess True와 같은 파일 리소스를 확인했다. 값이 없으면 탐지 이력 보존 여부와 식별자를 점검한다. 과거 조치 성공과 지금의 보호 활성화는 별도 조회로 확인한다.'))
+
+page('경보의 레벨과 설명 읽기',
+ screen('defender-threat','화면 7-6  위협 분류와 Defender 탐지 소스'),
+ p('Defender의 severity Name은 위협 분류의 심각도다. Windows system.level과 Wazuh rule.level은 별도의 체계다. 이번 1117은 Defender 위협 심각도가 심각, Windows 수준은 정보, Wazuh 규칙 수준은 3이었다. 낮은 경보 수준을 낮은 위협 심각도와 같은 뜻으로 읽지 않는다.'),
+ p('현재 Wazuh 4.10.0의 규칙 62124는 1117 조치 이벤트에 대응한다. 부모 62100은 Defender 정보 이벤트를 분류한다. kt66의 Wazuh 관리자 컨테이너 kt66-siem 안의 /var/ossec/ruleset/rules/0600-win-wdefender_rules.xml에서 확인한 관계이며, 본문 조회에서는 해당 문서의 rule.id·description과 Windows 필드를 대조한다.'),
+ p('이 규칙의 설명 템플릿은 win.eventdata.processName을 참조하지만 현재 데이터는 process Name으로 들어 있다. 그래서 경보 설명 끝의 괄호가 비어 있어도 실제 관련 프로세스 필드에는 값이 존재한다. 빈 설명을 프로세스 부재로 판단하지 말고 문서의 필드를 직접 읽는다.'))
+
+page('조치 실패의 조사와 대응',
+ query('Q07-07',D+'\nAND '+S+'eventID:(1118 OR 1119)',
+ '동일 Defender 채널에서 조치 실패 두 종류를 따로 찾는다. 1118과 1119는 오류 수준이 다르므로 메시지·오류 코드·조치 대상과 재시도 결과를 각각 읽는다.',
+ '현재 조회에서는 일치 문서를 찾지 못했다. 실패가 없는 전체 기간을 증명하는 결과는 아니다. 수집 범위와 실제 조사 시간을 확인한다.',index='wazuh-alerts-*'),
+ p('실패 기록이 있으면 같은 Detection ID의 탐지·조치와 Resources를 연결한다. 파일 사용 중·접근 권한·필요한 추가 작업 등 메시지가 가리키는 원인을 확인한다. 오류 코드가 없는 단순 1116을 치료 실패로 바꾸어 읽지 않는다.'),
+ p('격리·제거 후에는 해당 위협의 활성 상태와 재탐지를 확인한다. 실제 악성 파일로 판단되면 유입 경로와 관련 계정·프로세스·지속화·외부 통신도 조사한다. 필요한 격리·검사·계정 조치는 조직 절차에 따라 수행하고 조치 전후 증거를 보존한다.'),
+ p('테스트 파일 탐지는 백신에서 중앙 경보까지의 경로를 점검한 결과다. 이를 실제 악성코드 침입이나 모든 위협 차단의 증명으로 보고하지 않는다. 격리된 원전 파일을 결과 확인을 위해 복원하거나 다시 실행할 필요도 없다.'))
+
+page('7.5  보호 변경과 현재 상태 확인',
+ cmd('C07-16',"Get-MpComputerStatus |\n Format-List AMServiceEnabled,AntivirusEnabled,\n RealTimeProtectionEnabled,IsTamperProtected,\n AntivirusSignatureVersion,AntivirusSignatureLastUpdated",
+ 'Get-MpComputerStatus는 현재 Defender 상태를 읽는다. 서비스·백신·실시간 보호·변조 방지와 보안 인텔리전스 버전·갱신 시각을 구분해 확인한다. 서명 갱신 시각은 보호를 끈 시각과 다른 값이다.',
+ '이번 조회에서는 네 활성화·보호 항목이 모두 True였다. 이 현재 값으로 과거 어느 시점의 보호 상태까지 소급해 확정하지 않는다.'),
+ cmd('C07-17',"Get-WinEvent -FilterHashtable @{\n LogName=$defLog\n Id=5000,5001\n} -MaxEvents 20 |\n Format-List TimeCreated,Id,RecordId,Message",
+ '5000은 실시간 보호 활성화, 5001은 비활성화 기록이다. 최신순 출력에서 시각을 확인해 변경 순서를 읽는다. 현재 상태는 C07-16과 함께 대조한다.',
+ '현재 남은 원본에서는 두 종류의 기록을 찾지 못했다. 현재 보호가 True인 것과 이 두 이벤트의 보존 여부는 다른 사실이다.'),
+ p('5001은 보호가 비활성화된 관찰 결과다. 관리자 점검·정책·제품 상태 변화와 공격자의 변경을 구분해야 한다. 변경 계정·원격 세션·스크립트·승인 기록을 함께 조사하고 원인이 확인되기 전에는 공격자 행위로 단정하지 않는다.'))
+
+page('보호 설정 변경의 전후 관계',
+ query('Q07-08',D+'\nAND '+S+'eventID:(5000 OR 5001 OR 5007)',
+ '활성화·비활성화와 설정 변경 5007을 함께 조회한다. 결과를 시간순으로 비교하고 5007의 이전 값·새 값을 메시지에서 읽는다. 관련 없는 설정 변경까지 실시간 보호 해제로 묶지 않는다.',
+ '현재 자료에는 5007 설정 변경 기록이 있었다. 업데이트·정책 적용 같은 정상 변화도 포함될 수 있으므로 값과 작업 시각을 대조한다.',index='wazuh-alerts-*'),
+ p('예상하지 못한 보호 해제가 확인되면 영향 호스트와 계정을 파악하고 관리 정책에 맞춰 보호 상태를 복구한다. 탐지를 만들기 위해 보호를 끄거나 보안 도구를 중지하는 절차를 준비 작업으로 삼지 않는다. 복구 뒤에는 현재 상태·후속 탐지·수집 상태를 다시 확인한다.'),
+ image('assets/illustrations/chapter07/response.png','그림 7-5  보호 조치 결과를 확인하는 분석가',85))
+
+page('사건 순서와 조사 결론',
+ fig('timeline','그림 7-6  기존 탐지와 조치의 시각 대조'),
+ p('이번 원본의 1116은 09:56:49.2293663Z, 1117은 09:57:12.6035151Z에 기록되었다. 두 이벤트의 Detection Time은 09:56:49.206Z다. Wazuh 1117 문서의 timestamp는 09:57:14.288Z다. 탐지 시각·이벤트 기록 시각·중앙 처리 시각을 구분한다.'),
+ p('화면의 한국 시각은 UTC보다 9시간 빠르다. 서로 다른 시계의 기록을 정렬할 때에는 시간대·수집 지연·시각 동기화 상태를 확인한다. 시간상 가깝다는 이유만으로 모든 경보를 같은 사건으로 연결하지 않는다.'),
+ p('보고서에는 기존 파일의 Defender 탐지와 격리, 동일 Detection ID, 원본 두 건과 중앙 한 건, 현재 보호 상태를 확인한 사실로 적는다. 로그 삭제·보호 해제·외부 침입의 원인이나 수행자는 확인된 근거 없이 추가하지 않는다. 자료가 없는 항목에는 미확인 이유와 다음 확인 대상을 남긴다.'))
+
+page('원상복구와 완료 확인',
+ p('이 실습에서는 기존 이벤트와 상태를 읽고 EVTX 사본을 만들었다. 로그·보호 정책·서비스 설정을 바꾸지 않았으므로 되돌릴 설정은 없다. 다음 조회로 시작 상태와 비교한다. 값이 다르면 중간의 작업과 시스템 변경 기록을 먼저 확인한다.'),
+ cmd('C07-18',"Get-Service EventLog,WazuhSvc,WinDefend,Sysmon64 |\n Format-Table Name,Status\nGet-MpComputerStatus |\n Format-List RealTimeProtectionEnabled,IsTamperProtected",
+ '처음 조회한 서비스와 보호 상태를 다시 읽는다. 단순 Running과 보호 True를 이벤트 수집의 전체 성공 조건으로 대신하지 말고, 앞서 확인한 채널·문서 대조 결과도 함께 기록한다.',
+ '이번 재확인에서도 네 서비스 Running, 두 보호 항목 True였다. 조회를 끝낸 PowerShell 창을 닫으면 해당 창의 변수는 사라진다.'),
+ p('EVTX 사본과 해시는 조사 산출물로 보존한다. 교육용 사본을 정리할 때에는 필요한 보관 사본을 확보하고 이번에 만든 폴더와 세 파일만 확인해 삭제한다. 원래 채널·Defender 격리 이력·다른 조사 폴더는 정리 대상에 포함하지 않는다.'),
+ p('완료 기록에는 검색한 기간, 원본과 중앙의 일치·차이, 조치 종류와 현재 상태, 보존 위치·해시, 미확인 원인을 남긴다. 원전 화면과 같은 건수가 나왔는지보다 각 결론의 근거와 관측 범위를 설명할 수 있는지가 완료 기준이다.'))
+
+page('확인 문제와 판단 근거',
+ p('1. System 채널의 104가 있으면 System 로그를 지운 것인가. 저장 채널과 LogFileCleared의 대상 채널을 따로 확인해야 한다. 다른 로그의 삭제를 System에서 기록한 사례도 구분한다.'),
+ p('2. 원본 1116이 있지만 Wazuh에는 1117만 있다. 탐지가 없었다고 결론 내릴 수 있는가. 원본 탐지는 확인되었으며 중앙 수집·저장·조회 범위를 추가 점검해야 한다.'),
+ p('3. Wazuh 경보 설명의 괄호가 비어 있다. 관련 프로세스도 없는가. 설명 템플릿의 필드명과 실제 process Name을 대조한다.'),
+ p('4. 1117의 조치가 Allow이고 오류가 없다면 위협 제거 성공인가. 수행된 조치가 허용이므로 격리·제거와 같은 처리로 읽을 수 없다. 실제 대상과 잔존 상태를 확인한다.'),
+ p('5. 과거 5001과 현재 RealTimeProtectionEnabled True가 함께 있다면 모순인가. 서로 다른 시점의 결과다. 비활성화 원인·후속 활성화·현재 상태를 구분한다.'),
+ p('6. EVTX 사본의 SHA-256이 복사 전후 같으면 무엇을 확인한 것인가. 두 사본의 내용 일치를 확인한 것이며 최초 수집 이전의 완전성과 진위까지 보장하지는 않는다.'))
+
+page('참고자료',
+ link('원전 Module 01 실습 38·49','https://docs.google.com/presentation/d/1o0H_2DDHBp8p2HvlSnEPbx6-jdURYzew'),
+ link('Microsoft 감사 로그 삭제 이벤트 1102','https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-1102'),
+ link('Microsoft wevtutil','https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/wevtutil'),
+ link('Microsoft Windows Event Forwarding의 수집 조건과 이벤트','https://learn.microsoft.com/en-us/windows/security/operating-system-security/device-management/use-windows-event-forwarding-to-assist-in-intrusion-detection'),
+ link('Microsoft Get-WinEvent Windows PowerShell 5.1','https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent?view=powershell-5.1'),
+ link('Microsoft Defender 이벤트와 오류 코드','https://learn.microsoft.com/en-us/defender-endpoint/troubleshoot-microsoft-defender-antivirus'),
+ link('Microsoft MSFT_MpThreatDetection','https://learn.microsoft.com/en-us/previous-versions/windows/desktop/defender/msft-mpthreatdetection'),
+ link('Wazuh Windows Defender 로그 수집','https://documentation.wazuh.com/current/user-manual/capabilities/malware-detection/win-defender-logs-collection.html'),
+ link('EICAR 테스트 파일 규격','https://www.eicar.org/download-anti-malware-testfile/'),
+ link('kt66 실습 기준 커밋','https://github.com/mrgrit/kt66/tree/63d4180b1d6866de986ef263a3bd831d6082b5d5'))
+
+save(7,'7장 로그 삭제와 보호 기능의 대응',pages,[
+ 'Module 01 실습 38·49, 412~419·517~526쪽. 원전 화면과 현재 환경의 기존 기록을 구분한다.',
+ '신규 로그 삭제·보호 해제·EICAR 생성·공격 실행 없음. 조회·검색·EVTX 보존만 확인했다.',
+ '검증 범위와 수정 근거는 editorial/chapter07-review.md에 보관한다.'
+])
+dest=ROOT/'examples/chapter07'
+readme=dest/'README.md'
+readme.write_text(readme.read_text(encoding='utf8').replace(
+ '본문의 사전 확인부터 한 블록씩 입력한다. 전체를 일괄 실행하지 않는다. 같은 PowerShell 창의 변수를 유지한다. 예제 번호·시각·GUID는 자신의 기록으로 바꾼다. 삭제 명령은 이번에 만든 고유 이름과 파일에만 적용한다.',
+ '본문의 사전 확인부터 한 블록씩 입력하고 같은 관리자 PowerShell 창의 변수를 유지한다. 기록 번호·시각·Detection ID는 자신의 기록으로 바꾼다. EVTX 사본은 새 폴더에 보존한다. source-analysis의 삭제·EICAR 입력은 원전 분석용이며 실행 순서에 포함하지 않는다.'),encoding='utf8')
+(dest/'observation-template.md').write_text('# 7장 조사 기록\n\n- 컴퓨터·계정·시간대·조회 기간:\n- 채널·공급자·EventID·RecordId·원본 시각:\n- 삭제 대상·수행 계정·관련 세션·승인 작업:\n- Detection ID·Threat ID·리소스:\n- 조치 종류·오류·추가 작업·현재 보호 상태:\n- Wazuh 데이터 보기·검색식·원본과의 차이:\n- EVTX 보관 위치·수집 시각·크기·SHA-256·인계 내역:\n- 확인된 사실·미확인 원인·다음 행동·원상복구 확인:\n',encoding='utf8')
+src=dest/'source-analysis';src.mkdir(exist_ok=True)
+(src/'README.md').write_text('# 원전 입력 분석\n\nsource-inputs.txt는 실습 38·49의 삭제 및 EICAR 파일 작성 구문을 읽기 위한 자료다. 본문의 C07 실행 예제 목록과 분리했다. 이 장의 저자 검토에서 실행하지 않았다.\n',encoding='utf8')
+(src/'source-inputs.txt').write_text("# 실습 38 · 원전의 삭제 입력\nwevtutil cl Security; wevtutil cl System\n# 실습 49 · 원전의 테스트 파일 입력, 백틱으로 줄 나눔\nSet-Content C:\\Windows\\Temp\\eicar.txt `\n 'X5O!P%@AP[4\\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*'\n",encoding='utf8')

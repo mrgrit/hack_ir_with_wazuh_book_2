@@ -1,0 +1,70 @@
+{
+  "date": "2026-11-03",
+  "method": "Wazuh Discover browser UI, DQL, Last 7 days",
+  "records": [
+    {
+      "id": "Q07-01",
+      "hits": 0,
+      "query": "agent.name:\"windows-user\"\nAND data.win.system.providerName:\n \"Microsoft-Windows-Eventlog\"\nAND ((data.win.system.channel:\"Security\"\n AND data.win.system.eventID:\"1102\") OR\n (data.win.system.channel:\"System\"\n AND data.win.system.eventID:\"104\"))",
+      "index": "wazuh-alerts-*",
+      "parser_error": false
+    },
+    {
+      "id": "Q07-02",
+      "hits": 34,
+      "index": "wazuh-archives-*",
+      "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"1\"\nAND data.win.eventdata.image:*wevtutil.exe",
+      "parser_error": false
+    },
+    {
+      "id": "Q07-03",
+      "hits": 1,
+      "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Windows Defender/Operational\"\nAND data.win.system.eventID:\n (1116 OR 1117 OR 1118 OR 1119 OR 5001)",
+      "index": "wazuh-alerts-*",
+      "parser_error": false
+    },
+    {
+      "id": "Q07-04",
+      "hits": 1,
+      "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Windows Defender/Operational\"\nAND data.win.system.eventRecordID:\"47\"",
+      "index": "wazuh-alerts-*",
+      "parser_error": false
+    },
+    {
+      "id": "Q07-05",
+      "hits": 1,
+      "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Windows Defender/Operational\"\nAND \"data.win.eventdata.detection ID\":\n \"{EBD2A2EF-E4E2-4682-9CF7-79EEF7D28939}\"",
+      "index": "wazuh-alerts-*",
+      "parser_error": false
+    },
+    {
+      "id": "Q07-06",
+      "hits": 1,
+      "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Windows Defender/Operational\"\nAND \"data.win.eventdata.threat Name\":\n \"Trojan:Win32/BatTamper.A\"",
+      "index": "wazuh-alerts-*",
+      "parser_error": false
+    },
+    {
+      "id": "Q07-07",
+      "hits": 0,
+      "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Windows Defender/Operational\"\nAND data.win.system.eventID:(1118 OR 1119)",
+      "index": "wazuh-alerts-*",
+      "parser_error": false
+    },
+    {
+      "id": "Q07-08",
+      "hits": 257,
+      "query": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Windows Defender/Operational\"\nAND data.win.system.eventID:(5000 OR 5001 OR 5007)",
+      "index": "wazuh-alerts-*",
+      "parser_error": false
+    }
+  ],
+  "additional_checks": [
+    {
+      "id": "Q07-03",
+      "index": "wazuh-archives-*",
+      "hits": 1
+    }
+  ],
+  "correction": "Backslash-space field escaping failed in this DQL parser; final whole field names are double quoted and produced one hit. Counts are observations for the review time, not completion targets."
+}

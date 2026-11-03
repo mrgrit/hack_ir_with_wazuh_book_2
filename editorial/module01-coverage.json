@@ -65,7 +65,8 @@
       "chapter": 7,
       "slide_start_1_based": 412,
       "source_title": "38 감사 로그 삭제 (1102/104)",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter07-review.md"
     },
     {
       "exercise": 39,
@@ -152,7 +153,8 @@
       "chapter": 7,
       "slide_start_1_based": 518,
       "source_title": "49 Windows Defender 탐지·치료 실패 (1116/1117/1118)",
-      "status": "planned"
+      "status": "draft",
+      "review": "chapter07-review.md"
     },
     {
       "exercise": 50,

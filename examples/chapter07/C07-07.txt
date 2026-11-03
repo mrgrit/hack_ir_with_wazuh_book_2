@@ -1,0 +1,4 @@
+$stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
+$case = Join-Path $env:USERPROFILE `
+ ('Documents\book2-ch07-' + $stamp)
+Test-Path -LiteralPath $case

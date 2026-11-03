@@ -1,0 +1,4 @@
+$saved = Join-Path $case 'Defender.evtx'
+Get-WinEvent -Path $saved `
+ -FilterXPath '*[System[EventRecordID=47]]' |
+ Format-List TimeCreated,Id,RecordId,Message

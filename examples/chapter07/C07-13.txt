@@ -1,0 +1,3 @@
+$xpath = '*[System[EventRecordID=47]]'
+$event = Get-WinEvent -LogName $defLog -FilterXPath $xpath
+$event.ToXml()

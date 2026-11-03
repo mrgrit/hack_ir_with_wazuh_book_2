@@ -1,0 +1,184 @@
+[
+  {
+    "id": "C07-01",
+    "file": "C07-01.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "실습 환경과 조회 권한 확인",
+    "input": "hostname\nwhoami.exe\n$PSVersionTable.PSVersion\nGet-Service EventLog,WazuhSvc,WinDefend,Sysmon64 |\n Format-Table Name,Status\n$defLog = 'Microsoft-Windows-Windows Defender/Operational'"
+  },
+  {
+    "id": "C07-02",
+    "file": "C07-02.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "채널의 보존 설정과 수집 설정",
+    "input": "Get-WinEvent -ListLog Security,System,$defLog |\n Format-List LogName,IsEnabled,LogMode,MaximumSizeInBytes,\n RecordCount,OldestRecordNumber"
+  },
+  {
+    "id": "C07-03",
+    "file": "C07-03.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "채널의 보존 설정과 수집 설정",
+    "input": "$agentDir = 'C:\\Program Files (x86)\\ossec-agent'\n$cfgPath = Join-Path $agentDir 'ossec.conf'\nTest-Path -LiteralPath $cfgPath\n[xml]$cfg = Get-Content -LiteralPath $cfgPath -Raw\n$cfg.ossec_config.localfile |\n Format-List location,log_format,query"
+  },
+  {
+    "id": "C07-04",
+    "file": "C07-04.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "기존 삭제 이벤트 조회",
+    "input": "Get-WinEvent -FilterHashtable @{\n LogName='Security'\n ProviderName='Microsoft-Windows-Eventlog'\n Id=1102\n} -MaxEvents 5 |\n Format-List TimeCreated,Id,RecordId,Message"
+  },
+  {
+    "id": "C07-05",
+    "file": "C07-05.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "기존 삭제 이벤트 조회",
+    "input": "Get-WinEvent -FilterHashtable @{\n LogName='System'\n ProviderName='Microsoft-Windows-Eventlog'\n Id=104\n} -MaxEvents 5 |\n Format-List TimeCreated,Id,RecordId,Message"
+  },
+  {
+    "id": "Q07-01",
+    "file": "Q07-01.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "삭제 이벤트의 Wazuh 검색",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.providerName:\n \"Microsoft-Windows-Eventlog\"\nAND ((data.win.system.channel:\"Security\"\n AND data.win.system.eventID:\"1102\") OR\n (data.win.system.channel:\"System\"\n AND data.win.system.eventID:\"104\"))"
+  },
+  {
+    "id": "C07-06",
+    "file": "C07-06.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "삭제 대상과 수행 주체 읽기",
+    "input": "Get-WinEvent -FilterHashtable @{\n LogName='Security'\n ProviderName='Microsoft-Windows-Eventlog'\n Id=1102\n} -MaxEvents 1 | ForEach-Object { $_.ToXml() }"
+  },
+  {
+    "id": "Q07-02",
+    "file": "Q07-02.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "삭제 도구와 승인 작업의 대조",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"1\"\nAND data.win.eventdata.image:*wevtutil.exe"
+  },
+  {
+    "id": "C07-07",
+    "file": "C07-07.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "7.3  남은 로그의 사본 보존",
+    "input": "$stamp = Get-Date -Format 'yyyyMMdd-HHmmss'\n$case = Join-Path $env:USERPROFILE `\n ('Documents\\book2-ch07-' + $stamp)\nTest-Path -LiteralPath $case"
+  },
+  {
+    "id": "C07-08",
+    "file": "C07-08.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "7.3  남은 로그의 사본 보존",
+    "input": "New-Item -ItemType Directory -Path $case\nwevtutil epl Security \"$case\\Security.evtx\" /ow:false\n$LASTEXITCODE"
+  },
+  {
+    "id": "C07-09",
+    "file": "C07-09.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "사본의 크기와 해시 확인",
+    "input": "wevtutil epl System \"$case\\System.evtx\" /ow:false\n$LASTEXITCODE\nwevtutil epl \"$defLog\" \"$case\\Defender.evtx\" /ow:false\n$LASTEXITCODE"
+  },
+  {
+    "id": "C07-10",
+    "file": "C07-10.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "사본의 크기와 해시 확인",
+    "input": "Get-ChildItem -LiteralPath $case -File |\n Format-Table Name,Length\nGet-FileHash -LiteralPath \"$case\\Security.evtx\",\n \"$case\\System.evtx\",\n \"$case\\Defender.evtx\" -Algorithm SHA256 |\n Format-List Path,Hash"
+  },
+  {
+    "id": "C07-11",
+    "file": "C07-11.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "사본의 크기와 해시 확인",
+    "input": "$saved = Join-Path $case 'Defender.evtx'\nGet-WinEvent -Path $saved `\n -FilterXPath '*[System[EventRecordID=47]]' |\n Format-List TimeCreated,Id,RecordId,Message"
+  },
+  {
+    "id": "C07-12",
+    "file": "C07-12.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "기존 Defender 이벤트와 원본 필드",
+    "input": "Get-WinEvent -FilterHashtable @{\n LogName=$defLog\n Id=1116,1117,1118,1119\n} -MaxEvents 20 |\n Format-List TimeCreated,Id,RecordId,Message"
+  },
+  {
+    "id": "C07-13",
+    "file": "C07-13.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "기존 Defender 이벤트와 원본 필드",
+    "input": "$xpath = '*[System[EventRecordID=47]]'\n$event = Get-WinEvent -LogName $defLog -FilterXPath $xpath\n$event.ToXml()"
+  },
+  {
+    "id": "Q07-03",
+    "file": "Q07-03.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "Defender의 Wazuh 경보 검색",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Windows Defender/Operational\"\nAND data.win.system.eventID:\n (1116 OR 1117 OR 1118 OR 1119 OR 5001)"
+  },
+  {
+    "id": "Q07-04",
+    "file": "Q07-04.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "Defender의 Wazuh 경보 검색",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Windows Defender/Operational\"\nAND data.win.system.eventRecordID:\"47\""
+  },
+  {
+    "id": "Q07-05",
+    "file": "Q07-05.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "공백이 있는 필드 이름의 검색",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Windows Defender/Operational\"\nAND \"data.win.eventdata.detection ID\":\n \"{EBD2A2EF-E4E2-4682-9CF7-79EEF7D28939}\""
+  },
+  {
+    "id": "Q07-06",
+    "file": "Q07-06.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "대상 경로와 관련 프로세스",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Windows Defender/Operational\"\nAND \"data.win.eventdata.threat Name\":\n \"Trojan:Win32/BatTamper.A\""
+  },
+  {
+    "id": "C07-14",
+    "file": "C07-14.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "격리 결과와 현재 잔존 상태",
+    "input": "Get-MpThreat | Where-Object {\n $_.ThreatID -eq 2147818424\n} | Format-List ThreatID,ThreatName,IsActive,DidThreatExecute"
+  },
+  {
+    "id": "C07-15",
+    "file": "C07-15.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "격리 결과와 현재 잔존 상태",
+    "input": "$detection = '{EBD2A2EF-E4E2-4682-9CF7-79EEF7D28939}'\nGet-MpThreatDetection | Where-Object {\n $_.DetectionID -eq $detection\n} | Format-List DetectionID,ThreatID,InitialDetectionTime,\n LastThreatStatusChangeTime,RemediationTime,\n ActionSuccess,Resources"
+  },
+  {
+    "id": "Q07-07",
+    "file": "Q07-07.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "조치 실패의 조사와 대응",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Windows Defender/Operational\"\nAND data.win.system.eventID:(1118 OR 1119)"
+  },
+  {
+    "id": "C07-16",
+    "file": "C07-16.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "7.5  보호 변경과 현재 상태 확인",
+    "input": "Get-MpComputerStatus |\n Format-List AMServiceEnabled,AntivirusEnabled,\n RealTimeProtectionEnabled,IsTamperProtected,\n AntivirusSignatureVersion,AntivirusSignatureLastUpdated"
+  },
+  {
+    "id": "C07-17",
+    "file": "C07-17.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "7.5  보호 변경과 현재 상태 확인",
+    "input": "Get-WinEvent -FilterHashtable @{\n LogName=$defLog\n Id=5000,5001\n} -MaxEvents 20 |\n Format-List TimeCreated,Id,RecordId,Message"
+  },
+  {
+    "id": "Q07-08",
+    "file": "Q07-08.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "보호 설정 변경의 전후 관계",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Windows Defender/Operational\"\nAND data.win.system.eventID:(5000 OR 5001 OR 5007)"
+  },
+  {
+    "id": "C07-18",
+    "file": "C07-18.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "원상복구와 완료 확인",
+    "input": "Get-Service EventLog,WazuhSvc,WinDefend,Sysmon64 |\n Format-Table Name,Status\nGet-MpComputerStatus |\n Format-List RealTimeProtectionEnabled,IsTamperProtected"
+  }
+]

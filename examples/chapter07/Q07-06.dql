@@ -1,0 +1,5 @@
+agent.name:"windows-user"
+AND data.win.system.channel:
+ "Microsoft-Windows-Windows Defender/Operational"
+AND "data.win.eventdata.threat Name":
+ "Trojan:Win32/BatTamper.A"

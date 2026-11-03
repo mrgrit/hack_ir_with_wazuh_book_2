@@ -1,0 +1,368 @@
+{
+  "date": "2026-11-03",
+  "chapter": 7,
+  "status": "draft reviewed",
+  "docx": "manuscript/volume02-chapter07.docx",
+  "docx_sha256": "94cc3087979727ee89b20f3750f7cca96fac01faede395092980d1d8d45f627d",
+  "manuscript_sha256": "f0896b4f3812a828521c2121734357ada7f3427f3ec26d8ef8e911b708cc5cbd",
+  "page_count": 35,
+  "internal_render": "build/ch07/chapter07-final2.pdf",
+  "internal_render_sha256": "7fa72880e6773d867df06f46beff6919ae922558de202679d9630eb31d1b0625",
+  "render_method": "Hidden Microsoft Word COM PDF export and pypdfium2 page PNGs; bundled renderer unavailable because soffice.exe is absent.",
+  "template_sha256": "2506e3b2036c3bfa18f84a1f3b6185bff52c0273d4c2c526dd3c68d9adb5b18b",
+  "first_section_matches_template": true,
+  "geometry_twips": {
+    "pgSz": {
+      "w": "10660",
+      "h": "14912",
+      "code": "190"
+    },
+    "pgMar": {
+      "top": "1588",
+      "right": "1588",
+      "bottom": "2438",
+      "left": "1588",
+      "header": "851",
+      "footer": "907",
+      "gutter": "284"
+    }
+  },
+  "theme_matches_template": true,
+  "theme_sha256": "da3b998e12788e96cb878004ee497c96991d2bd0454ae28a5878020ff9054f5d",
+  "first_paragraph_style": "Title",
+  "pdf_fonts": [
+    "/BCDEEE+BookkMyungjo-Lt",
+    "/BCDFEE+BookkGothic-Lt",
+    "/BCDGEE+BookkGothic-Lt",
+    "/BCDHEE+BookkMyungjo-Lt",
+    "/BCDIEE+Consolas"
+  ],
+  "copy_inputs": {
+    "commands": 18,
+    "dql": 8,
+    "manifest_files_manuscript_match": true,
+    "powershell_parse_errors": 0,
+    "dql_ui_review": "chapter07-query-ui.json"
+  },
+  "source_analysis": {
+    "eicar_core_bytes": 68,
+    "split_and_source_strings_equal": true,
+    "not_executed": true
+  },
+  "full_urls_verified_in_docx_and_pdf": [
+    "https://docs.google.com/presentation/d/1o0H_2DDHBp8p2HvlSnEPbx6-jdURYzew",
+    "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-1102",
+    "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/wevtutil",
+    "https://learn.microsoft.com/en-us/windows/security/operating-system-security/device-management/use-windows-event-forwarding-to-assist-in-intrusion-detection",
+    "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent?view=powershell-5.1",
+    "https://learn.microsoft.com/en-us/defender-endpoint/troubleshoot-microsoft-defender-antivirus",
+    "https://learn.microsoft.com/en-us/previous-versions/windows/desktop/defender/msft-mpthreatdetection",
+    "https://documentation.wazuh.com/current/user-manual/capabilities/malware-detection/win-defender-logs-collection.html",
+    "https://www.eicar.org/download-anti-malware-testfile/",
+    "https://github.com/mrgrit/kt66/tree/63d4180b1d6866de986ef263a3bd831d6082b5d5"
+  ],
+  "images": [
+    {
+      "path": "assets/illustrations/chapter07/preserve.png",
+      "sha256": "1a58b453feedb87abb4a8607bf7165ca6f50679ef1efa5621e38b65ac1a5fb0a",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/figures/chapter07/preservation.png",
+      "sha256": "fc097e85a3d2af5af40433e854b189cbd04371761e82bfce89207fe47af8f826",
+      "size": [
+        1280,
+        770
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/figures/chapter07/clear-target.png",
+      "sha256": "69d4a7883262caa12740affd13c09a712b9406a449ab80ebcb623112fdd5e6a8",
+      "size": [
+        1280,
+        700
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter07/source-clear-rules.png",
+      "sha256": "4ebdd99f11ee33aaee8c16ee24434f86d60a4066da7e092110cbc8f5081f0020",
+      "size": [
+        696,
+        180
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter07/source-clear-target.png",
+      "sha256": "eb8752b06b133684c765d1531062eb615f327d223644ca8a28dc177bfd0c2eaf",
+      "size": [
+        695,
+        90
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/figures/chapter07/defender-states.png",
+      "sha256": "5ab70ff24204bbe3c91f8e5e3bf729776c3d9ad03b710e0652f29812c94e6308",
+      "size": [
+        1280,
+        790
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter07/defender-detection.png",
+      "sha256": "7deb3c54d7becbf675db0c5affcae42a8776a5fead64d2322a07f187c4477e31",
+      "size": [
+        657,
+        262
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter07/defender-path.png",
+      "sha256": "7e06b0a6154c900480496aca6500d513c8db460c7741f91b0dfe198744251877",
+      "size": [
+        724,
+        179
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter07/defender-action.png",
+      "sha256": "121251b1da2c15959be9b6ff8da21c145e59b81141467ab1a872891b0db5238d",
+      "size": [
+        622,
+        173
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/screenshots/chapter07/defender-threat.png",
+      "sha256": "ce55025e94ed7f93e2ed4be21701ecb5b50c60cd2591056ca6551dee91a5b668",
+      "size": [
+        642,
+        263
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/illustrations/chapter07/response.png",
+      "sha256": "9c514a0fe7c2cabdd7c1cbc8ab7292c0a2d40a85ff437349e4ce1fb01471c033",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        254
+      ],
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    },
+    {
+      "path": "assets/figures/chapter07/timeline.png",
+      "sha256": "341140af4c67cf2d77394954bfaf2ff90d7cbed05a3fbe0c3f4145802db3f298",
+      "size": [
+        1280,
+        810
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "embedded_hash_match": true,
+      "aspect_preserved": true
+    }
+  ],
+  "illustration_review": {
+    "originals_individually_inspected": true,
+    "selected_originals": {
+      "preserve": "exec-be5ad826-9d95-4e19-bc87-08b76ad03e6f.png",
+      "response": "exec-55f54b7f-acdc-4330-ad0e-d902796372dc.png"
+    },
+    "original_bytes_match_assets": true,
+    "docx_pages": [
+      2,
+      30
+    ],
+    "checks": [
+      "arm-hand connections and count",
+      "natural prop orientation and support",
+      "coherent viewpoint",
+      "transparency and preserved aspect ratio",
+      "actual book placement"
+    ]
+  },
+  "visual_review": {
+    "initial_pages_individually_reviewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
+    ],
+    "changed_pages_individually_rechecked": [
+      3,
+      5,
+      6,
+      12,
+      27,
+      28,
+      29,
+      30
+    ],
+    "unchanged_pages_verified_by_hash": [
+      1,
+      2,
+      4,
+      7,
+      8,
+      9,
+      10,
+      11,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      31,
+      32,
+      33,
+      34,
+      35
+    ],
+    "final_page_sha256": {
+      "page-01.png": "6b240061bb78b48a6e4bcda36b322233fa38084354294b6e7e70a8a11c6e0d44",
+      "page-02.png": "0c2ad70d84d08405044558d574031327a1d8b4775b1f8c0a7e74341a32e5639e",
+      "page-03.png": "ad2805a72fd3d0d1ccfbabb182b56f649ca59f9929db0f15a4987d9ba5cb6013",
+      "page-04.png": "2b6c8b72e6950c6a06a5af046010f4d887b9f7fdec69b7e0eb1b2c42383ecfad",
+      "page-05.png": "348f73294880f252c8aeeba31385e91523daa66de01cbe3bad0c51ef470da2e8",
+      "page-06.png": "4053242a9624cd1f0705c3de062b98c7d94cc7f6aa85041705e00ce64cdf64f2",
+      "page-07.png": "80b9401f00df2255c80aa2a605ee276ee7b5b3cf37ac2bc6f6a5449ef3aa2057",
+      "page-08.png": "4d353d74a344406e71f33c006a69c10618166971c054a97edfa21ca27362be1f",
+      "page-09.png": "231bc9f672256bedecff571275d8cd55fa7e64a448799e3ad033d88f23bae4c1",
+      "page-10.png": "17c07c99db9ef1a31b3f313a83005b7af9070f50d83cbb01e06f46271dee1aa7",
+      "page-11.png": "3c6b62c226680eb04d8035ab04ee1f7cce8c611fe5258618fc64abb9337a037a",
+      "page-12.png": "d1348f090e50b5a41b38c05bc553e8205ce1af83f1e3af8ce45d55a283289c2e",
+      "page-13.png": "f3ac4eee31de7615ab7e0fab2d97ee67159baec6a90eaf62801587af48c3e429",
+      "page-14.png": "255f972719befd9019275ef2fd1d393d21f640e1d182e0b87be813506db7043c",
+      "page-15.png": "c109c98d21d5ad7193bfccc623e923b27d8ef9cdd2f6fb8d35d80cfb0128eab4",
+      "page-16.png": "1900aab45b41e694e87f7fceeffe42ea5634117a2efdf6dd3eda481b0c89e58d",
+      "page-17.png": "4f7a8e9a3420071cb7473ceda431a4704eeeb0943d0614ec561d3416bb41aa3e",
+      "page-18.png": "50a96c20aaeaacba8a223b3c8a460a5a4af40719122151c733aa87ff4306abbf",
+      "page-19.png": "03c09b8cca5e85a5a219748eba87a6b19f4d7d0f16bc26a3d34b358654c8a404",
+      "page-20.png": "d84150c1380e63d324fdf46e3910ca2f4d2ede5bbd53e210d30f7d15804afd3c",
+      "page-21.png": "23b95e9efe0be0e6b04323e7f1452c0a2417ba511f037707f99341b587071c2f",
+      "page-22.png": "2ff166c7c9c611df98edeb9b2df6897f89d923f88028184ea9de4ac745a4c900",
+      "page-23.png": "60afbfd2381c4c3efa8d7401643353527d646c80ddca9723e2ab00cd09e784bf",
+      "page-24.png": "f0457427f349cf40f0deab0751f872b35bb60e42996dd7147a61c25fbaab3720",
+      "page-25.png": "d28b0218b552d644f19bcc608523086e67e617f13afcaa1e858e6b6d86ceb94b",
+      "page-26.png": "884e3c27e0bd2ae6b910c56b224fa3e152552e5c18d27b2c5f38c69e189f4d60",
+      "page-27.png": "64a97f86689d5a016a7bc93dd042e975965a92b307f899e14a3bb69a4aa17a76",
+      "page-28.png": "d6edbb9fcac35c1e03669c8be6dd9549718eda0da601cfcb0c9ac1e881f40371",
+      "page-29.png": "ced836a83b1d0b2fbb3b90dcd9c449d1702209232c16df82f64dbbf1a28fc32e",
+      "page-30.png": "a1d0550bc38f120f10ae653c8d9438ec119aead60eb535ce80fe7c7f4c69f637",
+      "page-31.png": "f4a7bb10ee9ca60b2c7d19e5a260b332ea80ee2322df744745dcf7cac623163b",
+      "page-32.png": "beb5593b08f3601ea0cb27591321d27cfe2ffcc0720d919594aa22d238840d4d",
+      "page-33.png": "e8f486600b33594bed750e1b1864f89c937b987cf56f0f21512299e02c6f07e5",
+      "page-34.png": "a4f3a7e187a138a8597a137069fb24a72d4f259c2b714fe963a2c7a6fd0a961a",
+      "page-35.png": "b9cec8ebe50265c96bdb54aff54e6a7b91aaf47b13cad34f9d8921159bce4b98"
+    },
+    "result": "No clipped text, covered target screenshot fields, separated captions, blank pages, or missing URL portions observed."
+  },
+  "scope": {
+    "prior_chapter_files_unchanged": true,
+    "rev01_unchanged": true,
+    "no_combined_book": true,
+    "no_distributed_pdf": true
+  },
+  "author_cleanup": {
+    "exact_export_folder_removed": true,
+    "original_logs_and_quarantine_unchanged": true,
+    "services_running": true,
+    "real_time_and_tamper_protection": true
+  },
+  "credential_pattern_scan": {
+    "result": "no matches",
+    "scope": "new and modified text files plus DOCX XML; token/private-key signatures"
+  },
+  "validation_limits": "Existing event and state reads, DQL UI searches, and three EVTX exports with hash and re-read checks. No log clearing, protection disablement, new EICAR creation, malware execution, or quarantine restoration. Missing 1102/104 and 5000/5001 paths were not positively reproduced. All final command strings were syntax-checked; export verification used an author wrapper and is not an exact full rerun of every reader step or failure branch. See chapter07-review.md."
+}

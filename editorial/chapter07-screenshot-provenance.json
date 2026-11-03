@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-03",
+  "method": "Rectangular crop only; no recreated interface or replaced values. Source slide captures and current UI kept distinct.",
+  "screenshots": [
+    {
+      "asset": "assets/screenshots/chapter07/source-clear-rules.png",
+      "source": "build/research/ch07-source-images/p417-image197.png",
+      "crop": [
+        0,
+        0,
+        696,
+        180
+      ],
+      "meaning": "source slide 417",
+      "source_sha256": "c90be8816e2eb433eedce0403667f5684815db65b15e44d63f55fbbb1ce333a4",
+      "asset_sha256": "4ebdd99f11ee33aaee8c16ee24434f86d60a4066da7e092110cbc8f5081f0020"
+    },
+    {
+      "asset": "assets/screenshots/chapter07/source-clear-target.png",
+      "source": "build/research/ch07-source-images/p418-image196.png",
+      "crop": [
+        35,
+        210,
+        730,
+        300
+      ],
+      "meaning": "source slide 418",
+      "source_sha256": "153ea4dd9a0f2613298d36e9030fe565ded5b2522696d04cb2cebeac3f861f84",
+      "asset_sha256": "eb8752b06b133684c765d1531062eb615f327d223644ca8a28dc177bfd0c2eaf"
+    },
+    {
+      "asset": "assets/screenshots/chapter07/defender-detection.png",
+      "source": "build/ch07/screens/defender-action-full.png",
+      "crop": [
+        408,
+        449,
+        1065,
+        711
+      ],
+      "meaning": "current Wazuh, event 1117 record 47",
+      "source_sha256": "276e0b418a6fdc34d2cf2aae3b95b1a1b51144ca00e35da8516474773aaf29fd",
+      "asset_sha256": "7deb3c54d7becbf675db0c5affcae42a8776a5fead64d2322a07f187c4477e31"
+    },
+    {
+      "asset": "assets/screenshots/chapter07/defender-path.png",
+      "source": "build/ch07/screens/defender-path-full.png",
+      "crop": [
+        408,
+        461,
+        1132,
+        640
+      ],
+      "meaning": "current Wazuh, event 1117 record 47",
+      "source_sha256": "040bc262d5fc771883a094ca910c0f0e9b1af588cdf3dbd5b82a3e331533be75",
+      "asset_sha256": "7e06b0a6154c900480496aca6500d513c8db460c7741f91b0dfe198744251877"
+    },
+    {
+      "asset": "assets/screenshots/chapter07/defender-action.png",
+      "source": "build/ch07/screens/defender-action-full.png",
+      "crop": [
+        408,
+        193,
+        1030,
+        366
+      ],
+      "meaning": "current Wazuh, event 1117 record 47",
+      "source_sha256": "276e0b418a6fdc34d2cf2aae3b95b1a1b51144ca00e35da8516474773aaf29fd",
+      "asset_sha256": "121251b1da2c15959be9b6ff8da21c145e59b81141467ab1a872891b0db5238d"
+    },
+    {
+      "asset": "assets/screenshots/chapter07/defender-threat.png",
+      "source": "build/ch07/screens/defender-threat-full.png",
+      "crop": [
+        408,
+        434,
+        1050,
+        697
+      ],
+      "meaning": "current Wazuh, event 1117 record 47",
+      "source_sha256": "a90b7691734c551efeaa74cfda579ad526d82264e2c6cb27c3448cf23edac653",
+      "asset_sha256": "ce55025e94ed7f93e2ed4be21701ecb5b50c60cd2591056ca6551dee91a5b668"
+    }
+  ]
+}

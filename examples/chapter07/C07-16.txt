@@ -1,0 +1,4 @@
+Get-MpComputerStatus |
+ Format-List AMServiceEnabled,AntivirusEnabled,
+ RealTimeProtectionEnabled,IsTamperProtected,
+ AntivirusSignatureVersion,AntivirusSignatureLastUpdated

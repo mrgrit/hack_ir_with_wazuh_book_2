@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-03",
+  "prompts": [
+    {
+      "key": "preserve",
+      "prompt": "Use case: editorial illustration. Asset type: small vignette for a Korean cybersecurity engineering textbook. Primary request: a Korean male incident responder in his thirties preserving log evidence, standing in a compact secure archive room next to a locked metal cabinet containing clearly distinct external storage cases and a small rack server in the background. He wears an olive work jacket, cream shirt, dark trousers, no headset. He carries ONE closed rugged rectangular external drive case by its molded top handle with his right hand at his side; his left arm hangs relaxed with one empty hand. No writing or typing. Front three-quarter view with his face visible, looking toward the cabinet. Show an anatomically clear complete body, exactly two arms, two hands, two distinct legs and planted feet, correct limb attachment and object weight. Scene: cabinet on the left, responder on right, tiled floor island, small utility room window. Style: crisp old PC adventure game pixel art, deliberately visible square pixels, limited muted teal olive ochre charcoal palette, flat color clusters and restrained dither shading, no smooth painterly gradients. Compact square-ish composition, natural consistent perspective, true transparent exterior around the vignette. No text, labels, logos, watermark, symbols or arrows. Not a photograph, not a fake software interface."
+    },
+    {
+      "key": "response",
+      "prompt": "Use case: editorial illustration. Asset type: small vignette for a Korean cybersecurity engineering textbook. Primary request: a Korean woman security analyst in her fifties with short salt-and-pepper hair, wearing a navy cardigan over a pale orange shirt, reviewing a completed endpoint protection action at a laptop in a bright small incident-response room. She sits normally on a simple sturdy chair at ONE ordinary rectangular wooden table with four straight legs. Front three-quarter view shows her face. Her right hand rests naturally on a separate mouse on the tabletop; her left hand rests naturally on her own left thigh, clearly separated from the right arm. Exactly two arms, two hands, natural elbows/wrists, exactly two knees and two feet under the table with coherent occlusion. Laptop lies flat on the table and faces HER; viewer sees the solid rear of the lid, no impossible through-screen view. Background: broad window with a Korean urban building and small tree outside, a wall clock and one plain closed binder on a nearby shelf. No clutter, no cart, no folding supports, no headset, no floating parts. Style: crisp retro PC adventure-game pixel art with visible square pixels, limited navy warm cream terracotta and muted teal color areas, dithered shading, no antialiasing blur or painted gradients. Different composition and person from a standing man in an archive room. Compact landscape vignette with transparent exterior. No readable text, logos, arrows, fake UI, watermarks."
+    }
+  ],
+  "selected": {
+    "preserve": "exec-be5ad826-9d95-4e19-bc87-08b76ad03e6f.png",
+    "response": "exec-55f54b7f-acdc-4330-ad0e-d902796372dc.png"
+  }
+}

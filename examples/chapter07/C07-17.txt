@@ -1,0 +1,5 @@
+Get-WinEvent -FilterHashtable @{
+ LogName=$defLog
+ Id=5000,5001
+} -MaxEvents 20 |
+ Format-List TimeCreated,Id,RecordId,Message

@@ -1,0 +1,4 @@
+wevtutil epl System "$case\System.evtx" /ow:false
+$LASTEXITCODE
+wevtutil epl "$defLog" "$case\Defender.evtx" /ow:false
+$LASTEXITCODE
