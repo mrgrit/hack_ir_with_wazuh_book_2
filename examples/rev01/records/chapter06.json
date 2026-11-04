@@ -1,0 +1,1596 @@
+{
+  "chapter": 6,
+  "kind": "saved-evidence-excerpts",
+  "scope": "보존 자료의 필드 발췌. 전체 로그나 SIEM 복원용 자료가 아니다.",
+  "cases": [
+    {
+      "case": "windows-selected",
+      "source": "editorial/evidence/analysis-revision/2026-11-04/evidence.json",
+      "source_sha256": "3233d26006eb2224e8019e79e14bba01063fe9aaa53fe4a9116ac3151b40310b",
+      "pointer": "/records/0",
+      "index": "wazuh-archives-*",
+      "query": {
+        "size": 100,
+        "track_total_hits": true,
+        "query": {
+          "bool": {
+            "filter": [
+              {
+                "term": {
+                  "agent.name": "windows-user"
+                }
+              },
+              {
+                "terms": {
+                  "data.win.system.eventRecordID": [
+                    "9407",
+                    "9451",
+                    "9454",
+                    "9455",
+                    "9461",
+                    "9462",
+                    "10751",
+                    "10755",
+                    "10757",
+                    "10759",
+                    "10207",
+                    "10712",
+                    "8957",
+                    "8961",
+                    "8962"
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "sort": [
+          {
+            "timestamp": "asc"
+          }
+        ]
+      },
+      "total": {
+        "value": 30,
+        "relation": "eq"
+      },
+      "returned": 30,
+      "records": [
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "YTD5nqEBb-mjh6Pa4SAx",
+          "id": "1793668530.2784849",
+          "timestamp": "2026-11-03T01:15:30.438+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "4798",
+            "channel": "Security",
+            "systemTime": "2026-11-03T01:15:29.5621838Z",
+            "eventRecordID": "8957",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x3e7",
+            "targetUserName": "victim",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-1001",
+            "subjectUserName": "KT66-WIN-01$"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "bzD6nqEBb-mjh6PatCAp",
+          "id": "1793668589.2784849",
+          "timestamp": "2026-11-03T01:16:29.907+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "4798",
+            "channel": "Security",
+            "systemTime": "2026-11-03T01:16:29.0735247Z",
+            "eventRecordID": "8961",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x3e7",
+            "targetUserName": "Guest",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-501",
+            "subjectUserName": "KT66-WIN-01$"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "cDD6nqEBb-mjh6PatCAp",
+          "id": "1793668589.2784849",
+          "timestamp": "2026-11-03T01:16:29.922+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "4798",
+            "channel": "Security",
+            "systemTime": "2026-11-03T01:16:29.0739809Z",
+            "eventRecordID": "8962",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x3e7",
+            "targetUserName": "kt66student",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-1000",
+            "subjectUserName": "KT66-WIN-01$"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "nzAen6EBb-mjh6PaMDxW",
+          "id": "1793670911.5047095",
+          "timestamp": "2026-11-03T01:55:11.123+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "4798",
+            "channel": "Security",
+            "systemTime": "2026-11-03T01:55:10.1549397Z",
+            "eventRecordID": "9407",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x3e7",
+            "targetUserName": "WDAGUtilityAccount",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-504",
+            "subjectUserName": "KT66-WIN-01$"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "oDAjn6EBb-mjh6Paiz2l",
+          "id": "1793671267.5074936",
+          "timestamp": "2026-11-03T02:01:07.951+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "4798",
+            "channel": "Security",
+            "systemTime": "2026-11-03T02:01:07.0350913Z",
+            "eventRecordID": "9451",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x3e7",
+            "targetUserName": "Guest",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-501",
+            "subjectUserName": "KT66-WIN-01$"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "ozAjn6EBb-mjh6Paiz2l",
+          "id": "1793671267.5074936",
+          "timestamp": "2026-11-03T02:01:07.998+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "4798",
+            "channel": "Security",
+            "systemTime": "2026-11-03T02:01:07.0387002Z",
+            "eventRecordID": "9454",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x3e7",
+            "targetUserName": "WDAGUtilityAccount",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-504",
+            "subjectUserName": "KT66-WIN-01$"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "qDAkn6EBb-mjh6Padj0O",
+          "id": "1793671327.5074936",
+          "timestamp": "2026-11-03T02:02:07.359+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "4798",
+            "channel": "Security",
+            "systemTime": "2026-11-03T02:02:06.4545691Z",
+            "eventRecordID": "9455",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x3e7",
+            "targetUserName": "Administrator",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-500",
+            "subjectUserName": "KT66-WIN-01$"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "rzAkn6EBb-mjh6PakT1o",
+          "id": "1793671333.5089192",
+          "timestamp": "2026-11-03T02:02:13.360+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "Windows Logon Success",
+            "id": "60106"
+          },
+          "system": {
+            "eventID": "4624",
+            "channel": "Security",
+            "systemTime": "2026-11-03T02:02:12.4661845Z",
+            "eventRecordID": "9461",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x3e7",
+            "targetLogonId": "0x3e7",
+            "targetUserName": "SYSTEM",
+            "processId": "0x380",
+            "targetUserSid": "S-1-5-18",
+            "subjectUserName": "KT66-WIN-01$"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "szAkn6EBb-mjh6PakT1o",
+          "id": "1793671333.5096988",
+          "timestamp": "2026-11-03T02:02:13.419+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "4672",
+            "channel": "Security",
+            "systemTime": "2026-11-03T02:02:12.4662090Z",
+            "eventRecordID": "9462",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x3e7",
+            "subjectUserName": "SYSTEM"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "PDBhn6EBb-mjh6Pa_Fvh",
+          "id": "1793675360.7988575",
+          "timestamp": "2026-11-03T03:09:20.580+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "User: WORKGROUP\\victim logged using Remote Desktop Connection (RDP) from ip:10.20.30.202.",
+            "id": "92653"
+          },
+          "system": {
+            "eventID": "4624",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:09:19.7808046Z",
+            "eventRecordID": "10207",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x3e7",
+            "targetLogonId": "0x1ca2207",
+            "targetUserName": "victim",
+            "processId": "0x860",
+            "targetUserSid": "S-1-5-21-3937859836-2530084332-1215515481-1001",
+            "subjectUserName": "KT66-WIN-01$"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "xjCEn6EBb-mjh6PalXGP",
+          "id": "1793677627.10811994",
+          "timestamp": "2026-11-03T03:47:07.325+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "Non network or service local logon.",
+            "id": "67022"
+          },
+          "system": {
+            "eventID": "4624",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:07.0401980Z",
+            "eventRecordID": "10712",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e25c52",
+            "targetLogonId": "0x1e2a3b9",
+            "targetUserName": "kt66student",
+            "processId": "0x20b8",
+            "targetUserSid": "S-1-5-21-3937859836-2530084332-1215515481-1000",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "UTCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11177400",
+          "timestamp": "2026-11-03T03:47:21.017+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 8,
+            "description": "User account enabled or created",
+            "id": "60109"
+          },
+          "system": {
+            "eventID": "4720",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.1667464Z",
+            "eventRecordID": "10751",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "book2_ch03",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "VTCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11191965",
+          "timestamp": "2026-11-03T03:47:21.083+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Administrators Group Changed",
+            "id": "60154"
+          },
+          "system": {
+            "eventID": "4732",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.5783521Z",
+            "eventRecordID": "10755",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "Administrators",
+            "memberSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "targetSid": "S-1-5-32-544",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "VzCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11195052",
+          "timestamp": "2026-11-03T03:47:21.122+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Administrators Group Changed",
+            "id": "60154"
+          },
+          "system": {
+            "eventID": "4733",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.6122215Z",
+            "eventRecordID": "10757",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "Administrators",
+            "memberSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "targetSid": "S-1-5-32-544",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "WTCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11201351",
+          "timestamp": "2026-11-03T03:47:21.153+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 8,
+            "description": "User account disabled or deleted",
+            "id": "60111"
+          },
+          "system": {
+            "eventID": "4726",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.6293489Z",
+            "eventRecordID": "10759",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "book2_ch03",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "rzD4n6EBb-mjh6Pa_6Lf",
+          "id": "1793685256.15563803",
+          "timestamp": "2026-11-03T05:54:16.299+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 6,
+            "description": "Powershell executing certutil to decode a file",
+            "id": "92073"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T05:54:15.4684790Z",
+            "eventRecordID": "8957",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\certutil.exe",
+            "parentProcessGuid": "{af6e9a1f-7701-6ae9-6406-000000000300}",
+            "processGuid": "{af6e9a1f-7707-6ae9-6706-000000000300}",
+            "parentProcessId": "3036",
+            "processId": "4240",
+            "utcTime": "2026-11-03 05:54:15.443",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "1TD5n6EBb-mjh6PaB6LM",
+          "id": "1793685258.15615731",
+          "timestamp": "2026-11-03T05:54:18.655+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 4,
+            "description": "C:\\\\Windows\\\\Temp\\\\book2_ch05\\\\WINWORD.EXE binary in a suspicious location launched by C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "id": "92066"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T05:54:17.7043781Z",
+            "eventRecordID": "8961",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\Temp\\\\book2_ch05\\\\WINWORD.EXE",
+            "parentProcessGuid": "{af6e9a1f-7701-6ae9-6406-000000000300}",
+            "processGuid": "{af6e9a1f-7709-6ae9-6a06-000000000300}",
+            "parentProcessId": "3036",
+            "processId": "9164",
+            "utcTime": "2026-11-03 05:54:17.698",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "2TD5n6EBb-mjh6PaB6LM",
+          "id": "1793685258.15660304",
+          "timestamp": "2026-11-03T05:54:18.702+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 4,
+            "description": "Windows command prompt started by an abnormal process",
+            "id": "92052"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T05:54:17.7752457Z",
+            "eventRecordID": "8962",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\cmd.exe",
+            "parentProcessGuid": "{af6e9a1f-7709-6ae9-6a06-000000000300}",
+            "processGuid": "{af6e9a1f-7709-6ae9-6b06-000000000300}",
+            "parentProcessId": "9164",
+            "processId": "6212",
+            "utcTime": "2026-11-03 05:54:17.756",
+            "parentImage": "C:\\\\Windows\\\\Temp\\\\book2_ch05\\\\WINWORD.EXE"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "zzBMoKEBb-mjh6Pae70J",
+          "id": "1793690728.17458829",
+          "timestamp": "2026-11-03T07:25:28.069+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "10",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:25:27.8941042Z",
+            "eventRecordID": "9407",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "grantedAccess": "0x1fffff",
+            "targetProcessGUID": "{af6e9a1f-6c2e-6ae8-0c00-000000000300}",
+            "utcTime": "2026-11-03 07:25:27.878",
+            "sourceImage": "C:\\\\Program Files\\\\osquery\\\\osqueryd\\\\osqueryd.exe",
+            "targetImage": "C:\\\\WINDOWS\\\\system32\\\\lsass.exe",
+            "sourceProcessGUID": "{af6e9a1f-6c34-6ae8-6200-000000000300}"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "MTBQoKEBb-mjh6Pa4MFu",
+          "id": "1793691016.17878321",
+          "timestamp": "2026-11-03T07:30:16.308+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "3",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:15.9481881Z",
+            "eventRecordID": "9451",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "destinationPort": "80",
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "sourcePort": "57522",
+            "initiated": "true",
+            "destinationIp": "10.20.32.80",
+            "processGuid": "{af6e9a1f-8d82-6ae9-d106-000000000300}",
+            "sourceIp": "172.30.70.2",
+            "processId": "8080",
+            "utcTime": "2026-11-03 07:30:12.232"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "ODBQoKEBb-mjh6Pa6MFA",
+          "id": "1793691017.17930144",
+          "timestamp": "2026-11-03T07:30:17.379+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "3",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:16.9640601Z",
+            "eventRecordID": "9454",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "destinationPort": "80",
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "sourcePort": "57523",
+            "initiated": "true",
+            "destinationIp": "10.20.32.80",
+            "processGuid": "{af6e9a1f-8d82-6ae9-d106-000000000300}",
+            "sourceIp": "172.30.70.2",
+            "processId": "8080",
+            "utcTime": "2026-11-03 07:30:14.564"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "PzBQoKEBb-mjh6Pa8MER",
+          "id": "1793691019.17981959",
+          "timestamp": "2026-11-03T07:30:19.635+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "3",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:18.7762645Z",
+            "eventRecordID": "9455",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "destinationPort": "80",
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "sourcePort": "57524",
+            "initiated": "true",
+            "destinationIp": "10.20.32.80",
+            "processGuid": "{af6e9a1f-8d82-6ae9-d106-000000000300}",
+            "sourceIp": "172.30.70.2",
+            "processId": "8080",
+            "utcTime": "2026-11-03 07:30:16.626"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "ezBRoKEBb-mjh6PaC8Fx",
+          "id": "1793691026.18086607",
+          "timestamp": "2026-11-03T07:30:26.665+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "22",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:25.7934159Z",
+            "eventRecordID": "9461",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "processGuid": "{af6e9a1f-8d8d-6ae9-d406-000000000300}",
+            "queryStatus": "0",
+            "processId": "1540",
+            "utcTime": "2026-11-03 07:30:22.716",
+            "queryName": "example.com",
+            "queryResults": "104.20.23.154;172.66.147.243;"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "fDBRoKEBb-mjh6PaC8Fx",
+          "id": "1793691026.18086607",
+          "timestamp": "2026-11-03T07:30:26.706+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "22",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:25.7934824Z",
+            "eventRecordID": "9462",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "processGuid": "{af6e9a1f-8d8d-6ae9-d406-000000000300}",
+            "queryStatus": "9003",
+            "processId": "1540",
+            "utcTime": "2026-11-03 07:30:22.828",
+            "queryName": "book2-ch06.invalid",
+            "queryResults": "type: 6 a.root-servers.net;"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "8DHNoKEBb-mjh6Pa-Qab",
+          "id": "1793699210.23776401",
+          "timestamp": "2026-11-03T09:46:50.250+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "10",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T09:46:49.3667756Z",
+            "eventRecordID": "10207",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "grantedAccess": "0x1fffff",
+            "targetProcessGUID": "{af6e9a1f-6c2e-6ae8-0c00-000000000300}",
+            "utcTime": "2026-11-03 09:46:49.364",
+            "sourceImage": "C:\\\\Program Files\\\\osquery\\\\osqueryd\\\\osqueryd.exe",
+            "targetImage": "C:\\\\WINDOWS\\\\system32\\\\lsass.exe",
+            "sourceProcessGUID": "{af6e9a1f-6c34-6ae8-6200-000000000300}"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "TjEOoaEBb-mjh6Pa1ikg",
+          "id": "1793703465.28818404",
+          "timestamp": "2026-11-03T10:57:45.756+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 6,
+            "description": "Executable dropped in Windows root folder",
+            "id": "92217"
+          },
+          "system": {
+            "eventID": "11",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T10:57:44.8902466Z",
+            "eventRecordID": "10712",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\Microsoft.NET\\\\Framework\\\\v4.0.30319\\\\mscorsvw.exe",
+            "processGuid": "{af6e9a1f-be28-6ae9-5009-000000000300}",
+            "processId": "5976",
+            "utcTime": "2026-11-03 10:57:44.880",
+            "targetFilename": "C:\\\\Windows\\\\assembly\\\\NativeImages_v4.0.30319_32\\\\Temp\\\\1758-0\\\\SrpUxSnapIn.dll"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "DzESoaEBb-mjh6PaAizY",
+          "id": "1793703673.29309330",
+          "timestamp": "2026-11-03T11:01:13.285+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "10",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T11:01:12.4016098Z",
+            "eventRecordID": "10751",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "grantedAccess": "0x1000",
+            "targetProcessGUID": "{af6e9a1f-6c2e-6ae8-0c00-000000000300}",
+            "utcTime": "2026-11-03 11:01:12.391",
+            "sourceImage": "C:\\\\WINDOWS\\\\system32\\\\svchost.exe",
+            "targetImage": "C:\\\\WINDOWS\\\\system32\\\\lsass.exe",
+            "sourceProcessGUID": "{af6e9a1f-6c2f-6ae8-1100-000000000300}"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "STESoaEBb-mjh6Pauix3",
+          "id": "1793703717.29336577",
+          "timestamp": "2026-11-03T11:01:57.131+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "10",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T11:01:56.2393756Z",
+            "eventRecordID": "10755",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "grantedAccess": "0x1fffff",
+            "targetProcessGUID": "{af6e9a1f-6c2e-6ae8-0c00-000000000300}",
+            "utcTime": "2026-11-03 11:01:56.235",
+            "sourceImage": "C:\\\\Program Files\\\\osquery\\\\osqueryd\\\\osqueryd.exe",
+            "targetImage": "C:\\\\WINDOWS\\\\system32\\\\lsass.exe",
+            "sourceProcessGUID": "{af6e9a1f-6c34-6ae8-6200-000000000300}"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "TDESoaEBb-mjh6Pa2Sy3",
+          "id": "1793703727.29336577",
+          "timestamp": "2026-11-03T11:02:07.179+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "10",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T11:02:06.3028134Z",
+            "eventRecordID": "10757",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "grantedAccess": "0x1fffff",
+            "targetProcessGUID": "{af6e9a1f-6c2e-6ae8-0c00-000000000300}",
+            "utcTime": "2026-11-03 11:02:06.297",
+            "sourceImage": "C:\\\\Program Files\\\\osquery\\\\osqueryd\\\\osqueryd.exe",
+            "targetImage": "C:\\\\WINDOWS\\\\system32\\\\lsass.exe",
+            "sourceProcessGUID": "{af6e9a1f-6c34-6ae8-6200-000000000300}"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "TzEToaEBb-mjh6PaFCxW",
+          "id": "1793703736.29338192",
+          "timestamp": "2026-11-03T11:02:16.630+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "10",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T11:02:15.7053583Z",
+            "eventRecordID": "10759",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "grantedAccess": "0x1000",
+            "targetProcessGUID": "{af6e9a1f-6c2e-6ae8-0c00-000000000300}",
+            "utcTime": "2026-11-03 11:02:15.703",
+            "sourceImage": "C:\\\\WINDOWS\\\\system32\\\\svchost.exe",
+            "targetImage": "C:\\\\WINDOWS\\\\system32\\\\lsass.exe",
+            "sourceProcessGUID": "{af6e9a1f-6c2f-6ae8-1100-000000000300}"
+          }
+        }
+      ],
+      "source_hash_basis": "LF-normalized UTF-8 bytes"
+    },
+    {
+      "case": "ch06-processes",
+      "source": "editorial/evidence/analysis-revision/2026-11-04/evidence.json",
+      "source_sha256": "3233d26006eb2224e8019e79e14bba01063fe9aaa53fe4a9116ac3151b40310b",
+      "pointer": "/records/2",
+      "index": "wazuh-archives-*",
+      "query": {
+        "size": 100,
+        "track_total_hits": true,
+        "query": {
+          "bool": {
+            "filter": [
+              {
+                "term": {
+                  "agent.name": "windows-user"
+                }
+              },
+              {
+                "terms": {
+                  "data.win.eventdata.processGuid": [
+                    "{af6e9a1f-6c34-6ae8-6200-000000000300}",
+                    "{af6e9a1f-8d82-6ae9-d106-000000000300}",
+                    "{af6e9a1f-8d8d-6ae9-d406-000000000300}"
+                  ]
+                }
+              },
+              {
+                "terms": {
+                  "data.win.system.eventID": [
+                    "1",
+                    "3",
+                    "11",
+                    "22"
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "sort": [
+          {
+            "timestamp": "asc"
+          }
+        ]
+      },
+      "total": {
+        "value": 10,
+        "relation": "eq"
+      },
+      "returned": 10,
+      "records": [
+        {
+          "_index": "wazuh-archives-4.x-2026.11.02",
+          "_id": "4i_nm6EBb-mjh6PaYhIi",
+          "id": "1793616990.10693650",
+          "timestamp": "2026-11-02T10:56:30.637+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-02T10:55:49.0918483Z",
+            "eventRecordID": "1606",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Program Files\\\\osquery\\\\osqueryd\\\\osqueryd.exe",
+            "parentProcessGuid": "{af6e9a1f-6c32-6ae8-4f00-000000000300}",
+            "processGuid": "{af6e9a1f-6c34-6ae8-6200-000000000300}",
+            "parentProcessId": "3912",
+            "processId": "5156",
+            "utcTime": "2026-11-02 10:55:48.506",
+            "parentImage": "C:\\\\Program Files\\\\osquery\\\\osqueryd\\\\osqueryd.exe"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "JTBQoKEBb-mjh6PazsES",
+          "id": "1793691011.17854003",
+          "timestamp": "2026-11-03T07:30:11.966+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Powershell.exe spawned a powershell process which executed a base64 encoded command",
+            "id": "92057"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:11.1192850Z",
+            "eventRecordID": "9448",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "parentProcessGuid": "{af6e9a1f-8d81-6ae9-cf06-000000000300}",
+            "processGuid": "{af6e9a1f-8d82-6ae9-d106-000000000300}",
+            "parentProcessId": "6976",
+            "processId": "8080",
+            "utcTime": "2026-11-03 07:30:10.870",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "JjBQoKEBb-mjh6PazsES",
+          "id": "1793691011.17871701",
+          "timestamp": "2026-11-03T07:30:11.968+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 15,
+            "description": "Executable file dropped in folder commonly used by malware",
+            "id": "92213"
+          },
+          "system": {
+            "eventID": "11",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:11.2397184Z",
+            "eventRecordID": "9449",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "processGuid": "{af6e9a1f-8d82-6ae9-d106-000000000300}",
+            "processId": "8080",
+            "utcTime": "2026-11-03 07:30:11.228",
+            "targetFilename": "C:\\\\Users\\\\kt66student\\\\AppData\\\\Local\\\\Temp\\\\__PSScriptPolicyTest_uxlpxeyf.lqd.ps1"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "MTBQoKEBb-mjh6Pa4MFu",
+          "id": "1793691016.17878321",
+          "timestamp": "2026-11-03T07:30:16.308+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "3",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:15.9481881Z",
+            "eventRecordID": "9451",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "destinationPort": "80",
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "sourcePort": "57522",
+            "initiated": "true",
+            "destinationIp": "10.20.32.80",
+            "processGuid": "{af6e9a1f-8d82-6ae9-d106-000000000300}",
+            "sourceIp": "172.30.70.2",
+            "processId": "8080",
+            "utcTime": "2026-11-03 07:30:12.232"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "ODBQoKEBb-mjh6Pa6MFA",
+          "id": "1793691017.17930144",
+          "timestamp": "2026-11-03T07:30:17.379+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "3",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:16.9640601Z",
+            "eventRecordID": "9454",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "destinationPort": "80",
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "sourcePort": "57523",
+            "initiated": "true",
+            "destinationIp": "10.20.32.80",
+            "processGuid": "{af6e9a1f-8d82-6ae9-d106-000000000300}",
+            "sourceIp": "172.30.70.2",
+            "processId": "8080",
+            "utcTime": "2026-11-03 07:30:14.564"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "PzBQoKEBb-mjh6Pa8MER",
+          "id": "1793691019.17981959",
+          "timestamp": "2026-11-03T07:30:19.635+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "3",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:18.7762645Z",
+            "eventRecordID": "9455",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "destinationPort": "80",
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "sourcePort": "57524",
+            "initiated": "true",
+            "destinationIp": "10.20.32.80",
+            "processGuid": "{af6e9a1f-8d82-6ae9-d106-000000000300}",
+            "sourceIp": "172.30.70.2",
+            "processId": "8080",
+            "utcTime": "2026-11-03 07:30:16.626"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "UTBQoKEBb-mjh6Pa98Hk",
+          "id": "1793691021.18064625",
+          "timestamp": "2026-11-03T07:30:21.993+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Powershell.exe spawned a powershell process which executed a base64 encoded command",
+            "id": "92057"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:21.1607303Z",
+            "eventRecordID": "9458",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "parentProcessGuid": "{af6e9a1f-8d8b-6ae9-d206-000000000300}",
+            "processGuid": "{af6e9a1f-8d8d-6ae9-d406-000000000300}",
+            "parentProcessId": "3732",
+            "processId": "1540",
+            "utcTime": "2026-11-03 07:30:21.145",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "UjBQoKEBb-mjh6Pa98Hk",
+          "id": "1793691021.18078163",
+          "timestamp": "2026-11-03T07:30:21.994+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 15,
+            "description": "Executable file dropped in folder commonly used by malware",
+            "id": "92213"
+          },
+          "system": {
+            "eventID": "11",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:21.3241716Z",
+            "eventRecordID": "9459",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "processGuid": "{af6e9a1f-8d8d-6ae9-d406-000000000300}",
+            "processId": "1540",
+            "utcTime": "2026-11-03 07:30:21.323",
+            "targetFilename": "C:\\\\Users\\\\kt66student\\\\AppData\\\\Local\\\\Temp\\\\__PSScriptPolicyTest_qznyywqz.vbv.ps1"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "ezBRoKEBb-mjh6PaC8Fx",
+          "id": "1793691026.18086607",
+          "timestamp": "2026-11-03T07:30:26.665+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "22",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:25.7934159Z",
+            "eventRecordID": "9461",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "processGuid": "{af6e9a1f-8d8d-6ae9-d406-000000000300}",
+            "queryStatus": "0",
+            "processId": "1540",
+            "utcTime": "2026-11-03 07:30:22.716",
+            "queryName": "example.com",
+            "queryResults": "104.20.23.154;172.66.147.243;"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "fDBRoKEBb-mjh6PaC8Fx",
+          "id": "1793691026.18086607",
+          "timestamp": "2026-11-03T07:30:26.706+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "22",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:25.7934824Z",
+            "eventRecordID": "9462",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "processGuid": "{af6e9a1f-8d8d-6ae9-d406-000000000300}",
+            "queryStatus": "9003",
+            "processId": "1540",
+            "utcTime": "2026-11-03 07:30:22.828",
+            "queryName": "book2-ch06.invalid",
+            "queryResults": "type: 6 a.root-servers.net;"
+          }
+        }
+      ],
+      "source_hash_basis": "LF-normalized UTF-8 bytes"
+    },
+    {
+      "case": "ch06-original-archives",
+      "source": "editorial/evidence/analysis-revision/2026-11-04/followup.json",
+      "source_sha256": "5ffabe67273dd68211defb9fec1d26673094635496e2640ee3c129a2e75bc75f",
+      "pointer": "/records/5",
+      "index": "wazuh-archives-*",
+      "query": {
+        "size": 200,
+        "track_total_hits": true,
+        "query": {
+          "bool": {
+            "filter": [
+              {
+                "term": {
+                  "agent.name": "windows-user"
+                }
+              },
+              {
+                "term": {
+                  "data.win.system.channel": "Microsoft-Windows-Sysmon/Operational"
+                }
+              },
+              {
+                "terms": {
+                  "data.win.system.eventRecordID": [
+                    "9407",
+                    "9451",
+                    "9454",
+                    "9455",
+                    "9461",
+                    "9462"
+                  ]
+                }
+              },
+              {
+                "range": {
+                  "timestamp": {
+                    "gte": "2026-11-03T16:00:00+09:00",
+                    "lt": "2026-11-03T17:00:00+09:00"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "sort": [
+          {
+            "timestamp": "asc"
+          }
+        ]
+      },
+      "total": {
+        "value": 6,
+        "relation": "eq"
+      },
+      "returned": 6,
+      "records": [
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "zzBMoKEBb-mjh6Pae70J",
+          "id": "1793690728.17458829",
+          "timestamp": "2026-11-03T07:25:28.069+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "10",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:25:27.8941042Z",
+            "eventRecordID": "9407",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "grantedAccess": "0x1fffff",
+            "targetProcessGUID": "{af6e9a1f-6c2e-6ae8-0c00-000000000300}",
+            "utcTime": "2026-11-03 07:25:27.878",
+            "sourceImage": "C:\\\\Program Files\\\\osquery\\\\osqueryd\\\\osqueryd.exe",
+            "targetImage": "C:\\\\WINDOWS\\\\system32\\\\lsass.exe",
+            "sourceProcessGUID": "{af6e9a1f-6c34-6ae8-6200-000000000300}"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "MTBQoKEBb-mjh6Pa4MFu",
+          "id": "1793691016.17878321",
+          "timestamp": "2026-11-03T07:30:16.308+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "3",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:15.9481881Z",
+            "eventRecordID": "9451",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "destinationPort": "80",
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "sourcePort": "57522",
+            "initiated": "true",
+            "destinationIp": "10.20.32.80",
+            "processGuid": "{af6e9a1f-8d82-6ae9-d106-000000000300}",
+            "sourceIp": "172.30.70.2",
+            "processId": "8080",
+            "utcTime": "2026-11-03 07:30:12.232"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "ODBQoKEBb-mjh6Pa6MFA",
+          "id": "1793691017.17930144",
+          "timestamp": "2026-11-03T07:30:17.379+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "3",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:16.9640601Z",
+            "eventRecordID": "9454",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "destinationPort": "80",
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "sourcePort": "57523",
+            "initiated": "true",
+            "destinationIp": "10.20.32.80",
+            "processGuid": "{af6e9a1f-8d82-6ae9-d106-000000000300}",
+            "sourceIp": "172.30.70.2",
+            "processId": "8080",
+            "utcTime": "2026-11-03 07:30:14.564"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "PzBQoKEBb-mjh6Pa8MER",
+          "id": "1793691019.17981959",
+          "timestamp": "2026-11-03T07:30:19.635+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "3",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:18.7762645Z",
+            "eventRecordID": "9455",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "destinationPort": "80",
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "sourcePort": "57524",
+            "initiated": "true",
+            "destinationIp": "10.20.32.80",
+            "processGuid": "{af6e9a1f-8d82-6ae9-d106-000000000300}",
+            "sourceIp": "172.30.70.2",
+            "processId": "8080",
+            "utcTime": "2026-11-03 07:30:16.626"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "ezBRoKEBb-mjh6PaC8Fx",
+          "id": "1793691026.18086607",
+          "timestamp": "2026-11-03T07:30:26.665+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "22",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:25.7934159Z",
+            "eventRecordID": "9461",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "processGuid": "{af6e9a1f-8d8d-6ae9-d406-000000000300}",
+            "queryStatus": "0",
+            "processId": "1540",
+            "utcTime": "2026-11-03 07:30:22.716",
+            "queryName": "example.com",
+            "queryResults": "104.20.23.154;172.66.147.243;"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "fDBRoKEBb-mjh6PaC8Fx",
+          "id": "1793691026.18086607",
+          "timestamp": "2026-11-03T07:30:26.706+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "22",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T07:30:25.7934824Z",
+            "eventRecordID": "9462",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "processGuid": "{af6e9a1f-8d8d-6ae9-d406-000000000300}",
+            "queryStatus": "9003",
+            "processId": "1540",
+            "utcTime": "2026-11-03 07:30:22.828",
+            "queryName": "book2-ch06.invalid",
+            "queryResults": "type: 6 a.root-servers.net;"
+          }
+        }
+      ],
+      "source_hash_basis": "LF-normalized UTF-8 bytes"
+    },
+    {
+      "case": "ch06-original-alerts",
+      "source": "editorial/evidence/analysis-revision/2026-11-04/followup.json",
+      "source_sha256": "5ffabe67273dd68211defb9fec1d26673094635496e2640ee3c129a2e75bc75f",
+      "pointer": "/records/6",
+      "index": "wazuh-alerts-*",
+      "query": {
+        "size": 200,
+        "track_total_hits": true,
+        "query": {
+          "bool": {
+            "filter": [
+              {
+                "term": {
+                  "agent.name": "windows-user"
+                }
+              },
+              {
+                "term": {
+                  "data.win.system.channel": "Microsoft-Windows-Sysmon/Operational"
+                }
+              },
+              {
+                "terms": {
+                  "data.win.system.eventRecordID": [
+                    "9407",
+                    "9451",
+                    "9454",
+                    "9455",
+                    "9461",
+                    "9462"
+                  ]
+                }
+              },
+              {
+                "range": {
+                  "timestamp": {
+                    "gte": "2026-11-03T16:00:00+09:00",
+                    "lt": "2026-11-03T17:00:00+09:00"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "sort": [
+          {
+            "timestamp": "asc"
+          }
+        ]
+      },
+      "total": {
+        "value": 0,
+        "relation": "eq"
+      },
+      "returned": 0,
+      "records": [],
+      "source_hash_basis": "LF-normalized UTF-8 bytes"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+[Text.Encoding]::Unicode.GetString(
+ [Convert]::FromBase64String($encoded)
+)

@@ -1,0 +1,3 @@
+Get-MpComputerStatus | Select-Object `
+  IsTamperProtected,RealTimeProtectionEnabled,`
+  BehaviorMonitorEnabled

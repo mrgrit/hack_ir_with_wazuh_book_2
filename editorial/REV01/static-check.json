@@ -1,0 +1,98 @@
+{
+  "documents": [
+    {
+      "document": "volume02-appendix.docx",
+      "inputs": 8,
+      "images": 1,
+      "sections": 45
+    },
+    {
+      "document": "volume02-chapter01.docx",
+      "inputs": 20,
+      "images": 6,
+      "sections": 30
+    },
+    {
+      "document": "volume02-chapter02.docx",
+      "inputs": 37,
+      "images": 12,
+      "sections": 33
+    },
+    {
+      "document": "volume02-chapter03.docx",
+      "inputs": 34,
+      "images": 13,
+      "sections": 33
+    },
+    {
+      "document": "volume02-chapter04.docx",
+      "inputs": 35,
+      "images": 12,
+      "sections": 35
+    },
+    {
+      "document": "volume02-chapter05.docx",
+      "inputs": 32,
+      "images": 10,
+      "sections": 34
+    },
+    {
+      "document": "volume02-chapter06.docx",
+      "inputs": 29,
+      "images": 15,
+      "sections": 38
+    },
+    {
+      "document": "volume02-chapter07.docx",
+      "inputs": 27,
+      "images": 12,
+      "sections": 32
+    },
+    {
+      "document": "volume02-chapter08.docx",
+      "inputs": 21,
+      "images": 10,
+      "sections": 36
+    },
+    {
+      "document": "volume02-chapter09.docx",
+      "inputs": 29,
+      "images": 10,
+      "sections": 37
+    },
+    {
+      "document": "volume02-chapter10.docx",
+      "inputs": 18,
+      "images": 6,
+      "sections": 21
+    },
+    {
+      "document": "volume02-chapter11.docx",
+      "inputs": 16,
+      "images": 8,
+      "sections": 23
+    },
+    {
+      "document": "volume02-chapter12.docx",
+      "inputs": 22,
+      "images": 5,
+      "sections": 28
+    },
+    {
+      "document": "volume02-chapter13.docx",
+      "inputs": 9,
+      "images": 4,
+      "sections": 27
+    },
+    {
+      "document": "volume02-references.docx",
+      "inputs": 0,
+      "images": 0,
+      "sections": 1
+    }
+  ],
+  "total_inputs": 337,
+  "total_images": 124,
+  "local_original_baseline_checked": true,
+  "errors": []
+}

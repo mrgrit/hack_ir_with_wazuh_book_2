@@ -1,0 +1,1 @@
+reg.exe query HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v book2_ch04_run

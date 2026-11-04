@@ -1,0 +1,2 @@
+sudo docker exec -it kt66-siem /bin/bash
+hostname

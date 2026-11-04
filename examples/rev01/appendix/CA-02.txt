@@ -1,0 +1,4 @@
+Get-FileHash .\examples\rev01\records\chapter01.json `
+  -Algorithm SHA256 | Format-List
+$manifest.files | Where-Object file -eq 'chapter01.json' |
+  Format-List file,sha256

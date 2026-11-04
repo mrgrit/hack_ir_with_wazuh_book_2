@@ -1,0 +1,4 @@
+hostname
+cat /etc/os-release
+uname -r
+systemctl is-active wazuh-agent ssh

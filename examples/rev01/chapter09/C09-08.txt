@@ -1,0 +1,2 @@
+grep -n -F '<name>virustotal</name>' \
+  /var/ossec/etc/ossec.conf

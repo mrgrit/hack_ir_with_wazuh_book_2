@@ -1,0 +1,2 @@
+net.exe use '\\127.0.0.1\IPC$' /user:victim 'Victim!2026'
+net.exe use

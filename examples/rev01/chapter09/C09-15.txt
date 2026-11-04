@@ -1,0 +1,2 @@
+less /usr/local/bin/kt66-clamav
+less /etc/clamav/clamd.conf

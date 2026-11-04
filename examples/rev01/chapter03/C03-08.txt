@@ -1,0 +1,13 @@
+Add-Type -TypeDefinition @'
+using System;
+using System.Runtime.InteropServices;
+public static class BookLogon {
+ [DllImport("advapi32.dll", CharSet=CharSet.Unicode,
+  SetLastError=true)]
+ public static extern bool LogonUserW(
+  string user, string domain, string password,
+  int type, int provider, out IntPtr token);
+ [DllImport("kernel32.dll", SetLastError=true)]
+ public static extern bool CloseHandle(IntPtr handle);
+}
+'@

@@ -1,0 +1,6 @@
+$sysmon = 'Microsoft-Windows-Sysmon/Operational'
+$filter = @{ LogName = $sysmon; Id = 1 }
+$processEvent = Get-WinEvent `
+  -FilterHashtable $filter -MaxEvents 1
+$processEvent |
+  Format-List TimeCreated,Id,RecordId,Message

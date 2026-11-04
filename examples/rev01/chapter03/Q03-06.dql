@@ -1,0 +1,3 @@
+agent.name:"windows-user"
+AND data.win.system.channel:"Security"
+AND data.win.system.eventID:"4719"

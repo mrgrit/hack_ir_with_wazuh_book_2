@@ -1,0 +1,14 @@
+  "aggs": {
+    "max_level": {"max": {
+      "field": "rule.level"}},
+    "sensors": {"terms": {
+      "field": "agent.name", "size": 50}},
+    "types_estimate": {"cardinality": {
+      "field": "rule.id"}},
+    "days": {"date_histogram": {
+      "field": "timestamp",
+      "calendar_interval": "day",
+      "time_zone": "Asia/Seoul",
+      "min_doc_count": 1}}
+  }
+}

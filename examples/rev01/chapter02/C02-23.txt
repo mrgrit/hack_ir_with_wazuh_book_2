@@ -1,0 +1,2 @@
+logoff.exe <확인한_victim_세션_ID>
+quser.exe

@@ -1,0 +1,4 @@
+agent.name:"windows-user"
+AND data.win.system.channel:
+ "Microsoft-Windows-Windows Defender/Operational"
+AND data.win.system.eventID:(5000 OR 5001 OR 5007)

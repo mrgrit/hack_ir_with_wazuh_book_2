@@ -1,0 +1,2 @@
+Resolve-DnsName -Name book2-ch06.invalid -Type A `
+ -DnsOnly -NoHostsFile -QuickTimeout

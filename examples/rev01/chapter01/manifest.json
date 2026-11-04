@@ -1,0 +1,142 @@
+[
+  {
+    "id": "C01-01",
+    "file": "C01-01.txt",
+    "where": "kt66 VM · 터미널",
+    "section": "설치 상태와 터미널 준비",
+    "input": "sudo docker ps --filter name=kt66-windows"
+  },
+  {
+    "id": "C01-02",
+    "file": "C01-02.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "이름과 시각으로 대상 식별하기",
+    "input": "hostname.exe\nwhoami.exe"
+  },
+  {
+    "id": "C01-03",
+    "file": "C01-03.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "이름과 시각으로 대상 식별하기",
+    "input": "Get-Date -Format o\nGet-TimeZone | Select-Object Id"
+  },
+  {
+    "id": "C01-04",
+    "file": "C01-04.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "센서가 준비됐는지 확인하기",
+    "input": "Get-Service WazuhSvc,Sysmon64,osqueryd |\n  Select-Object Name,Status,StartType"
+  },
+  {
+    "id": "C01-05",
+    "file": "C01-05.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "이벤트 채널의 준비 상태 읽기",
+    "input": "$channels = 'Security', 'System',\n  'Microsoft-Windows-Sysmon/Operational',\n  'Microsoft-Windows-PowerShell/Operational'\nGet-WinEvent -ListLog $channels |\n  Select-Object LogName,IsEnabled,RecordCount"
+  },
+  {
+    "id": "C01-06",
+    "file": "C01-06.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "로그온 감사와 보호 상태 읽기",
+    "input": "$logonGuid = '{0CCE9215-69AE-11D9-BED3-505054503030}'\nauditpol.exe /get /subcategory:$logonGuid"
+  },
+  {
+    "id": "C01-07",
+    "file": "C01-07.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "로그온 감사와 보호 상태 읽기",
+    "input": "Get-MpComputerStatus | Select-Object `\n  IsTamperProtected,RealTimeProtectionEnabled,`\n  BehaviorMonitorEnabled"
+  },
+  {
+    "id": "C01-08",
+    "file": "C01-08.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "로그온 성공 이벤트 한 건 읽기",
+    "input": "$filter = @{ LogName = 'Security'; Id = 4624 }\n$event = Get-WinEvent -FilterHashtable $filter `\n  -MaxEvents 1\n$event | Format-List TimeCreated,Id,RecordId,Message"
+  },
+  {
+    "id": "C01-09",
+    "file": "C01-09.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "원본 XML에서 필드 찾기",
+    "input": "$event.ToXml()"
+  },
+  {
+    "id": "C01-10",
+    "file": "C01-10.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "Sysmon 프로세스 이벤트 읽기",
+    "input": "$sysmon = 'Microsoft-Windows-Sysmon/Operational'\n$filter = @{ LogName = $sysmon; Id = 1 }\n$processEvent = Get-WinEvent `\n  -FilterHashtable $filter -MaxEvents 1\n$processEvent |\n  Format-List TimeCreated,Id,RecordId,Message"
+  },
+  {
+    "id": "C01-11",
+    "file": "C01-11.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "이름이 비슷한 프로세스 ID 구분하기",
+    "input": "$processEvent.ToXml()"
+  },
+  {
+    "id": "C01-12",
+    "file": "C01-12.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "1.3  에이전트가 읽는 채널 확인하기",
+    "input": "$agentDir = 'C:\\Program Files (x86)\\ossec-agent'\nTest-Path -LiteralPath \"$agentDir\\ossec.conf\"\nGet-Content -LiteralPath \"$agentDir\\ossec.conf\""
+  },
+  {
+    "id": "C01-13",
+    "file": "C01-13.txt",
+    "where": "Windows 실습 게스트 · 관리자 PowerShell",
+    "section": "연결 로그와 매니저 상태 확인하기",
+    "input": "Get-Content -LiteralPath \"$agentDir\\ossec.log\" `\n  -Tail 20"
+  },
+  {
+    "id": "C01-14",
+    "file": "C01-14.txt",
+    "where": "kt66 VM · 터미널",
+    "section": "연결 로그와 매니저 상태 확인하기",
+    "input": "sudo docker exec -it kt66-siem /bin/bash"
+  },
+  {
+    "id": "C01-15",
+    "file": "C01-15.txt",
+    "where": "kt66-siem 컨테이너의 Bash",
+    "section": "연결 로그와 매니저 상태 확인하기",
+    "input": "/var/ossec/bin/agent_control -l\nexit"
+  },
+  {
+    "id": "Q01-01",
+    "file": "Q01-01.dql",
+    "where": "Windows PC의 Wazuh Discover 검색창",
+    "section": "1.5  원본과 Wazuh 대조",
+    "input": "agent.name:\"windows-user\""
+  },
+  {
+    "id": "Q01-02",
+    "file": "Q01-02.dql",
+    "where": "Windows PC의 Wazuh Discover 검색창",
+    "section": "1.5  원본과 Wazuh 대조",
+    "input": "agent.name:\"windows-user\" AND\ndata.win.system.channel:\"Security\" AND\ndata.win.system.eventID:\"4624\""
+  },
+  {
+    "id": "Q01-03",
+    "file": "Q01-03.dql",
+    "where": "Windows PC의 Wazuh Discover 검색창",
+    "section": "기록 번호로 좁혀 대조하기",
+    "input": "agent.name:\"windows-user\" AND\ndata.win.system.computer:\"KT66-WIN-01\" AND\ndata.win.system.channel:\"Security\" AND\ndata.win.system.eventRecordID:\"9115\""
+  },
+  {
+    "id": "Q01-04",
+    "file": "Q01-04.dql",
+    "where": "Windows PC의 Wazuh Discover 검색창",
+    "section": "기록 번호로 좁혀 대조하기",
+    "input": "agent.name:\"windows-user\" AND\ndata.win.system.channel:\n\"Microsoft-Windows-Sysmon/Operational\" AND\ndata.win.system.eventID:\"1\""
+  },
+  {
+    "id": "Q01-05",
+    "file": "Q01-05.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "같은 원본의 수집과 경보를 따로 확인하기",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.computer:\"KT66-WIN-01\"\nAND data.win.system.eventID:\"4624\"\nAND data.win.system.eventRecordID:\"9115\""
+  }
+]

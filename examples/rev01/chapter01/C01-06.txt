@@ -1,0 +1,2 @@
+$logonGuid = '{0CCE9215-69AE-11D9-BED3-505054503030}'
+auditpol.exe /get /subcategory:$logonGuid

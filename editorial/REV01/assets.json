@@ -1,0 +1,498 @@
+{
+  "assets/REV01/1bc539a4937d-v2-c01-evidence.png": {
+    "source": "assets/illustrations/diversity/v2-c01-evidence.png",
+    "sha256": "1bc539a4937d1eb145e381ccd876ae2cfc71e408f17db08a3806a9ebc25bad18"
+  },
+  "assets/REV01/f3684d8fc2ec-readiness.png": {
+    "source": "assets/figures/chapter01/readiness.png",
+    "sha256": "f3684d8fc2ec8aca26d8be56732ac7853a6b45a392f2f084542d4dae1f2a0a91"
+  },
+  "assets/REV01/a585e38ec4c1-topology.png": {
+    "source": "assets/figures/chapter01/topology.png",
+    "sha256": "a585e38ec4c11e5e4292cb8705082da2b7f9b45340f9d522ce4a9dccc4b00f7a"
+  },
+  "assets/REV01/eacbf4f10621-event-model.png": {
+    "source": "assets/figures/chapter01/event-model.png",
+    "sha256": "eacbf4f10621caf0b16933377ea380351fc14e7271f7a9ae6ff1e2c3742d808e"
+  },
+  "assets/REV01/dc4744f121db-troubleshoot.png": {
+    "source": "assets/figures/chapter01/troubleshoot.png",
+    "sha256": "dc4744f121dbc7aaa267c2353a6ac4734fa1071d9505990f6b8664fc24a895fd"
+  },
+  "assets/REV01/fc923aa1d280-v2-c01-sensors.png": {
+    "source": "assets/illustrations/diversity/v2-c01-sensors.png",
+    "sha256": "fc923aa1d2809ba9f735502f52dad859fecd09dc1e989e0fedb1d4d7bed06c21"
+  },
+  "assets/REV01/ba325f3c7c33-sequence.png": {
+    "source": "assets/figures/chapter02/sequence.png",
+    "sha256": "ba325f3c7c330a883e95f0f981039a3c6704ebb0bc8b24a9c98a7b8caf13b4cf"
+  },
+  "assets/REV01/be7eb52d2bd2-path.png": {
+    "source": "assets/figures/chapter02/path.png",
+    "sha256": "be7eb52d2bd240f64d130000bbf33f28f80fce314bdbb1554dfa3c6b0e592d57"
+  },
+  "assets/REV01/d21b146a45e0-v2-c02-failure.png": {
+    "source": "assets/illustrations/diversity/v2-c02-failure.png",
+    "sha256": "d21b146a45e0a1a15794c77feeaaeca4cb40ba5f5bc8c3f983c45080413112d3"
+  },
+  "assets/REV01/29e2031ed06e-4625-detail.jpg": {
+    "source": "assets/screenshots/chapter02/4625-detail.jpg",
+    "sha256": "29e2031ed06e7b9d51832e001122121114761e0767851b62a21f0fb6f2628597"
+  },
+  "assets/REV01/7fadd94ad97c-4625-record.jpg": {
+    "source": "assets/screenshots/chapter02/4625-record.jpg",
+    "sha256": "7fadd94ad97c236b553d229e0368c8fdb73c95375a3b146000c3b1a490dbbfe5"
+  },
+  "assets/REV01/5a80fa2e6973-missing-detail.jpg": {
+    "source": "assets/screenshots/chapter02/missing-detail.jpg",
+    "sha256": "5a80fa2e6973118c52ad3c43bb32f135f294fecee008f2029d2d63859bba4e84"
+  },
+  "assets/REV01/fd55d3a348eb-lockout.png": {
+    "source": "assets/figures/chapter02/lockout.png",
+    "sha256": "fd55d3a348eb51eea55452506edfd59b5297230a25765b76a329a85e55f3ab80"
+  },
+  "assets/REV01/d2eb2ab3edf7-4740-detail.jpg": {
+    "source": "assets/screenshots/chapter02/4740-detail.jpg",
+    "sha256": "d2eb2ab3edf749d149dd761a89378a3d48531b0344dbdfb766e6e3e9fc938491"
+  },
+  "assets/REV01/44bb48bae7e9-v2-c02-response.png": {
+    "source": "assets/illustrations/diversity/v2-c02-response.png",
+    "sha256": "44bb48bae7e9bec7b70d3e8247fce2227d1bda69fe6663e9981a85e21ad6dbe5"
+  },
+  "assets/REV01/7c075293e1c8-4624-type.jpg": {
+    "source": "assets/screenshots/chapter02/4624-type.jpg",
+    "sha256": "7c075293e1c87993d7237a9aa01f9bcae1301777936499476361bb0ee73a21e7"
+  },
+  "assets/REV01/e14b99caae55-4624-account.jpg": {
+    "source": "assets/screenshots/chapter02/4624-account.jpg",
+    "sha256": "e14b99caae55da9f426b07f4e041ecc1110ebf3ece17943b386ed16e6d322919"
+  },
+  "assets/REV01/dca3a2205090-decision.png": {
+    "source": "assets/figures/chapter02/decision.png",
+    "sha256": "dca3a2205090264b5d9c49f977ea0102c418601be59b1d5993a6bd95936d34d0"
+  },
+  "assets/REV01/8acb2c7366ec-questions.png": {
+    "source": "assets/figures/chapter03/questions.png",
+    "sha256": "8acb2c7366ecb4d33b71f444de57b70bd51c092923fc40cdf64b425b53d46d4b"
+  },
+  "assets/REV01/d8f24253baa3-ntlm-fields.jpg": {
+    "source": "assets/screenshots/chapter03/ntlm-fields.jpg",
+    "sha256": "d8f24253baa35c6253c89fe8595740a728f5bf87016369f5a62384a35fed83a1"
+  },
+  "assets/REV01/56572474ccc6-credentials.png": {
+    "source": "assets/figures/chapter03/credentials.png",
+    "sha256": "56572474ccc6e8d0e8582f74552695c2f8f8115f267de8400a9de17490ae0392"
+  },
+  "assets/REV01/561474ea5eed-type9-fields.jpg": {
+    "source": "assets/screenshots/chapter03/type9-fields.jpg",
+    "sha256": "561474ea5eedc6b4761f6b3a0af8ff53b64c1cd590039d5d7a564ecedcd778b1"
+  },
+  "assets/REV01/0a23d8093850-type9-identity.jpg": {
+    "source": "assets/screenshots/chapter03/type9-identity.jpg",
+    "sha256": "0a23d8093850285dc3ba44627cadb3699b32a19eee3c8319cb30a26383fb32f6"
+  },
+  "assets/REV01/b96fd1c9a05e-v2-c03-identity.png": {
+    "source": "assets/illustrations/diversity/v2-c03-identity.png",
+    "sha256": "b96fd1c9a05ecc5bd4eec095570b26b109524e3186f997a7e862f75004aabf9d"
+  },
+  "assets/REV01/f0ade10ac755-explicit-fields.jpg": {
+    "source": "assets/screenshots/chapter03/explicit-fields.jpg",
+    "sha256": "f0ade10ac755def0ddb4a00f504f1ffb9967301b599735268f5e04a03be8483b"
+  },
+  "assets/REV01/46219013b3e0-access.png": {
+    "source": "assets/figures/chapter03/access.png",
+    "sha256": "46219013b3e0e3db5beac9e6ffc340af0bfa85293b9490ec9ee051c2eff19f77"
+  },
+  "assets/REV01/4a7ec7464d2f-v2-c03-permission.png": {
+    "source": "assets/illustrations/diversity/v2-c03-permission.png",
+    "sha256": "4a7ec7464d2f96932c8f5031bc9f32dc36b7d4c8bf3532d59333933021265d2f"
+  },
+  "assets/REV01/90f7768baabd-group-fields.jpg": {
+    "source": "assets/screenshots/chapter03/group-fields.jpg",
+    "sha256": "90f7768baabd1180049d94b34b43eb80653f19a5c6afebbde44692f53096948e"
+  },
+  "assets/REV01/518b443e2d93-membership.png": {
+    "source": "assets/figures/chapter03/membership.png",
+    "sha256": "518b443e2d9344100d00a8e76ae2530f9e0464521e0d8bd73279f625b816120d"
+  },
+  "assets/REV01/572519fe2562-policy-fields.jpg": {
+    "source": "assets/screenshots/chapter03/policy-fields.jpg",
+    "sha256": "572519fe256262d414da0cfcb08f0a98271663ebe2cd19ddd022da8ad3b152b1"
+  },
+  "assets/REV01/ce38c163f8c1-privilege-fields.jpg": {
+    "source": "assets/screenshots/chapter03/privilege-fields.jpg",
+    "sha256": "ce38c163f8c1c238baab7f0314b18c7d3cccd2cc85f44eaa6b5d330cdf3618d3"
+  },
+  "assets/REV01/daeb96e08d22-chapter04-service.png": {
+    "source": "assets/illustrations/chapter04-service.png",
+    "sha256": "daeb96e08d227f7a56c646835056e8b47516f5bd5b4aeeeb170386497b21cc89"
+  },
+  "assets/REV01/3f5b9a35d424-layers.png": {
+    "source": "assets/figures/chapter04/layers.png",
+    "sha256": "3f5b9a35d424efcde91d72a2d1d6598d5eda67446d4fa3179fe75c6bc4ee6d7b"
+  },
+  "assets/REV01/933e4e4acc8a-service-fields.png": {
+    "source": "assets/screenshots/chapter04/service-fields.png",
+    "sha256": "933e4e4acc8aab597c472aa9b8ef0b836aeee8000395a676740a3ef1c8301d8c"
+  },
+  "assets/REV01/aba28ac41f39-service-subject.png": {
+    "source": "assets/screenshots/chapter04/service-subject.png",
+    "sha256": "aba28ac41f397be17d0f47c3d925ecfa0b89055f81d97fe71c7e018040b7fd38"
+  },
+  "assets/REV01/445422c1135c-black-scheduled-input.png": {
+    "source": "assets/illustrations/natural-angle/black-scheduled-input.png",
+    "sha256": "445422c1135c79a448c2e1bb729b28a11090c0577cabf91f6ead4466ebb2beeb"
+  },
+  "assets/REV01/62ea8f6ff0df-task.png": {
+    "source": "assets/figures/chapter04/task.png",
+    "sha256": "62ea8f6ff0df07d3d5885e1baf9effa77380a5de7b74e49dffc9eb36827b845d"
+  },
+  "assets/REV01/bafa01270569-task-identity.png": {
+    "source": "assets/screenshots/chapter04/task-identity.png",
+    "sha256": "bafa012705691a2db90fdf56a1311db90db3de34a82f6cbbe341b18416a8c215"
+  },
+  "assets/REV01/93980028f1e1-registry.png": {
+    "source": "assets/figures/chapter04/registry.png",
+    "sha256": "93980028f1e1673ff388b716d29d422d1017c77f87d2d3491e2367d9f2bbc44c"
+  },
+  "assets/REV01/e14cd290d813-run-fields.png": {
+    "source": "assets/screenshots/chapter04/run-fields.png",
+    "sha256": "e14cd290d81399fc18b1d5a7baddaf344ff0d0afad67b33d8219c01b49b3efc9"
+  },
+  "assets/REV01/78ef46c73695-osquery.png": {
+    "source": "assets/figures/chapter04/osquery.png",
+    "sha256": "78ef46c73695ad2d4d8af30c229a7abcf91aa1a08cb8096184a8b2dccf419fd1"
+  },
+  "assets/REV01/908df6588346-osquery-fields.png": {
+    "source": "assets/screenshots/chapter04/osquery-fields.png",
+    "sha256": "908df6588346d59796702707fff7b720d14815be0c79426d91135b66a4f275a0"
+  },
+  "assets/REV01/6b05e557468f-chapter04-schedule.png": {
+    "source": "assets/illustrations/chapter04-schedule.png",
+    "sha256": "6b05e557468fe6db560d8094764477b54513188c507038f3ee0b1d2591de3d2f"
+  },
+  "assets/REV01/2d4158002f33-chapter05-command.png": {
+    "source": "assets/illustrations/chapter05-command.png",
+    "sha256": "2d4158002f33bf67e10d22c97fc6bc09f2644f37e3190bf281033ccad0e30071"
+  },
+  "assets/REV01/af451278645a-evidence.png": {
+    "source": "assets/figures/chapter05/evidence.png",
+    "sha256": "af451278645a96d97b388f32ea7436dd8795428ff1cdf65d091c731e212e4120"
+  },
+  "assets/REV01/d66fd41764f2-encoding.png": {
+    "source": "assets/figures/chapter05/encoding.png",
+    "sha256": "d66fd41764f210603ada330d3e187ff5506d10623271c6cbe5d911536f32d007"
+  },
+  "assets/REV01/53e5c389fa79-encoded-fields.png": {
+    "source": "assets/screenshots/chapter05/encoded-fields.png",
+    "sha256": "53e5c389fa796b17d956aadb9ee2b29e41bbc6caaeef634d6935dc964a07f2ce"
+  },
+  "assets/REV01/b5a6df113c44-download.png": {
+    "source": "assets/figures/chapter05/download.png",
+    "sha256": "b5a6df113c44339d18831dd1abe587fabbafb7f24883ac94e15474b9c4d3226d"
+  },
+  "assets/REV01/6305bb382dd5-scriptblock-fields.png": {
+    "source": "assets/screenshots/chapter05/scriptblock-fields.png",
+    "sha256": "6305bb382dd568cb01f390a749ff9cfd8e2d7f03f038ef448b636e3da492e63d"
+  },
+  "assets/REV01/73c1f6175829-certutil-fields.png": {
+    "source": "assets/screenshots/chapter05/certutil-fields.png",
+    "sha256": "73c1f6175829ab565cd8c8c5cb7fcb765f5bf8bd66d5266dbb9556c61e556bee"
+  },
+  "assets/REV01/28090adb592e-parent.png": {
+    "source": "assets/figures/chapter05/parent.png",
+    "sha256": "28090adb592ee8e923b974cab0155308e0101e84caa46f092847a1f73b7d07a0"
+  },
+  "assets/REV01/b4c1f2ca93a1-child-fields.png": {
+    "source": "assets/screenshots/chapter05/child-fields.png",
+    "sha256": "b4c1f2ca93a1aba3d78b496248b5a33b1f9c423d5cdb47044b63e989e5957877"
+  },
+  "assets/REV01/9f315a703e38-chapter05-origin.png": {
+    "source": "assets/illustrations/chapter05-origin.png",
+    "sha256": "9f315a703e38bd62e6a87f3dadfd431ae85584e2bd0f75f7c94e7b0adfc26549"
+  },
+  "assets/REV01/e41fe8222add-network.png": {
+    "source": "assets/illustrations/chapter06/network.png",
+    "sha256": "e41fe8222add37cff477d455814b9a4e19fe8f873d6d4a992c3278d65b1a3198"
+  },
+  "assets/REV01/73f6de5e549c-evidence.png": {
+    "source": "assets/figures/chapter06/evidence.png",
+    "sha256": "73f6de5e549cb2398b298f8080b214819818f6fe0f67d77183f28241579fb89f"
+  },
+  "assets/REV01/f527b4623d14-lsass.png": {
+    "source": "assets/screenshots/chapter06/lsass.png",
+    "sha256": "f527b4623d14221c2d965c755c2fc0d83e3b1d31980a4e5e19c8e7b1b428259f"
+  },
+  "assets/REV01/437d99c819a6-lsass.png": {
+    "source": "assets/figures/chapter06/lsass.png",
+    "sha256": "437d99c819a6cc882148327824459b5ca5b710a8b832705d05f253163c034292"
+  },
+  "assets/REV01/5e86e1758e4b-alerts-zero.jpg": {
+    "source": "assets/screenshots/analysis-revision/alerts-zero.jpg",
+    "sha256": "5e86e1758e4b2e321360164cc8b3210a12bbeaf9b95fb0cacdc637933570bf24"
+  },
+  "assets/REV01/23d5c97a01a9-black-repeat-request.png": {
+    "source": "assets/illustrations/natural-angle/black-repeat-request.png",
+    "sha256": "23d5c97a01a9513b2157af6edfd80c3d44e98979cde8730dbc5223df4152267b"
+  },
+  "assets/REV01/443e665dd153-network.png": {
+    "source": "assets/figures/chapter06/network.png",
+    "sha256": "443e665dd15306405add2e279a1567abc9ffb288044bc5dd0000bb32ee2f76da"
+  },
+  "assets/REV01/2caded6aa312-network-destination.png": {
+    "source": "assets/screenshots/chapter06/network-destination.png",
+    "sha256": "2caded6aa312c0c767c9cdd31cb2e2f3124931c399d7d9f7c2d887149085fc49"
+  },
+  "assets/REV01/2cb8423c118f-network-source.png": {
+    "source": "assets/screenshots/chapter06/network-source.png",
+    "sha256": "2cb8423c118fdf22742bd67eecfe77a59f5564916f88685d9591ea08245fd4f2"
+  },
+  "assets/REV01/8e7fd60cf456-http-record-rule.jpg": {
+    "source": "assets/screenshots/analysis-revision/http-record-rule.jpg",
+    "sha256": "8e7fd60cf4560e26b6572432a523dec414f0a1e3d55d35e560e5cc44280da391"
+  },
+  "assets/REV01/44acf2c06deb-dns.png": {
+    "source": "assets/figures/chapter06/dns.png",
+    "sha256": "44acf2c06deb83f6faa4985cdc28a6347e29f62984928d4306d7cad0c753d141"
+  },
+  "assets/REV01/6a440e2a5e70-dns-success.png": {
+    "source": "assets/screenshots/chapter06/dns-success.png",
+    "sha256": "6a440e2a5e709f90b2480dc55f6be216afc4f9b3b1b0f299daca39bd9d8d5cc7"
+  },
+  "assets/REV01/fb493d4c9933-dns-failure.png": {
+    "source": "assets/screenshots/chapter06/dns-failure.png",
+    "sha256": "fb493d4c993380cddc91bafe89070b3d1ab4503fb560c338c1c376ee65462e2a"
+  },
+  "assets/REV01/57463f25bd05-dns.png": {
+    "source": "assets/illustrations/chapter06/dns.png",
+    "sha256": "57463f25bd05717880342599f5d18cdea916c64a2a5a95e8fedc37d529c443fa"
+  },
+  "assets/REV01/3a6a5e5a22ab-correlation.png": {
+    "source": "assets/figures/chapter06/correlation.png",
+    "sha256": "3a6a5e5a22ab23d3831ea9016d821bc3d38f8dba4bbb41f2c3e69f067e2c0502"
+  },
+  "assets/REV01/01c20b9ac5ab-preserve.png": {
+    "source": "assets/illustrations/chapter07/preserve.png",
+    "sha256": "01c20b9ac5abae72846a71cfe8d1571313c8388b24714f678f53e5284b6b9d92"
+  },
+  "assets/REV01/fc097e85a3d2-preservation.png": {
+    "source": "assets/figures/chapter07/preservation.png",
+    "sha256": "fc097e85a3d2af5af40433e854b189cbd04371761e82bfce89207fe47af8f826"
+  },
+  "assets/REV01/69d4a7883262-clear-target.png": {
+    "source": "assets/figures/chapter07/clear-target.png",
+    "sha256": "69d4a7883262caa12740affd13c09a712b9406a449ab80ebcb623112fdd5e6a8"
+  },
+  "assets/REV01/4ebdd99f11ee-source-clear-rules.png": {
+    "source": "assets/screenshots/chapter07/source-clear-rules.png",
+    "sha256": "4ebdd99f11ee33aaee8c16ee24434f86d60a4066da7e092110cbc8f5081f0020"
+  },
+  "assets/REV01/eb8752b06b13-source-clear-target.png": {
+    "source": "assets/screenshots/chapter07/source-clear-target.png",
+    "sha256": "eb8752b06b133684c765d1531062eb615f327d223644ca8a28dc177bfd0c2eaf"
+  },
+  "assets/REV01/5ab70ff24204-defender-states.png": {
+    "source": "assets/figures/chapter07/defender-states.png",
+    "sha256": "5ab70ff24204bbe3c91f8e5e3bf729776c3d9ad03b710e0652f29812c94e6308"
+  },
+  "assets/REV01/7deb3c54d7be-defender-detection.png": {
+    "source": "assets/screenshots/chapter07/defender-detection.png",
+    "sha256": "7deb3c54d7becbf675db0c5affcae42a8776a5fead64d2322a07f187c4477e31"
+  },
+  "assets/REV01/7e06b0a6154c-defender-path.png": {
+    "source": "assets/screenshots/chapter07/defender-path.png",
+    "sha256": "7e06b0a6154c900480496aca6500d513c8db460c7741f91b0dfe198744251877"
+  },
+  "assets/REV01/121251b1da2c-defender-action.png": {
+    "source": "assets/screenshots/chapter07/defender-action.png",
+    "sha256": "121251b1da2c15959be9b6ff8da21c145e59b81141467ab1a872891b0db5238d"
+  },
+  "assets/REV01/ce55025e94ed-defender-threat.png": {
+    "source": "assets/screenshots/chapter07/defender-threat.png",
+    "sha256": "ce55025e94ed7f93e2ed4be21701ecb5b50c60cd2591056ca6551dee91a5b668"
+  },
+  "assets/REV01/787ddb8ea6dd-response.png": {
+    "source": "assets/illustrations/chapter07/response.png",
+    "sha256": "787ddb8ea6ddff08bb1082c4d4d639c17bc035fa9513cdfebbd1318084018431"
+  },
+  "assets/REV01/341140af4c67-timeline.png": {
+    "source": "assets/figures/chapter07/timeline.png",
+    "sha256": "341140af4c67cf2d77394954bfaf2ff90d7cbed05a3fbe0c3f4145802db3f298"
+  },
+  "assets/REV01/da00229fb9f4-inventory.png": {
+    "source": "assets/illustrations/chapter08/inventory.png",
+    "sha256": "da00229fb9f4a686b4a631cccb82c2d2284e5281f9dea580a92ffe06b9b0d95b"
+  },
+  "assets/REV01/50ae93540c82-vulnerability-flow.png": {
+    "source": "assets/figures/chapter08/vulnerability-flow.png",
+    "sha256": "50ae93540c820bc15e38154c22bb61b6d81eb28a3a5a2afe1d446dd7b4fe9a93"
+  },
+  "assets/REV01/0ddd28971ad4-vuln-package.png": {
+    "source": "assets/screenshots/chapter08/vuln-package.png",
+    "sha256": "0ddd28971ad4475a649286f169c9aacec0c7a9d8b859ed874136d0a513b77617"
+  },
+  "assets/REV01/b8ea4bbd9a34-vuln-score.png": {
+    "source": "assets/screenshots/chapter08/vuln-score.png",
+    "sha256": "b8ea4bbd9a34d1b8fcdcea4ceb495171aa309f1589a840fae73252c78dac8697"
+  },
+  "assets/REV01/08617e16f644-vuln-zero.png": {
+    "source": "assets/screenshots/chapter08/vuln-zero.png",
+    "sha256": "08617e16f64457e79ae23beee9dc98e12d9ddfc5ce5be3a9a5a4a38416644ec1"
+  },
+  "assets/REV01/69977359e370-missing-results.png": {
+    "source": "assets/figures/chapter08/missing-results.png",
+    "sha256": "69977359e3706fe37f1dede4bd8636f5603e323b71d8b7f294f4fe071cd9135c"
+  },
+  "assets/REV01/6a29f020feb2-sca-summary.png": {
+    "source": "assets/screenshots/chapter08/sca-summary.png",
+    "sha256": "6a29f020feb2b7c92c260f74cb16a33604ca3169b4a01dc7550fcf63449e90c6"
+  },
+  "assets/REV01/64204536d239-sca-state.png": {
+    "source": "assets/figures/chapter08/sca-state.png",
+    "sha256": "64204536d23980ffaf10e10ffcfecd1d5de62bec0696d2c12e8b171b9576c49f"
+  },
+  "assets/REV01/d1c6b07b3192-sca-root.png": {
+    "source": "assets/screenshots/chapter08/sca-root.png",
+    "sha256": "d1c6b07b31924ec8f9e3ffcbebd832d493aa1ee7e2db41fa5ababe2e6e9729c3"
+  },
+  "assets/REV01/63a69a479902-maintenance.png": {
+    "source": "assets/illustrations/chapter08/maintenance.png",
+    "sha256": "63a69a479902a2b7260bae03fc260fa75bdec8f2ca6ad19b77275eba598de4b2"
+  },
+  "assets/REV01/4f343df1dafe-host-review.png": {
+    "source": "assets/illustrations/chapter09/host-review.png",
+    "sha256": "4f343df1dafefcfb3dd612ee587d578bcc464f2ede0925b8536936c60b552818"
+  },
+  "assets/REV01/fd1d066dbf6a-three-paths.png": {
+    "source": "assets/figures/chapter09/three-paths.png",
+    "sha256": "fd1d066dbf6a977f854978c789077c9ed201e9ef21a5f9a25bfb3c8887b316a1"
+  },
+  "assets/REV01/24a716c2201d-root-fields.png": {
+    "source": "assets/screenshots/chapter09/root-fields.png",
+    "sha256": "24a716c2201d23e7e9b62fe3af71be0321da046400fe91fccc361cd2adf85dc5"
+  },
+  "assets/REV01/f91b9dd27e9c-root-rule.png": {
+    "source": "assets/screenshots/chapter09/root-rule.png",
+    "sha256": "f91b9dd27e9c616946095807683ee711290f91b5d469c6fce8141db2d6986834"
+  },
+  "assets/REV01/0cbdf87d5b0a-vt-flow.png": {
+    "source": "assets/figures/chapter09/vt-flow.png",
+    "sha256": "0cbdf87d5b0a58bcd557ca0a3d2322f51543a246f4b215b347c401db65e8a035"
+  },
+  "assets/REV01/839ff4d72f10-vt-rules.png": {
+    "source": "assets/screenshots/chapter09/vt-rules.png",
+    "sha256": "839ff4d72f105c4eb346768f0fea2e470c97df8c9b0b718dedc90dde69a73733"
+  },
+  "assets/REV01/30eeeea3ef41-vt-fields.png": {
+    "source": "assets/screenshots/chapter09/vt-fields.png",
+    "sha256": "30eeeea3ef41a592a9e431713129e0e41d33c44a60645b7be84e0a966b1e2729"
+  },
+  "assets/REV01/5813a03ebc01-clam-flow.png": {
+    "source": "assets/figures/chapter09/clam-flow.png",
+    "sha256": "5813a03ebc010ab972f7ec3fe84038701fbb702d3c434cc914c13278774d7e0e"
+  },
+  "assets/REV01/0e9771c7a4c1-clam-source.png": {
+    "source": "assets/screenshots/chapter09/clam-source.png",
+    "sha256": "0e9771c7a4c16365f17a2eb03c32098516c2428031244dac30f4c9e1f82c50e5"
+  },
+  "assets/REV01/3e5c0bfdf7fe-evidence.png": {
+    "source": "assets/illustrations/chapter09/evidence.png",
+    "sha256": "3e5c0bfdf7fe9f1b7fe444da18abba35085d5315af40a3109b15d1bc0c020e6a"
+  },
+  "assets/REV01/12ec136b94cd-connectivity.png": {
+    "source": "assets/illustrations/chapter10/connectivity.png",
+    "sha256": "12ec136b94cdd440cc8052454fc1ba38194371de8dfc698161eec196cf70295f"
+  },
+  "assets/REV01/a2f6606c83bd-collection.png": {
+    "source": "assets/figures/chapter10/collection.png",
+    "sha256": "a2f6606c83bda919b544637f446720e28ca915848a43b6c1d716a5ffee0b478d"
+  },
+  "assets/REV01/acd82422fe21-agent-events.png": {
+    "source": "assets/screenshots/chapter10/agent-events.png",
+    "sha256": "acd82422fe2182854555d9005d02d007f8ebdd1085c660db563a4852ec068342"
+  },
+  "assets/REV01/23d688139b4c-source-disconnect.png": {
+    "source": "assets/screenshots/chapter10/source-disconnect.png",
+    "sha256": "23d688139b4c72efd8142e79c63df96b412a45a066e6f2d650be825febb2a143"
+  },
+  "assets/REV01/18c057b76578-response.png": {
+    "source": "assets/figures/chapter10/response.png",
+    "sha256": "18c057b76578de0dc055aa7037aaac3adb85f567af154e697ec4ea9de57be115"
+  },
+  "assets/REV01/1273e9f2645c-active-response.png": {
+    "source": "assets/screenshots/chapter10/active-response.png",
+    "sha256": "1273e9f2645c0bf074ed1f1424260f3132529066d087fcb6ddedbfc3ea90cf93"
+  },
+  "assets/REV01/8eefa3500b1a-daily-review.png": {
+    "source": "assets/illustrations/chapter11/daily-review.png",
+    "sha256": "8eefa3500b1a501c9a4999a8f1f3f962489ad0463963ccd1d4316da76f777275"
+  },
+  "assets/REV01/448603e7e90e-sensors.png": {
+    "source": "assets/figures/chapter11/sensors.png",
+    "sha256": "448603e7e90e06c4893740f5e2c9bf86666a87a0064a33d6214d24c4ce283ebe"
+  },
+  "assets/REV01/49664799a5d2-suricata-current.png": {
+    "source": "assets/screenshots/chapter11/suricata-current.png",
+    "sha256": "49664799a5d23d5e32d6dd402d1b8bfa80a4f6855c27c1efc6ae2f809d86ed3c"
+  },
+  "assets/REV01/eee37ed7b82a-source-signature.png": {
+    "source": "assets/screenshots/chapter11/source-signature.png",
+    "sha256": "eee37ed7b82afd8daac4337cdc5bcdb91367fc588b2c26b35b4d351d163ea4bc"
+  },
+  "assets/REV01/f64571ebd5f1-source-action.png": {
+    "source": "assets/screenshots/chapter11/source-action.png",
+    "sha256": "f64571ebd5f13ec8ea3041376cf8f884e71735dec794ed8f6a68a2e3c7de64d6"
+  },
+  "assets/REV01/f3ebfcada4d7-mitre-current.png": {
+    "source": "assets/screenshots/chapter11/mitre-current.png",
+    "sha256": "f3ebfcada4d7d928c03e06158bc0fdb480a98d2a4e1809ec719508348a5ddd5c"
+  },
+  "assets/REV01/e68521d9ffd9-daily.png": {
+    "source": "assets/figures/chapter11/daily.png",
+    "sha256": "e68521d9ffd95ea4e09249880a76d6ab3898e91c5a91a57507d5c22c7efe9db6"
+  },
+  "assets/REV01/673caddcaf1a-daily-current.png": {
+    "source": "assets/screenshots/chapter11/daily-current.png",
+    "sha256": "673caddcaf1ae3381d25417890fcc472c63ad25cb3f9569cc0e5740da87ec794"
+  },
+  "assets/REV01/cbb9f2d19838-office-analysis.png": {
+    "source": "assets/illustrations/chapter12/office-analysis.png",
+    "sha256": "cbb9f2d198384e75f11468c39a52fa80b3b61360bf1ca72d47afb71cb72d7c9f"
+  },
+  "assets/REV01/867407d5fd7d-pivot.png": {
+    "source": "assets/figures/chapter12/pivot.png",
+    "sha256": "867407d5fd7d3dfc6bc79f564e379df4663a0db4bd45d54acade4f66bc48fb1e"
+  },
+  "assets/REV01/9bbc70dd2d39-synthetic-empty.png": {
+    "source": "assets/screenshots/chapter12/synthetic-empty.png",
+    "sha256": "9bbc70dd2d39471fad685f9d662a8ee721d98c03cd2fca979427b4c6cd11c73e"
+  },
+  "assets/REV01/b0a444aaf579-source-ip.png": {
+    "source": "assets/screenshots/chapter12/source-ip.png",
+    "sha256": "b0a444aaf579c5b4b91ebe029a7b8876bdb0ac94c5ef5b9cd38ce9a7b1dd12bc"
+  },
+  "assets/REV01/35ee060a4624-source-response.png": {
+    "source": "assets/screenshots/chapter12/source-response.png",
+    "sha256": "35ee060a4624f2b33eb1c644915a8501182b1bf7c3aefbfb03ffc1496fb48051"
+  },
+  "assets/REV01/4c568ec95a0c-office-briefing.png": {
+    "source": "assets/illustrations/chapter13/office-briefing.png",
+    "sha256": "4c568ec95a0c6691f21dfd24f06cffe0fb5f2f9e0b71afe640a3cd9187926b37"
+  },
+  "assets/REV01/7b4843419e3c-linking.png": {
+    "source": "assets/figures/chapter13/linking.png",
+    "sha256": "7b4843419e3c73a6f5b9e589df0804d08950a94f233d7f51f30a20e7f0385359"
+  },
+  "assets/REV01/9b7696e9eedb-window.png": {
+    "source": "assets/figures/chapter13/window.png",
+    "sha256": "9b7696e9eedb2d52d9e2d18fc7f7b25ad865964b2d4b7008997ad026d1fdc273"
+  },
+  "assets/REV01/1a0dc1e7d01f-source-hour-response.png": {
+    "source": "assets/screenshots/chapter13/source-hour-response.png",
+    "sha256": "1a0dc1e7d01fb41837d6bcc7830e9b393f4818ee667a54bbc1260776e350ea85"
+  },
+  "assets/REV01/c2d20dbdce81-check-path.png": {
+    "source": "assets/figures/appendix/check-path.png",
+    "sha256": "c2d20dbdce81fb233244aa348cfc350018526dfb9054141d702e6762b1d239a0"
+  }
+}

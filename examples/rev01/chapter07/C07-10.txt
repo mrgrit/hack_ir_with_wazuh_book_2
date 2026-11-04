@@ -1,0 +1,6 @@
+Get-ChildItem -LiteralPath $case -File |
+ Format-Table Name,Length
+Get-FileHash -LiteralPath "$case\Security.evtx",
+ "$case\System.evtx",
+ "$case\Defender.evtx" -Algorithm SHA256 |
+ Format-List Path,Hash

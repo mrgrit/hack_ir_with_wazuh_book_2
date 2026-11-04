@@ -1,0 +1,175 @@
+{
+  "release": "16.1",
+  "source": "https://raw.githubusercontent.com/mitre-attack/attack-stix-data/v16.1/enterprise-attack/enterprise-attack.json",
+  "sha256": "8423d8dac3fc2feb825bb07d26e5f5d905e08a88f6fe4652cc20834cbe982813",
+  "techniques": [
+    {
+      "id": "T1053.005",
+      "name": "Scheduled Task",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "1.6",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1053/005"
+    },
+    {
+      "id": "T1218.011",
+      "name": "Rundll32",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "2.3",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1218/011"
+    },
+    {
+      "id": "T1110.001",
+      "name": "Password Guessing",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "1.6",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1110/001"
+    },
+    {
+      "id": "T1071.004",
+      "name": "DNS",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "1.2",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1071/004"
+    },
+    {
+      "id": "T1543.003",
+      "name": "Windows Service",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "1.5",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1543/003"
+    },
+    {
+      "id": "T1140",
+      "name": "Deobfuscate/Decode Files or Information",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "1.3",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1140"
+    },
+    {
+      "id": "T1562.002",
+      "name": "Disable Windows Event Logging",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "1.3",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1562/002"
+    },
+    {
+      "id": "T1136.001",
+      "name": "Local Account",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "1.3",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1136/001"
+    },
+    {
+      "id": "T1070.001",
+      "name": "Clear Windows Event Logs",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "1.4",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1070/001"
+    },
+    {
+      "id": "T1003.001",
+      "name": "LSASS Memory",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "1.5",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1003/001"
+    },
+    {
+      "id": "T1218.005",
+      "name": "Mshta",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "2.0",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1218/005"
+    },
+    {
+      "id": "T1059.001",
+      "name": "PowerShell",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "1.4",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1059/001"
+    },
+    {
+      "id": "T1547.001",
+      "name": "Registry Run Keys / Startup Folder",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "2.0",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1547/001"
+    },
+    {
+      "id": "T1098",
+      "name": "Account Manipulation",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "2.7",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1098"
+    },
+    {
+      "id": "T1562.001",
+      "name": "Disable or Modify Tools",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "1.5",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1562/001"
+    },
+    {
+      "id": "T1027",
+      "name": "Obfuscated Files or Information",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "1.6",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1027"
+    },
+    {
+      "id": "T1218.010",
+      "name": "Regsvr32",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "2.1",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1218/010"
+    },
+    {
+      "id": "T1071.001",
+      "name": "Web Protocols",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "1.3",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1071/001"
+    },
+    {
+      "id": "T1046",
+      "name": "Network Service Discovery",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "3.1",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1046"
+    },
+    {
+      "id": "T1550.002",
+      "name": "Pass the Hash",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "1.2",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1550/002"
+    },
+    {
+      "id": "T1021.001",
+      "name": "Remote Desktop Protocol",
+      "revoked": false,
+      "deprecated": false,
+      "object_version": "1.2",
+      "url": "https://attack.mitre.org/versions/v16/techniques/T1021/001"
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "documents": [
+    {
+      "stem": "chapter01",
+      "title": "Windows 실습 환경과 로그 수집",
+      "json": "manuscript/REV01/volume02-chapter01.json",
+      "json_sha256": "d898b1a61c55eb9dfb4df46dca98fa93dda324a85ad0f9a4259308b3e703e2f6",
+      "docx": "manuscript/REV01/volume02-chapter01.docx",
+      "docx_sha256": "bae339877fff71c7dd5b264a850a4253d55959702a69bbb94342c581d339b30b",
+      "pages": 33,
+      "inputs": 20,
+      "images": 6
+    },
+    {
+      "stem": "chapter02",
+      "title": "로그온 실패와 원격 접속",
+      "json": "manuscript/REV01/volume02-chapter02.json",
+      "json_sha256": "ef0b7179ac2c5f056e87b7617363e2ab2b2fe5945cfb3f08c3fb99d18aa04901",
+      "docx": "manuscript/REV01/volume02-chapter02.docx",
+      "docx_sha256": "2917d332657a8dc710931bad888a1e533ab6cc6d11f0eb50b80490fbcc4944ab",
+      "pages": 40,
+      "inputs": 37,
+      "images": 12
+    },
+    {
+      "stem": "chapter03",
+      "title": "자격증명과 계정 권한의 변화",
+      "json": "manuscript/REV01/volume02-chapter03.json",
+      "json_sha256": "cc9f8be8024d951398d56e9084f7ea2c799cf2911e925a6561bed1027fe1a033",
+      "docx": "manuscript/REV01/volume02-chapter03.docx",
+      "docx_sha256": "8f29e1e562a30302d8075e99ecab88a9bf524e90c79722d4ac205f91d3eba45c",
+      "pages": 41,
+      "inputs": 34,
+      "images": 13
+    },
+    {
+      "stem": "chapter04",
+      "title": "서비스와 작업을 이용한 지속화",
+      "json": "manuscript/REV01/volume02-chapter04.json",
+      "json_sha256": "bdeb28b0a9f30fa3698ed173a91601d7151c83d731d3d6c7e022d36183c9a664",
+      "docx": "manuscript/REV01/volume02-chapter04.docx",
+      "docx_sha256": "8f4e916cf7bc7e81af789096ef37cdf864158aa6453325c5a1b8b798441dd458",
+      "pages": 38,
+      "inputs": 35,
+      "images": 12
+    },
+    {
+      "stem": "chapter05",
+      "title": "PowerShell과 정상 프로그램 악용",
+      "json": "manuscript/REV01/volume02-chapter05.json",
+      "json_sha256": "4375f237be1db279d3734dd6731ecf6aed1e385eb3a110b3aa1ea82d2dc08cb7",
+      "docx": "manuscript/REV01/volume02-chapter05.docx",
+      "docx_sha256": "73fef2f0c82e6a9e63ca7f0b6e1b794884a6097bb8340e49b7dc0b269d8ccedf",
+      "pages": 36,
+      "inputs": 32,
+      "images": 10
+    },
+    {
+      "stem": "chapter06",
+      "title": "6장 자격증명 접근과 외부 통신",
+      "json": "manuscript/REV01/volume02-chapter06.json",
+      "json_sha256": "d2b3594154367adb1a4b743993cd40bebc253613e522b9643b6206b08fc6512f",
+      "docx": "manuscript/REV01/volume02-chapter06.docx",
+      "docx_sha256": "676392260bae1a7d74a8e68506640a63ef99d82313db942f15c3ac4b54f768b0",
+      "pages": 45,
+      "inputs": 29,
+      "images": 15
+    },
+    {
+      "stem": "chapter07",
+      "title": "7장 로그 삭제와 보호 기능의 대응",
+      "json": "manuscript/REV01/volume02-chapter07.json",
+      "json_sha256": "a3df6e662fe7b9f416cda0eb2275444671ad7a14ae9a1b40ddeb8ad0dd146fee",
+      "docx": "manuscript/REV01/volume02-chapter07.docx",
+      "docx_sha256": "1f1c6392ec3295e8800edce9c7c7d06adbbc8cac0fca5cc674fcb169d31d7d56",
+      "pages": 35,
+      "inputs": 27,
+      "images": 12
+    },
+    {
+      "stem": "chapter08",
+      "title": "취약점과 보안 설정의 우선순위",
+      "json": "manuscript/REV01/volume02-chapter08.json",
+      "json_sha256": "2012fbed649b2d3bdd73955d547de5198d487a4f6da6b671edd345760b18b0b9",
+      "docx": "manuscript/REV01/volume02-chapter08.docx",
+      "docx_sha256": "60de4ab4e8222d4c6506cfe30853440b34f615a7f8b1874599b19ba55c5d3f25",
+      "pages": 36,
+      "inputs": 21,
+      "images": 10
+    },
+    {
+      "stem": "chapter09",
+      "title": "9장 호스트 이상과 파일 판정",
+      "json": "manuscript/REV01/volume02-chapter09.json",
+      "json_sha256": "ed9bcf591c586854cdd2317ff1dff72d945a9407fae6c33277bbe0ada363c359",
+      "docx": "manuscript/REV01/volume02-chapter09.docx",
+      "docx_sha256": "617fd96607132499c9affaac2c0dad314abd648da71278ae1808650c855d14bc",
+      "pages": 41,
+      "inputs": 29,
+      "images": 10
+    },
+    {
+      "stem": "chapter10",
+      "title": "10장 수집 장애와 자동 대응",
+      "json": "manuscript/REV01/volume02-chapter10.json",
+      "json_sha256": "3c2eb2c8f88cf26ad23e562f37293a9c1e1da7eed0b54f30c5c2cd2a973d0df4",
+      "docx": "manuscript/REV01/volume02-chapter10.docx",
+      "docx_sha256": "5c0c1bf2eade59418f2c94d78c160169941815a4dcc4b8d56eabf119e79000c8",
+      "pages": 22,
+      "inputs": 18,
+      "images": 6
+    },
+    {
+      "stem": "chapter11",
+      "title": "11장 네트워크 경보와 일일 관제",
+      "json": "manuscript/REV01/volume02-chapter11.json",
+      "json_sha256": "1c99d88c69982be6c64bf6b7b75249e9a36d1fdb6a4a81aa2d86bc0d5ff01175",
+      "docx": "manuscript/REV01/volume02-chapter11.docx",
+      "docx_sha256": "c5581d6ec0bed845584b4e2464e433d04b9e914c28ade89ed46f9a8f1d28db10",
+      "pages": 22,
+      "inputs": 16,
+      "images": 8
+    },
+    {
+      "stem": "chapter12",
+      "title": "12장 장기 로그의 피벗과 집계",
+      "json": "manuscript/REV01/volume02-chapter12.json",
+      "json_sha256": "8052e0b553a43805f523e5b7b1ad25fef1a3c6e6fb585404a8aab3b576d83d38",
+      "docx": "manuscript/REV01/volume02-chapter12.docx",
+      "docx_sha256": "ae1fdc4ef36c6dedb88f1b29aa565f2753a752c91bb0720021f782548c878dd3",
+      "pages": 29,
+      "inputs": 22,
+      "images": 5
+    },
+    {
+      "stem": "chapter13",
+      "title": "13장 시간 흐름과 위험도 평가",
+      "json": "manuscript/REV01/volume02-chapter13.json",
+      "json_sha256": "c4ea8323bfcfed6433be46dd8d43c51fee99f561003129e951294e6a67709e67",
+      "docx": "manuscript/REV01/volume02-chapter13.docx",
+      "docx_sha256": "62ad7a0c100cadbfb2d962f6d8c472f7cb4b4c3efdb0b49d71146b90af688474",
+      "pages": 25,
+      "inputs": 9,
+      "images": 4
+    },
+    {
+      "stem": "appendix",
+      "title": "부록 필드·검색·점검표",
+      "json": "manuscript/REV01/volume02-appendix.json",
+      "json_sha256": "dd19bbc5c6a1d6a034aa454fb906089bbc614235f7a9033721d42e8fc1b286cf",
+      "docx": "manuscript/REV01/volume02-appendix.docx",
+      "docx_sha256": "0c3d19d3d07cf5484d16bfbe1f03499f80fa47529aa5a1d1a010ce9c0b1605e2",
+      "pages": 37,
+      "inputs": 8,
+      "images": 1
+    },
+    {
+      "stem": "references",
+      "title": "참고문헌",
+      "json": "manuscript/REV01/volume02-references.json",
+      "json_sha256": "897c2f9e19ce02fc271d8f2769f7f7f3f2a5b2581802c890af44e6ef0cd11d3f",
+      "docx": "manuscript/REV01/volume02-references.docx",
+      "docx_sha256": "5ee0e977d75f1945bd2d038acdb56b2b17f26be73814a2a33419d05d080244ed",
+      "pages": 12,
+      "inputs": 0,
+      "images": 0
+    }
+  ],
+  "total_pages": 492,
+  "total_inputs": 337,
+  "total_images": 124,
+  "original_draft_files_preserved": 28
+}

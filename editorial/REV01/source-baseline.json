@@ -1,0 +1,114 @@
+[
+  {
+    "path": "manuscript/volume02-appendix.docx",
+    "sha256": "e20454bc0693c56bb7794ff36d0629004fe8295f29f871a04071cb65fa0c67ad"
+  },
+  {
+    "path": "manuscript/volume02-appendix.json",
+    "sha256": "cea0f61f53980b96d92ce770647de6f28cf4bcb071350a53b1dba235cca93434"
+  },
+  {
+    "path": "manuscript/volume02-chapter01.docx",
+    "sha256": "1068b755673189e8bc7f66bc86991c21213486074ed1b540c8799dd6cddd3471"
+  },
+  {
+    "path": "manuscript/volume02-chapter01.json",
+    "sha256": "013b1550ba33829f832b0dd5a987699e5c5c048093d2656fe9e0c8c2552471d1"
+  },
+  {
+    "path": "manuscript/volume02-chapter02.docx",
+    "sha256": "7022215a2489fea0405e12b3f84886e0a9394b427554c4b8b84d7e1f1a114aff"
+  },
+  {
+    "path": "manuscript/volume02-chapter02.json",
+    "sha256": "dbe037bb8d128111c7c43849551448b850966bb0b63921a5217c14e34fcebb80"
+  },
+  {
+    "path": "manuscript/volume02-chapter03.docx",
+    "sha256": "4c8a4c2be8dd9396e083a607668724667aad9b41bd9fac07e2a648537eb84358"
+  },
+  {
+    "path": "manuscript/volume02-chapter03.json",
+    "sha256": "4c0d10650c1c66901f82659d208a36e6473862633eebc8cb03fbfa0afc3d0052"
+  },
+  {
+    "path": "manuscript/volume02-chapter04.docx",
+    "sha256": "b3aa1f48dc60222fd1973f995ff242a480ce62eb492b5aa84f09d5165fc87c1d"
+  },
+  {
+    "path": "manuscript/volume02-chapter04.json",
+    "sha256": "ac4925a754132fa947f652d4e21248718b5df05e1d2bd25a2310a62c3e6d99ae"
+  },
+  {
+    "path": "manuscript/volume02-chapter05.docx",
+    "sha256": "042eedd1be1e8f6f8976e29a231826edc592c92fc1278e221566395701b0ce65"
+  },
+  {
+    "path": "manuscript/volume02-chapter05.json",
+    "sha256": "8667558f2fe70c49cec05846298fac2a3e8ad08afe103d80f1b8bf1f5fb930a5"
+  },
+  {
+    "path": "manuscript/volume02-chapter06.docx",
+    "sha256": "8f011d6a9103cd5e982aef5f22189b84dc8eab0110366c76185ddae4758f2568"
+  },
+  {
+    "path": "manuscript/volume02-chapter06.json",
+    "sha256": "21ae3d8e625858ca2f02a4ec96f0b6de66a92ff1e380b546c184c43513f51dcf"
+  },
+  {
+    "path": "manuscript/volume02-chapter07.docx",
+    "sha256": "fcaeb831c6ec24e233e73284e1297262e43700d4ac80535bab6ca6362d3a381a"
+  },
+  {
+    "path": "manuscript/volume02-chapter07.json",
+    "sha256": "e73f5fd7818a6458e9b0b389ead70440b84b348752ac67de90f4327b9673b33c"
+  },
+  {
+    "path": "manuscript/volume02-chapter08.docx",
+    "sha256": "b0b5fac660c60d9563ce9f8da6252eba7b800af96d382d24fdfaebd8b8678e28"
+  },
+  {
+    "path": "manuscript/volume02-chapter08.json",
+    "sha256": "d0666a7b10a6d7466904d41b84c1310b41b689adbb0a77441dcf00145bd07154"
+  },
+  {
+    "path": "manuscript/volume02-chapter09.docx",
+    "sha256": "f11df7d81c6f291258e4a3920244ba256e494a49dc63abc94ee0a90fe451612e"
+  },
+  {
+    "path": "manuscript/volume02-chapter09.json",
+    "sha256": "9d529c8d74752de30f98e7bc43ec7678611f2f7e30f29a15e7c9a9a1af782287"
+  },
+  {
+    "path": "manuscript/volume02-chapter10.docx",
+    "sha256": "2ee5765634a6e36290efac340238297bf49ee15b7fb290178bd624e82f17650f"
+  },
+  {
+    "path": "manuscript/volume02-chapter10.json",
+    "sha256": "ac4c68741d8f753e1db47c7679deff86b48353c1092911ff1d64ae98470e84bf"
+  },
+  {
+    "path": "manuscript/volume02-chapter11.docx",
+    "sha256": "36e7cf79596a7cf18ad04d1f463f6ffb3d83ec008ffb5ad490a8cfbbcd402eac"
+  },
+  {
+    "path": "manuscript/volume02-chapter11.json",
+    "sha256": "55ce77ad06c7a85d42457153e1af00c39fb56d17c23926fc50143943b5a0a856"
+  },
+  {
+    "path": "manuscript/volume02-chapter12.docx",
+    "sha256": "ba434921e5010f75c1b12e23f3315b17d24e4e46546bfa7a8a3e154e5159694f"
+  },
+  {
+    "path": "manuscript/volume02-chapter12.json",
+    "sha256": "283ccb5467a2e308cffab7c829214440ee76ca2b826ba0a85a3dd2869b91a225"
+  },
+  {
+    "path": "manuscript/volume02-chapter13.docx",
+    "sha256": "eee9d81d991e4a57ac74dcb658d892fb6ebbf0e8641da220375984b59ac2f845"
+  },
+  {
+    "path": "manuscript/volume02-chapter13.json",
+    "sha256": "f481a02d04f68e53ded699c251870d1bc37a4d58a0b94fb85d880fcfb892cbfd"
+  }
+]

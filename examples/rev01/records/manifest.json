@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "file": "chapter01.json",
+      "sha256": "f7bdeef65766079c96db49462fc11a72ee7999e415230066d96160723ce74aa9",
+      "cases": [
+        "ch01-record",
+        "original-alert-fields"
+      ],
+      "returned": 3
+    },
+    {
+      "file": "chapter02.json",
+      "sha256": "216a2fb9b576e7bdf82a36471719c3479818d317572b68f54bf6eb954924e967",
+      "cases": [
+        "windows-selected",
+        "ch02-session"
+      ],
+      "returned": 32
+    },
+    {
+      "file": "chapter03.json",
+      "sha256": "971655920799f10e7c81f270238e9cd531594815f807830bf7d135a108db876f",
+      "cases": [
+        "windows-selected",
+        "ch03-account-logon"
+      ],
+      "returned": 30
+    },
+    {
+      "file": "chapter04.json",
+      "sha256": "dac4ec42ffe24c75befd2a72f1df39f30f411db255770b77eaf4dd07945d201f",
+      "cases": [
+        "windows-selected",
+        "ch04-registration",
+        "ch04-writer"
+      ],
+      "returned": 38
+    },
+    {
+      "file": "chapter05.json",
+      "sha256": "f0c29ccaec473f9a57248ccc816b5cd2ba77013bb3b7b3bd278fc073dbba3cf6",
+      "cases": [
+        "windows-selected",
+        "ch05-scriptblocks",
+        "ch05-pid"
+      ],
+      "returned": 33
+    },
+    {
+      "file": "chapter06.json",
+      "sha256": "0e6e169904ffd19387127f11259949dc46fd4b7f0b5624b0061831974bf4e592",
+      "cases": [
+        "windows-selected",
+        "ch06-processes",
+        "ch06-original-archives",
+        "ch06-original-alerts"
+      ],
+      "returned": 46
+    },
+    {
+      "file": "chapter07.json",
+      "sha256": "fba8e594508736694078c52f2bc7dd049d83566ce3a2d0ccc9e34a8a675d1f72",
+      "cases": [
+        "windows-selected",
+        "ch07-defender"
+      ],
+      "returned": 31
+    },
+    {
+      "file": "chapter08.json",
+      "sha256": "ff2bed9d50765ce72b42d490b552031030fcb57b800c4d75a3acf37a9bc9255a",
+      "cases": [
+        "ch08-sca"
+      ],
+      "returned": 1
+    },
+    {
+      "file": "chapter10.json",
+      "sha256": "b8feb08831ae9f50ddcc6cd9495b5dc1061171e382fbac564e5b394916993a94",
+      "cases": [
+        "ch10-ar"
+      ],
+      "returned": 2
+    },
+    {
+      "file": "chapter11.json",
+      "sha256": "5a107c52abb4bd297b810f5e035e565a157d8c65db9f0e12bf4a3374d1ee8b5e",
+      "cases": [
+        "ch11-high",
+        "ch11-session"
+      ],
+      "returned": 45
+    },
+    {
+      "file": "chapter12.json",
+      "sha256": "1acc5a945c046f97e706849ce20ec3958b8d3fbea6cd3b444c6ec60a6b3185c8",
+      "cases": [
+        "ch12-live-ip",
+        "ch12-live-all"
+      ],
+      "returned": 74
+    },
+    {
+      "file": "chapter13.json",
+      "sha256": "7d7ac903315213263ee6751a2766c1932a9c2c01fe02320756240b91f1501c54",
+      "cases": [
+        "ch12-live-ip",
+        "ch12-live-all"
+      ],
+      "returned": 74
+    },
+    {
+      "file": "aggregation-responses.json",
+      "sha256": "8dcadc344a44fed3c09c95b5b488eaf99a3e24f1247cd9435ef0c29042b7349e",
+      "source": "editorial/evidence/analysis-revision/2026-11-04/aggregation-responses.json",
+      "source_sha256": "8dcadc344a44fed3c09c95b5b488eaf99a3e24f1247cd9435ef0c29042b7349e",
+      "source_hash_basis": "LF-normalized UTF-8 bytes"
+    }
+  ],
+  "notes": [
+    "system·eventdata는 원래 data.win에서 선택해 저장한 필드다. original-alert-fields 사례는 data.win 구조를 유지한다.",
+    "total은 원래 검색의 전체 건수, returned는 이 파일에 남아 있는 문서 수다. 같다고 가정하지 않는다.",
+    "9장은 본문의 경보 필드·캡처와 examples/rev01/chapter09의 기존 자료를 사용한다. 보존하지 않은 원문을 재구성하지 않는다.",
+    "동일 원본이 서로 다른 사례 또는 alerts·archives에 중복될 수 있다. 파일의 배열 길이를 전체 사건 수로 집계하지 않는다."
+  ]
+}

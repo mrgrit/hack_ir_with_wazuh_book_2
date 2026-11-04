@@ -1,0 +1,1 @@
+rule.level >= 8 AND NOT rule.mitre.id:*

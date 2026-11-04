@@ -1,0 +1,4 @@
+hostname
+whoami.exe
+Get-Service WazuhSvc,Sysmon64,osqueryd |
+ Format-Table Name,Status

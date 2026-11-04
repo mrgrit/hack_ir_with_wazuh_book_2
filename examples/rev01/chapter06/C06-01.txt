@@ -1,0 +1,6 @@
+hostname
+whoami.exe
+$PSVersionTable.PSVersion
+Get-Service WazuhSvc,Sysmon64,osqueryd |
+ Format-Table Name,Status
+$sysmonLog = 'Microsoft-Windows-Sysmon/Operational'

@@ -1,0 +1,5 @@
+agent.name:"windows-user"
+AND data.win.system.channel:
+ "Microsoft-Windows-Sysmon/Operational"
+AND data.win.system.eventID:(12 OR 13)
+AND data.win.eventdata.targetObject:*book2_ch04_run

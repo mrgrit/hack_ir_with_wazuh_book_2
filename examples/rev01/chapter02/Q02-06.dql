@@ -1,0 +1,6 @@
+agent.name:"windows-user"
+AND data.win.system.channel:"Security"
+AND data.win.system.eventID:"4624"
+AND data.win.eventdata.logonType:"10"
+AND data.win.eventdata.targetUserName:"victim"
+AND data.win.eventdata.ipAddress:"10.20.30.202"

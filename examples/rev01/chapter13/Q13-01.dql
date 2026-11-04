@@ -1,0 +1,2 @@
+synthetic.flag:true AND agent.name:"bastion" AND
+rule.id:5715 AND data.dstuser:"ccc"

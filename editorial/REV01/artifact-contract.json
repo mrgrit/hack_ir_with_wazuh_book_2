@@ -1,0 +1,30 @@
+{
+  "operation": "edit",
+  "scope": "volume02 chapter01–13 + appendix + references",
+  "canonical_source": "manuscript/REV01/*.json",
+  "deliverable_format": "DOCX",
+  "deliverable_count": 15,
+  "combined_book": false,
+  "distribution_pdf": false,
+  "layout": {
+    "size_mm": [
+      188,
+      263
+    ],
+    "body_mm": [
+      127,
+      192
+    ],
+    "body_font": "부크크 명조 Light",
+    "heading_font": "부크크 고딕 Light",
+    "code_font": "Consolas",
+    "body_pt": 10.5,
+    "code_pt": 10,
+    "text_color": "000000"
+  },
+  "template": "tools/assets/bookk-B5.docx",
+  "template_sha256": "2506e3b2036c3bfa18f84a1f3b6185bff52c0273d4c2c526dd3c68d9adb5b18b",
+  "renderer": "Windows Microsoft Word COM ExportAsFixedFormat; PDFium 144dpi; pypdf text cross-check",
+  "workflow": "순차 편집, 장별 문맥·근거 대조, 렌더 후 시각 검수, 정적·로컬 읽기 검사",
+  "network_or_vm_attack_validation": false
+}

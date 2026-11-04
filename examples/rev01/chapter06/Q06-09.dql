@@ -1,0 +1,8 @@
+agent.name:"windows-user"
+AND data.win.system.channel:
+ "Microsoft-Windows-Sysmon/Operational"
+AND data.win.system.eventID:"22"
+AND data.win.eventdata.queryName:(
+ ngrok.io OR *.ngrok.io OR
+ duckdns.org OR *.duckdns.org OR
+ pastebin.com OR *.pastebin.com)

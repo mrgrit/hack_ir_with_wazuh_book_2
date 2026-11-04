@@ -1,0 +1,4 @@
+agent.name:"windows-user"
+AND data.win.system.channel:"System"
+AND data.win.system.eventID:"7045"
+AND data.win.eventdata.serviceName:"book2_ch04_svc"

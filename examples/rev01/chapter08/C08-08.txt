@@ -1,0 +1,3 @@
+sudo grep -nE \
+ '^[[:space:]]*(Include|Match|PermitRootLogin)[[:space:]]' \
+ /etc/ssh/sshd_config

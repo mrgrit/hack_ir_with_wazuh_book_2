@@ -1,0 +1,65 @@
+[
+  {
+    "id": "Q13-01",
+    "file": "Q13-01.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "로그인과 권한 사용의 후보 연결",
+    "input": "synthetic.flag:true AND agent.name:\"bastion\" AND\nrule.id:5715 AND data.dstuser:\"ccc\""
+  },
+  {
+    "id": "Q13-02",
+    "file": "Q13-02.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "로그인과 권한 사용의 후보 연결",
+    "input": "synthetic.flag:true AND agent.name:\"bastion\" AND\n(rule.id:(5402 OR 5902 OR 100261))"
+  },
+  {
+    "id": "Q13-03",
+    "file": "Q13-03.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "13.3  규칙별 가중치를 계산한다",
+    "input": "synthetic.flag:true AND rule.id:31103"
+  },
+  {
+    "id": "D13-01",
+    "file": "D13-01.http",
+    "where": "Windows PC · Wazuh · Indexer management → Dev Tools",
+    "section": "시간 집계 요청의 범위",
+    "input": "GET wazuh-alerts-*/_search\n{\n \"size\": 0, \"track_total_hits\": true,\n \"query\": {\"bool\": {\"filter\": [\n  {\"term\": {\"synthetic.flag\": true}},\n  {\"range\": {\"timestamp\": {\n   \"gte\": \"2026-08-12T01:00:00+09:00\",\n   \"lt\": \"2026-08-14T00:00:00+09:00\"\n  }}}\n ]}},\n \"aggs\": {\"hours\": {\n  \"date_histogram\": {\n   \"field\": \"timestamp\", \"fixed_interval\": \"1h\",\n   \"time_zone\": \"Asia/Seoul\", \"min_doc_count\": 0,\n   \"extended_bounds\": {\n    \"min\": \"2026-08-12T01:00:00+09:00\",\n    \"max\": \"2026-08-13T23:00:00+09:00\"\n   }\n  },"
+  },
+  {
+    "id": "D13-02",
+    "file": "D13-02.http",
+    "where": "Windows PC · Wazuh · Indexer management → Dev Tools",
+    "section": "시간 집계 요청의 계산 부분",
+    "input": "  \"aggs\": {\n   \"max_level\": {\"max\": {\"field\":\"rule.level\"}},\n   \"risk\": {\"sum\": {\"script\": {\n    \"source\": \"if (doc['rule.level'].size() == 0) return 0; def n = doc['rule.level'].value; return n >= 5 ? n * n : 0;\"\n   }}},\n   \"risk_24h\": {\"moving_fn\": {\n    \"buckets_path\": \"risk\", \"window\": 24,\n    \"shift\": 1, \"gap_policy\": \"insert_zeros\",\n    \"script\": \"MovingFunctions.sum(values)\"\n   }}\n  }\n }}\n}"
+  },
+  {
+    "id": "Q13-05",
+    "file": "Q13-05.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "시간 점수의 구성 문서로 되돌아가기",
+    "input": "(data.srcip:\"192.168.0.108\" OR\n data.src_ip:\"192.168.0.108\")\nAND timestamp >= \"2026-11-02T20:00:00+09:00\"\nAND timestamp < \"2026-11-02T21:00:00+09:00\""
+  },
+  {
+    "id": "Q13-06",
+    "file": "Q13-06.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "시간 점수의 구성 문서로 되돌아가기",
+    "input": "agent.name:\"bastion\"\nAND data.srcip:\"192.168.0.108\"\nAND rule.id:(5715 OR 5763)\nAND timestamp >= \"2026-11-02T20:00:00+09:00\"\nAND timestamp < \"2026-11-02T21:00:00+09:00\""
+  },
+  {
+    "id": "Q13-07",
+    "file": "Q13-07.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "과거 조회 0건과 신규 주소 판정",
+    "input": "(data.srcip:\"192.168.0.108\" OR\n data.src_ip:\"192.168.0.108\")\nAND timestamp >= \"2026-10-05T00:00:00+09:00\"\nAND timestamp < \"2026-11-02T00:00:00+09:00\""
+  },
+  {
+    "id": "Q13-04",
+    "file": "Q13-04.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "13.5  정답 라벨로 오류를 평가한다",
+    "input": "synthetic.flag:true AND\nsynthetic.actor:(attacker OR insider)"
+  }
+]

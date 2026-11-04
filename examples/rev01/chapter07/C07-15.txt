@@ -1,0 +1,6 @@
+$detection = '{EBD2A2EF-E4E2-4682-9CF7-79EEF7D28939}'
+Get-MpThreatDetection | Where-Object {
+ $_.DetectionID -eq $detection
+} | Format-List DetectionID,ThreatID,InitialDetectionTime,
+ LastThreatStatusChangeTime,RemediationTime,
+ ActionSuccess,Resources

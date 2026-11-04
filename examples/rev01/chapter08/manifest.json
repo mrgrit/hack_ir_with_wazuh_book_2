@@ -1,0 +1,149 @@
+[
+  {
+    "id": "C08-01",
+    "file": "C08-01.txt",
+    "where": "Windows PC · PowerShell",
+    "section": "실습 환경과 선행 조건",
+    "input": "ssh ccc@192.168.0.107"
+  },
+  {
+    "id": "C08-02",
+    "file": "C08-02.txt",
+    "where": "kt66 VM · 터미널",
+    "section": "호스트와 수집 준비 확인",
+    "input": "hostname\ncat /etc/os-release\nuname -r\nsystemctl is-active wazuh-agent ssh"
+  },
+  {
+    "id": "C08-03",
+    "file": "C08-03.txt",
+    "where": "kt66 VM · 터미널",
+    "section": "호스트와 수집 준비 확인",
+    "input": "sudo less /var/ossec/etc/ossec.conf"
+  },
+  {
+    "id": "Q08-01",
+    "file": "Q08-01.dql",
+    "where": "Windows PC · Vulnerability Detection · Inventory · DQL",
+    "section": "8.2  높은 심각도의 후보 찾기",
+    "input": "vulnerability.severity:(Critical OR High)"
+  },
+  {
+    "id": "Q08-02",
+    "file": "Q08-02.dql",
+    "where": "Windows PC · Vulnerability Detection · Inventory · DQL",
+    "section": "8.2  높은 심각도의 후보 찾기",
+    "input": "agent.name:\"kt66-host\"\nAND vulnerability.severity:(Critical OR High)"
+  },
+  {
+    "id": "Q08-03",
+    "file": "Q08-03.dql",
+    "where": "Windows PC · Vulnerability Detection · Inventory · DQL",
+    "section": "공격 조건과 제조사 판단 대조",
+    "input": "agent.name:\"kt66-host\"\nAND vulnerability.id:\"CVE-2025-54289\""
+  },
+  {
+    "id": "C08-04",
+    "file": "C08-04.txt",
+    "where": "kt66 VM · 터미널",
+    "section": "설치 방식과 갱신 경로 확인",
+    "input": "snap list lxd"
+  },
+  {
+    "id": "Q08-04",
+    "file": "Q08-04.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "경보 이력과 필드 이름",
+    "input": "rule.groups:\"vulnerability-detector\""
+  },
+  {
+    "id": "Q08-05",
+    "file": "Q08-05.dql",
+    "where": "Windows PC · Vulnerability Detection · Inventory · DQL",
+    "section": "8.3  패키지 후보와 특정 CVE",
+    "input": "package.name:(*openssh* OR *xz* OR *log4j*)"
+  },
+  {
+    "id": "C08-05",
+    "file": "C08-05.txt",
+    "where": "kt66 VM · 터미널",
+    "section": "Ubuntu 패키지의 실제 버전 읽기",
+    "input": "dpkg-query -W \\\n -f='${binary:Package}\\t${Version}\\t${Architecture}\\n' \\\n xz-utils liblzma5 openssh-client openssh-server"
+  },
+  {
+    "id": "Q08-06",
+    "file": "Q08-06.dql",
+    "where": "Windows PC · Vulnerability Detection · Inventory · DQL",
+    "section": "CVE-2024-3094와 xz의 영향 범위",
+    "input": "vulnerability.id:\"CVE-2024-3094\""
+  },
+  {
+    "id": "C08-06",
+    "file": "C08-06.txt",
+    "where": "kt66 VM · 터미널",
+    "section": "배포판 버전과 갱신 후보 해석",
+    "input": "apt-cache policy xz-utils openssh-server"
+  },
+  {
+    "id": "Q08-07",
+    "file": "Q08-07.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "실패 항목의 경보 검색",
+    "input": "rule.groups:sca\nAND data.sca.check.result:failed\nAND data.sca.check.title:\n (*SSH* OR *password* OR *root* OR *firewall*)"
+  },
+  {
+    "id": "Q08-08",
+    "file": "Q08-08.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "실패 항목의 경보 검색",
+    "input": "agent.name:\"kt66-host\"\nAND rule.groups:sca\nAND data.sca.check.result:failed\nAND data.sca.check.title:\n (*SSH* OR *password* OR *root* OR *firewall*)"
+  },
+  {
+    "id": "Q08-09",
+    "file": "Q08-09.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "검사 ID로 상태의 이력 연결",
+    "input": "agent.name:\"kt66-host\"\nAND rule.groups:sca\nAND data.sca.check.id:28638"
+  },
+  {
+    "id": "C08-07",
+    "file": "C08-07.txt",
+    "where": "kt66 VM · 터미널",
+    "section": "SSH의 실제 적용값 조회",
+    "input": "sudo /usr/sbin/sshd -T |\n grep -E \\\n '^(permitrootlogin|passwordauthentication|'\\\n'pubkeyauthentication|permitemptypasswords) '"
+  },
+  {
+    "id": "C08-08",
+    "file": "C08-08.txt",
+    "where": "kt66 VM · 터미널",
+    "section": "Include와 Match 조건 확인",
+    "input": "sudo grep -nE \\\n '^[[:space:]]*(Include|Match|PermitRootLogin)[[:space:]]' \\\n /etc/ssh/sshd_config"
+  },
+  {
+    "id": "C08-09",
+    "file": "C08-09.txt",
+    "where": "kt66 VM · 터미널",
+    "section": "설정 파일의 권한과 문법",
+    "input": "stat -c '%a %U:%G %n' /etc/ssh/sshd_config"
+  },
+  {
+    "id": "C08-10",
+    "file": "C08-10.txt",
+    "where": "kt66 VM · 터미널",
+    "section": "설정 파일의 권한과 문법",
+    "input": "sudo /usr/sbin/sshd -t\necho $?"
+  },
+  {
+    "id": "Q08-10",
+    "file": "Q08-10.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-states-vulnerabilities-* · DQL",
+    "section": "취약점과 SCA의 종결 근거를 작성",
+    "input": "vulnerability.id:\"CVE-2025-54289\""
+  },
+  {
+    "id": "C08-11",
+    "file": "C08-11.txt",
+    "where": "kt66 VM · 터미널",
+    "section": "원상복구와 실습 완료 확인",
+    "input": "systemctl is-active wazuh-agent ssh\nexit"
+  }
+]

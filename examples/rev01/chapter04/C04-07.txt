@@ -1,0 +1,6 @@
+Get-WinEvent -FilterHashtable @{
+ LogName='System';Id=7045;StartTime=$start
+} | Format-List TimeCreated,Id,RecordId,Message
+Get-WinEvent -FilterHashtable @{
+ LogName='Security';Id=4697;StartTime=$start
+} | Format-List TimeCreated,Id,RecordId,Message

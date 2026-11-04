@@ -1,0 +1,7 @@
+agent.name:"windows-user"
+AND data.win.system.channel:
+ "Microsoft-Windows-Sysmon/Operational"
+AND data.win.system.eventID:"3"
+AND data.win.eventdata.image:*powershell.exe
+AND data.win.eventdata.destinationIp:"10.20.32.80"
+AND data.win.eventdata.destinationPort:"80"

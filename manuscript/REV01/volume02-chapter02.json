@@ -1,0 +1,1083 @@
+{
+  "title": "로그온 실패와 원격 접속",
+  "series": "해킹·침해대응 실무 with Wazuh 2권",
+  "comments": "REV01 교정본. 검증 이력은 editorial/REV01/review.md.",
+  "sections": [
+    {
+      "title": "2장 로그온 실패와 원격 접속",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "같은 계정에서 암호 오류와 잠금이 이어지고 잠시 뒤 원격 로그온이 성공했다. 암호 추측이 성공한 사건일 수도 있고, 사용자의 저장된 암호 오류 뒤에 정상 접속이 있었을 수도 있다. 실패의 이유와 성공 세션을 분리해 확인한 뒤 승인된 입력 기록과 대조한다."
+        },
+        {
+          "type": "list",
+          "items": [
+            "4625의 상태·하위 상태로 계정 부재와 암호 오류를 구분한다.",
+            "4740의 대상 계정과 4624 유형 10의 원격 로그온을 연결한다.",
+            "로그오프와 현재 세션을 확인하고 접속 승인 여부를 판단한다."
+          ]
+        },
+        {
+          "type": "box",
+          "kind": "predict",
+          "text": "잠금 임계값에 도달한 마지막 실패에는 반드시 0xc0000234가 남을까. 잠금 발생과 잠긴 뒤의 재시도를 나누어 예상한 다음 4740·Lockout·4625를 대조한다."
+        },
+        {
+          "type": "image",
+          "path": "assets/REV01/ba325f3c7c33-sequence.png",
+          "caption": "그림 2-1  로그온 실패·잠금·원격 접속의 조사 순서",
+          "width_mm": 127
+        },
+        {
+          "type": "list",
+          "items": [
+            "victim에 틀린 암호 두 개 · 4625",
+            "존재하지 않는 이름 세 개 · 4625의 실패 사유",
+            "victim에 틀린 암호 다섯 개 · 잠금 상태와 4740",
+            "잠금 해제 후 정상 자격증명 · 4624와 유형 10"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "1장의 Windows 수집 확인을 끝낸 환경에서 수행한다. 실습용 victim 계정과 kt66 내부 주소만 사용한다. 성공 기준은 각 입력을 해당 원본 이벤트와 Wazuh 경보에 연결하고, 마지막에 잠금과 접속 세션을 정리하는 것이다."
+        }
+      ]
+    },
+    {
+      "title": "2.1  공격 입력과 조사 위치 구분하기",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "RDP(Remote Desktop Protocol)는 원격 Windows의 화면과 입력을 전달하는 프로토콜이다. 네트워크 수준 인증인 NLA는 원격 화면 세션을 본격적으로 사용하기 전에 자격증명을 검사한다. NLA 단계의 실패는 네트워크 로그온 유형 3으로 기록될 수 있다. 유형 10은 원격 대화형 로그온이다."
+        },
+        {
+          "type": "image",
+          "path": "assets/REV01/be7eb52d2bd2-path.png",
+          "caption": "그림 2-2  RDP 요청과 Windows 이벤트의 수집 경로",
+          "width_mm": 127
+        },
+        {
+          "type": "p",
+          "text": "공격 입력은 kt66-attacker 컨테이너에서 10.20.70.10:3389로 보낸다. 이 주소는 kt66의 내부 Windows 접속 경로다. 별도의 공격자 VM 192.168.0.108과 구분한다. Windows 이벤트의 원본 주소는 이 환경에서 10.20.30.202로 나타났다."
+        },
+        {
+          "type": "p",
+          "text": "대상은 KT66-WIN-01이며 Wazuh 에이전트 이름은 windows-user이다. agent.ip의 172.30.70.2는 이벤트를 수집한 Windows 에이전트 주소다. 접속 출발지는 data.win.eventdata.ipAddress에서 읽는다. 두 주소를 바꾸어 해석하면 조사할 장비가 달라진다."
+        }
+      ]
+    },
+    {
+      "title": "실습용 계정과 잠금 정책 확인",
+      "kind": "body",
+      "level": "subsection",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Windows 게스트의 브라우저 콘솔에 로그인하고 관리자 PowerShell을 연다. Get-LocalUser는 로컬 계정을 조회한다. Enabled는 사용 가능 상태이며, 암호 오류로 잠겼는지는 별도의 Lockout 속성으로 확인한다. CIM은 운영체제의 관리 정보를 조회하는 인터페이스다."
+        },
+        {
+          "type": "command",
+          "id": "C02-01",
+          "where": "Windows 실습 게스트 · 관리자 PowerShell",
+          "text": "Get-LocalUser -Name victim |\n  Format-List Name,Enabled\nGet-CimInstance Win32_UserAccount `\n  -Filter \"Name='victim' AND LocalAccount=True\" |\n  Format-List Name,Lockout",
+          "why": "-Name은 계정 이름을 지정한다. Get-CimInstance의 -Filter는 로컬 victim만 고르는 조건이다. 큰따옴표 안의 작은따옴표는 이름 문자열을 묶는다. 파이프(|) 뒤의 Format-List는 속성을 펼쳐 표시한다. 백틱(`)은 다음 줄로 명령을 잇는다.",
+          "result": "Name victim, Enabled True, Lockout False를 확인한다. 계정이 없으면 kt66의 Windows 준비 상태부터 확인한다. Lockout True이면 공격 입력을 멈추고 잠금 정책에 따라 해제된 뒤 다시 조회한다."
+        },
+        {
+          "type": "command",
+          "id": "C02-02",
+          "where": "Windows 실습 게스트 · 관리자 PowerShell",
+          "text": "net.exe accounts",
+          "why": "net.exe는 Windows의 계정·네트워크 관리 도구다. accounts만 입력하면 현재 계정 정책을 조회하며 값을 바꾸지 않는다.",
+          "result": "이 환경의 잠금 임계값은 5회, 잠금 기간과 잠금 카운터 관찰 기간은 각각 1분이다. 자신의 값을 기록한다. 정책이 다르면 다섯 번 입력으로 같은 결과가 나온다고 가정하지 않는다."
+        },
+        {
+          "type": "p",
+          "text": "kt66의 센서 준비 스크립트는 실습 계정과 잠금 정책을 마련한다. 상태 확인을 위해 설치 스크립트를 다시 실행하지 않는다. 운영 계정 대신 준비된 실습 계정을 사용하며, 여러 독자가 같은 victim을 동시에 시험하면 실패 횟수가 합쳐질 수 있다."
+        }
+      ]
+    },
+    {
+      "title": "감사와 RDP 권한 확인",
+      "kind": "body",
+      "level": "subsection",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Security 기록을 만들려면 로그온의 성공·실패 감사가 필요하다. 계정 잠금에는 사용자 계정 관리의 성공 감사도 확인한다. auditpol.exe의 /get은 정책 조회이며, /subcategory는 하위 범주를 지정한다. 아래 GUID는 사용자 계정 관리 범주다."
+        },
+        {
+          "type": "command",
+          "id": "C02-03",
+          "where": "Windows 실습 게스트 · 관리자 PowerShell",
+          "text": "$accountAudit = '{0CCE9235-69AE-11D9-BED3-505054503030}'\nauditpol.exe /get /subcategory:$accountAudit\nGet-LocalGroupMember -SID 'S-1-5-32-555' |\n  Format-List Name",
+          "why": "$accountAudit에 범주의 식별 문자열을 저장한다. Get-LocalGroupMember는 로컬 그룹의 구성원을 조회한다. -SID의 값은 표시 언어와 무관하게 Remote Desktop Users 그룹을 지정한다.",
+          "result": "사용자 계정 관리에 성공 감사가 표시되는지, 원격 데스크톱 사용자 그룹에 KT66-WIN-01\\victim이 있는지 읽는다. 로그온 감사는 1장의 C01-06으로 확인한다."
+        },
+        {
+          "type": "p",
+          "text": "WazuhSvc와 Sysmon64가 실행 중이고 1장의 이벤트 대조가 성공했는지도 확인한다. 감사나 권한이 부족하면 해당 설정을 준비한 뒤 진행한다. 이번 절차에서는 잠금 임계값이나 Defender 보호 상태를 변경하지 않는다."
+        }
+      ]
+    },
+    {
+      "title": "공격자 컨테이너와 도구 준비",
+      "kind": "body",
+      "level": "subsection",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "C01-14와 같은 방법으로 kt66 Ubuntu VM에서 컨테이너의 Bash를 연다. 이번 실행 대상은 매니저가 아닌 kt66-attacker다. 입력 위치를 바꾸면 같은 도구라도 접속할 수 있는 내부망이 달라진다."
+        },
+        {
+          "type": "command",
+          "id": "C02-04",
+          "where": "kt66 VM · 터미널",
+          "text": "sudo docker exec -it kt66-attacker /bin/bash",
+          "why": "sudo는 Docker 명령을 관리자 권한으로 실행한다. 컨테이너 이름을 확인한 뒤 Bash에 들어간다.",
+          "result": "프롬프트가 컨테이너 안의 셸로 바뀐다. 아래의 hostname 결과도 attacker인지 확인한다."
+        },
+        {
+          "type": "command",
+          "id": "C02-05",
+          "where": "kt66-attacker 컨테이너 · Bash",
+          "text": "hostname\ncommand -v hydra xfreerdp xvfb-run timeout",
+          "why": "hostname은 현재 호스트 이름을 출력한다. command -v는 셸이 실행할 도구의 경로를 찾는다. 네 이름은 공백으로 구분한 개별 인수다.",
+          "result": "네 도구의 경로가 모두 출력되어야 한다. 이 환경에는 Hydra 9.2와 FreeRDP 2.6.1이 준비되어 있었다. 누락되면 외부 공격자 VM이 아닌 kt66-attacker에 들어왔는지 먼저 확인한다."
+        },
+        {
+          "type": "p",
+          "text": "Hydra는 계정과 암호 후보를 인증 서비스에 입력해 응답을 확인하는 도구다. xfreerdp는 Linux용 RDP 클라이언트다. xvfb-run은 실제 모니터 없이 그래픽 프로그램을 실행할 가상 화면을 마련한다. timeout은 지정 시간이 지나면 실행 중인 명령에 종료 신호를 보낸다. 역할이 서로 다르다."
+        }
+      ]
+    },
+    {
+      "title": "실습 파일과 시각 마련하기",
+      "kind": "body",
+      "level": "subsection",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "틀린 암호 목록과 가짜 이름 목록은 컨테이너의 전용 디렉터리에 둔다. ls는 파일 목록, -ld는 대상 디렉터리 자체의 상세 정보다. mkdir는 디렉터리를 만들고 cd는 현재 작업 위치를 바꾼다. pwd는 현재 위치를 출력한다."
+        },
+        {
+          "type": "command",
+          "id": "C02-06",
+          "where": "kt66-attacker 컨테이너 · Bash",
+          "text": "ls -ld /tmp/wazuh-book2-ch02",
+          "why": "파일을 만들기 전에 같은 이름의 디렉터리가 이미 있는지 읽는다.",
+          "result": "처음에는 No such file or directory가 정상이다. 이미 있으면 내용을 확인해 이전 실습 파일인지 판단하고, 다른 작업의 파일을 덮어쓰지 않는다."
+        },
+        {
+          "type": "command",
+          "id": "C02-07",
+          "where": "kt66-attacker 컨테이너 · Bash",
+          "text": "mkdir /tmp/wazuh-book2-ch02\ncd /tmp/wazuh-book2-ch02\npwd",
+          "why": "디렉터리가 없음을 확인한 경우에만 mkdir를 실행한다. 이미 이번 실습용으로 만든 디렉터리라면 cd부터 수행한다.",
+          "result": "/tmp/wazuh-book2-ch02가 출력된다. 이후 목록 파일은 이 위치에 저장한다."
+        },
+        {
+          "type": "command",
+          "id": "C02-08",
+          "where": "Windows 실습 게스트 · 관리자 PowerShell",
+          "text": "$start = Get-Date\n$start.ToString(\"o\")",
+          "why": "Get-Date로 시작 시각을 $start에 보관한다. ToString(\"o\")는 시각과 시간대가 포함된 문자열로 표시한다. 2.2~2.5절의 각 입력을 시작할 때마다 같은 PowerShell 창에서 다시 실행한다.",
+          "result": "이 시각 이후의 이벤트만 조회하는 기준을 얻는다. 각 실습의 종료 시각도 따로 적는다. PowerShell 창을 닫으면 변수는 사라지므로 다시 설정한다."
+        }
+      ]
+    },
+    {
+      "title": "2.2  잘못된 암호 입력",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "먼저 victim에 틀린 암호 두 개만 입력한다. 실패 사유가 암호 오류인지, 출발지가 공격자 컨테이너인지 확인한다. 입력 직전 Lockout False와 관찰 기간 동안 다른 실패가 없음을 확인한다."
+        },
+        {
+          "type": "image",
+          "path": "assets/REV01/d21b146a45e0-v2-c02-failure.png",
+          "caption": "그림 2-3  제한된 입력 목록과 인증 응답의 확인",
+          "width_mm": 62
+        },
+        {
+          "type": "p",
+          "text": "printf는 지정한 형식으로 문자열을 출력한다. 형식 %s는 문자열 하나, 역슬래시 엔(\\n)은 줄바꿈이다. 작은따옴표는 셸이 특수문자를 먼저 해석하지 않게 묶는다. >는 출력을 파일에 기록하며 기존 파일이 있으면 덮어쓴다."
+        },
+        {
+          "type": "command",
+          "id": "C02-09",
+          "where": "kt66-attacker 컨테이너 · Bash",
+          "text": "ls -l pw-two.txt\nprintf '%s\\n' Book2WrongA Book2WrongB > pw-two.txt\ncat pw-two.txt",
+          "why": "ls에서 파일이 없음을 확인한 뒤 printf를 실행한다. cat은 저장한 파일 내용을 읽는다. 두 단어는 이 실습에서 사용하는 잘못된 암호 후보다.",
+          "result": "Book2WrongA와 Book2WrongB가 한 줄씩 출력된다. 기존 파일이 있으면 먼저 내용을 읽고 이번 실습 파일인지 확인한다."
+        },
+        {
+          "type": "command",
+          "id": "C02-10",
+          "where": "kt66-attacker 컨테이너 · Bash",
+          "text": "hydra -l victim -P pw-two.txt -t 1 rdp://10.20.70.10",
+          "why": "기본 구문은 hydra 계정옵션 암호옵션 대상이다. 소문자 -l은 단일 계정, 대문자 -P는 암호 목록 파일이다. -t 1은 대상당 동시 작업을 하나로 제한한다. rdp:// 뒤는 실습 대상 주소이며 기본 포트는 3389다.",
+          "result": "두 후보를 처리한 뒤 0 valid password found가 출력됐다. 이 문장은 유효한 암호를 찾지 못했다는 도구의 보고다. Windows가 실제로 어떤 실패를 기록했는지는 다음 절에서 확인한다."
+        },
+        {
+          "type": "p",
+          "text": "Hydra의 RDP 모듈은 실행 시 experimental 경고를 표시했다. 도구의 출력 건수를 Windows 이벤트 수와 자동으로 같다고 두지 않는다. 연결 오류가 발생하면 목록을 늘리기 전에 대상 주소·RDP 서비스·계정 상태부터 확인한다."
+        }
+      ]
+    },
+    {
+      "title": "Windows 원본에서 실패 사유 읽기",
+      "kind": "body",
+      "level": "subsection",
+      "break": false,
+      "blocks": [
+        {
+          "type": "command",
+          "id": "C02-11",
+          "where": "Windows 실습 게스트 · 관리자 PowerShell",
+          "text": "$filter = @{ LogName='Security'; Id=4625;\n  StartTime=$start }\n$event = Get-WinEvent -FilterHashtable $filter `\n  -MaxEvents 1\n$event | Format-List TimeCreated,Id,RecordId,Message\n$event.ToXml()",
+          "why": "Get-WinEvent는 이벤트를 조회한다. @{ }는 조건을 담는 해시 테이블이고 세미콜론은 항목을 구분한다. StartTime은 C02-08의 시작 시각, -MaxEvents 1은 최신 한 건이다. ToXml()은 같은 기록의 원본 필드를 표시한다.",
+          "result": "TargetUserName victim, Status 0xc000006d, SubStatus 0xc000006a, LogonType 3, IpAddress 10.20.30.202를 찾는다. 이 기록의 EventRecordID는 9978이었다. 자신의 번호와 시각을 기록한다."
+        },
+        {
+          "type": "table",
+          "head": [
+            "항목",
+            "이번 기록의 해석"
+          ],
+          "rows": [
+            [
+              "Status 0xc000006d",
+              "로그온 실패의 일반 상태"
+            ],
+            [
+              "SubStatus 0xc000006a",
+              "대상 계정의 암호가 맞지 않음"
+            ],
+            [
+              "LogonType 3",
+              "네트워크 로그온 · SMB 전용 분류가 아님"
+            ],
+            [
+              "AuthenticationPackageName NTLM",
+              "인증에 사용된 패키지"
+            ],
+            [
+              "WorkstationName attacker",
+              "요청 과정에서 전달된 컴퓨터 이름"
+            ]
+          ],
+          "widths": [
+            62,
+            65
+          ],
+          "keep": true
+        },
+        {
+          "type": "p",
+          "text": "0x는 16진수 표기다. Status와 SubStatus는 서로 다른 필드이며, 상세 이유가 항상 SubStatus에만 들어가는 것은 아니다. 기록 전체를 먼저 읽고 실제 코드가 있는 필드를 선택한다. 컴퓨터 이름은 주소·시각·계정과 대조할 단서이며 그 값 하나로 접속자를 확정하지 않는다."
+        }
+      ]
+    },
+    {
+      "title": "Wazuh에서 같은 실패 찾기",
+      "kind": "body",
+      "level": "subsection",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Windows PC의 브라우저에서 https://192.168.0.107:5601에 로그인한다. 왼쪽 메뉴의 **Explore → Discover**로 들어가 데이터 보기를 **wazuh-alerts-***로 선택한다. 검색창 오른쪽이 **DQL**인지 확인한다. 시간 범위는 실습 시작과 종료를 포함하도록 정하고 검색을 실행한다."
+        },
+        {
+          "type": "query",
+          "id": "Q02-01",
+          "where": "Windows PC · Wazuh Discover · DQL",
+          "text": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4625\"\nAND data.win.eventdata.targetUserName:\"victim\"",
+          "why": "콜론(:)은 필드와 조건 값을 연결한다. 큰따옴표는 값을 묶고 AND는 모든 조건을 만족하는 기록을 고른다. 먼저 실패 전체를 읽은 뒤 이유 코드를 추가한다.",
+          "result": "실습 시간의 victim 실패를 찾는다. 결과 행 왼쪽 펼침 버튼으로 Table을 열어 계정·주소·실패 코드·기록 번호를 읽는다."
+        },
+        {
+          "type": "query",
+          "id": "Q02-02",
+          "where": "Windows PC · Wazuh Discover · DQL",
+          "text": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4625\"\nAND data.win.eventdata.targetUserName:\"victim\"\nAND (data.win.eventdata.status:\"0xc000006a\"\n  OR data.win.eventdata.subStatus:\"0xc000006a\")",
+          "why": "OR는 둘 중 하나를 만족하면 선택한다. 소괄호로 OR 묶음을 만들고 앞의 계정·이벤트 조건과 AND로 연결한다. 두 상태 필드 중 암호 오류 코드가 들어 있는 쪽을 찾는다.",
+          "result": "2.2절의 입력에서는 두 기록이 대응했다. 2.4절의 잠금 입력까지 포함한 기간을 조회하면 이후의 암호 오류도 나타난다. 검색 결과 수는 선택한 시간과 조건의 기록 수다."
+        }
+      ]
+    },
+    {
+      "title": "실패 경보의 필드 대조",
+      "kind": "body",
+      "level": "subsection",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "결과의 **View single document**를 열면 한 경보의 필드를 이어 읽을 수 있다. Windows XML의 EventData 값은 Wazuh의 data.win.eventdata 아래에 표시된다. 원본과 같은 계정·코드·주소를 찾는다."
+        },
+        {
+          "type": "image",
+          "path": "assets/REV01/29e2031ed06e-4625-detail.jpg",
+          "caption": "화면 2-1  victim 로그온 실패의 인증 패키지·주소·상태 코드",
+          "width_mm": 127
+        },
+        {
+          "type": "p",
+          "text": "이 경보의 rule.id는 60122이고 설명은 Logon Failure - Unknown user or bad password였다. 이 제목만으로 계정 부재와 암호 오류를 구분할 수 없으므로 Status·SubStatus를 읽는다. 필드 옆 기호와 관계없이 실패 이유는 해당 코드와 Windows 원본으로 판단한다."
+        },
+        {
+          "type": "box",
+          "kind": "field",
+          "text": "정상 사용자가 암호를 바꾼 뒤 예약 작업에 옛 암호가 남으면 같은 실패 규칙에 걸릴 수 있다. 규칙 예외를 만들기 전에 작업 실행 간격·사용 계정·출발지 장비를 대조한다."
+        }
+      ]
+    },
+    {
+      "title": "개별 이벤트의 일치 확인",
+      "kind": "body",
+      "level": "subsection",
+      "break": false,
+      "blocks": [
+        {
+          "type": "image",
+          "path": "assets/REV01/7fadd94ad97c-4625-record.jpg",
+          "caption": "화면 2-2  실패 기록 9978의 계정·채널·컴퓨터·이벤트 번호",
+          "width_mm": 127
+        },
+        {
+          "type": "p",
+          "text": "EventID 4625는 사건 종류, EventRecordID 9978은 이 컴퓨터의 Security 채널에 저장된 개별 기록 번호다. 원본 시각은 2026-11-03T03:00:47.3683626Z이며, 화면의 Wazuh 시각은 한국 시각 12:00:47.982였다. 약 0.6초의 차이는 같은 이벤트를 다른 시점에 기록한 값이다."
+        },
+        {
+          "type": "h",
+          "text": "조사·대응"
+        },
+        {
+          "type": "p",
+          "text": "같은 출발지에서 같은 계정의 암호 오류가 짧은 간격으로 반복되는지 본다. 사용자에게 암호 변경·입력 실수·저장된 자격증명 사용 여부를 확인한다. 출발지 장비의 소유자와 원격 접속 경로도 대조한다. 이후 성공 로그온이 있으면 해당 세션의 활동까지 조사 범위를 넓힌다."
+        },
+        {
+          "type": "h",
+          "text": "실패 시 확인과 원상복구"
+        },
+        {
+          "type": "p",
+          "text": "원본이 없으면 시작 시각과 감사 정책, RDP 요청 도착 여부를 확인한다. 원본은 있고 경보가 없으면 에이전트 수집·매니저 규칙·Discover 데이터 보기와 기간을 차례로 확인한다. Hydra가 끝났는지 확인하고 victim의 Lockout을 다시 읽는다. 다음 실습 전에는 자신의 잠금 카운터 관찰 기간이 지나도록 기다린다. 목록 파일은 마지막 원상복구 절에서 정리한다."
+        }
+      ]
+    },
+    {
+      "title": "2.3  존재하지 않는 계정",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "계정 열거는 유효한 계정 이름을 알아내려는 행위다. 인증 응답과 실패 기록의 차이를 이용할 수 있다. 여기서는 실제로 없는 세 이름을 입력해 Windows가 계정 부재를 어떻게 기록하는지 확인한다."
+        },
+        {
+          "type": "command",
+          "id": "C02-12",
+          "where": "Windows 실습 게스트 · 관리자 PowerShell",
+          "text": "Get-LocalUser |\n  Where-Object Name -Like 'book2_missing_*' |\n  Select-Object Name",
+          "why": "Where-Object는 조건에 맞는 객체를 남긴다. -Like는 와일드카드 비교이고 별표(*)는 임의의 문자열이다. Select-Object는 출력할 Name 속성을 고른다.",
+          "result": "출력이 없어야 준비한 세 이름을 사용할 수 있다. 같은 이름이 있으면 해당 계정을 지우는 대신 충돌하지 않는 이름으로 목록과 검색식을 함께 바꾼다."
+        },
+        {
+          "type": "p",
+          "text": "Administrator와 Guest는 기본 제공 계정일 수 있다. 비활성 계정과 존재하지 않는 계정을 같은 사례로 섞지 않는다. C02-08로 이번 실습의 시작 시각을 다시 기록한다."
+        },
+        {
+          "type": "command",
+          "id": "C02-13",
+          "where": "kt66-attacker 컨테이너 · Bash",
+          "text": "ls -l users-three.txt\nprintf '%s\\n' book2_missing_a book2_missing_b \\\n  book2_missing_c > users-three.txt\ncat users-three.txt",
+          "why": "파일이 없음을 확인한 뒤 세 이름을 한 줄씩 저장한다. Bash에서 줄 끝의 역슬래시(\\)는 명령을 다음 줄로 잇는다. 역슬래시 뒤에 공백을 넣지 않는다.",
+          "result": "세 줄의 이름이 Windows에서 확인한 미존재 이름과 같아야 한다. 목록을 만들었다고 Windows 계정이 생성되지는 않는다."
+        },
+        {
+          "type": "command",
+          "id": "C02-14",
+          "where": "kt66-attacker 컨테이너 · Bash",
+          "text": "hydra -L users-three.txt -p Book2WrongA -t 1 \\\n  rdp://10.20.70.10",
+          "why": "대문자 -L은 계정 목록 파일이고 소문자 -p는 단일 암호다. C02-10의 -l·-P와 입력 대상이 반대다. 세 계정에 같은 암호 하나를 입력한다.",
+          "result": "세 후보를 처리하고 0 valid password found가 출력됐다. Windows에서 C02-11을 다시 수행해 TargetUserName과 SubStatus를 읽는다."
+        }
+      ]
+    },
+    {
+      "title": "계정 부재와 암호 오류 구분",
+      "kind": "body",
+      "level": "subsection",
+      "break": false,
+      "blocks": [
+        {
+          "type": "query",
+          "id": "Q02-03",
+          "where": "Windows PC · Wazuh Discover · DQL",
+          "text": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4625\"\nAND (data.win.eventdata.status:\"0xc0000064\"\n  OR data.win.eventdata.subStatus:\"0xc0000064\")",
+          "why": "0xc0000064는 지정한 계정이 없다는 상태 코드다. 시간 범위를 2.3절의 입력 시각으로 한정하고, 결과에서 세 이름과 출발지 주소를 대조한다.",
+          "result": "book2_missing_a·b·c의 세 기록이 나타났다. 최신 기록 10040은 book2_missing_c의 실패다. Status는 0xc000006d로 같지만 SubStatus는 2.2절 암호 오류의 6a와 다른 64였다."
+        },
+        {
+          "type": "image",
+          "path": "assets/REV01/5a80fa2e6973-missing-detail.jpg",
+          "caption": "화면 2-3  존재하지 않는 계정의 0xc0000064와 기록 번호 10040",
+          "width_mm": 127
+        },
+        {
+          "type": "p",
+          "text": "다른 이름이 연속해서 나타나는 패턴은 계정 이름 추측의 단서다. 그러나 오래된 계정으로 실행되는 예약 작업이나 장비 설정도 비슷한 실패를 만든다. 같은 출발지의 계정 이름 분포, 반복 간격, 정상 업무 시각을 함께 조사한다."
+        }
+      ]
+    },
+    {
+      "title": "계정 열거의 조사와 원상복구",
+      "kind": "body",
+      "level": "subsection",
+      "break": false,
+      "blocks": [
+        {
+          "type": "h",
+          "text": "성공 기준과 결과가 다를 때"
+        },
+        {
+          "type": "p",
+          "text": "세 미존재 이름, 출발지, 실습 시각이 원본과 Wazuh에서 대응하면 확인을 마친다. 0xc000006a가 나오면 이름의 존재 여부와 대상 컴퓨터를 다시 읽는다. 비활성·만료·로그온 제한 코드는 계정 부재와 따로 기록한다. 원본이 없으면 감사와 연결을, 경보만 없으면 수집과 검색을 확인한다."
+        },
+        {
+          "type": "h",
+          "text": "조사·대응"
+        },
+        {
+          "type": "p",
+          "text": "유효한 계정으로 이어지는 성공 기록이 있는지 조사한다. 인증 오류의 세부 내용을 외부 응답에 과하게 노출하는 서비스인지도 점검한다. 비정상 출발지를 제한할 때는 공유 게이트웨이·정상 관리 장비 여부를 확인하고, 제한 후 정상 인증이 유지되는지 관찰한다."
+        },
+        {
+          "type": "h",
+          "text": "원상복구"
+        },
+        {
+          "type": "p",
+          "text": "세 이름은 파일에만 기록했으므로 삭제할 Windows 계정이 없다. Hydra가 종료된 상태를 유지하고 마지막 절에서 users-three.txt를 제거한다. 이벤트 로그는 조사 근거로 보존한다."
+        }
+      ]
+    },
+    {
+      "title": "2.4  계정 잠금 확인",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "계정 잠금은 일정 조건의 인증 실패가 누적됐을 때 계정 사용을 제한하는 기능이다. 잠금으로 암호 추측을 줄일 수 있지만 정상 사용자의 업무도 중단될 수 있다. 실패 횟수, 잠금 기간, 발생 시각을 함께 기록한다."
+        },
+        {
+          "type": "image",
+          "path": "assets/REV01/fd55d3a348eb-lockout.png",
+          "caption": "그림 2-4  암호 오류·계정 잠금·잠금 기간 경과의 구분",
+          "width_mm": 127
+        },
+        {
+          "type": "p",
+          "text": "4740은 계정이 잠겼음을 알리는 Security 이벤트다. 도메인 컨트롤러뿐 아니라 로컬 계정을 관리하는 워크스테이션이나 멤버 서버에도 기록될 수 있다. 여기서는 KT66-WIN-01의 로컬 victim을 조사한다."
+        },
+        {
+          "type": "p",
+          "text": "C02-01·02로 Lockout False와 5회·1분·1분 정책을 확인한다. 이전 입력으로부터 관찰 기간이 충분히 지난 뒤 C02-08로 시작 시각을 새로 기록한다. 임계값이 다르면 자신의 실습 정책과 입력 수를 먼저 맞춘다."
+        }
+      ]
+    },
+    {
+      "title": "잠금을 만드는 제한된 입력",
+      "kind": "body",
+      "level": "subsection",
+      "break": false,
+      "blocks": [
+        {
+          "type": "command",
+          "id": "C02-15",
+          "where": "kt66-attacker 컨테이너 · Bash",
+          "text": "ls -l pw-five.txt\nprintf '%s\\n' Book2Wrong1 Book2Wrong2 Book2Wrong3 \\\n  Book2Wrong4 Book2Wrong5 > pw-five.txt\ncat pw-five.txt",
+          "why": "이름이 같은 파일이 없음을 확인하고 틀린 암호 다섯 개를 저장한다. printf의 %s와 \\n이 각 후보를 별도 줄에 놓는다.",
+          "result": "다섯 줄을 읽고 자신의 계정 정책에 맞춘 목록인지 확인한다. 이 목록에는 정상 암호가 들어 있지 않다."
+        },
+        {
+          "type": "command",
+          "id": "C02-16",
+          "where": "kt66-attacker 컨테이너 · Bash",
+          "text": "hydra -l victim -P pw-five.txt -t 1 rdp://10.20.70.10",
+          "why": "같은 계정에 목록의 후보를 차례로 입력한다. -t 1은 동시성을 제한하며 전체 시도 횟수는 목록의 다섯 후보로 제한한다.",
+          "result": "입력이 끝나면 Windows에서 C02-01을 다시 실행한다. 이 환경에서는 Enabled True를 유지한 채 Lockout True가 됐다."
+        },
+        {
+          "type": "command",
+          "id": "C02-17",
+          "where": "Windows 실습 게스트 · 관리자 PowerShell",
+          "text": "$lockFilter = @{ LogName='Security'; Id=4740;\n  StartTime=$start }\n$lockEvent = Get-WinEvent `\n  -FilterHashtable $lockFilter -MaxEvents 1\n$lockEvent | Format-List TimeCreated,RecordId,Message\n$lockEvent.ToXml()",
+          "why": "$lockEvent에 이번 구간의 최신 잠금 기록을 보관한다. Message와 XML을 같은 이벤트에서 읽어 표시 이름과 원본 필드 이름을 연결한다.",
+          "result": "잠긴 계정 victim, 기록 번호 10103, 컴퓨터 KT66-WIN-01을 확인했다. 자신의 기록에서 잠금 대상과 시각이 일치해야 한다."
+        }
+      ]
+    },
+    {
+      "title": "잠금 이벤트의 주체와 호출자",
+      "kind": "body",
+      "level": "subsection",
+      "break": false,
+      "blocks": [
+        {
+          "type": "query",
+          "id": "Q02-04",
+          "where": "Windows PC · Wazuh Discover · DQL",
+          "text": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4740\"\nAND data.win.eventdata.targetUserName:\"victim\"",
+          "why": "원본과 같은 계정의 잠금 이벤트를 찾는다. 행을 펼친 뒤 **View single document**에서 필드를 읽는다.",
+          "result": "기록 10103에 해당하는 경보를 찾았다. 4740에는 로그온 실패의 IpAddress가 없을 수 있으므로 인접한 4625와 함께 조사한다."
+        },
+        {
+          "type": "image",
+          "path": "assets/REV01/d2eb2ab3edf7-4740-detail.jpg",
+          "caption": "화면 2-4  로컬 victim의 잠금 대상과 이벤트 주체",
+          "width_mm": 127
+        },
+        {
+          "type": "p",
+          "text": "subjectUserName의 KT66-WIN-01$과 subjectUserSid S-1-5-18은 잠금을 처리한 시스템 문맥을 나타낸다. 이 값을 공격자 이름으로 적지 않는다. targetUserName victim이 잠긴 계정이다."
+        }
+      ]
+    },
+    {
+      "title": "필드 이름만으로 호출자를 판단하지 않기",
+      "kind": "body",
+      "level": "subsection",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "이 4740의 Windows 메시지는 Caller Computer Name을 attacker로 표시했다. 같은 이벤트 XML에서는 이 값이 TargetDomainName 요소에 들어 있었고 Wazuh는 data.win.eventdata.targetDomainName으로 표시했다. 따라서 이 기록의 attacker를 victim이 속한 도메인 이름으로 해석하면 안 된다."
+        },
+        {
+          "type": "code",
+          "text": "Message: Caller Computer Name = attacker\nXML: <Data Name=\"TargetDomainName\">attacker</Data>\nWazuh: data.win.eventdata.targetDomainName"
+        },
+        {
+          "type": "p",
+          "text": "이벤트마다 필드의 쓰임이 같다고 가정하지 않고 메시지·XML·수집 필드를 대조한다. 호출자 이름이 없거나 중계 장비를 가리키면 같은 계정의 앞선 4625에서 출발지 주소를 보완한다. 이름과 주소가 같더라도 NAT나 중계 경로가 있는지 확인한다."
+        },
+        {
+          "type": "query",
+          "id": "Q02-05",
+          "where": "Windows PC · Wazuh Discover · DQL",
+          "text": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4625\"\nAND data.win.eventdata.targetUserName:\"victim\"\nAND (data.win.eventdata.status:\"0xc0000234\"\n  OR data.win.eventdata.subStatus:\"0xc0000234\")",
+          "why": "0xc0000234는 잠긴 계정에 대한 로그온 실패를 찾는 조건이다. 이미 발생한 실패를 조사할 때 사용하며, 검색 결과를 만들기 위해 추가 실패를 반복할 필요는 없다.",
+          "result": "다섯 후보의 마지막 실패까지 0xc000006a였고 4740이 별도로 남았다. 이 구간에서 위 검색은 0건이었다. 잠금 자체는 4740과 Lockout 상태로 확인한다."
+        },
+        {
+          "type": "p",
+          "text": "잠금 발생 이벤트와 잠긴 계정으로 다시 접속했다가 실패한 이벤트는 서로 다르다. 추가 입력 여부에 따라 후자의 기록이 없을 수 있다."
+        }
+      ]
+    },
+    {
+      "title": "잠금의 대응과 원상복구",
+      "kind": "body",
+      "level": "subsection",
+      "break": false,
+      "blocks": [
+        {
+          "type": "h",
+          "text": "조사·대응"
+        },
+        {
+          "type": "p",
+          "text": "잠금 직전 실패의 계정·주소·시각을 묶고 정상 사용자의 저장된 암호나 서비스 작업도 조사한다. 원인이 계속 남아 있으면 잠금을 풀어도 다시 잠길 수 있다. 업무 영향과 비정상 출발지를 확인한 뒤 접속 경로 제한과 계정 복구를 결정한다."
+        },
+        {
+          "type": "h",
+          "text": "원상복구"
+        },
+        {
+          "type": "p",
+          "text": "Hydra 입력을 중지한 상태에서 정책의 잠금 기간이 지나기를 기다린다. 이 환경에서는 1분이 지난 후 C02-01의 Lockout이 False로 돌아왔다. Enabled True만 보고 해제됐다고 판단하지 않는다. 기간이 0으로 설정된 환경에서는 관리자 해제 절차가 필요하므로 이 실습의 자동 해제 결과를 적용하지 않는다."
+        },
+        {
+          "type": "h",
+          "text": "결과가 다를 때"
+        },
+        {
+          "type": "p",
+          "text": "Lockout이 True인데 4740이 없으면 사용자 계정 관리 감사와 이벤트 발생 컴퓨터를 확인한다. 경보만 없으면 원본 기록 번호를 기준으로 수집 구간을 조사한다. 잠기지 않으면 실제 실패가 발생했는지, 관찰 기간과 임계값이 무엇인지 먼저 읽는다. 검증 없이 시도 수를 계속 늘리지 않는다."
+        },
+        {
+          "type": "image",
+          "path": "assets/REV01/44bb48bae7e9-v2-c02-response.png",
+          "caption": "그림 2-5  잠금 시각과 정상 업무 기록의 대조",
+          "width_mm": 62
+        },
+        {
+          "type": "box",
+          "kind": "blind",
+          "text": "잠금 뒤 추가 접속이 없으면 잠긴 계정의 재시도 실패는 남지 않을 수 있다. 잠금 여부는 해당 실패 검색의 건수보다 4740과 현재 Lockout을 우선 읽는다."
+        }
+      ]
+    },
+    {
+      "title": "2.5  원격 대화형 로그온",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Lockout False인 victim의 정상 자격증명으로 RDP 인증을 수행한다. kt66 기준 준비 코드의 실습 암호는 Victim!2026이다. 자신의 실습 환경에서 바꿨다면 그 값을 사용한다. 실제 업무 계정의 암호를 예제 파일에 저장하지 않는다."
+        },
+        {
+          "type": "p",
+          "text": "이번 입력은 그래픽 환경이 없는 컨테이너에서 가상 화면을 사용하는 방식이다. 인증과 원격 로그온 이벤트를 조사하며, 독자의 Windows PC에 원격 데스크톱 화면이 표시되는 방식과 구분한다. 기존 Windows 사용자의 열린 작업은 유지한다."
+        },
+        {
+          "type": "p",
+          "text": "xvfb-run -a는 사용 가능한 가상 X 화면 번호를 골라 클라이언트를 실행한다. xfreerdp의 /v:는 서버, /u:는 사용자, /p:는 암호다. /cert:tofu는 처음 접속한 인증서를 저장하고 이후 다른 인증서가 나타나면 거부하는 방식이다. 첫 접속 대상의 진위는 별도로 확인해야 하므로 실습 VM과 주소를 먼저 대조한다."
+        },
+        {
+          "type": "command",
+          "id": "C02-18",
+          "where": "kt66-attacker 컨테이너 · Bash",
+          "text": "ls -l /root/.config/freerdp/known_hosts2",
+          "why": "FreeRDP가 기억한 인증서 목록 파일의 기존 유무를 확인한다. 이 경로는 현재 root 계정으로 들어간 컨테이너 기준이다.",
+          "result": "파일이 없다면 이번 접속에서 처음 만들어질 수 있다. 파일이 이미 있으면 다음 명령으로 별도 백업을 만든다."
+        },
+        {
+          "type": "command",
+          "id": "C02-19",
+          "where": "kt66-attacker 컨테이너 · Bash",
+          "text": "cp -p /root/.config/freerdp/known_hosts2 \\\n  /tmp/wazuh-book2-ch02/known_hosts2.before\nls -l /tmp/wazuh-book2-ch02/known_hosts2.before",
+          "why": "C02-18에서 파일이 있었고 백업 이름이 비어 있을 때만 실행한다. cp는 파일 복사, -p는 권한과 시각 등 속성을 보존한다.",
+          "result": "백업 파일이 생성됐는지 확인한다. 기존 목록이 없었다면 이 단계를 건너뛰고 파일이 없었다는 사실을 기록한다."
+        }
+      ]
+    },
+    {
+      "title": "시간을 제한한 RDP 입력",
+      "kind": "body",
+      "level": "subsection",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "C02-08로 이번 시작 시각을 다시 기록한다. timeout의 --signal=INT는 제한 시간이 지나면 인터럽트 신호를 보낸다. 25s는 25초다. 작은따옴표는 암호의 느낌표(!)가 Bash의 이력 확장 등으로 해석되지 않도록 묶는다."
+        },
+        {
+          "type": "command",
+          "id": "C02-20",
+          "where": "kt66-attacker 컨테이너 · Bash",
+          "text": "timeout --signal=INT 25s xvfb-run -a xfreerdp \\\n  /v:10.20.70.10 /u:victim /p:'Victim!2026' \\\n  /cert:tofu",
+          "why": "timeout이 xvfb-run과 그 안의 RDP 클라이언트 실행 시간을 제한한다. 실제 원격 로그온을 요청하므로 인증만 검사하는 +auth-only 옵션을 추가하지 않는다.",
+          "result": "클라이언트의 인증·연결 메시지를 읽는다. 25초 뒤 인터럽트 종료 메시지가 나올 수 있다. 시간 제한 종료 자체를 인증 실패로 해석하지 않고 Windows의 4624와 유형을 확인한다."
+        },
+        {
+          "type": "p",
+          "text": "현재 Windows에서 다른 사용자가 세션을 사용 중이면 세션 전환과 관련된 안내가 생길 수 있다. 예시 연결에는 LOGON_MSG_BUMP_OPTIONS 메시지가 나타났다. 원격 로그온 이벤트가 생성된 사실과 사용자가 원격 바탕 화면에서 실제 작업한 사실은 별도로 확인한다."
+        },
+        {
+          "type": "command",
+          "id": "C02-21",
+          "where": "Windows 실습 게스트 · 관리자 PowerShell",
+          "text": "$successFilter = @{ LogName='Security'; Id=4624;\n  StartTime=$start }\nGet-WinEvent -FilterHashtable $successFilter `\n  -MaxEvents 20 |\n  Format-List TimeCreated,RecordId,Message",
+          "why": "같은 시간대의 4624를 최신 20건까지 읽는다. 서비스와 관리 접속도 포함될 수 있으므로 메시지의 새 로그온 계정과 LogonType을 직접 확인한다.",
+          "result": "victim의 LogonType 10, IpAddress 10.20.30.202를 확인했다. 해당 기록 번호는 10207이다. 유형 3이나 서비스 로그온만으로 원격 대화형 로그온을 대신 판단하지 않는다."
+        }
+      ]
+    },
+    {
+      "title": "Wazuh에서 원격 로그온 확인",
+      "kind": "body",
+      "level": "subsection",
+      "break": false,
+      "blocks": [
+        {
+          "type": "query",
+          "id": "Q02-06",
+          "where": "Windows PC · Wazuh Discover · DQL",
+          "text": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.eventID:\"4624\"\nAND data.win.eventdata.logonType:\"10\"\nAND data.win.eventdata.targetUserName:\"victim\"\nAND data.win.eventdata.ipAddress:\"10.20.30.202\"",
+          "why": "성공 이벤트·원격 대화형 유형·계정·출발지 주소를 함께 제한한다. 다른 환경에서는 직접 관찰한 출발지 주소로 바꾼다.",
+          "result": "2026-11-03 12:09의 기록 10207에 해당하는 경보 한 건을 찾았다. 자신의 원본과 Wazuh의 계정·주소·유형·기록 번호가 같아야 한다."
+        },
+        {
+          "type": "image",
+          "path": "assets/REV01/7c075293e1c8-4624-type.jpg",
+          "caption": "화면 2-5  원격 로그온의 출발지 주소와 유형 10",
+          "width_mm": 127
+        },
+        {
+          "type": "p",
+          "text": "루프백 주소 127.0.0.1과 미기록 값 -를 제외하는 검색은 공인 외부 IP만 고르는 조건이 아니다. 이 실습의 10.20.30.202도 사설 주소다. 출발지의 의미는 네트워크 구성과 주소 대역을 대조해 판단한다."
+        }
+      ]
+    },
+    {
+      "title": "성공 로그온의 조사 범위",
+      "kind": "body",
+      "level": "subsection",
+      "break": false,
+      "blocks": [
+        {
+          "type": "image",
+          "path": "assets/REV01/e14b99caae55-4624-account.jpg",
+          "caption": "화면 2-6  성공 계정 victim과 원격 로그온 기록 10207",
+          "width_mm": 127
+        },
+        {
+          "type": "p",
+          "text": "이 기록의 targetLogonId는 0x1ca2207이었다. 같은 컴퓨터의 후속 활동과 로그오프를 연관시키는 단서로 사용할 수 있다. 계정 이름만 같다고 서로 다른 세션을 합치지 않는다. 이벤트 수와 사용자가 접속한 횟수도 자동으로 같다고 두지 않는다."
+        },
+        {
+          "type": "h",
+          "text": "조사·대응"
+        },
+        {
+          "type": "p",
+          "text": "성공 직전의 암호 오류·계정 잠금, 사용자 승인 여부, 출발지 장비와 접속 시각을 대조한다. 승인되지 않은 성공이면 해당 세션의 프로세스·파일·계정 변경을 추가로 조사한다. 정상 관리 접속이면 변경 요청이나 작업 기록으로 근거를 남긴다. 성공 이벤트 자체만으로 침해를 확정하지 않는다."
+        },
+        {
+          "type": "h",
+          "text": "결과가 다를 때"
+        },
+        {
+          "type": "p",
+          "text": "4625이면 상태 코드와 잠금·암호·로그온 권한을 확인한다. 4624의 유형 3만 있으면 인증 이후 원격 세션이 만들어졌는지 확인한다. 인증서 불일치가 나오면 대상 주소와 Windows 인증서를 대조하고, 캐시를 무조건 지우거나 검증을 끄는 방식으로 진행하지 않는다."
+        }
+      ]
+    },
+    {
+      "title": "로그온 뒤 같은 세션의 종료 확인",
+      "kind": "body",
+      "level": "subsection",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "앞서 읽은 4624의 targetLogonId는 0x1ca2207이다. archives 보관·색인이 준비된 경우에만 Q02-08을 실행한다. 준비 여부는 1장의 「수집 경로와 보존 자료」에서 확인한다. 준비되지 않았다면 records/chapter02.json의 같은 LogonId를 읽어 종료 기록을 대조하고, 현재 세션은 C02-22로 확인한다."
+        },
+        {
+          "type": "query",
+          "id": "Q02-08",
+          "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+          "text": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.system.computer:\"KT66-WIN-01\"\nAND (data.win.eventdata.subjectLogonId:\"0x1ca2207\"\n OR data.win.eventdata.targetLogonId:\"0x1ca2207\")\nAND timestamp >= \"2026-11-03T12:05:00+09:00\"\nAND timestamp < \"2026-11-03T12:20:00+09:00\"",
+          "why": "시간 선택기도 이 구간을 포함한다. >=는 시작 포함, <는 끝 제외이며 +09:00은 KST다. OR로 두 필드 중 하나가 일치하는 문서를 찾는다.",
+          "result": "archives에서 4624·RecordId 10207과 4634·RecordId 10222를 찾는다. Time을 오름차순으로 정렬하고 각 문서의 systemTime·targetUserName·targetLogonId를 비교한다.",
+          "revision": "analysis-2026-11-04"
+        },
+        {
+          "type": "p",
+          "text": "이 사례는 victim의 원격 대화형 로그온과 같은 세션의 로그오프가 기록된 경우다. 4634는 해당 로그온 세션의 종료를 뒷받침한다. 다른 세션까지 모두 종료되었다는 뜻은 아니므로 다음 절의 현재 세션 조회도 수행한다."
+        },
+        {
+          "type": "p",
+          "text": "같은 주소의 앞선 실패와 이번 성공은 조사 후보로 연결한다. 암호 대입이 성공 원인이었는지는 승인된 시험 입력과 계정 사용 내역을 대조한다. 로그오프가 없으면 세션이 계속 열린 경우와 기록 부재를 구분하고 현재 세션·수집 범위를 확인한다."
+        }
+      ],
+      "revision": "analysis-2026-11-04"
+    },
+    {
+      "title": "RDP 세션 원상복구",
+      "kind": "body",
+      "level": "subsection",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "클라이언트 연결 종료와 Windows 세션의 로그오프는 다를 수 있다. quser.exe는 현재 Windows 사용자 세션을 조회한다. logoff.exe는 지정한 세션을 로그오프한다. 로그오프하면 그 세션의 프로그램이 종료되므로 이번 실습으로 생긴 victim 세션만 고른다."
+        },
+        {
+          "type": "command",
+          "id": "C02-22",
+          "where": "Windows 실습 게스트 · 관리자 PowerShell",
+          "text": "quser.exe",
+          "why": "사용자 이름·세션 ID·상태를 읽는다. 접속 전 목록과 비교해 이번 실습의 세션을 구분한다.",
+          "result": "이번 실행 뒤에는 기존 kt66student 콘솔 세션만 남았으므로 추가 로그오프가 필요 없었다. victim 세션이 남았다면 저장할 작업이 없는지 확인하고 다음 명령을 수행한다."
+        },
+        {
+          "type": "command",
+          "id": "C02-23",
+          "where": "Windows 실습 게스트 · 관리자 PowerShell",
+          "text": "logoff.exe <확인한_victim_세션_ID>\nquser.exe",
+          "why": "꺾쇠로 표시한 부분 전체를 C02-22에서 읽은 숫자로 바꾼다. 꺾쇠 자체는 입력하지 않는다. 다른 계정의 세션 ID를 넣지 않는다.",
+          "result": "선택한 victim 세션이 사라져야 한다. victim이 없으면 logoff를 실행하지 않는다. 마지막으로 C02-01에서 Enabled True와 Lockout False를 확인한다."
+        },
+        {
+          "type": "p",
+          "text": "이벤트 기록과 계정의 LastLogon은 관찰 이력으로 남는다. 원상복구를 위해 Security 로그를 지우거나 기록 시각을 되돌리지 않는다."
+        }
+      ]
+    },
+    {
+      "title": "2.6  실패·잠금·성공을 시간순으로 연결",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "query",
+          "id": "Q02-07",
+          "where": "Windows PC · Wazuh Discover · DQL",
+          "text": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Security\"\nAND data.win.eventdata.targetUserName:\"victim\"\nAND data.win.system.eventID:(\"4625\" OR \"4740\" OR \"4624\")",
+          "why": "하나의 필드 뒤 소괄호 안에서 세 값을 OR로 묶는다. Discover 표에서 Time 열을 오름차순으로 정렬하고 사건 순서를 읽는다. systemTime도 펼쳐 원본 시각과 비교한다.",
+          "result": "실패·잠금·성공이 같은 컴퓨터와 계정에 연결되는지 읽는다. 같은 계정의 서비스 로그온 등 다른 유형은 구분한다."
+        },
+        {
+          "type": "table",
+          "head": [
+            "관찰 시각 · 한국 시각",
+            "근거와 확인된 사실"
+          ],
+          "rows": [
+            [
+              "12:00:47",
+              "9976·9978 · victim 암호 오류 두 건"
+            ],
+            [
+              "12:03:26~27",
+              "10036·10038·10040 · 세 미존재 이름"
+            ],
+            [
+              "12:05:19~20",
+              "10096~10105 구간 · 암호 오류 다섯 건과 4740"
+            ],
+            [
+              "12:09:19",
+              "10207 · victim 원격 대화형 로그온"
+            ]
+          ],
+          "widths": [
+            48,
+            79
+          ],
+          "keep": true
+        },
+        {
+          "type": "p",
+          "text": "위 구간은 책의 서로 다른 입력을 차례로 수행한 기록이다. 실패 뒤 성공이 있다는 시간적 순서만으로 동일 공격자가 암호를 알아냈다고 주장하지 않는다. 마지막 입력에는 미리 알고 있던 실습 암호를 사용했다. 조사 보고서에서도 확인된 사실과 원인에 관한 추정을 분리한다."
+        },
+        {
+          "type": "image",
+          "path": "assets/REV01/dca3a2205090-decision.png",
+          "caption": "그림 2-6  인증 관찰에서 대응 판단으로 이어지는 확인 항목",
+          "width_mm": 127
+        }
+      ]
+    },
+    {
+      "title": "목록 파일과 인증서 캐시 원상복구",
+      "kind": "body",
+      "level": "subsection",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "먼저 컨테이너의 현재 위치와 파일 목록을 확인한다. rm은 파일 제거, rmdir는 빈 디렉터리 제거 도구다. 이번 실습에서 만든 파일 이름을 하나씩 지정한다."
+        },
+        {
+          "type": "command",
+          "id": "C02-24",
+          "where": "kt66-attacker 컨테이너 · Bash",
+          "text": "pwd\nls -la /tmp/wazuh-book2-ch02\ncat /root/.config/freerdp/known_hosts2",
+          "why": "현재 위치가 실습 디렉터리인지 확인하고 삭제할 세 목록 파일을 읽는다. cat으로 저장된 인증서 목록이 어떤 대상의 기록인지 확인한다.",
+          "result": "pw-two.txt, users-three.txt, pw-five.txt를 확인한다. 기존 인증서 목록을 백업했다면 known_hosts2.before도 있다."
+        },
+        {
+          "type": "command",
+          "id": "C02-25",
+          "where": "kt66-attacker 컨테이너 · Bash",
+          "text": "cp -p known_hosts2.before \\\n  /root/.config/freerdp/known_hosts2\ncat /root/.config/freerdp/known_hosts2",
+          "why": "접속 전에 목록 파일이 있었고 C02-19의 백업이 확인된 경우에만 실행한다. 백업 내용으로 되돌린 뒤 결과를 읽는다.",
+          "result": "접속 전의 인증서 목록과 같아야 한다. 이전 파일이 없었다면 이 명령 대신 다음 문단의 조건을 적용한다."
+        },
+        {
+          "type": "command",
+          "id": "C02-25A",
+          "where": "kt66-attacker 컨테이너 · Bash",
+          "text": "rm /root/.config/freerdp/known_hosts2\nls -l /root/.config/freerdp/known_hosts2",
+          "why": "접속 전 known_hosts2가 없었고 지금도 이번 대상 10.20.70.10의 한 줄만 있을 때 그 새 파일을 제거한다. 다른 대상의 줄이 있으면 사전 기록과 대조한 뒤 해당 항목만 정리한다.",
+          "result": "No such file or directory로 제거 결과를 확인한다. 기존 파일을 복원한 경우에는 이 명령을 실행하지 않는다."
+        },
+        {
+          "type": "command",
+          "id": "C02-26",
+          "where": "kt66-attacker 컨테이너 · Bash",
+          "text": "rm pw-two.txt users-three.txt pw-five.txt\nls -la /tmp/wazuh-book2-ch02",
+          "why": "사전 목록에서 확인한 세 파일만 제거한다. 백업 파일이 남았다면 캐시 복원 확인 후 C02-26A를 실행한다.",
+          "result": "현재 디렉터리에 이번 실습 파일이 남지 않아야 한다. 다른 파일은 내용을 확인하기 전 제거하지 않는다."
+        },
+        {
+          "type": "command",
+          "id": "C02-26A",
+          "where": "kt66-attacker 컨테이너 · Bash",
+          "text": "ls -l known_hosts2.before\nrm known_hosts2.before\nls -l known_hosts2.before",
+          "why": "C02-25에서 기존 캐시의 복원을 확인했고 백업 파일이 남아 있을 때만 실행한다.",
+          "result": "백업 파일이 없어져야 한다. 처음부터 백업이 없었다면 이 명령을 건너뛴다."
+        },
+        {
+          "type": "command",
+          "id": "C02-27",
+          "where": "kt66-attacker 컨테이너 · Bash",
+          "text": "cd /tmp\nrmdir /tmp/wazuh-book2-ch02\nls -ld /tmp/wazuh-book2-ch02\nexit",
+          "why": "cd로 대상 밖으로 이동한다. rmdir는 비어 있을 때만 디렉터리를 제거한다. ls로 제거 결과를 읽고 exit로 컨테이너 셸을 끝낸다.",
+          "result": "No such file or directory를 확인한 뒤 kt66 호스트 프롬프트로 돌아온다. Windows의 센서와 보호 상태도 실습 전과 같은지 확인한다."
+        }
+      ]
+    },
+    {
+      "title": "2.7  조사 근거 점검",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "table",
+          "head": [
+            "판단할 질문",
+            "확인할 근거"
+          ],
+          "rows": [
+            [
+              "암호 오류인가, 없는 계정인가",
+              "4625의 Status·SubStatus와 계정 목록"
+            ],
+            [
+              "계정이 실제로 잠겼는가",
+              "Lockout 속성과 4740의 대상"
+            ],
+            [
+              "원격 대화형 로그온이 있었는가",
+              "4624의 유형 10·계정·출발지"
+            ],
+            [
+              "그 접속은 승인됐는가",
+              "사용자·장비·업무 기록과 후속 활동"
+            ],
+            [
+              "실습 상태로 돌아왔는가",
+              "잠금 해제·세션·목록 파일·센서 상태"
+            ]
+          ],
+          "widths": [
+            55,
+            72
+          ],
+          "keep": true
+        }
+      ]
+    },
+    {
+      "title": "핵심 정리",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "계정 잠금은 4740과 Lockout으로 확인한다. Enabled는 계정의 사용 가능 설정이다.",
+            "실패와 성공은 컴퓨터·계정·출발지·시각으로 조사 후보를 묶고, 성공 원인은 입력 기록과 별도로 대조한다.",
+            "targetLogonId로 세션 종료를 찾고 quser로 현재 남은 세션을 확인한다."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "관련 ATT&CK 학습 항목은 T1110.001, T1021.001이다. 사례별 관찰 범위와 정상 반례는 부록 L·M에서 대조한다."
+        }
+      ]
+    },
+    {
+      "title": "확인 문제",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "1. Enabled True인데 Lockout True인 계정은 어떤 상태인가?"
+        },
+        {
+          "type": "p",
+          "text": "2. 4740의 subjectUserName이 컴퓨터 이름으로 나타날 때 누구를 공격자로 적어야 하는가?"
+        },
+        {
+          "type": "p",
+          "text": "3. 127.0.0.1을 제외한 주소가 모두 공인 외부 주소인가?"
+        },
+        {
+          "type": "p",
+          "text": "4. 4624 유형 10 한 건으로 원격 바탕 화면에서 특정 명령을 실행했다고 판단할 수 있는가?"
+        }
+      ]
+    },
+    {
+      "title": "스스로 조사하기",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "암호 오류 두 건, 계정 잠금 한 건, 유형 10 성공 한 건이 있다. 보존 자료의 10207·10222 기록과 본문의 입력 시각표를 이용해 “공격자가 암호를 알아냈다”는 보고를 검토한다. 현재 결론과 그 결론을 바꿀 증거를 각각 적는다."
+        },
+        {
+          "type": "p",
+          "text": "결과는 관찰한 사실, 가능한 다른 설명, 추가로 확인할 증거, 대응 조건으로 나누어 적는다. 해설은 부록의 장별 해설과 대조한다."
+        }
+      ]
+    },
+    {
+      "title": "다음 조사로 이어가기",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "3장에서는 성공한 인증 이후 무엇에 접근할 수 있었는지 확인한다. 4624의 성공과 공유 접근 허용을 서로 다른 판단으로 유지한다."
+        }
+      ]
+    },
+    {
+      "title": "더 읽을거리",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "[R010] Microsoft Learn · 이벤트 4625. 상태 코드와 로그온 유형을 원본에 대조한다."
+        },
+        {
+          "type": "p",
+          "text": "[R011] Microsoft Learn · 이벤트 4740. 잠긴 계정과 이벤트 주체·호출자 필드의 역할을 읽는다."
+        },
+        {
+          "type": "p",
+          "text": "[R016] Microsoft Learn — 이벤트 4634와 로그온 세션의 종료. 로그온 ID를 통한 세션 종료의 연결 조건을 확인한다."
+        }
+      ]
+    }
+  ]
+}

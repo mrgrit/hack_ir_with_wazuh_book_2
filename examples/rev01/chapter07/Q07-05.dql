@@ -1,0 +1,5 @@
+agent.name:"windows-user"
+AND data.win.system.channel:
+ "Microsoft-Windows-Windows Defender/Operational"
+AND "data.win.eventdata.detection ID":
+ "{EBD2A2EF-E4E2-4682-9CF7-79EEF7D28939}"

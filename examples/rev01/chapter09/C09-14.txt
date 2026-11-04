@@ -1,0 +1,3 @@
+clamdscan --fdpass "$sample"
+scan_rc=$?
+printf "exit=%s\n" "$scan_rc"

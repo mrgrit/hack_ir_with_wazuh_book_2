@@ -1,0 +1,3 @@
+net.exe use
+net.exe use '\\127.0.0.1\C$' /delete
+net.exe use

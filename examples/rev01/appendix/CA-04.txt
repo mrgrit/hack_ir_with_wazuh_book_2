@@ -1,0 +1,12 @@
+$bundle = Get-Content `
+  .\examples\rev01\records\chapter06.json `
+  -Raw -Encoding UTF8 | ConvertFrom-Json
+$bundle.cases | Where-Object {
+  $_.case -like 'ch06-original-*'
+} | Select-Object case,total,returned
+$case = $bundle.cases |
+  Where-Object case -eq 'ch06-original-archives'
+$case.records | ForEach-Object {
+  $_.system | Format-List
+  $_.eventdata | Format-List
+}

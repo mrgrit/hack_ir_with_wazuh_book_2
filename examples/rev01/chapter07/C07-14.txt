@@ -1,0 +1,3 @@
+Get-MpThreat | Where-Object {
+ $_.ThreatID -eq 2147818424
+} | Format-List ThreatID,ThreatName,IsActive,DidThreatExecute

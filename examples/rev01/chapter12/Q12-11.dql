@@ -1,0 +1,5 @@
+synthetic.flag:true AND rule.groups:syscheck AND
+(syscheck.path:*authorized_keys* OR
+ syscheck.path:/etc/cron* OR
+ syscheck.path:/etc/sudoers* OR
+ syscheck.path:"/etc/passwd")

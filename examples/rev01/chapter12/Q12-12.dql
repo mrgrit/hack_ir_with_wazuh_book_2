@@ -1,0 +1,4 @@
+synthetic.flag:true AND
+(rule.id:100261 OR
+ data.alert.signature:*Reverse*Shell* OR
+ syscheck.path:*bash_history*)

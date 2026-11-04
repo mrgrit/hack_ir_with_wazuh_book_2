@@ -1,0 +1,4 @@
+Get-WinEvent -ListLog $sysmonLog |
+ Format-List LogName,IsEnabled
+Test-Path -LiteralPath 'C:\Tools\Sysmon64.exe'
+& 'C:\Tools\Sysmon64.exe' -c

@@ -1,0 +1,503 @@
+{
+  "title": "참고문헌",
+  "series": "해킹·침해대응 실무 with Wazuh 2권",
+  "sections": [
+    {
+      "title": "참고문헌",
+      "kind": "body",
+      "level": "section",
+      "break": false,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "각 장의 더 읽을거리와 함께 사용하는 전체 자료 목록이다. 고정 커밋 자료는 본문의 실습 버전을, 최신 공식 문서는 개념과 필드의 정의를 확인하는 데 사용한다."
+        },
+        {
+          "type": "link",
+          "text": "R001  Module 01 강의 슬라이드 Windows 위협 기초 및 준비 자료",
+          "url": "https://docs.google.com/presentation/d/1o0H_2DDHBp8p2HvlSnEPbx6-jdURYzew"
+        },
+        {
+          "type": "link",
+          "text": "R002  kt66 Windows 실습 환경 설명",
+          "url": "https://github.com/mrgrit/kt66/blob/63d4180b1d6866de986ef263a3bd831d6082b5d5/docs/WINDOWS-ENDPOINT.ko.md"
+        },
+        {
+          "type": "link",
+          "text": "R003  kt66 Windows 설치 진입 스크립트",
+          "url": "https://github.com/mrgrit/kt66/blob/63d4180b1d6866de986ef263a3bd831d6082b5d5/endpoints/windows/oem/install.ps1"
+        },
+        {
+          "type": "link",
+          "text": "R004  kt66 Windows 센서 준비 스크립트",
+          "url": "https://github.com/mrgrit/kt66/blob/63d4180b1d6866de986ef263a3bd831d6082b5d5/endpoints/windows/oem/sensors.ps1"
+        },
+        {
+          "type": "link",
+          "text": "R005  Microsoft Learn Get-WinEvent",
+          "url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent?view=powershell-5.1"
+        },
+        {
+          "type": "link",
+          "text": "R006  Microsoft Learn auditpol get",
+          "url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/auditpol-get"
+        },
+        {
+          "type": "link",
+          "text": "R007  Microsoft Learn 이벤트 4624",
+          "url": "https://learn.microsoft.com/windows/security/threat-protection/auditing/event-4624"
+        },
+        {
+          "type": "link",
+          "text": "R008  Microsoft Sysinternals Sysmon",
+          "url": "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon"
+        },
+        {
+          "type": "link",
+          "text": "R009  Wazuh Log data collection configuration",
+          "url": "https://documentation.wazuh.com/current/user-manual/capabilities/log-data-collection/configuration.html"
+        },
+        {
+          "type": "link",
+          "text": "R010  Microsoft Learn · 이벤트 4625",
+          "url": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4625"
+        },
+        {
+          "type": "link",
+          "text": "R011  Microsoft Learn · 이벤트 4740",
+          "url": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4740"
+        },
+        {
+          "type": "link",
+          "text": "R012  Microsoft Learn · 이벤트 4624",
+          "url": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4624"
+        },
+        {
+          "type": "link",
+          "text": "R013  Hydra · 공식 저장소와 사용 설명",
+          "url": "https://github.com/vanhauser-thc/thc-hydra"
+        },
+        {
+          "type": "link",
+          "text": "R014  FreeRDP · 공식 저장소 · 2.6.1",
+          "url": "https://github.com/FreeRDP/FreeRDP/tree/2.6.1"
+        },
+        {
+          "type": "link",
+          "text": "R015  Microsoft Learn · logoff",
+          "url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/logoff"
+        },
+        {
+          "type": "link",
+          "text": "R016  Microsoft Learn — 이벤트 4634와 로그온 세션의 종료",
+          "url": "https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4634"
+        },
+        {
+          "type": "link",
+          "text": "R017  Microsoft Learn · LogonUserW",
+          "url": "https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-logonuserw"
+        },
+        {
+          "type": "link",
+          "text": "R018  Microsoft Learn · 이벤트 4648",
+          "url": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4648"
+        },
+        {
+          "type": "link",
+          "text": "R019  Microsoft Learn · 이벤트 4720",
+          "url": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4720"
+        },
+        {
+          "type": "link",
+          "text": "R020  Microsoft Learn · 이벤트 4732",
+          "url": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4732"
+        },
+        {
+          "type": "link",
+          "text": "R021  Microsoft Learn · 이벤트 4719",
+          "url": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4719"
+        },
+        {
+          "type": "link",
+          "text": "R022  Microsoft Learn · 이벤트 4672",
+          "url": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4672"
+        },
+        {
+          "type": "link",
+          "text": "R023  Wazuh · Event logging",
+          "url": "https://documentation.wazuh.com/current/user-manual/manager/event-logging.html"
+        },
+        {
+          "type": "link",
+          "text": "R024  Microsoft Learn · auditpol",
+          "url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/auditpol"
+        },
+        {
+          "type": "link",
+          "text": "R025  Microsoft Learn · New-LocalUser",
+          "url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/new-localuser"
+        },
+        {
+          "type": "link",
+          "text": "R026  Microsoft Learn · Task Scheduler error and success constants",
+          "url": "https://learn.microsoft.com/en-us/windows/win32/taskschd/task-scheduler-error-and-success-constants"
+        },
+        {
+          "type": "link",
+          "text": "R027  Microsoft Learn · sc.exe create",
+          "url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/sc-create"
+        },
+        {
+          "type": "link",
+          "text": "R028  Microsoft Learn · 이벤트 4697",
+          "url": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4697"
+        },
+        {
+          "type": "link",
+          "text": "R029  Microsoft Learn · schtasks create",
+          "url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks-create"
+        },
+        {
+          "type": "link",
+          "text": "R030  Microsoft Learn · 이벤트 4698",
+          "url": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4698"
+        },
+        {
+          "type": "link",
+          "text": "R031  Microsoft Learn · Run and RunOnce Registry Keys",
+          "url": "https://learn.microsoft.com/en-us/windows/win32/setupapi/run-and-runonce-registry-keys"
+        },
+        {
+          "type": "link",
+          "text": "R032  Microsoft Learn · PsExec",
+          "url": "https://learn.microsoft.com/en-us/sysinternals/downloads/psexec"
+        },
+        {
+          "type": "link",
+          "text": "R033  osquery · Logging",
+          "url": "https://osquery.readthedocs.io/en/stable/deployment/logging/"
+        },
+        {
+          "type": "link",
+          "text": "R034  osquery · Configuration",
+          "url": "https://osquery.readthedocs.io/en/stable/deployment/configuration/"
+        },
+        {
+          "type": "link",
+          "text": "R035  Wazuh · Osquery",
+          "url": "https://documentation.wazuh.com/current/user-manual/capabilities/system-inventory/osquery.html"
+        },
+        {
+          "type": "link",
+          "text": "R036  Microsoft Learn · about PowerShell exe",
+          "url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_powershell_exe?view=powershell-5.1"
+        },
+        {
+          "type": "link",
+          "text": "R037  Microsoft Learn · Windows PowerShell Logging",
+          "url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logging?view=powershell-5.1"
+        },
+        {
+          "type": "link",
+          "text": "R038  Microsoft Learn · Execution Policies",
+          "url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-5.1"
+        },
+        {
+          "type": "link",
+          "text": "R039  Microsoft Learn · certutil",
+          "url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/certutil"
+        },
+        {
+          "type": "link",
+          "text": "R040  Microsoft Learn · regsvr32",
+          "url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/regsvr32"
+        },
+        {
+          "type": "link",
+          "text": "R041  Microsoft Learn · Antimalware Scan Interface",
+          "url": "https://learn.microsoft.com/en-us/windows/win32/amsi/antimalware-scan-interface-portal"
+        },
+        {
+          "type": "link",
+          "text": "R042  Microsoft Learn · ProcessStartInfo UseShellExecute",
+          "url": "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.processstartinfo.useshellexecute"
+        },
+        {
+          "type": "link",
+          "text": "R043  Microsoft Learn · Microsoft Defender events",
+          "url": "https://learn.microsoft.com/en-us/defender-endpoint/troubleshoot-microsoft-defender-antivirus"
+        },
+        {
+          "type": "link",
+          "text": "R044  Microsoft ProcDump",
+          "url": "https://learn.microsoft.com/en-us/sysinternals/downloads/procdump"
+        },
+        {
+          "type": "link",
+          "text": "R045  Microsoft Process Security and Access Rights",
+          "url": "https://learn.microsoft.com/en-us/windows/win32/procthread/process-security-and-access-rights"
+        },
+        {
+          "type": "link",
+          "text": "R046  Microsoft Configuring additional LSA protection",
+          "url": "https://learn.microsoft.com/en-us/windows-server/security/credentials-protection-and-management/configuring-additional-lsa-protection"
+        },
+        {
+          "type": "link",
+          "text": "R047  Microsoft Credential Guard 상태 확인",
+          "url": "https://learn.microsoft.com/en-us/windows/security/identity-protection/credential-guard/configure"
+        },
+        {
+          "type": "link",
+          "text": "R048  Microsoft Invoke-WebRequest Windows PowerShell 5.1",
+          "url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-webrequest?view=powershell-5.1"
+        },
+        {
+          "type": "link",
+          "text": "R049  Microsoft Resolve-DnsName",
+          "url": "https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname?view=windowsserver2025-ps"
+        },
+        {
+          "type": "link",
+          "text": "R050  Microsoft System Error Codes 9000–11999",
+          "url": "https://learn.microsoft.com/en-us/windows/win32/debug/system-error-codes--9000-11999-"
+        },
+        {
+          "type": "link",
+          "text": "R051  IANA Private-use IP addresses",
+          "url": "https://www.iana.org/help/private-addresses"
+        },
+        {
+          "type": "link",
+          "text": "R052  RFC 6761 Special-Use Domain Names",
+          "url": "https://www.rfc-editor.org/rfc/rfc6761.html"
+        },
+        {
+          "type": "link",
+          "text": "R053  RFC 7686 The .onion Special-Use Domain Name",
+          "url": "https://www.rfc-editor.org/rfc/rfc7686.html"
+        },
+        {
+          "type": "link",
+          "text": "R054  kt66 실습 기준 커밋",
+          "url": "https://github.com/mrgrit/kt66/tree/63d4180b1d6866de986ef263a3bd831d6082b5d5"
+        },
+        {
+          "type": "link",
+          "text": "R055  Wazuh — Alerts 설정",
+          "url": "https://documentation.wazuh.com/current/user-manual/reference/ossec-conf/alerts.html"
+        },
+        {
+          "type": "link",
+          "text": "R056  Microsoft 감사 로그 삭제 이벤트 1102",
+          "url": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-1102"
+        },
+        {
+          "type": "link",
+          "text": "R057  Microsoft wevtutil",
+          "url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/wevtutil"
+        },
+        {
+          "type": "link",
+          "text": "R058  Microsoft Windows Event Forwarding의 수집 조건과 이벤트",
+          "url": "https://learn.microsoft.com/en-us/windows/security/operating-system-security/device-management/use-windows-event-forwarding-to-assist-in-intrusion-detection"
+        },
+        {
+          "type": "link",
+          "text": "R059  Microsoft MSFT_MpThreatDetection",
+          "url": "https://learn.microsoft.com/en-us/previous-versions/windows/desktop/defender/msft-mpthreatdetection"
+        },
+        {
+          "type": "link",
+          "text": "R060  Wazuh Windows Defender 로그 수집",
+          "url": "https://documentation.wazuh.com/current/user-manual/capabilities/malware-detection/win-defender-logs-collection.html"
+        },
+        {
+          "type": "link",
+          "text": "R061  EICAR 테스트 파일 규격",
+          "url": "https://www.eicar.org/download-anti-malware-testfile/"
+        },
+        {
+          "type": "link",
+          "text": "R062  Wazuh — Vulnerability detection: How it works",
+          "url": "https://documentation.wazuh.com/current/user-manual/capabilities/vulnerability-detection/how-it-works.html"
+        },
+        {
+          "type": "link",
+          "text": "R063  Wazuh — Configuring vulnerability detection",
+          "url": "https://documentation.wazuh.com/current/user-manual/capabilities/vulnerability-detection/configuring-scans.html"
+        },
+        {
+          "type": "link",
+          "text": "R064  Wazuh — SCA: How it works",
+          "url": "https://documentation.wazuh.com/current/user-manual/capabilities/sec-config-assessment/how-it-works.html"
+        },
+        {
+          "type": "link",
+          "text": "R065  Wazuh — Creating custom SCA policies",
+          "url": "https://documentation.wazuh.com/current/user-manual/capabilities/sec-config-assessment/creating-custom-policies.html"
+        },
+        {
+          "type": "link",
+          "text": "R066  Wazuh — SCA configuration reference",
+          "url": "https://documentation.wazuh.com/current/user-manual/reference/ossec-conf/sca.html"
+        },
+        {
+          "type": "link",
+          "text": "R067  Ubuntu — CVE-2024-3094",
+          "url": "https://ubuntu.com/security/CVE-2024-3094"
+        },
+        {
+          "type": "link",
+          "text": "R068  Canonical LXD — CVE-2025-54289 advisory",
+          "url": "https://github.com/canonical/lxd/security/advisories/GHSA-3g72-chj4-2228"
+        },
+        {
+          "type": "link",
+          "text": "R069  FIRST — CVSS v3.1 User Guide",
+          "url": "https://www.first.org/cvss/v3.1/user-guide"
+        },
+        {
+          "type": "link",
+          "text": "R070  Ubuntu 22.04 — sshd_config manual",
+          "url": "https://manpages.ubuntu.com/manpages/jammy/man5/sshd_config.5.html"
+        },
+        {
+          "type": "link",
+          "text": "R071  Wazuh Rootkits behavior detection",
+          "url": "https://documentation.wazuh.com/current/user-manual/capabilities/malware-detection/rootkits-behavior-detection.html"
+        },
+        {
+          "type": "link",
+          "text": "R072  Wazuh VirusTotal integration",
+          "url": "https://documentation.wazuh.com/current/user-manual/capabilities/malware-detection/virus-total-integration.html"
+        },
+        {
+          "type": "link",
+          "text": "R073  Wazuh ClamAV logs collection",
+          "url": "https://documentation.wazuh.com/current/user-manual/capabilities/malware-detection/clam-av-logs-collection.html"
+        },
+        {
+          "type": "link",
+          "text": "R074  ClamAV Scanning",
+          "url": "https://docs.clamav.net/manual/Usage/Scanning.html"
+        },
+        {
+          "type": "link",
+          "text": "R075  ClamAV 1.5.4 clamdscan 매뉴얼 원본",
+          "url": "https://github.com/Cisco-Talos/clamav/blob/clamav-1.5.4/docs/man/clamdscan.1.in"
+        },
+        {
+          "type": "link",
+          "text": "R076  VirusTotal Public vs Premium API",
+          "url": "https://docs.virustotal.com/reference/public-vs-premium-api"
+        },
+        {
+          "type": "link",
+          "text": "R077  2권 9장 복사용 입력",
+          "url": "https://github.com/mrgrit/hack_ir_with_wazuh_book_2/tree/main/examples/chapter09"
+        },
+        {
+          "type": "link",
+          "text": "R078  Wazuh — global 설정",
+          "url": "https://documentation.wazuh.com/current/user-manual/reference/ossec-conf/global.html"
+        },
+        {
+          "type": "link",
+          "text": "R079  Wazuh — Active Response 설정",
+          "url": "https://documentation.wazuh.com/current/user-manual/reference/ossec-conf/active-response.html"
+        },
+        {
+          "type": "link",
+          "text": "R080  Wazuh 4.10.0 — 에이전트·자동 대응 규칙",
+          "url": "https://github.com/wazuh/wazuh/blob/v4.10.0/ruleset/rules/0015-ossec_rules.xml"
+        },
+        {
+          "type": "link",
+          "text": "R081  Suricata 6.0.4 — EVE JSON",
+          "url": "https://docs.suricata.io/en/suricata-6.0.4/output/eve/eve-json-output.html"
+        },
+        {
+          "type": "link",
+          "text": "R082  Suricata 6.0.4 — 인라인 모드",
+          "url": "https://docs.suricata.io/en/suricata-6.0.4/setting-up-ipsinline-for-linux.html"
+        },
+        {
+          "type": "link",
+          "text": "R083  Wazuh 4.10.0 — Suricata 규칙",
+          "url": "https://github.com/wazuh/wazuh/blob/v4.10.0/ruleset/rules/0475-suricata_rules.xml"
+        },
+        {
+          "type": "link",
+          "text": "R084  MITRE ATT&CK — Enterprise tactics",
+          "url": "https://attack.mitre.org/tactics/enterprise/"
+        },
+        {
+          "type": "link",
+          "text": "R085  OpenSearch — Dashboards Query Language",
+          "url": "https://docs.opensearch.org/2.13/dashboards/dql/"
+        },
+        {
+          "type": "link",
+          "text": "R086  kt66 — 합성 자료 생성 코드",
+          "url": "https://github.com/mrgrit/kt66/blob/63d4180b1d6866de986ef263a3bd831d6082b5d5/analytics/kt66_synth.py"
+        },
+        {
+          "type": "link",
+          "text": "R087  OpenSearch — Terms",
+          "url": "https://docs.opensearch.org/2.13/aggregations/bucket/terms/"
+        },
+        {
+          "type": "link",
+          "text": "R088  OpenSearch — Cardinality",
+          "url": "https://docs.opensearch.org/2.13/aggregations/metric/cardinality/"
+        },
+        {
+          "type": "link",
+          "text": "R089  OpenSearch — Field capabilities",
+          "url": "https://docs.opensearch.org/latest/api-reference/search-apis/field-caps/"
+        },
+        {
+          "type": "link",
+          "text": "R090  OpenSearch — Bucket script",
+          "url": "https://docs.opensearch.org/latest/aggregations/pipeline/bucket-script/"
+        },
+        {
+          "type": "link",
+          "text": "R091  kt66 — 집계 원전",
+          "url": "https://github.com/mrgrit/kt66/blob/63d4180b1d6866de986ef263a3bd831d6082b5d5/analytics/devtools_aggregations.md"
+        },
+        {
+          "type": "link",
+          "text": "R092  OpenSearch — Pipeline aggregations",
+          "url": "https://docs.opensearch.org/latest/aggregations/pipeline/"
+        },
+        {
+          "type": "link",
+          "text": "R093  OpenSearch — Date histogram",
+          "url": "https://docs.opensearch.org/2.13/aggregations/bucket/date-histogram/"
+        },
+        {
+          "type": "link",
+          "text": "R094  OpenSearch — Moving function",
+          "url": "https://docs.opensearch.org/latest/aggregations/pipeline/moving-function/"
+        },
+        {
+          "type": "link",
+          "text": "R095  2권 집필 저장소",
+          "url": "https://github.com/mrgrit/hack_ir_with_wazuh_book_2"
+        },
+        {
+          "type": "link",
+          "text": "R096  Microsoft Learn — Sysmon",
+          "url": "https://learn.microsoft.com/sysinternals/downloads/sysmon"
+        },
+        {
+          "type": "link",
+          "text": "R097  MITRE ATT&CK Enterprise v16.1 · 공식 STIX 배포 자료",
+          "url": "https://raw.githubusercontent.com/mitre-attack/attack-stix-data/v16.1/enterprise-attack/enterprise-attack.json"
+        }
+      ]
+    }
+  ]
+}

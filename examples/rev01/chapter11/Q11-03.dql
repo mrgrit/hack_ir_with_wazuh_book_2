@@ -1,0 +1,2 @@
+rule.groups:suricata AND
+NOT data.alert.category:*

@@ -1,0 +1,19 @@
+GET wazuh-alerts-*/_search
+{
+ "size": 0, "track_total_hits": true,
+ "query": {"bool": {"filter": [
+  {"term": {"synthetic.flag": true}},
+  {"range": {"timestamp": {
+   "gte": "2026-08-12T01:00:00+09:00",
+   "lt": "2026-08-14T00:00:00+09:00"
+  }}}
+ ]}},
+ "aggs": {"hours": {
+  "date_histogram": {
+   "field": "timestamp", "fixed_interval": "1h",
+   "time_zone": "Asia/Seoul", "min_doc_count": 0,
+   "extended_bounds": {
+    "min": "2026-08-12T01:00:00+09:00",
+    "max": "2026-08-13T23:00:00+09:00"
+   }
+  },

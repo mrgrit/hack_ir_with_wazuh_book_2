@@ -1,0 +1,32 @@
+GET wazuh-alerts-*/_search
+{
+ "size": 0, "track_total_hits": true,
+ "query": {"bool": {"filter": [
+  {"term": {"synthetic.flag": true}},
+  {"range": {"timestamp": {
+   "gte": "2026-08-12T01:00:00+09:00",
+   "lt": "2026-08-14T00:00:00+09:00"
+  }}}
+ ]}},
+ "aggs": {"hours": {
+  "date_histogram": {
+   "field": "timestamp", "fixed_interval": "1h",
+   "time_zone": "Asia/Seoul", "min_doc_count": 0,
+   "extended_bounds": {
+    "min": "2026-08-12T01:00:00+09:00",
+    "max": "2026-08-13T23:00:00+09:00"
+   }
+  },
+  "aggs": {
+   "max_level": {"max": {"field":"rule.level"}},
+   "risk": {"sum": {"script": {
+    "source": "if (doc['rule.level'].size() == 0) return 0; def n = doc['rule.level'].value; return n >= 5 ? n * n : 0;"
+   }}},
+   "risk_24h": {"moving_fn": {
+    "buckets_path": "risk", "window": 24,
+    "shift": 1, "gap_policy": "insert_zeros",
+    "script": "MovingFunctions.sum(values)"
+   }}
+  }
+ }}
+}

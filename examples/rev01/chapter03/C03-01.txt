@@ -1,0 +1,5 @@
+hostname
+whoami.exe
+Get-Service WazuhSvc,Sysmon64,LanmanServer,Seclogon |
+  Format-Table Name,Status
+Get-LocalUser -Name victim | Format-List Name,Enabled

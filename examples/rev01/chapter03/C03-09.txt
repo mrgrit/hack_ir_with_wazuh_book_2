@@ -1,0 +1,6 @@
+$handle = [IntPtr]::Zero
+$ok = [BookLogon]::LogonUserW(
+ 'fakeadmin','CORP','x',9,3,[ref]$handle)
+$ok
+if ($ok) { [BookLogon]::CloseHandle($handle) }
+else { [Runtime.InteropServices.Marshal]::GetLastWin32Error() }

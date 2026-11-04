@@ -1,0 +1,7 @@
+agent.name:"windows-user"
+AND data.win.system.channel:"Security"
+AND data.win.system.computer:"KT66-WIN-01"
+AND (data.win.eventdata.subjectLogonId:"0x1ca2207"
+ OR data.win.eventdata.targetLogonId:"0x1ca2207")
+AND timestamp >= "2026-11-03T12:05:00+09:00"
+AND timestamp < "2026-11-03T12:20:00+09:00"

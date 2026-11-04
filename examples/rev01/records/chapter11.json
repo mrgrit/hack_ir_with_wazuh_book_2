@@ -1,0 +1,1504 @@
+{
+  "chapter": 11,
+  "kind": "saved-evidence-excerpts",
+  "scope": "보존 자료의 필드 발췌. 전체 로그나 SIEM 복원용 자료가 아니다.",
+  "cases": [
+    {
+      "case": "ch11-high",
+      "source": "editorial/evidence/analysis-revision/2026-11-04/evidence.json",
+      "source_sha256": "3233d26006eb2224e8019e79e14bba01063fe9aaa53fe4a9116ac3151b40310b",
+      "pointer": "/records/7",
+      "index": "wazuh-alerts-*",
+      "query": {
+        "size": 20,
+        "track_total_hits": true,
+        "query": {
+          "range": {
+            "rule.level": {
+              "gte": 12
+            }
+          }
+        },
+        "sort": [
+          {
+            "timestamp": "asc"
+          }
+        ]
+      },
+      "total": {
+        "value": 511,
+        "relation": "eq"
+      },
+      "returned": 20,
+      "records": [
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "cC6xm6EBb-mjh6PaAvya",
+          "id": "1793613429.4582074",
+          "timestamp": "2026-11-02T09:57:09.496+0000",
+          "agent": {
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Lsass process was accessed by C:\\\\WINDOWS\\\\system32\\\\svchost.exe with read permissions, possible credential dump",
+            "id": "92900"
+          },
+          "system": {
+            "eventID": "10",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-02T09:57:08.1133557Z",
+            "eventRecordID": "365",
+            "computer": "KT66-WIN-01",
+            "processID": "9656"
+          },
+          "eventdata": {
+            "grantedAccess": "0x101000",
+            "targetProcessGUID": "{af6e9a1f-5819-6ae8-0c00-000000000200}",
+            "utcTime": "2026-11-02 09:57:07.920",
+            "sourceImage": "C:\\\\WINDOWS\\\\system32\\\\svchost.exe",
+            "targetImage": "C:\\\\WINDOWS\\\\system32\\\\lsass.exe",
+            "sourceProcessGUID": "{af6e9a1f-5e26-6ae8-bc00-000000000200}"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "cS6xm6EBb-mjh6PaAvya",
+          "id": "1793613429.4589334",
+          "timestamp": "2026-11-02T09:57:09.545+0000",
+          "agent": {
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Lsass process was accessed by C:\\\\WINDOWS\\\\system32\\\\svchost.exe with read permissions, possible credential dump",
+            "id": "92900"
+          },
+          "system": {
+            "eventID": "10",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-02T09:57:08.1603908Z",
+            "eventRecordID": "368",
+            "computer": "KT66-WIN-01",
+            "processID": "9656"
+          },
+          "eventdata": {
+            "grantedAccess": "0x101000",
+            "targetProcessGUID": "{af6e9a1f-5819-6ae8-0c00-000000000200}",
+            "utcTime": "2026-11-02 09:57:08.013",
+            "sourceImage": "C:\\\\WINDOWS\\\\system32\\\\svchost.exe",
+            "targetImage": "C:\\\\WINDOWS\\\\system32\\\\lsass.exe",
+            "sourceProcessGUID": "{af6e9a1f-5e26-6ae8-bc00-000000000200}"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "ii6xm6EBb-mjh6PaKf7j",
+          "id": "1793613440.5666511",
+          "timestamp": "2026-11-02T09:57:20.795+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Application Compatibility Database launched",
+            "id": "92058"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-02T09:57:18.7649251Z",
+            "eventRecordID": "420",
+            "computer": "KT66-WIN-01",
+            "processID": "9656"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\sdbinst.exe",
+            "parentProcessGuid": "{af6e9a1f-5df0-6ae8-2a00-000000000200}",
+            "processGuid": "{af6e9a1f-5e7e-6ae8-3302-000000000200}",
+            "parentProcessId": "820",
+            "processId": "3212",
+            "utcTime": "2026-11-02 09:57:18.760",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\svchost.exe"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Ri_om6EBb-mjh6PaohZo",
+          "id": "1793617071.12075902",
+          "timestamp": "2026-11-02T10:57:51.372+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Lsass process was accessed by C:\\\\WINDOWS\\\\system32\\\\svchost.exe with read permissions, possible credential dump",
+            "id": "92900"
+          },
+          "system": {
+            "eventID": "10",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-02T10:57:49.6073982Z",
+            "eventRecordID": "1849",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "grantedAccess": "0x101000",
+            "targetProcessGUID": "{af6e9a1f-6c2e-6ae8-0c00-000000000300}",
+            "utcTime": "2026-11-02 10:57:49.603",
+            "sourceImage": "C:\\\\WINDOWS\\\\system32\\\\svchost.exe",
+            "targetImage": "C:\\\\WINDOWS\\\\system32\\\\lsass.exe",
+            "sourceProcessGUID": "{af6e9a1f-6c35-6ae8-6b00-000000000300}"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Ry_om6EBb-mjh6PaohZo",
+          "id": "1793617071.12083181",
+          "timestamp": "2026-11-02T10:57:51.434+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Lsass process was accessed by C:\\\\WINDOWS\\\\system32\\\\svchost.exe with read permissions, possible credential dump",
+            "id": "92900"
+          },
+          "system": {
+            "eventID": "10",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-02T10:57:49.6123320Z",
+            "eventRecordID": "1852",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "grantedAccess": "0x101000",
+            "targetProcessGUID": "{af6e9a1f-6c2e-6ae8-0c00-000000000300}",
+            "utcTime": "2026-11-02 10:57:49.603",
+            "sourceImage": "C:\\\\WINDOWS\\\\system32\\\\svchost.exe",
+            "targetImage": "C:\\\\WINDOWS\\\\system32\\\\lsass.exe",
+            "sourceProcessGUID": "{af6e9a1f-6c35-6ae8-6b00-000000000300}"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "My9anKEBb-mjh6PaVSyW",
+          "id": "1793624527.13868664",
+          "timestamp": "2026-11-02T13:02:07.193+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Application Compatibility Database launched",
+            "id": "92058"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-02T13:02:06.1284426Z",
+            "eventRecordID": "3591",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\sdbinst.exe",
+            "parentProcessGuid": "{af6e9a1f-7bbc-6ae8-6e01-000000000300}",
+            "processGuid": "{af6e9a1f-89ce-6ae8-ba01-000000000300}",
+            "parentProcessId": "5656",
+            "processId": "3800",
+            "utcTime": "2026-11-02 13:02:06.123",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\svchost.exe"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "eS-RnKEBb-mjh6PaWDF1",
+          "id": "1793628129.14063359",
+          "timestamp": "2026-11-02T14:02:09.800+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Application Compatibility Database launched",
+            "id": "92058"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-02T14:02:08.8940997Z",
+            "eventRecordID": "3828",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\sdbinst.exe",
+            "parentProcessGuid": "{af6e9a1f-7bbc-6ae8-6e01-000000000300}",
+            "processGuid": "{af6e9a1f-97e0-6ae8-d201-000000000300}",
+            "parentProcessId": "5656",
+            "processId": "6216",
+            "utcTime": "2026-11-02 14:02:08.891",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\svchost.exe"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "3C_InKEBb-mjh6PaXzZt",
+          "id": "1793631730.14297958",
+          "timestamp": "2026-11-02T15:02:10.074+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Application Compatibility Database launched",
+            "id": "92058"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-02T15:02:09.2067705Z",
+            "eventRecordID": "4066",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\sdbinst.exe",
+            "parentProcessGuid": "{af6e9a1f-7bbc-6ae8-6e01-000000000300}",
+            "processGuid": "{af6e9a1f-a5f1-6ae8-f001-000000000300}",
+            "parentProcessId": "5656",
+            "processId": "7212",
+            "utcTime": "2026-11-02 15:02:09.204",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\svchost.exe"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "-C__nKEBb-mjh6PaNzsA",
+          "id": "1793635330.14534388",
+          "timestamp": "2026-11-02T16:02:10.335+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Application Compatibility Database launched",
+            "id": "92058"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-02T16:02:09.5392095Z",
+            "eventRecordID": "4292",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\sdbinst.exe",
+            "parentProcessGuid": "{af6e9a1f-7bbc-6ae8-6e01-000000000300}",
+            "processGuid": "{af6e9a1f-b401-6ae8-0c02-000000000300}",
+            "parentProcessId": "5656",
+            "processId": "4424",
+            "utcTime": "2026-11-02 16:02:09.534",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\svchost.exe"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Sy82naEBb-mjh6PaHUHJ",
+          "id": "1793638930.14761141",
+          "timestamp": "2026-11-02T17:02:10.680+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Application Compatibility Database launched",
+            "id": "92058"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-02T17:02:10.0116286Z",
+            "eventRecordID": "4536",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\sdbinst.exe",
+            "parentProcessGuid": "{af6e9a1f-7bbc-6ae8-6e01-000000000300}",
+            "processGuid": "{af6e9a1f-c212-6ae8-2a02-000000000300}",
+            "parentProcessId": "5656",
+            "processId": "5716",
+            "utcTime": "2026-11-02 17:02:10.007",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\svchost.exe"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "ay9tnaEBb-mjh6PaG0Y0",
+          "id": "1793642531.14951464",
+          "timestamp": "2026-11-02T18:02:11.084+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Application Compatibility Database launched",
+            "id": "92058"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-02T18:02:10.2999258Z",
+            "eventRecordID": "4769",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\sdbinst.exe",
+            "parentProcessGuid": "{af6e9a1f-7bbc-6ae8-6e01-000000000300}",
+            "processGuid": "{af6e9a1f-d022-6ae8-4202-000000000300}",
+            "parentProcessId": "5656",
+            "processId": "6204",
+            "utcTime": "2026-11-02 18:02:10.297",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\svchost.exe"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "wy-knaEBb-mjh6PaC0vR",
+          "id": "1793646131.15208843",
+          "timestamp": "2026-11-02T19:02:11.428+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Application Compatibility Database launched",
+            "id": "92058"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-02T19:02:10.5678523Z",
+            "eventRecordID": "5010",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\sdbinst.exe",
+            "parentProcessGuid": "{af6e9a1f-7bbc-6ae8-6e01-000000000300}",
+            "processGuid": "{af6e9a1f-de32-6ae8-6402-000000000300}",
+            "parentProcessId": "5656",
+            "processId": "640",
+            "utcTime": "2026-11-02 19:02:10.565",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\svchost.exe"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "NC_bnaEBb-mjh6PaEVFh",
+          "id": "1793649731.15492256",
+          "timestamp": "2026-11-02T20:02:11.655+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Application Compatibility Database launched",
+            "id": "92058"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-02T20:02:10.8093395Z",
+            "eventRecordID": "5259",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\sdbinst.exe",
+            "parentProcessGuid": "{af6e9a1f-7bbc-6ae8-6e01-000000000300}",
+            "processGuid": "{af6e9a1f-ec42-6ae8-8502-000000000300}",
+            "parentProcessId": "5656",
+            "processId": "5588",
+            "utcTime": "2026-11-02 20:02:10.806",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\svchost.exe"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "jC8RnqEBb-mjh6Pa4VdN",
+          "id": "1793653331.15903105",
+          "timestamp": "2026-11-02T21:02:11.922+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Application Compatibility Database launched",
+            "id": "92058"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-02T21:02:11.2413713Z",
+            "eventRecordID": "5647",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\sdbinst.exe",
+            "parentProcessGuid": "{af6e9a1f-7bbc-6ae8-6e01-000000000300}",
+            "processGuid": "{af6e9a1f-fa53-6ae8-b302-000000000300}",
+            "parentProcessId": "5656",
+            "processId": "1844",
+            "utcTime": "2026-11-02 21:02:11.236",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\svchost.exe"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "vS9InqEBb-mjh6PazFyQ",
+          "id": "1793656932.16112224",
+          "timestamp": "2026-11-02T22:02:12.355+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Application Compatibility Database launched",
+            "id": "92058"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-02T22:02:11.5362809Z",
+            "eventRecordID": "5882",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\sdbinst.exe",
+            "parentProcessGuid": "{af6e9a1f-7bbc-6ae8-6e01-000000000300}",
+            "processGuid": "{af6e9a1f-0863-6ae9-cd02-000000000300}",
+            "parentProcessId": "5656",
+            "processId": "4280",
+            "utcTime": "2026-11-02 22:02:11.533",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\svchost.exe"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "mS9_nqEBb-mjh6Pau6q_",
+          "id": "1793660532.21697060",
+          "timestamp": "2026-11-02T23:02:12.618+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Application Compatibility Database launched",
+            "id": "92058"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-02T23:02:11.8270468Z",
+            "eventRecordID": "6168",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\sdbinst.exe",
+            "parentProcessGuid": "{af6e9a1f-7bbc-6ae8-6e01-000000000300}",
+            "processGuid": "{af6e9a1f-1673-6ae9-4103-000000000300}",
+            "parentProcessId": "5656",
+            "processId": "1444",
+            "utcTime": "2026-11-02 23:02:11.824",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\svchost.exe"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.03",
+          "_id": "CzC2nqEBb-mjh6PayhFN",
+          "id": "1793664132.880281",
+          "timestamp": "2026-11-03T00:02:12.945+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Application Compatibility Database launched",
+            "id": "92058"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T00:02:12.1683319Z",
+            "eventRecordID": "6402",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\sdbinst.exe",
+            "parentProcessGuid": "{af6e9a1f-7bbc-6ae8-6e01-000000000300}",
+            "processGuid": "{af6e9a1f-2484-6ae9-5903-000000000300}",
+            "parentProcessId": "5656",
+            "processId": "6020",
+            "utcTime": "2026-11-03 00:02:12.164",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\svchost.exe"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.03",
+          "_id": "ADDtnqEBb-mjh6PanxvM",
+          "id": "1793667733.1498521",
+          "timestamp": "2026-11-03T01:02:13.211+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Application Compatibility Database launched",
+            "id": "92058"
+          },
+          "system": {
+            "eventID": "1",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T01:02:12.3905252Z",
+            "eventRecordID": "6744",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "image": "C:\\\\Windows\\\\System32\\\\sdbinst.exe",
+            "parentProcessGuid": "{af6e9a1f-7bbc-6ae8-6e01-000000000300}",
+            "processGuid": "{af6e9a1f-3294-6ae9-8c03-000000000300}",
+            "parentProcessId": "5656",
+            "processId": "8752",
+            "utcTime": "2026-11-03 01:02:12.381",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\svchost.exe"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.03",
+          "_id": "9TDunqEBb-mjh6PaCR1j",
+          "id": "1793667758.2315752",
+          "timestamp": "2026-11-03T01:02:38.871+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Lsass process was accessed by C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender\\\\Platform\\\\4.18.26100.4-0\\\\MsMpEng.exe with read permissions, possible credential dump",
+            "id": "92900"
+          },
+          "system": {
+            "eventID": "10",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T01:02:38.0917771Z",
+            "eventRecordID": "7001",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "grantedAccess": "0x101000",
+            "targetProcessGUID": "{af6e9a1f-6c2e-6ae8-0c00-000000000300}",
+            "utcTime": "2026-11-03 01:02:38.088",
+            "sourceImage": "C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender\\\\Platform\\\\4.18.26100.4-0\\\\MsMpEng.exe",
+            "targetImage": "C:\\\\WINDOWS\\\\system32\\\\lsass.exe",
+            "sourceProcessGUID": "{af6e9a1f-329e-6ae9-b403-000000000300}"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.03",
+          "_id": "azDunqEBb-mjh6PaRh5r",
+          "id": "1793667774.2610163",
+          "timestamp": "2026-11-03T01:02:54.186+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Lsass process was accessed by C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender\\\\Platform\\\\4.18.26100.4-0\\\\MsMpEng.exe with read permissions, possible credential dump",
+            "id": "92900"
+          },
+          "system": {
+            "eventID": "10",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "systemTime": "2026-11-03T01:02:53.2928964Z",
+            "eventRecordID": "7024",
+            "computer": "KT66-WIN-01",
+            "processID": "4440"
+          },
+          "eventdata": {
+            "grantedAccess": "0x101000",
+            "targetProcessGUID": "{af6e9a1f-6c2e-6ae8-0c00-000000000300}",
+            "utcTime": "2026-11-03 01:02:53.290",
+            "sourceImage": "C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender\\\\Platform\\\\4.18.26100.4-0\\\\MsMpEng.exe",
+            "targetImage": "C:\\\\WINDOWS\\\\system32\\\\lsass.exe",
+            "sourceProcessGUID": "{af6e9a1f-329e-6ae9-b403-000000000300}"
+          }
+        }
+      ],
+      "source_hash_basis": "LF-normalized UTF-8 bytes"
+    },
+    {
+      "case": "ch11-session",
+      "source": "editorial/evidence/analysis-revision/2026-11-04/followup.json",
+      "source_sha256": "5ffabe67273dd68211defb9fec1d26673094635496e2640ee3c129a2e75bc75f",
+      "pointer": "/records/7",
+      "index": "wazuh-archives-*",
+      "query": {
+        "size": 200,
+        "track_total_hits": true,
+        "query": {
+          "bool": {
+            "filter": [
+              {
+                "term": {
+                  "agent.name": "windows-user"
+                }
+              },
+              {
+                "term": {
+                  "data.win.system.channel": "Security"
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "data.win.eventdata.subjectLogonId": "0x1e38ea7"
+                      }
+                    },
+                    {
+                      "term": {
+                        "data.win.eventdata.targetLogonId": "0x1e38ea7"
+                      }
+                    }
+                  ],
+                  "minimum_should_match": 1
+                }
+              },
+              {
+                "range": {
+                  "timestamp": {
+                    "gte": "2026-11-03T12:45:00+09:00",
+                    "lt": "2026-11-03T12:50:00+09:00"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "sort": [
+          {
+            "timestamp": "asc"
+          }
+        ]
+      },
+      "total": {
+        "value": 25,
+        "relation": "eq"
+      },
+      "returned": 25,
+      "records": [
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "iTCEn6EBb-mjh6PavHLC",
+          "id": "1793677637.10971014",
+          "timestamp": "2026-11-03T03:47:17.060+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "IIS NetworkCleartext Logon Success",
+            "id": "60200"
+          },
+          "system": {
+            "eventID": "4624",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:16.6901408Z",
+            "eventRecordID": "10744",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x3e7",
+            "targetLogonId": "0x1e38ea7",
+            "targetUserName": "kt66student",
+            "processId": "0x994",
+            "targetUserSid": "S-1-5-21-3937859836-2530084332-1215515481-1000",
+            "subjectUserName": "KT66-WIN-01$"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "ijCEn6EBb-mjh6PavHLC",
+          "id": "1793677637.10979086",
+          "timestamp": "2026-11-03T03:47:17.076+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "Special privileges assigned to new logon.",
+            "id": "67028"
+          },
+          "system": {
+            "eventID": "4672",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:16.6901486Z",
+            "eventRecordID": "10745",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "izCEn6EBb-mjh6PavHLC",
+          "id": "1793677637.10979086",
+          "timestamp": "2026-11-03T03:47:17.091+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:16.7279495Z",
+            "eventRecordID": "10746",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x3e7",
+            "targetLogonId": "0x1e38ea7",
+            "targetUserName": "kt66student",
+            "processId": "0x994",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "KT66-WIN-01$"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "jDCEn6EBb-mjh6PavHLC",
+          "id": "1793677637.10988838",
+          "timestamp": "2026-11-03T03:47:17.108+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:16.8033924Z",
+            "eventRecordID": "10747",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetLogonId": "0x0",
+            "processId": "0x1f78",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "jTCEn6EBb-mjh6PavHLC",
+          "id": "1793677637.10988838",
+          "timestamp": "2026-11-03T03:47:17.125+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:16.8271923Z",
+            "eventRecordID": "10748",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetLogonId": "0x0",
+            "processId": "0x6fc",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "OzCEn6EBb-mjh6PaxHSM",
+          "id": "1793677638.11127927",
+          "timestamp": "2026-11-03T03:47:18.785+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:17.9476420Z",
+            "eventRecordID": "10749",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetLogonId": "0x0",
+            "processId": "0x6fc",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "UDCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11174200",
+          "timestamp": "2026-11-03T03:47:21.015+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 5,
+            "description": "Domain Users Group Changed",
+            "id": "60160"
+          },
+          "system": {
+            "eventID": "4728",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.1656033Z",
+            "eventRecordID": "10750",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "없음",
+            "memberSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-513",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "UTCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11177400",
+          "timestamp": "2026-11-03T03:47:21.017+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 8,
+            "description": "User account enabled or created",
+            "id": "60109"
+          },
+          "system": {
+            "eventID": "4720",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.1667464Z",
+            "eventRecordID": "10751",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "book2_ch03",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "UjCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11182895",
+          "timestamp": "2026-11-03T03:47:21.028+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 8,
+            "description": "User account changed",
+            "id": "60110"
+          },
+          "system": {
+            "eventID": "4738",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.1712220Z",
+            "eventRecordID": "10752",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "book2_ch03",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "UzCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11188095",
+          "timestamp": "2026-11-03T03:47:21.044+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 8,
+            "description": "User account changed",
+            "id": "60110"
+          },
+          "system": {
+            "eventID": "4738",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.2032639Z",
+            "eventRecordID": "10753",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "book2_ch03",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "VDCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11188095",
+          "timestamp": "2026-11-03T03:47:21.059+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "4724",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.2032735Z",
+            "eventRecordID": "10754",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "book2_ch03",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "VTCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11191965",
+          "timestamp": "2026-11-03T03:47:21.083+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Administrators Group Changed",
+            "id": "60154"
+          },
+          "system": {
+            "eventID": "4732",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.5783521Z",
+            "eventRecordID": "10755",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "Administrators",
+            "memberSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "targetSid": "S-1-5-32-544",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "VjCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11191965",
+          "timestamp": "2026-11-03T03:47:21.106+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "4799",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.5936496Z",
+            "eventRecordID": "10756",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "Administrators",
+            "targetSid": "S-1-5-32-544",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "VzCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11195052",
+          "timestamp": "2026-11-03T03:47:21.122+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 12,
+            "description": "Administrators Group Changed",
+            "id": "60154"
+          },
+          "system": {
+            "eventID": "4733",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.6122215Z",
+            "eventRecordID": "10757",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "Administrators",
+            "memberSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "targetSid": "S-1-5-32-544",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "WDCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11198145",
+          "timestamp": "2026-11-03T03:47:21.138+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 5,
+            "description": "Domain Users Group Changed",
+            "id": "60160"
+          },
+          "system": {
+            "eventID": "4729",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.6287558Z",
+            "eventRecordID": "10758",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "없음",
+            "memberSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-513",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "WTCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11201351",
+          "timestamp": "2026-11-03T03:47:21.153+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 8,
+            "description": "User account disabled or deleted",
+            "id": "60111"
+          },
+          "system": {
+            "eventID": "4726",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.6293489Z",
+            "eventRecordID": "10759",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "book2_ch03",
+            "targetSid": "S-1-5-21-3937859836-2530084332-1215515481-1002",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "WjCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11201351",
+          "timestamp": "2026-11-03T03:47:21.169+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "4799",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.6368115Z",
+            "eventRecordID": "10760",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetUserName": "Administrators",
+            "targetSid": "S-1-5-32-544",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "WzCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11204195",
+          "timestamp": "2026-11-03T03:47:21.184+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:20.7446620Z",
+            "eventRecordID": "10761",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetLogonId": "0x0",
+            "processId": "0x1f78",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "XDCEn6EBb-mjh6PazHRg",
+          "id": "1793677641.11214462",
+          "timestamp": "2026-11-03T03:47:21.200+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:21.0683313Z",
+            "eventRecordID": "10762",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetLogonId": "0x0",
+            "processId": "0x628",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "azCEn6EBb-mjh6Pa1HQu",
+          "id": "1793677643.11224069",
+          "timestamp": "2026-11-03T03:47:23.000+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:22.1598368Z",
+            "eventRecordID": "10763",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetLogonId": "0x0",
+            "processId": "0x628",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "eDCEn6EBb-mjh6Pa3HQC",
+          "id": "1793677645.11249994",
+          "timestamp": "2026-11-03T03:47:25.547+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:24.7134130Z",
+            "eventRecordID": "10764",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetLogonId": "0x0",
+            "processId": "0x1f78",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "eTCEn6EBb-mjh6Pa3HQC",
+          "id": "1793677645.11262685",
+          "timestamp": "2026-11-03T03:47:25.550+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:24.7319473Z",
+            "eventRecordID": "10765",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetLogonId": "0x0",
+            "processId": "0xa10",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "gzCEn6EBb-mjh6Pa33Tp",
+          "id": "1793677646.11269484",
+          "timestamp": "2026-11-03T03:47:26.703+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:25.8600455Z",
+            "eventRecordID": "10766",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetLogonId": "0x0",
+            "processId": "0xa10",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "rTCEn6EBb-mjh6Pa63St",
+          "id": "1793677648.11291449",
+          "timestamp": "2026-11-03T03:47:28.907+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {
+            "level": 3,
+            "description": "A process was created.",
+            "id": "67027"
+          },
+          "system": {
+            "eventID": "4688",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:28.0638938Z",
+            "eventRecordID": "10767",
+            "computer": "KT66-WIN-01",
+            "processID": "4"
+          },
+          "eventdata": {
+            "subjectLogonId": "0x1e38ea7",
+            "targetLogonId": "0x0",
+            "processId": "0x218c",
+            "targetUserSid": "S-1-0-0",
+            "subjectUserName": "kt66student"
+          }
+        },
+        {
+          "_index": "wazuh-archives-4.x-2026.11.03",
+          "_id": "vzCEn6EBb-mjh6Pa73SQ",
+          "id": "1793677649.11309633",
+          "timestamp": "2026-11-03T03:47:29.999+0000",
+          "agent": {
+            "ip": "172.30.70.2",
+            "name": "windows-user",
+            "id": "005"
+          },
+          "rule": {},
+          "system": {
+            "eventID": "4634",
+            "channel": "Security",
+            "systemTime": "2026-11-03T03:47:29.1617463Z",
+            "eventRecordID": "10768",
+            "computer": "KT66-WIN-01",
+            "processID": "916"
+          },
+          "eventdata": {
+            "targetLogonId": "0x1e38ea7",
+            "targetUserName": "kt66student",
+            "targetUserSid": "S-1-5-21-3937859836-2530084332-1215515481-1000"
+          }
+        }
+      ],
+      "source_hash_basis": "LF-normalized UTF-8 bytes"
+    }
+  ]
+}

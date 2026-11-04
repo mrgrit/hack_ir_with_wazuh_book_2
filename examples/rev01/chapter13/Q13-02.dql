@@ -1,0 +1,2 @@
+synthetic.flag:true AND agent.name:"bastion" AND
+(rule.id:(5402 OR 5902 OR 100261))

@@ -1,0 +1,4 @@
+$accountAudit = '{0CCE9235-69AE-11D9-BED3-505054503030}'
+auditpol.exe /get /subcategory:$accountAudit
+Get-LocalGroupMember -SID 'S-1-5-32-555' |
+  Format-List Name

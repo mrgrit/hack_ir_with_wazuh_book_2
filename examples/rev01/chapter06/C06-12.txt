@@ -1,0 +1,6 @@
+$sysmonLog = 'Microsoft-Windows-Sysmon/Operational'
+$dnsStart = Get-Date
+$dnsStart.ToUniversalTime().ToString('o')
+$PID
+Get-DnsClientServerAddress -AddressFamily IPv4 |
+ Format-Table InterfaceAlias,ServerAddresses

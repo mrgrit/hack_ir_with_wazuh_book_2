@@ -1,0 +1,6 @@
+Get-WinEvent -FilterHashtable @{
+ LogName='System'
+ ProviderName='Microsoft-Windows-Eventlog'
+ Id=104
+} -MaxEvents 5 |
+ Format-List TimeCreated,Id,RecordId,Message

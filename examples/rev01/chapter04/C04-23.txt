@@ -1,0 +1,3 @@
+sc.exe delete book2_ch04_svc
+schtasks.exe /delete /tn book2_ch04_task /f
+reg.exe delete HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v book2_ch04_run /f

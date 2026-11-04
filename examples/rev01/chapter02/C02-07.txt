@@ -1,0 +1,3 @@
+mkdir /tmp/wazuh-book2-ch02
+cd /tmp/wazuh-book2-ch02
+pwd

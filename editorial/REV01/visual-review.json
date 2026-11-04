@@ -1,0 +1,268 @@
+{
+  "method": "Windows Word 임시 PDF → 144dpi PNG. 모든 본문 쪽을 원래 렌더 크기로 열람. 문서별 전체 페이지 표본으로 머리글·꼬리말 확인. 모든 페이지의 번호·판형·본문 존재는 별도 기계 검사.",
+  "total_pages_reviewed": 492,
+  "documents": [
+    {
+      "file": "manuscript/REV01/volume02-chapter01.docx",
+      "sha256": "bae339877fff71c7dd5b264a850a4253d55959702a69bbb94342c581d339b30b",
+      "pages_reviewed": 33,
+      "full_page_sample": 5,
+      "findings": "잔여 텍스트 넘침·겹침·빈 본문 쪽 없음"
+    },
+    {
+      "file": "manuscript/REV01/volume02-chapter02.docx",
+      "sha256": "2917d332657a8dc710931bad888a1e533ab6cc6d11f0eb50b80490fbcc4944ab",
+      "pages_reviewed": 40,
+      "full_page_sample": 5,
+      "findings": "잔여 텍스트 넘침·겹침·빈 본문 쪽 없음"
+    },
+    {
+      "file": "manuscript/REV01/volume02-chapter03.docx",
+      "sha256": "8f29e1e562a30302d8075e99ecab88a9bf524e90c79722d4ac205f91d3eba45c",
+      "pages_reviewed": 41,
+      "full_page_sample": 5,
+      "findings": "잔여 텍스트 넘침·겹침·빈 본문 쪽 없음"
+    },
+    {
+      "file": "manuscript/REV01/volume02-chapter04.docx",
+      "sha256": "8f4e916cf7bc7e81af789096ef37cdf864158aa6453325c5a1b8b798441dd458",
+      "pages_reviewed": 38,
+      "full_page_sample": 5,
+      "findings": "잔여 텍스트 넘침·겹침·빈 본문 쪽 없음"
+    },
+    {
+      "file": "manuscript/REV01/volume02-chapter05.docx",
+      "sha256": "73fef2f0c82e6a9e63ca7f0b6e1b794884a6097bb8340e49b7dc0b269d8ccedf",
+      "pages_reviewed": 36,
+      "full_page_sample": 5,
+      "findings": "잔여 텍스트 넘침·겹침·빈 본문 쪽 없음"
+    },
+    {
+      "file": "manuscript/REV01/volume02-chapter06.docx",
+      "sha256": "676392260bae1a7d74a8e68506640a63ef99d82313db942f15c3ac4b54f768b0",
+      "pages_reviewed": 45,
+      "full_page_sample": 5,
+      "findings": "잔여 텍스트 넘침·겹침·빈 본문 쪽 없음"
+    },
+    {
+      "file": "manuscript/REV01/volume02-chapter07.docx",
+      "sha256": "1f1c6392ec3295e8800edce9c7c7d06adbbc8cac0fca5cc674fcb169d31d7d56",
+      "pages_reviewed": 35,
+      "full_page_sample": 5,
+      "findings": "잔여 텍스트 넘침·겹침·빈 본문 쪽 없음"
+    },
+    {
+      "file": "manuscript/REV01/volume02-chapter08.docx",
+      "sha256": "60de4ab4e8222d4c6506cfe30853440b34f615a7f8b1874599b19ba55c5d3f25",
+      "pages_reviewed": 36,
+      "full_page_sample": 5,
+      "findings": "잔여 텍스트 넘침·겹침·빈 본문 쪽 없음"
+    },
+    {
+      "file": "manuscript/REV01/volume02-chapter09.docx",
+      "sha256": "617fd96607132499c9affaac2c0dad314abd648da71278ae1808650c855d14bc",
+      "pages_reviewed": 41,
+      "full_page_sample": 5,
+      "findings": "잔여 텍스트 넘침·겹침·빈 본문 쪽 없음"
+    },
+    {
+      "file": "manuscript/REV01/volume02-chapter10.docx",
+      "sha256": "5c0c1bf2eade59418f2c94d78c160169941815a4dcc4b8d56eabf119e79000c8",
+      "pages_reviewed": 22,
+      "full_page_sample": 5,
+      "findings": "잔여 텍스트 넘침·겹침·빈 본문 쪽 없음"
+    },
+    {
+      "file": "manuscript/REV01/volume02-chapter11.docx",
+      "sha256": "c5581d6ec0bed845584b4e2464e433d04b9e914c28ade89ed46f9a8f1d28db10",
+      "pages_reviewed": 22,
+      "full_page_sample": 5,
+      "findings": "잔여 텍스트 넘침·겹침·빈 본문 쪽 없음"
+    },
+    {
+      "file": "manuscript/REV01/volume02-chapter12.docx",
+      "sha256": "ae1fdc4ef36c6dedb88f1b29aa565f2753a752c91bb0720021f782548c878dd3",
+      "pages_reviewed": 29,
+      "full_page_sample": 5,
+      "findings": "잔여 텍스트 넘침·겹침·빈 본문 쪽 없음"
+    },
+    {
+      "file": "manuscript/REV01/volume02-chapter13.docx",
+      "sha256": "62ad7a0c100cadbfb2d962f6d8c472f7cb4b4c3efdb0b49d71146b90af688474",
+      "pages_reviewed": 25,
+      "full_page_sample": 5,
+      "findings": "잔여 텍스트 넘침·겹침·빈 본문 쪽 없음"
+    },
+    {
+      "file": "manuscript/REV01/volume02-appendix.docx",
+      "sha256": "0c3d19d3d07cf5484d16bfbe1f03499f80fa47529aa5a1d1a010ce9c0b1605e2",
+      "pages_reviewed": 37,
+      "full_page_sample": 5,
+      "findings": "잔여 텍스트 넘침·겹침·빈 본문 쪽 없음"
+    },
+    {
+      "file": "manuscript/REV01/volume02-references.docx",
+      "sha256": "5ee0e977d75f1945bd2d038acdb56b2b17f26be73814a2a33419d05d080244ed",
+      "pages_reviewed": 12,
+      "full_page_sample": 5,
+      "findings": "잔여 텍스트 넘침·겹침·빈 본문 쪽 없음"
+    }
+  ],
+  "corrections": [
+    "코드 왼쪽 정렬",
+    "3·8장 끝의 중복 한 줄 제거",
+    "부록 확인 문제와 독립 과제 답안을 1~13장 순서로 정렬",
+    "상자 테두리 OOXML 속성 교정"
+  ],
+  "illustrations": [
+    {
+      "path": "assets/REV01/1bc539a4937d-v2-c01-evidence.png",
+      "sha256": "1bc539a4937d1eb145e381ccd876ae2cfc71e408f17db08a3806a9ebc25bad18",
+      "source": "assets/illustrations/diversity/v2-c01-evidence.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/fc923aa1d280-v2-c01-sensors.png",
+      "sha256": "fc923aa1d2809ba9f735502f52dad859fecd09dc1e989e0fedb1d4d7bed06c21",
+      "source": "assets/illustrations/diversity/v2-c01-sensors.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/d21b146a45e0-v2-c02-failure.png",
+      "sha256": "d21b146a45e0a1a15794c77feeaaeca4cb40ba5f5bc8c3f983c45080413112d3",
+      "source": "assets/illustrations/diversity/v2-c02-failure.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/44bb48bae7e9-v2-c02-response.png",
+      "sha256": "44bb48bae7e9bec7b70d3e8247fce2227d1bda69fe6663e9981a85e21ad6dbe5",
+      "source": "assets/illustrations/diversity/v2-c02-response.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/b96fd1c9a05e-v2-c03-identity.png",
+      "sha256": "b96fd1c9a05ecc5bd4eec095570b26b109524e3186f997a7e862f75004aabf9d",
+      "source": "assets/illustrations/diversity/v2-c03-identity.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/4a7ec7464d2f-v2-c03-permission.png",
+      "sha256": "4a7ec7464d2f96932c8f5031bc9f32dc36b7d4c8bf3532d59333933021265d2f",
+      "source": "assets/illustrations/diversity/v2-c03-permission.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/daeb96e08d22-chapter04-service.png",
+      "sha256": "daeb96e08d227f7a56c646835056e8b47516f5bd5b4aeeeb170386497b21cc89",
+      "source": "assets/illustrations/chapter04-service.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/445422c1135c-black-scheduled-input.png",
+      "sha256": "445422c1135c79a448c2e1bb729b28a11090c0577cabf91f6ead4466ebb2beeb",
+      "source": "assets/illustrations/natural-angle/black-scheduled-input.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/6b05e557468f-chapter04-schedule.png",
+      "sha256": "6b05e557468fe6db560d8094764477b54513188c507038f3ee0b1d2591de3d2f",
+      "source": "assets/illustrations/chapter04-schedule.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/2d4158002f33-chapter05-command.png",
+      "sha256": "2d4158002f33bf67e10d22c97fc6bc09f2644f37e3190bf281033ccad0e30071",
+      "source": "assets/illustrations/chapter05-command.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/9f315a703e38-chapter05-origin.png",
+      "sha256": "9f315a703e38bd62e6a87f3dadfd431ae85584e2bd0f75f7c94e7b0adfc26549",
+      "source": "assets/illustrations/chapter05-origin.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/e41fe8222add-network.png",
+      "sha256": "e41fe8222add37cff477d455814b9a4e19fe8f873d6d4a992c3278d65b1a3198",
+      "source": "assets/illustrations/chapter06/network.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/23d5c97a01a9-black-repeat-request.png",
+      "sha256": "23d5c97a01a9513b2157af6edfd80c3d44e98979cde8730dbc5223df4152267b",
+      "source": "assets/illustrations/natural-angle/black-repeat-request.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/57463f25bd05-dns.png",
+      "sha256": "57463f25bd05717880342599f5d18cdea916c64a2a5a95e8fedc37d529c443fa",
+      "source": "assets/illustrations/chapter06/dns.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/01c20b9ac5ab-preserve.png",
+      "sha256": "01c20b9ac5abae72846a71cfe8d1571313c8388b24714f678f53e5284b6b9d92",
+      "source": "assets/illustrations/chapter07/preserve.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/787ddb8ea6dd-response.png",
+      "sha256": "787ddb8ea6ddff08bb1082c4d4d639c17bc035fa9513cdfebbd1318084018431",
+      "source": "assets/illustrations/chapter07/response.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/da00229fb9f4-inventory.png",
+      "sha256": "da00229fb9f4a686b4a631cccb82c2d2284e5281f9dea580a92ffe06b9b0d95b",
+      "source": "assets/illustrations/chapter08/inventory.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/63a69a479902-maintenance.png",
+      "sha256": "63a69a479902a2b7260bae03fc260fa75bdec8f2ca6ad19b77275eba598de4b2",
+      "source": "assets/illustrations/chapter08/maintenance.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/4f343df1dafe-host-review.png",
+      "sha256": "4f343df1dafefcfb3dd612ee587d578bcc464f2ede0925b8536936c60b552818",
+      "source": "assets/illustrations/chapter09/host-review.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/3e5c0bfdf7fe-evidence.png",
+      "sha256": "3e5c0bfdf7fe9f1b7fe444da18abba35085d5315af40a3109b15d1bc0c020e6a",
+      "source": "assets/illustrations/chapter09/evidence.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/12ec136b94cd-connectivity.png",
+      "sha256": "12ec136b94cdd440cc8052454fc1ba38194371de8dfc698161eec196cf70295f",
+      "source": "assets/illustrations/chapter10/connectivity.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/8eefa3500b1a-daily-review.png",
+      "sha256": "8eefa3500b1a501c9a4999a8f1f3f962489ad0463963ccd1d4316da76f777275",
+      "source": "assets/illustrations/chapter11/daily-review.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/cbb9f2d19838-office-analysis.png",
+      "sha256": "cbb9f2d198384e75f11468c39a52fa80b3b61360bf1ca72d47afb71cb72d7c9f",
+      "source": "assets/illustrations/chapter12/office-analysis.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    },
+    {
+      "path": "assets/REV01/4c568ec95a0c-office-briefing.png",
+      "sha256": "4c568ec95a0c6691f21dfd24f06cffe0fb5f2f9e0b71afe640a3cd9187926b37",
+      "source": "assets/illustrations/chapter13/office-briefing.png",
+      "review": "개별 원본 열람: 어깨·팔꿈치·손목·손·엄지, 몸통·골반·다리, 가구와 물체 방향 확인. 전체 지면 검토 및 내장 해시 대조."
+    }
+  ],
+  "notes": [
+    "인물 그림은 이번 교정에서 새로 생성하지 않았다.",
+    "원본 그림의 화면 방향·종횡비를 보존했다.",
+    "장별 짧은 마무리와 큰 코드 앞의 여백은 연속 조판의 결과로 유지했다."
+  ]
+}

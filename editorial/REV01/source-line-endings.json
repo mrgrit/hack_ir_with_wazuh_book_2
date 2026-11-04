@@ -1,0 +1,25 @@
+{
+  "basis": "LF-normalized UTF-8 bytes; original working files remain unchanged",
+  "sources": {
+    "editorial/evidence/analysis-revision/2026-11-04/followup.json": {
+      "observed_working_copy_sha256": "01539b28d4f5de3002a7d17ee87a2adb4e18b5dc954e9dbdb625f8c53c5a90f0",
+      "lf_sha256": "5ffabe67273dd68211defb9fec1d26673094635496e2640ee3c129a2e75bc75f",
+      "crlf_count": 3262
+    },
+    "editorial/evidence/chapter01/2026-11-03/wazuh-alert-excerpts.json": {
+      "observed_working_copy_sha256": "d2eabe5a7e2b267453c0c823f15a369853b1ce366fdc9d47387b9d4359bb0a9d",
+      "lf_sha256": "d2eabe5a7e2b267453c0c823f15a369853b1ce366fdc9d47387b9d4359bb0a9d",
+      "crlf_count": 0
+    },
+    "editorial/evidence/analysis-revision/2026-11-04/evidence.json": {
+      "observed_working_copy_sha256": "d65ad0a006ea6ea7f53cc5157748d7a92eb617750a71f9ae5f432bcd1cbd9022",
+      "lf_sha256": "3233d26006eb2224e8019e79e14bba01063fe9aaa53fe4a9116ac3151b40310b",
+      "crlf_count": 2700
+    },
+    "editorial/evidence/analysis-revision/2026-11-04/aggregation-responses.json": {
+      "observed_working_copy_sha256": "12b1e7601c3fb89d7f0bcc6ae62e5359d88c62baf1c9b0a27de272f4cbceaf82",
+      "lf_sha256": "8dcadc344a44fed3c09c95b5b488eaf99a3e24f1247cd9435ef0c29042b7349e",
+      "crlf_count": 292
+    }
+  }
+}

@@ -1,0 +1,3 @@
+Get-WinEvent -ListLog Security,System,$defLog |
+ Format-List LogName,IsEnabled,LogMode,MaximumSizeInBytes,
+ RecordCount,OldestRecordNumber

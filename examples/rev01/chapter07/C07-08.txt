@@ -1,0 +1,3 @@
+New-Item -ItemType Directory -Path $case
+wevtutil epl Security "$case\Security.evtx" /ow:false
+$LASTEXITCODE

@@ -1,0 +1,6 @@
+hostname
+whoami.exe
+$PSVersionTable.PSVersion
+Get-Service EventLog,WazuhSvc,WinDefend,Sysmon64 |
+ Format-Table Name,Status
+$defLog = 'Microsoft-Windows-Windows Defender/Operational'

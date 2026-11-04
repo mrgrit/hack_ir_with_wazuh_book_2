@@ -1,0 +1,113 @@
+{
+  "chapter": 10,
+  "kind": "saved-evidence-excerpts",
+  "scope": "보존 자료의 필드 발췌. 전체 로그나 SIEM 복원용 자료가 아니다.",
+  "cases": [
+    {
+      "case": "ch10-ar",
+      "source": "editorial/evidence/analysis-revision/2026-11-04/evidence.json",
+      "source_sha256": "3233d26006eb2224e8019e79e14bba01063fe9aaa53fe4a9116ac3151b40310b",
+      "pointer": "/records/6",
+      "index": "wazuh-alerts-*",
+      "query": {
+        "size": 100,
+        "track_total_hits": true,
+        "query": {
+          "terms": {
+            "rule.id": [
+              "651",
+              "652"
+            ]
+          }
+        },
+        "sort": [
+          {
+            "timestamp": "asc"
+          }
+        ]
+      },
+      "total": {
+        "value": 2,
+        "relation": "eq"
+      },
+      "returned": 2,
+      "records": [
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "ky8HnKEBb-mjh6PagRqZ",
+          "id": "1793619097.12603452",
+          "timestamp": "2026-11-02T11:31:37.189+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "Host Blocked by firewall-drop Active Response",
+            "id": "651"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc",
+            "origin": {
+              "module": "wazuh-execd",
+              "name": "node01"
+            },
+            "command": "add"
+          },
+          "cause": {
+            "id": "1793619097.12602015",
+            "rule_id": "5763",
+            "agent": {
+              "ip": "10.20.30.201",
+              "name": "bastion",
+              "id": "001"
+            },
+            "timestamp": "2026-11-02T11:31:37.080+0000",
+            "srcip": "192.168.0.108",
+            "program": "active-response/bin/firewall-drop"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "ui8KnKEBb-mjh6PaVBpO",
+          "id": "1793619279.12608071",
+          "timestamp": "2026-11-02T11:34:39.258+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "Host Unblocked by firewall-drop Active Response",
+            "id": "652"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc",
+            "origin": {
+              "module": "wazuh-execd",
+              "name": "node01"
+            },
+            "command": "delete"
+          },
+          "cause": {
+            "id": "1793619097.12602015",
+            "rule_id": "5763",
+            "agent": {
+              "ip": "10.20.30.201",
+              "name": "bastion",
+              "id": "001"
+            },
+            "timestamp": "2026-11-02T11:31:37.080+0000",
+            "srcip": "192.168.0.108",
+            "program": "active-response/bin/firewall-drop"
+          }
+        }
+      ],
+      "source_hash_basis": "LF-normalized UTF-8 bytes"
+    }
+  ]
+}

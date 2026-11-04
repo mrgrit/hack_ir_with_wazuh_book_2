@@ -1,0 +1,3 @@
+Get-AuthenticodeSignature -LiteralPath "$dir\WINWORD.EXE" |
+ Format-List Status,Path
+& "$dir\WINWORD.EXE"

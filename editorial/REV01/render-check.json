@@ -1,0 +1,3044 @@
+[
+  {
+    "file": "appendix.pdf",
+    "sha256": "db4717815cdb865342840f89414c47ace1d4b28b59a66123a3a3c5640c20ccc8",
+    "pages": [
+      {
+        "page": 1,
+        "chars": 547,
+        "outliers": [],
+        "bottom": 586.0
+      },
+      {
+        "page": 2,
+        "chars": 748,
+        "outliers": [],
+        "bottom": 592.72
+      },
+      {
+        "page": 3,
+        "chars": 597,
+        "outliers": [],
+        "bottom": 523.36
+      },
+      {
+        "page": 4,
+        "chars": 606,
+        "outliers": [],
+        "bottom": 600.29
+      },
+      {
+        "page": 5,
+        "chars": 670,
+        "outliers": [],
+        "bottom": 541.54
+      },
+      {
+        "page": 6,
+        "chars": 662,
+        "outliers": [],
+        "bottom": 593.82
+      },
+      {
+        "page": 7,
+        "chars": 467,
+        "outliers": [],
+        "bottom": 444.25
+      },
+      {
+        "page": 8,
+        "chars": 618,
+        "outliers": [],
+        "bottom": 610.76
+      },
+      {
+        "page": 9,
+        "chars": 698,
+        "outliers": [],
+        "bottom": 519.16
+      },
+      {
+        "page": 10,
+        "chars": 647,
+        "outliers": [],
+        "bottom": 593.92
+      },
+      {
+        "page": 11,
+        "chars": 418,
+        "outliers": [],
+        "bottom": 414.0
+      },
+      {
+        "page": 12,
+        "chars": 249,
+        "outliers": [],
+        "bottom": 532.84
+      },
+      {
+        "page": 13,
+        "chars": 550,
+        "outliers": [],
+        "bottom": 563.32
+      },
+      {
+        "page": 14,
+        "chars": 691,
+        "outliers": [],
+        "bottom": 542.19
+      },
+      {
+        "page": 15,
+        "chars": 495,
+        "outliers": [],
+        "bottom": 558.58
+      },
+      {
+        "page": 16,
+        "chars": 844,
+        "outliers": [],
+        "bottom": 589.98
+      },
+      {
+        "page": 17,
+        "chars": 657,
+        "outliers": [],
+        "bottom": 387.97
+      },
+      {
+        "page": 18,
+        "chars": 548,
+        "outliers": [],
+        "bottom": 328.57
+      },
+      {
+        "page": 19,
+        "chars": 833,
+        "outliers": [],
+        "bottom": 491.44
+      },
+      {
+        "page": 20,
+        "chars": 873,
+        "outliers": [],
+        "bottom": 584.82
+      },
+      {
+        "page": 21,
+        "chars": 645,
+        "outliers": [],
+        "bottom": 597.18
+      },
+      {
+        "page": 22,
+        "chars": 628,
+        "outliers": [],
+        "bottom": 606.27
+      },
+      {
+        "page": 23,
+        "chars": 627,
+        "outliers": [],
+        "bottom": 600.75
+      },
+      {
+        "page": 24,
+        "chars": 580,
+        "outliers": [],
+        "bottom": 600.76
+      },
+      {
+        "page": 25,
+        "chars": 641,
+        "outliers": [],
+        "bottom": 606.27
+      },
+      {
+        "page": 26,
+        "chars": 552,
+        "outliers": [],
+        "bottom": 547.75
+      },
+      {
+        "page": 27,
+        "chars": 630,
+        "outliers": [],
+        "bottom": 573.87
+      },
+      {
+        "page": 28,
+        "chars": 753,
+        "outliers": [],
+        "bottom": 594.42
+      },
+      {
+        "page": 29,
+        "chars": 727,
+        "outliers": [],
+        "bottom": 600.55
+      },
+      {
+        "page": 30,
+        "chars": 717,
+        "outliers": [],
+        "bottom": 586.0
+      },
+      {
+        "page": 31,
+        "chars": 827,
+        "outliers": [],
+        "bottom": 617.38
+      },
+      {
+        "page": 32,
+        "chars": 637,
+        "outliers": [],
+        "bottom": 527.92
+      },
+      {
+        "page": 33,
+        "chars": 655,
+        "outliers": [],
+        "bottom": 525.51
+      },
+      {
+        "page": 34,
+        "chars": 761,
+        "outliers": [],
+        "bottom": 600.4
+      },
+      {
+        "page": 35,
+        "chars": 663,
+        "outliers": [],
+        "bottom": 614.91
+      },
+      {
+        "page": 36,
+        "chars": 710,
+        "outliers": [],
+        "bottom": 606.52
+      },
+      {
+        "page": 37,
+        "chars": 505,
+        "outliers": [],
+        "bottom": 444.72
+      }
+    ]
+  },
+  {
+    "file": "chapter01.pdf",
+    "sha256": "29984f3858ccd9ed375750b939f6e6e6b781c7cd625b8261c3bbc9b405e4b184",
+    "pages": [
+      {
+        "page": 1,
+        "chars": 99,
+        "outliers": [],
+        "bottom": 332.74
+      },
+      {
+        "page": 2,
+        "chars": 491,
+        "outliers": [],
+        "bottom": 503.7
+      },
+      {
+        "page": 3,
+        "chars": 597,
+        "outliers": [],
+        "bottom": 447.15
+      },
+      {
+        "page": 4,
+        "chars": 488,
+        "outliers": [],
+        "bottom": 401.89
+      },
+      {
+        "page": 5,
+        "chars": 371,
+        "outliers": [],
+        "bottom": 529.6
+      },
+      {
+        "page": 6,
+        "chars": 539,
+        "outliers": [],
+        "bottom": 602.2
+      },
+      {
+        "page": 7,
+        "chars": 800,
+        "outliers": [],
+        "bottom": 546.76
+      },
+      {
+        "page": 8,
+        "chars": 638,
+        "outliers": [],
+        "bottom": 497.4
+      },
+      {
+        "page": 9,
+        "chars": 604,
+        "outliers": [],
+        "bottom": 468.51
+      },
+      {
+        "page": 10,
+        "chars": 657,
+        "outliers": [],
+        "bottom": 511.81
+      },
+      {
+        "page": 11,
+        "chars": 502,
+        "outliers": [],
+        "bottom": 562.84
+      },
+      {
+        "page": 12,
+        "chars": 889,
+        "outliers": [],
+        "bottom": 584.41
+      },
+      {
+        "page": 13,
+        "chars": 452,
+        "outliers": [],
+        "bottom": 422.53
+      },
+      {
+        "page": 14,
+        "chars": 903,
+        "outliers": [],
+        "bottom": 612.16
+      },
+      {
+        "page": 15,
+        "chars": 879,
+        "outliers": [],
+        "bottom": 587.19
+      },
+      {
+        "page": 16,
+        "chars": 826,
+        "outliers": [],
+        "bottom": 570.9
+      },
+      {
+        "page": 17,
+        "chars": 720,
+        "outliers": [],
+        "bottom": 533.37
+      },
+      {
+        "page": 18,
+        "chars": 786,
+        "outliers": [],
+        "bottom": 616.84
+      },
+      {
+        "page": 19,
+        "chars": 509,
+        "outliers": [],
+        "bottom": 451.45
+      },
+      {
+        "page": 20,
+        "chars": 961,
+        "outliers": [],
+        "bottom": 620.07
+      },
+      {
+        "page": 21,
+        "chars": 778,
+        "outliers": [],
+        "bottom": 578.58
+      },
+      {
+        "page": 22,
+        "chars": 976,
+        "outliers": [],
+        "bottom": 592.52
+      },
+      {
+        "page": 23,
+        "chars": 719,
+        "outliers": [],
+        "bottom": 503.4
+      },
+      {
+        "page": 24,
+        "chars": 813,
+        "outliers": [],
+        "bottom": 601.74
+      },
+      {
+        "page": 25,
+        "chars": 774,
+        "outliers": [],
+        "bottom": 553.14
+      },
+      {
+        "page": 26,
+        "chars": 570,
+        "outliers": [],
+        "bottom": 436.08
+      },
+      {
+        "page": 27,
+        "chars": 874,
+        "outliers": [],
+        "bottom": 532.57
+      },
+      {
+        "page": 28,
+        "chars": 908,
+        "outliers": [],
+        "bottom": 577.72
+      },
+      {
+        "page": 29,
+        "chars": 402,
+        "outliers": [],
+        "bottom": 562.35
+      },
+      {
+        "page": 30,
+        "chars": 623,
+        "outliers": [],
+        "bottom": 553.03
+      },
+      {
+        "page": 31,
+        "chars": 509,
+        "outliers": [],
+        "bottom": 552.32
+      },
+      {
+        "page": 32,
+        "chars": 579,
+        "outliers": [],
+        "bottom": 583.0
+      },
+      {
+        "page": 33,
+        "chars": 362,
+        "outliers": [],
+        "bottom": 381.88
+      }
+    ]
+  },
+  {
+    "file": "chapter02.pdf",
+    "sha256": "5290bc4c238f00933658477f7c581d3db5eae8d5832ad114d5b2d34cb44c98b4",
+    "pages": [
+      {
+        "page": 1,
+        "chars": 438,
+        "outliers": [],
+        "bottom": 586.53
+      },
+      {
+        "page": 2,
+        "chars": 517,
+        "outliers": [],
+        "bottom": 572.96
+      },
+      {
+        "page": 3,
+        "chars": 686,
+        "outliers": [],
+        "bottom": 471.4
+      },
+      {
+        "page": 4,
+        "chars": 788,
+        "outliers": [],
+        "bottom": 551.14
+      },
+      {
+        "page": 5,
+        "chars": 763,
+        "outliers": [],
+        "bottom": 512.29
+      },
+      {
+        "page": 6,
+        "chars": 838,
+        "outliers": [],
+        "bottom": 618.28
+      },
+      {
+        "page": 7,
+        "chars": 594,
+        "outliers": [],
+        "bottom": 484.2
+      },
+      {
+        "page": 8,
+        "chars": 613,
+        "outliers": [],
+        "bottom": 616.6
+      },
+      {
+        "page": 9,
+        "chars": 794,
+        "outliers": [],
+        "bottom": 523.86
+      },
+      {
+        "page": 10,
+        "chars": 810,
+        "outliers": [],
+        "bottom": 562.24
+      },
+      {
+        "page": 11,
+        "chars": 752,
+        "outliers": [],
+        "bottom": 514.36
+      },
+      {
+        "page": 12,
+        "chars": 667,
+        "outliers": [],
+        "bottom": 443.53
+      },
+      {
+        "page": 13,
+        "chars": 239,
+        "outliers": [],
+        "bottom": 561.75
+      },
+      {
+        "page": 14,
+        "chars": 370,
+        "outliers": [],
+        "bottom": 612.63
+      },
+      {
+        "page": 15,
+        "chars": 540,
+        "outliers": [],
+        "bottom": 473.43
+      },
+      {
+        "page": 16,
+        "chars": 786,
+        "outliers": [],
+        "bottom": 583.24
+      },
+      {
+        "page": 17,
+        "chars": 800,
+        "outliers": [],
+        "bottom": 497.64
+      },
+      {
+        "page": 18,
+        "chars": 394,
+        "outliers": [],
+        "bottom": 578.6
+      },
+      {
+        "page": 19,
+        "chars": 425,
+        "outliers": [],
+        "bottom": 427.97
+      },
+      {
+        "page": 20,
+        "chars": 308,
+        "outliers": [],
+        "bottom": 416.29
+      },
+      {
+        "page": 21,
+        "chars": 593,
+        "outliers": [],
+        "bottom": 445.81
+      },
+      {
+        "page": 22,
+        "chars": 821,
+        "outliers": [],
+        "bottom": 515.77
+      },
+      {
+        "page": 23,
+        "chars": 422,
+        "outliers": [],
+        "bottom": 613.84
+      },
+      {
+        "page": 24,
+        "chars": 868,
+        "outliers": [],
+        "bottom": 529.6
+      },
+      {
+        "page": 25,
+        "chars": 547,
+        "outliers": [],
+        "bottom": 506.17
+      },
+      {
+        "page": 26,
+        "chars": 563,
+        "outliers": [],
+        "bottom": 605.41
+      },
+      {
+        "page": 27,
+        "chars": 800,
+        "outliers": [],
+        "bottom": 565.02
+      },
+      {
+        "page": 28,
+        "chars": 539,
+        "outliers": [],
+        "bottom": 391.0
+      },
+      {
+        "page": 29,
+        "chars": 923,
+        "outliers": [],
+        "bottom": 574.48
+      },
+      {
+        "page": 30,
+        "chars": 172,
+        "outliers": [],
+        "bottom": 471.01
+      },
+      {
+        "page": 31,
+        "chars": 309,
+        "outliers": [],
+        "bottom": 603.52
+      },
+      {
+        "page": 32,
+        "chars": 480,
+        "outliers": [],
+        "bottom": 390.6
+      },
+      {
+        "page": 33,
+        "chars": 986,
+        "outliers": [],
+        "bottom": 588.37
+      },
+      {
+        "page": 34,
+        "chars": 661,
+        "outliers": [],
+        "bottom": 522.08
+      },
+      {
+        "page": 35,
+        "chars": 787,
+        "outliers": [],
+        "bottom": 603.54
+      },
+      {
+        "page": 36,
+        "chars": 454,
+        "outliers": [],
+        "bottom": 562.59
+      },
+      {
+        "page": 37,
+        "chars": 854,
+        "outliers": [],
+        "bottom": 604.98
+      },
+      {
+        "page": 38,
+        "chars": 675,
+        "outliers": [],
+        "bottom": 600.04
+      },
+      {
+        "page": 39,
+        "chars": 565,
+        "outliers": [],
+        "bottom": 601.71
+      },
+      {
+        "page": 40,
+        "chars": 547,
+        "outliers": [],
+        "bottom": 546.06
+      }
+    ]
+  },
+  {
+    "file": "chapter03.pdf",
+    "sha256": "c991139cdde8320ac1a721aa7151ec7d7848e39e72d7f913f5eb9d6356614c95",
+    "pages": [
+      {
+        "page": 1,
+        "chars": 435,
+        "outliers": [],
+        "bottom": 609.08
+      },
+      {
+        "page": 2,
+        "chars": 478,
+        "outliers": [],
+        "bottom": 411.24
+      },
+      {
+        "page": 3,
+        "chars": 859,
+        "outliers": [],
+        "bottom": 554.79
+      },
+      {
+        "page": 4,
+        "chars": 902,
+        "outliers": [],
+        "bottom": 548.8
+      },
+      {
+        "page": 5,
+        "chars": 661,
+        "outliers": [],
+        "bottom": 505.0
+      },
+      {
+        "page": 6,
+        "chars": 869,
+        "outliers": [],
+        "bottom": 550.16
+      },
+      {
+        "page": 7,
+        "chars": 621,
+        "outliers": [],
+        "bottom": 381.49
+      },
+      {
+        "page": 8,
+        "chars": 358,
+        "outliers": [],
+        "bottom": 605.55
+      },
+      {
+        "page": 9,
+        "chars": 509,
+        "outliers": [],
+        "bottom": 571.88
+      },
+      {
+        "page": 10,
+        "chars": 582,
+        "outliers": [],
+        "bottom": 396.85
+      },
+      {
+        "page": 11,
+        "chars": 719,
+        "outliers": [],
+        "bottom": 423.85
+      },
+      {
+        "page": 12,
+        "chars": 944,
+        "outliers": [],
+        "bottom": 581.98
+      },
+      {
+        "page": 13,
+        "chars": 399,
+        "outliers": [],
+        "bottom": 611.5
+      },
+      {
+        "page": 14,
+        "chars": 300,
+        "outliers": [],
+        "bottom": 616.65
+      },
+      {
+        "page": 15,
+        "chars": 694,
+        "outliers": [],
+        "bottom": 606.54
+      },
+      {
+        "page": 16,
+        "chars": 861,
+        "outliers": [],
+        "bottom": 546.79
+      },
+      {
+        "page": 17,
+        "chars": 829,
+        "outliers": [],
+        "bottom": 555.06
+      },
+      {
+        "page": 18,
+        "chars": 883,
+        "outliers": [],
+        "bottom": 550.95
+      },
+      {
+        "page": 19,
+        "chars": 501,
+        "outliers": [],
+        "bottom": 335.75
+      },
+      {
+        "page": 20,
+        "chars": 346,
+        "outliers": [],
+        "bottom": 581.53
+      },
+      {
+        "page": 21,
+        "chars": 421,
+        "outliers": [],
+        "bottom": 541.48
+      },
+      {
+        "page": 22,
+        "chars": 650,
+        "outliers": [],
+        "bottom": 505.21
+      },
+      {
+        "page": 23,
+        "chars": 618,
+        "outliers": [],
+        "bottom": 553.0
+      },
+      {
+        "page": 24,
+        "chars": 974,
+        "outliers": [],
+        "bottom": 576.88
+      },
+      {
+        "page": 25,
+        "chars": 854,
+        "outliers": [],
+        "bottom": 572.44
+      },
+      {
+        "page": 26,
+        "chars": 934,
+        "outliers": [],
+        "bottom": 589.96
+      },
+      {
+        "page": 27,
+        "chars": 390,
+        "outliers": [],
+        "bottom": 256.79
+      },
+      {
+        "page": 28,
+        "chars": 172,
+        "outliers": [],
+        "bottom": 553.48
+      },
+      {
+        "page": 29,
+        "chars": 614,
+        "outliers": [],
+        "bottom": 501.72
+      },
+      {
+        "page": 30,
+        "chars": 723,
+        "outliers": [],
+        "bottom": 577.39
+      },
+      {
+        "page": 31,
+        "chars": 431,
+        "outliers": [],
+        "bottom": 572.95
+      },
+      {
+        "page": 32,
+        "chars": 623,
+        "outliers": [],
+        "bottom": 596.07
+      },
+      {
+        "page": 33,
+        "chars": 785,
+        "outliers": [],
+        "bottom": 510.36
+      },
+      {
+        "page": 34,
+        "chars": 747,
+        "outliers": [],
+        "bottom": 505.09
+      },
+      {
+        "page": 35,
+        "chars": 285,
+        "outliers": [],
+        "bottom": 552.88
+      },
+      {
+        "page": 36,
+        "chars": 925,
+        "outliers": [],
+        "bottom": 583.64
+      },
+      {
+        "page": 37,
+        "chars": 605,
+        "outliers": [],
+        "bottom": 599.62
+      },
+      {
+        "page": 38,
+        "chars": 897,
+        "outliers": [],
+        "bottom": 606.63
+      },
+      {
+        "page": 39,
+        "chars": 555,
+        "outliers": [],
+        "bottom": 570.51
+      },
+      {
+        "page": 40,
+        "chars": 646,
+        "outliers": [],
+        "bottom": 600.66
+      },
+      {
+        "page": 41,
+        "chars": 602,
+        "outliers": [],
+        "bottom": 604.02
+      }
+    ]
+  },
+  {
+    "file": "chapter04.pdf",
+    "sha256": "69d77d4624c19901437d320f924856f9ec232994fea4ed6b0bd384f324e6ff7e",
+    "pages": [
+      {
+        "page": 1,
+        "chars": 622,
+        "outliers": [],
+        "bottom": 559.75
+      },
+      {
+        "page": 2,
+        "chars": 300,
+        "outliers": [],
+        "bottom": 485.05
+      },
+      {
+        "page": 3,
+        "chars": 539,
+        "outliers": [],
+        "bottom": 590.2
+      },
+      {
+        "page": 4,
+        "chars": 862,
+        "outliers": [],
+        "bottom": 544.87
+      },
+      {
+        "page": 5,
+        "chars": 860,
+        "outliers": [],
+        "bottom": 606.06
+      },
+      {
+        "page": 6,
+        "chars": 703,
+        "outliers": [],
+        "bottom": 489.52
+      },
+      {
+        "page": 7,
+        "chars": 843,
+        "outliers": [],
+        "bottom": 582.19
+      },
+      {
+        "page": 8,
+        "chars": 935,
+        "outliers": [],
+        "bottom": 591.18
+      },
+      {
+        "page": 9,
+        "chars": 655,
+        "outliers": [],
+        "bottom": 616.11
+      },
+      {
+        "page": 10,
+        "chars": 519,
+        "outliers": [],
+        "bottom": 581.49
+      },
+      {
+        "page": 11,
+        "chars": 900,
+        "outliers": [],
+        "bottom": 592.38
+      },
+      {
+        "page": 12,
+        "chars": 349,
+        "outliers": [],
+        "bottom": 505.13
+      },
+      {
+        "page": 13,
+        "chars": 477,
+        "outliers": [],
+        "bottom": 513.55
+      },
+      {
+        "page": 14,
+        "chars": 961,
+        "outliers": [],
+        "bottom": 602.94
+      },
+      {
+        "page": 15,
+        "chars": 650,
+        "outliers": [],
+        "bottom": 424.11
+      },
+      {
+        "page": 16,
+        "chars": 854,
+        "outliers": [],
+        "bottom": 524.55
+      },
+      {
+        "page": 17,
+        "chars": 605,
+        "outliers": [],
+        "bottom": 515.56
+      },
+      {
+        "page": 18,
+        "chars": 827,
+        "outliers": [],
+        "bottom": 578.32
+      },
+      {
+        "page": 19,
+        "chars": 892,
+        "outliers": [],
+        "bottom": 568.51
+      },
+      {
+        "page": 20,
+        "chars": 387,
+        "outliers": [],
+        "bottom": 472.38
+      },
+      {
+        "page": 21,
+        "chars": 810,
+        "outliers": [],
+        "bottom": 615.63
+      },
+      {
+        "page": 22,
+        "chars": 786,
+        "outliers": [],
+        "bottom": 605.82
+      },
+      {
+        "page": 23,
+        "chars": 839,
+        "outliers": [],
+        "bottom": 518.83
+      },
+      {
+        "page": 24,
+        "chars": 751,
+        "outliers": [],
+        "bottom": 520.48
+      },
+      {
+        "page": 25,
+        "chars": 526,
+        "outliers": [],
+        "bottom": 453.16
+      },
+      {
+        "page": 26,
+        "chars": 573,
+        "outliers": [],
+        "bottom": 550.6
+      },
+      {
+        "page": 27,
+        "chars": 809,
+        "outliers": [],
+        "bottom": 535.23
+      },
+      {
+        "page": 28,
+        "chars": 950,
+        "outliers": [],
+        "bottom": 560.44
+      },
+      {
+        "page": 29,
+        "chars": 1033,
+        "outliers": [],
+        "bottom": 605.24
+      },
+      {
+        "page": 30,
+        "chars": 556,
+        "outliers": [],
+        "bottom": 509.55
+      },
+      {
+        "page": 31,
+        "chars": 372,
+        "outliers": [],
+        "bottom": 572.95
+      },
+      {
+        "page": 32,
+        "chars": 520,
+        "outliers": [],
+        "bottom": 459.85
+      },
+      {
+        "page": 33,
+        "chars": 946,
+        "outliers": [],
+        "bottom": 614.31
+      },
+      {
+        "page": 34,
+        "chars": 740,
+        "outliers": [],
+        "bottom": 486.12
+      },
+      {
+        "page": 35,
+        "chars": 717,
+        "outliers": [],
+        "bottom": 564.34
+      },
+      {
+        "page": 36,
+        "chars": 763,
+        "outliers": [],
+        "bottom": 581.56
+      },
+      {
+        "page": 37,
+        "chars": 581,
+        "outliers": [],
+        "bottom": 535.12
+      },
+      {
+        "page": 38,
+        "chars": 214,
+        "outliers": [],
+        "bottom": 234.73
+      }
+    ]
+  },
+  {
+    "file": "chapter05.pdf",
+    "sha256": "ccbc26d4f563d12360a14d2fc2303d8e2b2e3ce61998b7c2cf42182dda074834",
+    "pages": [
+      {
+        "page": 1,
+        "chars": 646,
+        "outliers": [],
+        "bottom": 582.66
+      },
+      {
+        "page": 2,
+        "chars": 310,
+        "outliers": [],
+        "bottom": 463.2
+      },
+      {
+        "page": 3,
+        "chars": 568,
+        "outliers": [],
+        "bottom": 610.36
+      },
+      {
+        "page": 4,
+        "chars": 944,
+        "outliers": [],
+        "bottom": 575.68
+      },
+      {
+        "page": 5,
+        "chars": 896,
+        "outliers": [],
+        "bottom": 606.89
+      },
+      {
+        "page": 6,
+        "chars": 902,
+        "outliers": [],
+        "bottom": 587.82
+      },
+      {
+        "page": 7,
+        "chars": 635,
+        "outliers": [],
+        "bottom": 612.97
+      },
+      {
+        "page": 8,
+        "chars": 546,
+        "outliers": [],
+        "bottom": 371.38
+      },
+      {
+        "page": 9,
+        "chars": 919,
+        "outliers": [],
+        "bottom": 575.71
+      },
+      {
+        "page": 10,
+        "chars": 896,
+        "outliers": [],
+        "bottom": 566.08
+      },
+      {
+        "page": 11,
+        "chars": 608,
+        "outliers": [],
+        "bottom": 614.8
+      },
+      {
+        "page": 12,
+        "chars": 807,
+        "outliers": [],
+        "bottom": 593.55
+      },
+      {
+        "page": 13,
+        "chars": 1031,
+        "outliers": [],
+        "bottom": 606.88
+      },
+      {
+        "page": 14,
+        "chars": 386,
+        "outliers": [],
+        "bottom": 390.85
+      },
+      {
+        "page": 15,
+        "chars": 959,
+        "outliers": [],
+        "bottom": 589.11
+      },
+      {
+        "page": 16,
+        "chars": 847,
+        "outliers": [],
+        "bottom": 599.8
+      },
+      {
+        "page": 17,
+        "chars": 999,
+        "outliers": [],
+        "bottom": 606.64
+      },
+      {
+        "page": 18,
+        "chars": 961,
+        "outliers": [],
+        "bottom": 572.2
+      },
+      {
+        "page": 19,
+        "chars": 712,
+        "outliers": [],
+        "bottom": 614.2
+      },
+      {
+        "page": 20,
+        "chars": 875,
+        "outliers": [],
+        "bottom": 516.3
+      },
+      {
+        "page": 21,
+        "chars": 980,
+        "outliers": [],
+        "bottom": 559.0
+      },
+      {
+        "page": 22,
+        "chars": 650,
+        "outliers": [],
+        "bottom": 551.44
+      },
+      {
+        "page": 23,
+        "chars": 816,
+        "outliers": [],
+        "bottom": 545.68
+      },
+      {
+        "page": 24,
+        "chars": 625,
+        "outliers": [],
+        "bottom": 593.7
+      },
+      {
+        "page": 25,
+        "chars": 911,
+        "outliers": [],
+        "bottom": 614.07
+      },
+      {
+        "page": 26,
+        "chars": 622,
+        "outliers": [],
+        "bottom": 439.45
+      },
+      {
+        "page": 27,
+        "chars": 946,
+        "outliers": [],
+        "bottom": 561.73
+      },
+      {
+        "page": 28,
+        "chars": 723,
+        "outliers": [],
+        "bottom": 575.8
+      },
+      {
+        "page": 29,
+        "chars": 387,
+        "outliers": [],
+        "bottom": 445.4
+      },
+      {
+        "page": 30,
+        "chars": 816,
+        "outliers": [],
+        "bottom": 486.25
+      },
+      {
+        "page": 31,
+        "chars": 972,
+        "outliers": [],
+        "bottom": 575.68
+      },
+      {
+        "page": 32,
+        "chars": 639,
+        "outliers": [],
+        "bottom": 593.43
+      },
+      {
+        "page": 33,
+        "chars": 961,
+        "outliers": [],
+        "bottom": 595.74
+      },
+      {
+        "page": 34,
+        "chars": 748,
+        "outliers": [],
+        "bottom": 531.41
+      },
+      {
+        "page": 35,
+        "chars": 668,
+        "outliers": [],
+        "bottom": 573.52
+      },
+      {
+        "page": 36,
+        "chars": 585,
+        "outliers": [],
+        "bottom": 546.56
+      }
+    ]
+  },
+  {
+    "file": "chapter06.pdf",
+    "sha256": "4c1f582b2c8d0dc55d2d09357ae5a88898396f2e5ff4969988efc67cbcf4c186",
+    "pages": [
+      {
+        "page": 1,
+        "chars": 632,
+        "outliers": [],
+        "bottom": 576.65
+      },
+      {
+        "page": 2,
+        "chars": 435,
+        "outliers": [],
+        "bottom": 606.87
+      },
+      {
+        "page": 3,
+        "chars": 599,
+        "outliers": [],
+        "bottom": 610.12
+      },
+      {
+        "page": 4,
+        "chars": 956,
+        "outliers": [],
+        "bottom": 617.77
+      },
+      {
+        "page": 5,
+        "chars": 831,
+        "outliers": [],
+        "bottom": 530.32
+      },
+      {
+        "page": 6,
+        "chars": 887,
+        "outliers": [],
+        "bottom": 562.6
+      },
+      {
+        "page": 7,
+        "chars": 845,
+        "outliers": [],
+        "bottom": 523.88
+      },
+      {
+        "page": 8,
+        "chars": 932,
+        "outliers": [],
+        "bottom": 576.52
+      },
+      {
+        "page": 9,
+        "chars": 913,
+        "outliers": [],
+        "bottom": 612.04
+      },
+      {
+        "page": 10,
+        "chars": 818,
+        "outliers": [],
+        "bottom": 489.51
+      },
+      {
+        "page": 11,
+        "chars": 291,
+        "outliers": [],
+        "bottom": 406.97
+      },
+      {
+        "page": 12,
+        "chars": 892,
+        "outliers": [],
+        "bottom": 591.87
+      },
+      {
+        "page": 13,
+        "chars": 685,
+        "outliers": [],
+        "bottom": 586.16
+      },
+      {
+        "page": 14,
+        "chars": 647,
+        "outliers": [],
+        "bottom": 584.15
+      },
+      {
+        "page": 15,
+        "chars": 800,
+        "outliers": [],
+        "bottom": 605.56
+      },
+      {
+        "page": 16,
+        "chars": 523,
+        "outliers": [],
+        "bottom": 416.95
+      },
+      {
+        "page": 17,
+        "chars": 888,
+        "outliers": [],
+        "bottom": 582.88
+      },
+      {
+        "page": 18,
+        "chars": 576,
+        "outliers": [],
+        "bottom": 565.96
+      },
+      {
+        "page": 19,
+        "chars": 383,
+        "outliers": [],
+        "bottom": 460.84
+      },
+      {
+        "page": 20,
+        "chars": 1001,
+        "outliers": [],
+        "bottom": 588.37
+      },
+      {
+        "page": 21,
+        "chars": 781,
+        "outliers": [],
+        "bottom": 543.64
+      },
+      {
+        "page": 22,
+        "chars": 607,
+        "outliers": [],
+        "bottom": 403.09
+      },
+      {
+        "page": 23,
+        "chars": 589,
+        "outliers": [],
+        "bottom": 478.29
+      },
+      {
+        "page": 24,
+        "chars": 420,
+        "outliers": [],
+        "bottom": 570.99
+      },
+      {
+        "page": 25,
+        "chars": 713,
+        "outliers": [],
+        "bottom": 577.83
+      },
+      {
+        "page": 26,
+        "chars": 693,
+        "outliers": [],
+        "bottom": 547.95
+      },
+      {
+        "page": 27,
+        "chars": 555,
+        "outliers": [],
+        "bottom": 549.21
+      },
+      {
+        "page": 28,
+        "chars": 833,
+        "outliers": [],
+        "bottom": 596.79
+      },
+      {
+        "page": 29,
+        "chars": 950,
+        "outliers": [],
+        "bottom": 610.6
+      },
+      {
+        "page": 30,
+        "chars": 582,
+        "outliers": [],
+        "bottom": 476.04
+      },
+      {
+        "page": 31,
+        "chars": 376,
+        "outliers": [],
+        "bottom": 521.08
+      },
+      {
+        "page": 32,
+        "chars": 834,
+        "outliers": [],
+        "bottom": 483.13
+      },
+      {
+        "page": 33,
+        "chars": 769,
+        "outliers": [],
+        "bottom": 524.1
+      },
+      {
+        "page": 34,
+        "chars": 930,
+        "outliers": [],
+        "bottom": 538.69
+      },
+      {
+        "page": 35,
+        "chars": 632,
+        "outliers": [],
+        "bottom": 611.24
+      },
+      {
+        "page": 36,
+        "chars": 539,
+        "outliers": [],
+        "bottom": 577.59
+      },
+      {
+        "page": 37,
+        "chars": 852,
+        "outliers": [],
+        "bottom": 533.08
+      },
+      {
+        "page": 38,
+        "chars": 1067,
+        "outliers": [],
+        "bottom": 589.99
+      },
+      {
+        "page": 39,
+        "chars": 687,
+        "outliers": [],
+        "bottom": 573.88
+      },
+      {
+        "page": 40,
+        "chars": 683,
+        "outliers": [],
+        "bottom": 494.68
+      },
+      {
+        "page": 41,
+        "chars": 330,
+        "outliers": [],
+        "bottom": 609.25
+      },
+      {
+        "page": 42,
+        "chars": 457,
+        "outliers": [],
+        "bottom": 530.92
+      },
+      {
+        "page": 43,
+        "chars": 929,
+        "outliers": [],
+        "bottom": 614.77
+      },
+      {
+        "page": 44,
+        "chars": 600,
+        "outliers": [],
+        "bottom": 561.51
+      },
+      {
+        "page": 45,
+        "chars": 617,
+        "outliers": [],
+        "bottom": 569.1
+      }
+    ]
+  },
+  {
+    "file": "chapter07.pdf",
+    "sha256": "653bbbaa56cb5fdb982f89c90f950fcb75650bb94efc09c5a3ed4bc61a43e094",
+    "pages": [
+      {
+        "page": 1,
+        "chars": 641,
+        "outliers": [],
+        "bottom": 581.58
+      },
+      {
+        "page": 2,
+        "chars": 365,
+        "outliers": [],
+        "bottom": 516.42
+      },
+      {
+        "page": 3,
+        "chars": 406,
+        "outliers": [],
+        "bottom": 546.4
+      },
+      {
+        "page": 4,
+        "chars": 1075,
+        "outliers": [],
+        "bottom": 616.88
+      },
+      {
+        "page": 5,
+        "chars": 1067,
+        "outliers": [],
+        "bottom": 620.08
+      },
+      {
+        "page": 6,
+        "chars": 891,
+        "outliers": [],
+        "bottom": 616.24
+      },
+      {
+        "page": 7,
+        "chars": 402,
+        "outliers": [],
+        "bottom": 516.52
+      },
+      {
+        "page": 8,
+        "chars": 547,
+        "outliers": [],
+        "bottom": 385.68
+      },
+      {
+        "page": 9,
+        "chars": 585,
+        "outliers": [],
+        "bottom": 420.77
+      },
+      {
+        "page": 10,
+        "chars": 648,
+        "outliers": [],
+        "bottom": 616.13
+      },
+      {
+        "page": 11,
+        "chars": 977,
+        "outliers": [],
+        "bottom": 590.44
+      },
+      {
+        "page": 12,
+        "chars": 889,
+        "outliers": [],
+        "bottom": 583.71
+      },
+      {
+        "page": 13,
+        "chars": 779,
+        "outliers": [],
+        "bottom": 568.35
+      },
+      {
+        "page": 14,
+        "chars": 915,
+        "outliers": [],
+        "bottom": 612.28
+      },
+      {
+        "page": 15,
+        "chars": 1031,
+        "outliers": [],
+        "bottom": 594.64
+      },
+      {
+        "page": 16,
+        "chars": 800,
+        "outliers": [],
+        "bottom": 606.88
+      },
+      {
+        "page": 17,
+        "chars": 347,
+        "outliers": [],
+        "bottom": 606.15
+      },
+      {
+        "page": 18,
+        "chars": 869,
+        "outliers": [],
+        "bottom": 557.92
+      },
+      {
+        "page": 19,
+        "chars": 929,
+        "outliers": [],
+        "bottom": 600.87
+      },
+      {
+        "page": 20,
+        "chars": 947,
+        "outliers": [],
+        "bottom": 591.4
+      },
+      {
+        "page": 21,
+        "chars": 711,
+        "outliers": [],
+        "bottom": 475.92
+      },
+      {
+        "page": 22,
+        "chars": 449,
+        "outliers": [],
+        "bottom": 592.96
+      },
+      {
+        "page": 23,
+        "chars": 697,
+        "outliers": [],
+        "bottom": 583.08
+      },
+      {
+        "page": 24,
+        "chars": 625,
+        "outliers": [],
+        "bottom": 386.91
+      },
+      {
+        "page": 25,
+        "chars": 736,
+        "outliers": [],
+        "bottom": 599.12
+      },
+      {
+        "page": 26,
+        "chars": 916,
+        "outliers": [],
+        "bottom": 589.14
+      },
+      {
+        "page": 27,
+        "chars": 700,
+        "outliers": [],
+        "bottom": 514.48
+      },
+      {
+        "page": 28,
+        "chars": 865,
+        "outliers": [],
+        "bottom": 585.03
+      },
+      {
+        "page": 29,
+        "chars": 607,
+        "outliers": [],
+        "bottom": 446.55
+      },
+      {
+        "page": 30,
+        "chars": 503,
+        "outliers": [],
+        "bottom": 372.03
+      },
+      {
+        "page": 31,
+        "chars": 633,
+        "outliers": [],
+        "bottom": 605.15
+      },
+      {
+        "page": 32,
+        "chars": 459,
+        "outliers": [],
+        "bottom": 580.88
+      },
+      {
+        "page": 33,
+        "chars": 802,
+        "outliers": [],
+        "bottom": 570.16
+      },
+      {
+        "page": 34,
+        "chars": 645,
+        "outliers": [],
+        "bottom": 596.43
+      },
+      {
+        "page": 35,
+        "chars": 616,
+        "outliers": [],
+        "bottom": 581.1
+      }
+    ]
+  },
+  {
+    "file": "chapter08.pdf",
+    "sha256": "2513071174b0a746dda8a4ddd8748e3c69706405bcae7a61803d712c2c39991c",
+    "pages": [
+      {
+        "page": 1,
+        "chars": 649,
+        "outliers": [],
+        "bottom": 588.06
+      },
+      {
+        "page": 2,
+        "chars": 544,
+        "outliers": [],
+        "bottom": 597.3
+      },
+      {
+        "page": 3,
+        "chars": 337,
+        "outliers": [],
+        "bottom": 367.69
+      },
+      {
+        "page": 4,
+        "chars": 475,
+        "outliers": [],
+        "bottom": 586.88
+      },
+      {
+        "page": 5,
+        "chars": 764,
+        "outliers": [],
+        "bottom": 577.76
+      },
+      {
+        "page": 6,
+        "chars": 825,
+        "outliers": [],
+        "bottom": 560.56
+      },
+      {
+        "page": 7,
+        "chars": 620,
+        "outliers": [],
+        "bottom": 426.36
+      },
+      {
+        "page": 8,
+        "chars": 691,
+        "outliers": [],
+        "bottom": 609.13
+      },
+      {
+        "page": 9,
+        "chars": 623,
+        "outliers": [],
+        "bottom": 583.98
+      },
+      {
+        "page": 10,
+        "chars": 831,
+        "outliers": [],
+        "bottom": 589.11
+      },
+      {
+        "page": 11,
+        "chars": 847,
+        "outliers": [],
+        "bottom": 604.6
+      },
+      {
+        "page": 12,
+        "chars": 645,
+        "outliers": [],
+        "bottom": 541.98
+      },
+      {
+        "page": 13,
+        "chars": 574,
+        "outliers": [],
+        "bottom": 453.64
+      },
+      {
+        "page": 14,
+        "chars": 602,
+        "outliers": [],
+        "bottom": 592.69
+      },
+      {
+        "page": 15,
+        "chars": 802,
+        "outliers": [],
+        "bottom": 540.52
+      },
+      {
+        "page": 16,
+        "chars": 721,
+        "outliers": [],
+        "bottom": 477.97
+      },
+      {
+        "page": 17,
+        "chars": 752,
+        "outliers": [],
+        "bottom": 569.68
+      },
+      {
+        "page": 18,
+        "chars": 260,
+        "outliers": [],
+        "bottom": 590.8
+      },
+      {
+        "page": 19,
+        "chars": 744,
+        "outliers": [],
+        "bottom": 504.99
+      },
+      {
+        "page": 20,
+        "chars": 301,
+        "outliers": [],
+        "bottom": 396.85
+      },
+      {
+        "page": 21,
+        "chars": 478,
+        "outliers": [],
+        "bottom": 564.04
+      },
+      {
+        "page": 22,
+        "chars": 543,
+        "outliers": [],
+        "bottom": 410.52
+      },
+      {
+        "page": 23,
+        "chars": 935,
+        "outliers": [],
+        "bottom": 613.28
+      },
+      {
+        "page": 24,
+        "chars": 669,
+        "outliers": [],
+        "bottom": 591.28
+      },
+      {
+        "page": 25,
+        "chars": 813,
+        "outliers": [],
+        "bottom": 569.91
+      },
+      {
+        "page": 26,
+        "chars": 885,
+        "outliers": [],
+        "bottom": 618.76
+      },
+      {
+        "page": 27,
+        "chars": 851,
+        "outliers": [],
+        "bottom": 602.56
+      },
+      {
+        "page": 28,
+        "chars": 791,
+        "outliers": [],
+        "bottom": 614.34
+      },
+      {
+        "page": 29,
+        "chars": 824,
+        "outliers": [],
+        "bottom": 602.31
+      },
+      {
+        "page": 30,
+        "chars": 620,
+        "outliers": [],
+        "bottom": 563.31
+      },
+      {
+        "page": 31,
+        "chars": 499,
+        "outliers": [],
+        "bottom": 582.91
+      },
+      {
+        "page": 32,
+        "chars": 839,
+        "outliers": [],
+        "bottom": 618.9
+      },
+      {
+        "page": 33,
+        "chars": 640,
+        "outliers": [],
+        "bottom": 560.32
+      },
+      {
+        "page": 34,
+        "chars": 625,
+        "outliers": [],
+        "bottom": 577.47
+      },
+      {
+        "page": 35,
+        "chars": 638,
+        "outliers": [],
+        "bottom": 606.39
+      },
+      {
+        "page": 36,
+        "chars": 646,
+        "outliers": [],
+        "bottom": 604.02
+      }
+    ]
+  },
+  {
+    "file": "chapter09.pdf",
+    "sha256": "a68771c554967b187ba09750e53e1e79d0108e60c79c3d2083a4c9ab1a305d41",
+    "pages": [
+      {
+        "page": 1,
+        "chars": 646,
+        "outliers": [],
+        "bottom": 609.9
+      },
+      {
+        "page": 2,
+        "chars": 268,
+        "outliers": [],
+        "bottom": 405.86
+      },
+      {
+        "page": 3,
+        "chars": 516,
+        "outliers": [],
+        "bottom": 618.42
+      },
+      {
+        "page": 4,
+        "chars": 662,
+        "outliers": [],
+        "bottom": 559.6
+      },
+      {
+        "page": 5,
+        "chars": 845,
+        "outliers": [],
+        "bottom": 619.24
+      },
+      {
+        "page": 6,
+        "chars": 812,
+        "outliers": [],
+        "bottom": 604.36
+      },
+      {
+        "page": 7,
+        "chars": 743,
+        "outliers": [],
+        "bottom": 483.75
+      },
+      {
+        "page": 8,
+        "chars": 555,
+        "outliers": [],
+        "bottom": 518.59
+      },
+      {
+        "page": 9,
+        "chars": 541,
+        "outliers": [],
+        "bottom": 548.67
+      },
+      {
+        "page": 10,
+        "chars": 645,
+        "outliers": [],
+        "bottom": 465.73
+      },
+      {
+        "page": 11,
+        "chars": 722,
+        "outliers": [],
+        "bottom": 485.45
+      },
+      {
+        "page": 12,
+        "chars": 742,
+        "outliers": [],
+        "bottom": 562.51
+      },
+      {
+        "page": 13,
+        "chars": 576,
+        "outliers": [],
+        "bottom": 489.73
+      },
+      {
+        "page": 14,
+        "chars": 397,
+        "outliers": [],
+        "bottom": 599.8
+      },
+      {
+        "page": 15,
+        "chars": 668,
+        "outliers": [],
+        "bottom": 449.64
+      },
+      {
+        "page": 16,
+        "chars": 676,
+        "outliers": [],
+        "bottom": 478.23
+      },
+      {
+        "page": 17,
+        "chars": 694,
+        "outliers": [],
+        "bottom": 516.4
+      },
+      {
+        "page": 18,
+        "chars": 622,
+        "outliers": [],
+        "bottom": 440.14
+      },
+      {
+        "page": 19,
+        "chars": 723,
+        "outliers": [],
+        "bottom": 531.39
+      },
+      {
+        "page": 20,
+        "chars": 919,
+        "outliers": [],
+        "bottom": 596.56
+      },
+      {
+        "page": 21,
+        "chars": 665,
+        "outliers": [],
+        "bottom": 574.36
+      },
+      {
+        "page": 22,
+        "chars": 731,
+        "outliers": [],
+        "bottom": 587.12
+      },
+      {
+        "page": 23,
+        "chars": 633,
+        "outliers": [],
+        "bottom": 572.68
+      },
+      {
+        "page": 24,
+        "chars": 798,
+        "outliers": [],
+        "bottom": 569.46
+      },
+      {
+        "page": 25,
+        "chars": 516,
+        "outliers": [],
+        "bottom": 605.12
+      },
+      {
+        "page": 26,
+        "chars": 940,
+        "outliers": [],
+        "bottom": 616.64
+      },
+      {
+        "page": 27,
+        "chars": 625,
+        "outliers": [],
+        "bottom": 589.95
+      },
+      {
+        "page": 28,
+        "chars": 889,
+        "outliers": [],
+        "bottom": 588.87
+      },
+      {
+        "page": 29,
+        "chars": 790,
+        "outliers": [],
+        "bottom": 591.88
+      },
+      {
+        "page": 30,
+        "chars": 696,
+        "outliers": [],
+        "bottom": 523.26
+      },
+      {
+        "page": 31,
+        "chars": 555,
+        "outliers": [],
+        "bottom": 397.23
+      },
+      {
+        "page": 32,
+        "chars": 669,
+        "outliers": [],
+        "bottom": 578.7
+      },
+      {
+        "page": 33,
+        "chars": 688,
+        "outliers": [],
+        "bottom": 606.03
+      },
+      {
+        "page": 34,
+        "chars": 900,
+        "outliers": [],
+        "bottom": 590.24
+      },
+      {
+        "page": 35,
+        "chars": 662,
+        "outliers": [],
+        "bottom": 586.36
+      },
+      {
+        "page": 36,
+        "chars": 422,
+        "outliers": [],
+        "bottom": 582.15
+      },
+      {
+        "page": 37,
+        "chars": 742,
+        "outliers": [],
+        "bottom": 531.39
+      },
+      {
+        "page": 38,
+        "chars": 724,
+        "outliers": [],
+        "bottom": 587.56
+      },
+      {
+        "page": 39,
+        "chars": 583,
+        "outliers": [],
+        "bottom": 617.68
+      },
+      {
+        "page": 40,
+        "chars": 597,
+        "outliers": [],
+        "bottom": 531.55
+      },
+      {
+        "page": 41,
+        "chars": 223,
+        "outliers": [],
+        "bottom": 257.65
+      }
+    ]
+  },
+  {
+    "file": "chapter10.pdf",
+    "sha256": "24a5dcadf0356e01f8cf2761ddb267fdee6f85ca3898243ca0308f33885f64eb",
+    "pages": [
+      {
+        "page": 1,
+        "chars": 559,
+        "outliers": [],
+        "bottom": 554.2
+      },
+      {
+        "page": 2,
+        "chars": 399,
+        "outliers": [],
+        "bottom": 508.11
+      },
+      {
+        "page": 3,
+        "chars": 498,
+        "outliers": [],
+        "bottom": 395.86
+      },
+      {
+        "page": 4,
+        "chars": 796,
+        "outliers": [],
+        "bottom": 620.56
+      },
+      {
+        "page": 5,
+        "chars": 465,
+        "outliers": [],
+        "bottom": 597.48
+      },
+      {
+        "page": 6,
+        "chars": 708,
+        "outliers": [],
+        "bottom": 557.07
+      },
+      {
+        "page": 7,
+        "chars": 251,
+        "outliers": [],
+        "bottom": 584.28
+      },
+      {
+        "page": 8,
+        "chars": 795,
+        "outliers": [],
+        "bottom": 535.86
+      },
+      {
+        "page": 9,
+        "chars": 753,
+        "outliers": [],
+        "bottom": 524.24
+      },
+      {
+        "page": 10,
+        "chars": 628,
+        "outliers": [],
+        "bottom": 594.49
+      },
+      {
+        "page": 11,
+        "chars": 398,
+        "outliers": [],
+        "bottom": 522.16
+      },
+      {
+        "page": 12,
+        "chars": 951,
+        "outliers": [],
+        "bottom": 598.04
+      },
+      {
+        "page": 13,
+        "chars": 713,
+        "outliers": [],
+        "bottom": 559.51
+      },
+      {
+        "page": 14,
+        "chars": 614,
+        "outliers": [],
+        "bottom": 522.13
+      },
+      {
+        "page": 15,
+        "chars": 632,
+        "outliers": [],
+        "bottom": 568.02
+      },
+      {
+        "page": 16,
+        "chars": 838,
+        "outliers": [],
+        "bottom": 562.24
+      },
+      {
+        "page": 17,
+        "chars": 779,
+        "outliers": [],
+        "bottom": 545.96
+      },
+      {
+        "page": 18,
+        "chars": 515,
+        "outliers": [],
+        "bottom": 514.14
+      },
+      {
+        "page": 19,
+        "chars": 666,
+        "outliers": [],
+        "bottom": 580.87
+      },
+      {
+        "page": 20,
+        "chars": 583,
+        "outliers": [],
+        "bottom": 471.97
+      },
+      {
+        "page": 21,
+        "chars": 517,
+        "outliers": [],
+        "bottom": 523.15
+      },
+      {
+        "page": 22,
+        "chars": 266,
+        "outliers": [],
+        "bottom": 323.98
+      }
+    ]
+  },
+  {
+    "file": "chapter11.pdf",
+    "sha256": "180206f13c8197f70145acccebf30b815184a842077e5b9e15f773ecc6f581c9",
+    "pages": [
+      {
+        "page": 1,
+        "chars": 496,
+        "outliers": [],
+        "bottom": 513.25
+      },
+      {
+        "page": 2,
+        "chars": 415,
+        "outliers": [],
+        "bottom": 544.75
+      },
+      {
+        "page": 3,
+        "chars": 408,
+        "outliers": [],
+        "bottom": 532.36
+      },
+      {
+        "page": 4,
+        "chars": 777,
+        "outliers": [],
+        "bottom": 560.32
+      },
+      {
+        "page": 5,
+        "chars": 794,
+        "outliers": [],
+        "bottom": 585.4
+      },
+      {
+        "page": 6,
+        "chars": 671,
+        "outliers": [],
+        "bottom": 616.59
+      },
+      {
+        "page": 7,
+        "chars": 597,
+        "outliers": [],
+        "bottom": 621.12
+      },
+      {
+        "page": 8,
+        "chars": 850,
+        "outliers": [],
+        "bottom": 610.86
+      },
+      {
+        "page": 9,
+        "chars": 833,
+        "outliers": [],
+        "bottom": 587.92
+      },
+      {
+        "page": 10,
+        "chars": 699,
+        "outliers": [],
+        "bottom": 593.91
+      },
+      {
+        "page": 11,
+        "chars": 592,
+        "outliers": [],
+        "bottom": 530.55
+      },
+      {
+        "page": 12,
+        "chars": 564,
+        "outliers": [],
+        "bottom": 613.95
+      },
+      {
+        "page": 13,
+        "chars": 676,
+        "outliers": [],
+        "bottom": 502.92
+      },
+      {
+        "page": 14,
+        "chars": 593,
+        "outliers": [],
+        "bottom": 599.44
+      },
+      {
+        "page": 15,
+        "chars": 354,
+        "outliers": [],
+        "bottom": 507.79
+      },
+      {
+        "page": 16,
+        "chars": 494,
+        "outliers": [],
+        "bottom": 575.56
+      },
+      {
+        "page": 17,
+        "chars": 468,
+        "outliers": [],
+        "bottom": 472.69
+      },
+      {
+        "page": 18,
+        "chars": 1063,
+        "outliers": [],
+        "bottom": 595.24
+      },
+      {
+        "page": 19,
+        "chars": 644,
+        "outliers": [],
+        "bottom": 589.58
+      },
+      {
+        "page": 20,
+        "chars": 729,
+        "outliers": [],
+        "bottom": 569.46
+      },
+      {
+        "page": 21,
+        "chars": 518,
+        "outliers": [],
+        "bottom": 553.15
+      },
+      {
+        "page": 22,
+        "chars": 338,
+        "outliers": [],
+        "bottom": 352.9
+      }
+    ]
+  },
+  {
+    "file": "chapter12.pdf",
+    "sha256": "a79403c9ad3d93b7bf8c79b3f4d32b340de1b8ece558d0653bdc51b35829f456",
+    "pages": [
+      {
+        "page": 1,
+        "chars": 522,
+        "outliers": [],
+        "bottom": 494.05
+      },
+      {
+        "page": 2,
+        "chars": 275,
+        "outliers": [],
+        "bottom": 554.44
+      },
+      {
+        "page": 3,
+        "chars": 509,
+        "outliers": [],
+        "bottom": 584.2
+      },
+      {
+        "page": 4,
+        "chars": 618,
+        "outliers": [],
+        "bottom": 587.94
+      },
+      {
+        "page": 5,
+        "chars": 596,
+        "outliers": [],
+        "bottom": 458.53
+      },
+      {
+        "page": 6,
+        "chars": 883,
+        "outliers": [],
+        "bottom": 614.08
+      },
+      {
+        "page": 7,
+        "chars": 651,
+        "outliers": [],
+        "bottom": 593.68
+      },
+      {
+        "page": 8,
+        "chars": 627,
+        "outliers": [],
+        "bottom": 463.33
+      },
+      {
+        "page": 9,
+        "chars": 577,
+        "outliers": [],
+        "bottom": 595.96
+      },
+      {
+        "page": 10,
+        "chars": 697,
+        "outliers": [],
+        "bottom": 483.87
+      },
+      {
+        "page": 11,
+        "chars": 936,
+        "outliers": [],
+        "bottom": 567.04
+      },
+      {
+        "page": 12,
+        "chars": 603,
+        "outliers": [],
+        "bottom": 585.88
+      },
+      {
+        "page": 13,
+        "chars": 858,
+        "outliers": [],
+        "bottom": 573.64
+      },
+      {
+        "page": 14,
+        "chars": 885,
+        "outliers": [],
+        "bottom": 603.43
+      },
+      {
+        "page": 15,
+        "chars": 802,
+        "outliers": [],
+        "bottom": 553.59
+      },
+      {
+        "page": 16,
+        "chars": 294,
+        "outliers": [],
+        "bottom": 236.98
+      },
+      {
+        "page": 17,
+        "chars": 869,
+        "outliers": [],
+        "bottom": 562.75
+      },
+      {
+        "page": 18,
+        "chars": 388,
+        "outliers": [],
+        "bottom": 565.35
+      },
+      {
+        "page": 19,
+        "chars": 838,
+        "outliers": [],
+        "bottom": 585.63
+      },
+      {
+        "page": 20,
+        "chars": 874,
+        "outliers": [],
+        "bottom": 584.19
+      },
+      {
+        "page": 21,
+        "chars": 571,
+        "outliers": [],
+        "bottom": 425.77
+      },
+      {
+        "page": 22,
+        "chars": 941,
+        "outliers": [],
+        "bottom": 571.95
+      },
+      {
+        "page": 23,
+        "chars": 725,
+        "outliers": [],
+        "bottom": 595.0
+      },
+      {
+        "page": 24,
+        "chars": 609,
+        "outliers": [],
+        "bottom": 553.62
+      },
+      {
+        "page": 25,
+        "chars": 948,
+        "outliers": [],
+        "bottom": 587.19
+      },
+      {
+        "page": 26,
+        "chars": 763,
+        "outliers": [],
+        "bottom": 600.03
+      },
+      {
+        "page": 27,
+        "chars": 799,
+        "outliers": [],
+        "bottom": 575.5
+      },
+      {
+        "page": 28,
+        "chars": 532,
+        "outliers": [],
+        "bottom": 604.03
+      },
+      {
+        "page": 29,
+        "chars": 433,
+        "outliers": [],
+        "bottom": 462.73
+      }
+    ]
+  },
+  {
+    "file": "chapter13.pdf",
+    "sha256": "8e49d991b52f42893c6fc5877f4ecc59b6eefbfe1ec0f0aa1c9d0ac72cf6bbf1",
+    "pages": [
+      {
+        "page": 1,
+        "chars": 511,
+        "outliers": [],
+        "bottom": 494.04
+      },
+      {
+        "page": 2,
+        "chars": 480,
+        "outliers": [],
+        "bottom": 556.12
+      },
+      {
+        "page": 3,
+        "chars": 501,
+        "outliers": [],
+        "bottom": 599.92
+      },
+      {
+        "page": 4,
+        "chars": 651,
+        "outliers": [],
+        "bottom": 562.35
+      },
+      {
+        "page": 5,
+        "chars": 796,
+        "outliers": [],
+        "bottom": 604.52
+      },
+      {
+        "page": 6,
+        "chars": 620,
+        "outliers": [],
+        "bottom": 576.21
+      },
+      {
+        "page": 7,
+        "chars": 623,
+        "outliers": [],
+        "bottom": 557.8
+      },
+      {
+        "page": 8,
+        "chars": 599,
+        "outliers": [],
+        "bottom": 604.42
+      },
+      {
+        "page": 9,
+        "chars": 661,
+        "outliers": [],
+        "bottom": 562.84
+      },
+      {
+        "page": 10,
+        "chars": 615,
+        "outliers": [],
+        "bottom": 582.04
+      },
+      {
+        "page": 11,
+        "chars": 604,
+        "outliers": [],
+        "bottom": 540.15
+      },
+      {
+        "page": 12,
+        "chars": 680,
+        "outliers": [],
+        "bottom": 523.63
+      },
+      {
+        "page": 13,
+        "chars": 554,
+        "outliers": [],
+        "bottom": 600.46
+      },
+      {
+        "page": 14,
+        "chars": 228,
+        "outliers": [],
+        "bottom": 373.44
+      },
+      {
+        "page": 15,
+        "chars": 947,
+        "outliers": [],
+        "bottom": 595.83
+      },
+      {
+        "page": 16,
+        "chars": 830,
+        "outliers": [],
+        "bottom": 522.46
+      },
+      {
+        "page": 17,
+        "chars": 467,
+        "outliers": [],
+        "bottom": 594.34
+      },
+      {
+        "page": 18,
+        "chars": 761,
+        "outliers": [],
+        "bottom": 489.37
+      },
+      {
+        "page": 19,
+        "chars": 586,
+        "outliers": [],
+        "bottom": 394.95
+      },
+      {
+        "page": 20,
+        "chars": 817,
+        "outliers": [],
+        "bottom": 569.32
+      },
+      {
+        "page": 21,
+        "chars": 607,
+        "outliers": [],
+        "bottom": 509.16
+      },
+      {
+        "page": 22,
+        "chars": 782,
+        "outliers": [],
+        "bottom": 603.39
+      },
+      {
+        "page": 23,
+        "chars": 544,
+        "outliers": [],
+        "bottom": 553.0
+      },
+      {
+        "page": 24,
+        "chars": 639,
+        "outliers": [],
+        "bottom": 577.36
+      },
+      {
+        "page": 25,
+        "chars": 544,
+        "outliers": [],
+        "bottom": 552.04
+      }
+    ]
+  },
+  {
+    "file": "references.pdf",
+    "sha256": "26ab257222ebfc49a91697c04c8c4bc0c731da52645ea385ba509bec04118114",
+    "pages": [
+      {
+        "page": 1,
+        "chars": 936,
+        "outliers": [],
+        "bottom": 601.05
+      },
+      {
+        "page": 2,
+        "chars": 1121,
+        "outliers": [],
+        "bottom": 607.65
+      },
+      {
+        "page": 3,
+        "chars": 1163,
+        "outliers": [],
+        "bottom": 589.65
+      },
+      {
+        "page": 4,
+        "chars": 1167,
+        "outliers": [],
+        "bottom": 605.49
+      },
+      {
+        "page": 5,
+        "chars": 1051,
+        "outliers": [],
+        "bottom": 604.5
+      },
+      {
+        "page": 6,
+        "chars": 1135,
+        "outliers": [],
+        "bottom": 589.65
+      },
+      {
+        "page": 7,
+        "chars": 925,
+        "outliers": [],
+        "bottom": 572.82
+      },
+      {
+        "page": 8,
+        "chars": 1187,
+        "outliers": [],
+        "bottom": 619.26
+      },
+      {
+        "page": 9,
+        "chars": 971,
+        "outliers": [],
+        "bottom": 587.7
+      },
+      {
+        "page": 10,
+        "chars": 936,
+        "outliers": [],
+        "bottom": 589.6
+      },
+      {
+        "page": 11,
+        "chars": 955,
+        "outliers": [],
+        "bottom": 591.81
+      },
+      {
+        "page": 12,
+        "chars": 997,
+        "outliers": [],
+        "bottom": 607.65
+      }
+    ]
+  }
+]

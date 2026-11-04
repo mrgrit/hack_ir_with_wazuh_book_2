@@ -1,0 +1,4 @@
+grep -n -E 'logall|log_alert_level' /var/ossec/etc/ossec.conf
+grep -n -A 5 -B 3 archives /etc/filebeat/filebeat.yml
+ls -l /var/ossec/logs/archives/archives.json
+exit

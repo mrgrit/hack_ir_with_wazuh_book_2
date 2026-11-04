@@ -1,0 +1,58 @@
+[
+  {
+    "id": "CA-01",
+    "file": "CA-01.txt",
+    "where": "Windows PC · PowerShell · 내려받은 저장소 루트",
+    "section": "J  보존 기록을 로컬에서 읽기",
+    "input": "Test-Path .\\examples\\rev01\\records\\manifest.json\n$manifest = Get-Content `\n  .\\examples\\rev01\\records\\manifest.json `\n  -Raw -Encoding UTF8 | ConvertFrom-Json\n$manifest.files | Format-Table file,returned"
+  },
+  {
+    "id": "CA-02",
+    "file": "CA-02.txt",
+    "where": "Windows PC · PowerShell · 같은 저장소 루트",
+    "section": "J  보존 기록을 로컬에서 읽기",
+    "input": "Get-FileHash .\\examples\\rev01\\records\\chapter01.json `\n  -Algorithm SHA256 | Format-List\n$manifest.files | Where-Object file -eq 'chapter01.json' |\n  Format-List file,sha256"
+  },
+  {
+    "id": "CA-03",
+    "file": "CA-03.txt",
+    "where": "Windows PC · PowerShell · 같은 저장소 루트",
+    "section": "J  보존 기록을 로컬에서 읽기",
+    "input": "$bundle = Get-Content `\n  .\\examples\\rev01\\records\\chapter01.json `\n  -Raw -Encoding UTF8 | ConvertFrom-Json\n$case = $bundle.cases |\n  Where-Object case -eq 'original-alert-fields'\n$case.records | ForEach-Object {\n  $_.rule | Format-List\n  $_.data.win.system | Format-List\n  $_.data.win.eventdata | Format-List\n}"
+  },
+  {
+    "id": "CA-04",
+    "file": "CA-04.txt",
+    "where": "Windows PC · PowerShell · 같은 저장소 루트",
+    "section": "J  보존 기록을 로컬에서 읽기",
+    "input": "$bundle = Get-Content `\n  .\\examples\\rev01\\records\\chapter06.json `\n  -Raw -Encoding UTF8 | ConvertFrom-Json\n$bundle.cases | Where-Object {\n  $_.case -like 'ch06-original-*'\n} | Select-Object case,total,returned\n$case = $bundle.cases |\n  Where-Object case -eq 'ch06-original-archives'\n$case.records | ForEach-Object {\n  $_.system | Format-List\n  $_.eventdata | Format-List\n}"
+  },
+  {
+    "id": "QA-01",
+    "file": "QA-01.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "출발지와 자동 대응 필드",
+    "input": "data.srcip:\"192.168.0.108\" OR\ndata.src_ip:\"192.168.0.108\" OR\ndata.win.eventdata.ipAddress:\"192.168.0.108\""
+  },
+  {
+    "id": "QA-02",
+    "file": "QA-02.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "검색 예와 오류 점검",
+    "input": "agent.name:\"windows-user\" AND\ndata.win.system.channel:\"Security\" AND\ndata.win.system.eventID:(\"4624\" OR \"4625\")"
+  },
+  {
+    "id": "QA-03",
+    "file": "QA-03.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "검색 예와 오류 점검",
+    "input": "rule.id:(503 OR 504 OR 506 OR 651 OR 652)"
+  },
+  {
+    "id": "QA-04",
+    "file": "QA-04.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "검색 예와 오류 점검",
+    "input": "synthetic.flag:true AND\n(data.srcip:\"185.220.158.180\" OR\n data.src_ip:\"185.220.158.180\")"
+  }
+]

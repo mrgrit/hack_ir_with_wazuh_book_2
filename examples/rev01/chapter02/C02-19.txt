@@ -1,0 +1,3 @@
+cp -p /root/.config/freerdp/known_hosts2 \
+  /tmp/wazuh-book2-ch02/known_hosts2.before
+ls -l /tmp/wazuh-book2-ch02/known_hosts2.before

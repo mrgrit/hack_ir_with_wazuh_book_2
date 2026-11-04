@@ -1,0 +1,338 @@
+﻿번호,본문 위치,실행 위치,파일
+C01-01,설치 상태와 터미널 준비,kt66 VM · 터미널,chapter01/C01-01.txt
+C01-02,이름과 시각으로 대상 식별하기,Windows 실습 게스트 · 관리자 PowerShell,chapter01/C01-02.txt
+C01-03,이름과 시각으로 대상 식별하기,Windows 실습 게스트 · 관리자 PowerShell,chapter01/C01-03.txt
+C01-04,센서가 준비됐는지 확인하기,Windows 실습 게스트 · 관리자 PowerShell,chapter01/C01-04.txt
+C01-05,이벤트 채널의 준비 상태 읽기,Windows 실습 게스트 · 관리자 PowerShell,chapter01/C01-05.txt
+C01-06,로그온 감사와 보호 상태 읽기,Windows 실습 게스트 · 관리자 PowerShell,chapter01/C01-06.txt
+C01-07,로그온 감사와 보호 상태 읽기,Windows 실습 게스트 · 관리자 PowerShell,chapter01/C01-07.txt
+C01-08,로그온 성공 이벤트 한 건 읽기,Windows 실습 게스트 · 관리자 PowerShell,chapter01/C01-08.txt
+C01-09,원본 XML에서 필드 찾기,Windows 실습 게스트 · 관리자 PowerShell,chapter01/C01-09.txt
+C01-10,Sysmon 프로세스 이벤트 읽기,Windows 실습 게스트 · 관리자 PowerShell,chapter01/C01-10.txt
+C01-11,이름이 비슷한 프로세스 ID 구분하기,Windows 실습 게스트 · 관리자 PowerShell,chapter01/C01-11.txt
+C01-12,1.3  에이전트가 읽는 채널 확인하기,Windows 실습 게스트 · 관리자 PowerShell,chapter01/C01-12.txt
+C01-13,연결 로그와 매니저 상태 확인하기,Windows 실습 게스트 · 관리자 PowerShell,chapter01/C01-13.txt
+C01-14,연결 로그와 매니저 상태 확인하기,kt66 VM · 터미널,chapter01/C01-14.txt
+C01-15,연결 로그와 매니저 상태 확인하기,kt66-siem 컨테이너의 Bash,chapter01/C01-15.txt
+Q01-01,1.5  원본과 Wazuh 대조,Windows PC의 Wazuh Discover 검색창,chapter01/Q01-01.dql
+Q01-02,1.5  원본과 Wazuh 대조,Windows PC의 Wazuh Discover 검색창,chapter01/Q01-02.dql
+Q01-03,기록 번호로 좁혀 대조하기,Windows PC의 Wazuh Discover 검색창,chapter01/Q01-03.dql
+Q01-04,기록 번호로 좁혀 대조하기,Windows PC의 Wazuh Discover 검색창,chapter01/Q01-04.dql
+Q01-05,같은 원본의 수집과 경보를 따로 확인하기,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter01/Q01-05.dql
+C02-01,실습용 계정과 잠금 정책 확인,Windows 실습 게스트 · 관리자 PowerShell,chapter02/C02-01.txt
+C02-02,실습용 계정과 잠금 정책 확인,Windows 실습 게스트 · 관리자 PowerShell,chapter02/C02-02.txt
+C02-03,감사와 RDP 권한 확인,Windows 실습 게스트 · 관리자 PowerShell,chapter02/C02-03.txt
+C02-04,공격자 컨테이너와 도구 준비,kt66 VM · 터미널,chapter02/C02-04.txt
+C02-05,공격자 컨테이너와 도구 준비,kt66-attacker 컨테이너 · Bash,chapter02/C02-05.txt
+C02-06,실습 파일과 시각 마련하기,kt66-attacker 컨테이너 · Bash,chapter02/C02-06.txt
+C02-07,실습 파일과 시각 마련하기,kt66-attacker 컨테이너 · Bash,chapter02/C02-07.txt
+C02-08,실습 파일과 시각 마련하기,Windows 실습 게스트 · 관리자 PowerShell,chapter02/C02-08.txt
+C02-09,2.2  잘못된 암호 입력,kt66-attacker 컨테이너 · Bash,chapter02/C02-09.txt
+C02-10,2.2  잘못된 암호 입력,kt66-attacker 컨테이너 · Bash,chapter02/C02-10.txt
+C02-11,Windows 원본에서 실패 사유 읽기,Windows 실습 게스트 · 관리자 PowerShell,chapter02/C02-11.txt
+Q02-01,Wazuh에서 같은 실패 찾기,Windows PC · Wazuh Discover · DQL,chapter02/Q02-01.dql
+Q02-02,Wazuh에서 같은 실패 찾기,Windows PC · Wazuh Discover · DQL,chapter02/Q02-02.dql
+C02-12,2.3  존재하지 않는 계정,Windows 실습 게스트 · 관리자 PowerShell,chapter02/C02-12.txt
+C02-13,2.3  존재하지 않는 계정,kt66-attacker 컨테이너 · Bash,chapter02/C02-13.txt
+C02-14,2.3  존재하지 않는 계정,kt66-attacker 컨테이너 · Bash,chapter02/C02-14.txt
+Q02-03,계정 부재와 암호 오류 구분,Windows PC · Wazuh Discover · DQL,chapter02/Q02-03.dql
+C02-15,잠금을 만드는 제한된 입력,kt66-attacker 컨테이너 · Bash,chapter02/C02-15.txt
+C02-16,잠금을 만드는 제한된 입력,kt66-attacker 컨테이너 · Bash,chapter02/C02-16.txt
+C02-17,잠금을 만드는 제한된 입력,Windows 실습 게스트 · 관리자 PowerShell,chapter02/C02-17.txt
+Q02-04,잠금 이벤트의 주체와 호출자,Windows PC · Wazuh Discover · DQL,chapter02/Q02-04.dql
+Q02-05,필드 이름만으로 호출자를 판단하지 않기,Windows PC · Wazuh Discover · DQL,chapter02/Q02-05.dql
+C02-18,2.5  원격 대화형 로그온,kt66-attacker 컨테이너 · Bash,chapter02/C02-18.txt
+C02-19,2.5  원격 대화형 로그온,kt66-attacker 컨테이너 · Bash,chapter02/C02-19.txt
+C02-20,시간을 제한한 RDP 입력,kt66-attacker 컨테이너 · Bash,chapter02/C02-20.txt
+C02-21,시간을 제한한 RDP 입력,Windows 실습 게스트 · 관리자 PowerShell,chapter02/C02-21.txt
+Q02-06,Wazuh에서 원격 로그온 확인,Windows PC · Wazuh Discover · DQL,chapter02/Q02-06.dql
+Q02-08,로그온 뒤 같은 세션의 종료 확인,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter02/Q02-08.dql
+C02-22,RDP 세션 원상복구,Windows 실습 게스트 · 관리자 PowerShell,chapter02/C02-22.txt
+C02-23,RDP 세션 원상복구,Windows 실습 게스트 · 관리자 PowerShell,chapter02/C02-23.txt
+Q02-07,2.6  실패·잠금·성공을 시간순으로 연결,Windows PC · Wazuh Discover · DQL,chapter02/Q02-07.dql
+C02-24,목록 파일과 인증서 캐시 원상복구,kt66-attacker 컨테이너 · Bash,chapter02/C02-24.txt
+C02-25,목록 파일과 인증서 캐시 원상복구,kt66-attacker 컨테이너 · Bash,chapter02/C02-25.txt
+C02-25A,목록 파일과 인증서 캐시 원상복구,kt66-attacker 컨테이너 · Bash,chapter02/C02-25A.txt
+C02-26,목록 파일과 인증서 캐시 원상복구,kt66-attacker 컨테이너 · Bash,chapter02/C02-26.txt
+C02-26A,목록 파일과 인증서 캐시 원상복구,kt66-attacker 컨테이너 · Bash,chapter02/C02-26A.txt
+C02-27,목록 파일과 인증서 캐시 원상복구,kt66-attacker 컨테이너 · Bash,chapter02/C02-27.txt
+C03-01,3.1  조사 대상과 선행 상태,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-01.txt
+C03-02,감사 범주와 시작 시각 기록,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-02.txt
+C03-03,감사 범주와 시작 시각 기록,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-03.txt
+C03-04,3.2  NTLM 인증 기록 만들기,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-04.txt
+C03-05,3.2  NTLM 인증 기록 만들기,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-05.txt
+C03-06,Windows 원본과 Wazuh의 NTLM 대조,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-06.txt
+Q03-01,Windows 원본과 Wazuh의 NTLM 대조,Windows PC · Wazuh Discover · DQL,chapter03/Q03-01.dql
+C03-07,인증 방식과 접속 출발지 해석,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-07.txt
+C03-08,LogonUserW 호출 정의 준비,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-08.txt
+C03-09,새 자격증명 토큰 생성과 정리,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-09.txt
+Q03-02,새 자격증명 토큰 생성과 정리,Windows PC · Wazuh Discover · DQL,chapter03/Q03-02.dql
+C03-10,3.3  명시적 자격증명과 접근 거부,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-10.txt
+C03-11,3.3  명시적 자격증명과 접근 거부,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-11.txt
+C03-11A,3.3  명시적 자격증명과 접근 거부,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-11A.txt
+C03-12,4648 수집과 경보 인덱스 구분,kt66 VM · 터미널,chapter03/C03-12.txt
+C03-13,4648 수집과 경보 인덱스 구분,kt66-siem 컨테이너 · Bash,chapter03/C03-13.txt
+Q03-03,archives에서 수행자와 대상 계정 읽기,Windows PC · Wazuh Discover · DQL,chapter03/Q03-03.dql
+C03-14,접근 판단과 공유 연결 원상복구,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-14.txt
+C03-15,3.4  계정과 관리자 그룹,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-15.txt
+C03-16,비활성 계정 생성과 SID 기록,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-16.txt
+C03-17,비활성 계정 생성과 SID 기록,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-17.txt
+C03-18,그룹과 계정 원상복구,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-18.txt
+C03-19,그룹과 계정 원상복구,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-19.txt
+C03-20,계정과 그룹 변경 이벤트 연결,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-20.txt
+Q03-04,계정과 그룹 변경 이벤트 연결,Windows PC · Wazuh Discover · DQL,chapter03/Q03-04.dql
+Q03-05,계정과 그룹 변경 이벤트 연결,Windows PC · Wazuh Discover · DQL,chapter03/Q03-05.dql
+Q03-09,만든 계정이 실제로 사용되었는지 확인,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter03/Q03-09.dql
+C03-21,3.5  감사 정책 변경,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-21.txt
+C03-22,3.5  감사 정책 변경,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-22.txt
+C03-23,4719의 변경 방향 읽기,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-23.txt
+Q03-06,4719의 변경 방향 읽기,Windows PC · Wazuh Discover · DQL,chapter03/Q03-06.dql
+C03-24,감사 변경의 조사와 복구 확인,Windows 실습 게스트 · 관리자 PowerShell,chapter03/C03-24.txt
+Q03-07,3.6  특수 권한 4672와 로그온 연결,Windows PC · Wazuh Discover · DQL,chapter03/Q03-07.dql
+Q03-08,같은 세션의 기록을 함께 찾기,Windows PC · Wazuh Discover · DQL,chapter03/Q03-08.dql
+C04-01,준비된 Windows와 수집 상태 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-01.txt
+C04-02,준비된 Windows와 수집 상태 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-02.txt
+C04-03,관찰 시각과 Wazuh 검색 준비,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-03.txt
+C04-04,4.2  서비스 등록 흔적 만들기,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-04.txt
+C04-05,4.2  서비스 등록 흔적 만들기,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-05.txt
+C04-06,서비스 구성과 실제 상태 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-06.txt
+C04-07,7045와 4697 원본 찾기,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-07.txt
+Q04-01,서비스 설치를 Wazuh에서 읽기,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter04/Q04-01.dql
+Q04-02,등록 수행자를 다른 채널에서 연결하기,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter04/Q04-02.dql
+C04-08,4.3  예약 작업의 조건과 동작,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-08.txt
+C04-09,작업 등록과 XML 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-09.txt
+C04-10,작업 등록과 XML 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-10.txt
+C04-11,작업 실행의 응답과 완료 결과,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-11.txt
+Q04-03,작업 실행의 응답과 완료 결과,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter04/Q04-03.dql
+C04-12,4698의 작업 이름과 수행자,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-12.txt
+Q04-04,4698의 작업 이름과 수행자,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter04/Q04-04.dql
+C04-13,4.4  Run 키에 남는 자동 실행 명령,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-13.txt
+C04-14,Run 값 등록과 재조회,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-14.txt
+C04-15,Run 값 등록과 재조회,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-15.txt
+C04-16,Sysmon 13의 세 가지 경로,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-16.txt
+Q04-05,Run 키 변경과 프로세스 연결,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter04/Q04-05.dql
+Q04-08,Run 값을 쓴 프로세스와 삭제 기록,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter04/Q04-08.dql
+Q04-09,Run 값을 쓴 프로세스와 삭제 기록,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter04/Q04-09.dql
+C04-17,4.5  osquery로 현재 남은 항목 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-17.txt
+C04-18,시작 항목 직접 조회,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-18.txt
+C04-19,예약 작업과 관리자 구성원 조회,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-19.txt
+C04-20,예약 작업과 관리자 구성원 조회,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-20.txt
+C04-21,예약 조회 로그와 Wazuh 결과,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-21.txt
+Q04-06,예약 조회 로그와 Wazuh 결과,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter04/Q04-06.dql
+C04-22,원상복구할 객체 다시 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-22.txt
+C04-23,원상복구할 객체 다시 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-23.txt
+C04-24,삭제 뒤 현재 상태와 기록 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-24.txt
+C04-25,삭제 뒤 현재 상태와 기록 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-25.txt
+Q04-07,삭제 뒤 현재 상태와 기록 확인,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter04/Q04-07.dql
+C04-26,결과가 다를 때의 확인 순서,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter04/C04-26.txt
+C05-01,실습 위치와 센서 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter05/C05-01.txt
+C05-02,실습 위치와 센서 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter05/C05-02.txt
+C05-03,작업 디렉터리와 관찰 시각,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter05/C05-03.txt
+C05-04,작업 디렉터리와 관찰 시각,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter05/C05-04.txt
+C05-05,5.2  인코딩한 PowerShell 명령 실행,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter05/C05-05.txt
+C05-06,5.2  인코딩한 PowerShell 명령 실행,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter05/C05-06.txt
+C05-07,명령줄을 실행하지 않고 복원하기,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter05/C05-07.txt
+C05-08,원본 Sysmon 프로세스 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter05/C05-08.txt
+Q05-01,원본 Sysmon 프로세스 확인,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter05/Q05-01.dql
+Q05-02,명령줄을 조사할 때의 판정 기준,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter05/Q05-02.dql
+C05-09,5.4  4104에서 처리한 코드 읽기,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter05/C05-09.txt
+C05-10,5.4  4104에서 처리한 코드 읽기,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter05/C05-10.txt
+Q05-03,스크립트 블록을 Wazuh에서 대조,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter05/Q05-03.dql
+Q05-04,난독화 해제와 의심 문자열의 한계,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter05/Q05-04.dql
+Q05-05,인코딩한 문구와 4104 연결,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter05/Q05-05.dql
+Q05-12,4104를 실행 프로세스에 연결,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter05/Q05-12.dql
+Q05-13,처리 코드 이후의 파일과 통신 조회,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter05/Q05-13.dql
+C05-11,certutil 입력 파일 준비,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter05/C05-11.txt
+C05-12,문구 파일 복원과 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter05/C05-12.txt
+Q05-06,문구 파일 복원과 확인,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter05/Q05-06.dql
+Q05-07,다운로드와 보안 제품의 결과 연결,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter05/Q05-07.dql
+C05-13,5.6  Office 이름을 가진 부모 프로세스,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter05/C05-13.txt
+C05-14,문구만 출력하는 부모 프로그램 작성,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter05/C05-14.txt
+C05-15,소스 확인과 컴파일,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter05/C05-15.txt
+C05-16,소스 확인과 컴파일,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter05/C05-16.txt
+Q05-08,부모와 자식을 Wazuh에서 찾기,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter05/Q05-08.dql
+Q05-09,프로세스 관계와 문서 유입 경로 조사,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter05/Q05-09.dql
+Q05-10,5.7  검색 조건을 조사 범위로 확장하기,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter05/Q05-10.dql
+Q05-11,정상 도구의 실행 인자로 탐색하기,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter05/Q05-11.dql
+C05-17,5.8  실습 파일 원상복구,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter05/C05-17.txt
+C05-18,5.8  실습 파일 원상복구,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter05/C05-18.txt
+C05-19,최종 상태와 실패 시 점검,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter05/C05-19.txt
+C06-01,실습 환경과 수집 준비,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter06/C06-01.txt
+C06-02,실습 환경과 수집 준비,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter06/C06-02.txt
+C06-03,6.2  LSASS 보호 상태 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter06/C06-03.txt
+C06-04,설정값과 실제 시작 기록 대조,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter06/C06-04.txt
+C06-05,설정값과 실제 시작 기록 대조,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter06/C06-05.txt
+C06-06,기존 LSASS 접근 이벤트 읽기,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter06/C06-06.txt
+Q06-01,기존 LSASS 접근 이벤트 읽기,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter06/Q06-01.dql
+Q06-02,기존 LSASS 접근 이벤트 읽기,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter06/Q06-02.dql
+C06-07,접근 권한과 프로그램의 실제 역할,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter06/C06-07.txt
+Q06-03,LSASS 접근 조사와 대응,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter06/Q06-03.dql
+Q06-10,수집된 원본과 저장된 경보의 직접 비교,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter06/Q06-10.dql
+C06-08,HTTP 요청 전 주소와 시각 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter06/C06-08.txt
+C06-09,세 번의 웹 요청과 응답 읽기,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter06/C06-09.txt
+C06-10,세 번의 웹 요청과 응답 읽기,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter06/C06-10.txt
+C06-11,네트워크 원본과 Wazuh 연결,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter06/C06-11.txt
+Q06-04,네트워크 원본과 Wazuh 연결,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter06/Q06-04.dql
+Q06-05,연결 방향과 출발지 포트 해석,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter06/Q06-05.dql
+Q06-11,HTTP 연결을 생성 명령과 연결,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter06/Q06-11.dql
+Q06-06,외부 연결 후보의 조사와 대응,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter06/Q06-06.dql
+C06-12,정상 이름과 실패할 이름 준비,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter06/C06-12.txt
+C06-13,DNS 응답 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter06/C06-13.txt
+C06-14,DNS 응답 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter06/C06-14.txt
+C06-15,DNS 응답 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter06/C06-15.txt
+Q06-07,성공한 질의를 Wazuh에서 확인,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter06/Q06-07.dql
+Q06-08,실패한 질의도 결과로 읽기,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter06/Q06-08.dql
+Q06-09,원전 도메인 검색의 범위 조정,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter06/Q06-09.dql
+Q06-12,DNS 질의 프로세스와 후속 연결 조회,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter06/Q06-12.dql
+Q06-13,DNS 질의 프로세스와 후속 연결 조회,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter06/Q06-13.dql
+C06-16,원상복구와 완료 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter06/C06-16.txt
+C07-01,실습 환경과 조회 권한 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter07/C07-01.txt
+C07-02,채널의 보존 설정과 수집 설정,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter07/C07-02.txt
+C07-03,채널의 보존 설정과 수집 설정,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter07/C07-03.txt
+C07-04,기존 삭제 이벤트 조회,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter07/C07-04.txt
+C07-05,기존 삭제 이벤트 조회,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter07/C07-05.txt
+Q07-01,삭제 이벤트의 Wazuh 검색,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter07/Q07-01.dql
+C07-06,삭제 대상과 수행 주체 읽기,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter07/C07-06.txt
+Q07-02,삭제 도구와 승인 작업의 대조,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter07/Q07-02.dql
+C07-07,7.3  남은 로그의 사본 보존,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter07/C07-07.txt
+C07-08,7.3  남은 로그의 사본 보존,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter07/C07-08.txt
+C07-09,사본의 크기와 해시 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter07/C07-09.txt
+C07-10,사본의 크기와 해시 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter07/C07-10.txt
+C07-11,사본의 크기와 해시 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter07/C07-11.txt
+C07-12,기존 Defender 이벤트와 원본 필드,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter07/C07-12.txt
+C07-13,기존 Defender 이벤트와 원본 필드,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter07/C07-13.txt
+Q07-03,Defender의 Wazuh 경보 검색,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter07/Q07-03.dql
+Q07-04,Defender의 Wazuh 경보 검색,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter07/Q07-04.dql
+Q07-05,공백이 있는 필드 이름의 검색,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter07/Q07-05.dql
+Q07-06,대상 경로와 관련 프로세스,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter07/Q07-06.dql
+C07-14,격리 결과와 현재 잔존 상태,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter07/C07-14.txt
+C07-15,격리 결과와 현재 잔존 상태,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter07/C07-15.txt
+Q07-07,조치 실패의 조사와 대응,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter07/Q07-07.dql
+Q07-09,탐지와 조치를 연결한 조사 메모,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter07/Q07-09.dql
+C07-16,7.5  보호 변경과 현재 상태 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter07/C07-16.txt
+C07-17,7.5  보호 변경과 현재 상태 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter07/C07-17.txt
+Q07-08,보호 설정 변경의 전후 관계,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter07/Q07-08.dql
+C07-18,원상복구와 완료 확인,Windows 실습 게스트 · 관리자 Windows PowerShell,chapter07/C07-18.txt
+C08-01,실습 환경과 선행 조건,Windows PC · PowerShell,chapter08/C08-01.txt
+C08-02,호스트와 수집 준비 확인,kt66 VM · 터미널,chapter08/C08-02.txt
+C08-03,호스트와 수집 준비 확인,kt66 VM · 터미널,chapter08/C08-03.txt
+Q08-01,8.2  높은 심각도의 후보 찾기,Windows PC · Vulnerability Detection · Inventory · DQL,chapter08/Q08-01.dql
+Q08-02,8.2  높은 심각도의 후보 찾기,Windows PC · Vulnerability Detection · Inventory · DQL,chapter08/Q08-02.dql
+Q08-03,공격 조건과 제조사 판단 대조,Windows PC · Vulnerability Detection · Inventory · DQL,chapter08/Q08-03.dql
+C08-04,설치 방식과 갱신 경로 확인,kt66 VM · 터미널,chapter08/C08-04.txt
+Q08-04,경보 이력과 필드 이름,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter08/Q08-04.dql
+Q08-05,8.3  패키지 후보와 특정 CVE,Windows PC · Vulnerability Detection · Inventory · DQL,chapter08/Q08-05.dql
+C08-05,Ubuntu 패키지의 실제 버전 읽기,kt66 VM · 터미널,chapter08/C08-05.txt
+Q08-06,CVE-2024-3094와 xz의 영향 범위,Windows PC · Vulnerability Detection · Inventory · DQL,chapter08/Q08-06.dql
+C08-06,배포판 버전과 갱신 후보 해석,kt66 VM · 터미널,chapter08/C08-06.txt
+Q08-07,실패 항목의 경보 검색,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter08/Q08-07.dql
+Q08-08,실패 항목의 경보 검색,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter08/Q08-08.dql
+Q08-09,검사 ID로 상태의 이력 연결,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter08/Q08-09.dql
+C08-07,SSH의 실제 적용값 조회,kt66 VM · 터미널,chapter08/C08-07.txt
+C08-08,Include와 Match 조건 확인,kt66 VM · 터미널,chapter08/C08-08.txt
+C08-09,설정 파일의 권한과 문법,kt66 VM · 터미널,chapter08/C08-09.txt
+C08-10,설정 파일의 권한과 문법,kt66 VM · 터미널,chapter08/C08-10.txt
+Q08-10,취약점과 SCA의 종결 근거를 작성,Windows PC · Wazuh Discover · wazuh-states-vulnerabilities-* · DQL,chapter08/Q08-10.dql
+C08-11,원상복구와 실습 완료 확인,kt66 VM · 터미널,chapter08/C08-11.txt
+C09-01,웹 컨테이너 접속과 실행 위치,Windows PC · PowerShell,chapter09/C09-01.txt
+C09-02,웹 컨테이너 접속과 실행 위치,kt66 VM · 터미널,chapter09/C09-02.txt
+C09-03,9.2  호스트 이상 경보,kt66-web 컨테이너 · root Bash,chapter09/C09-03.txt
+C09-04,검사 시각과 검색 기간,kt66-web 컨테이너 · root Bash,chapter09/C09-04.txt
+Q09-01,검사 시각과 검색 기간,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter09/Q09-01.dql
+Q09-02,호스트와 경로로 좁히기,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter09/Q09-02.dql
+Q09-03,호스트와 경로로 좁히기,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter09/Q09-03.dql
+C09-05,규칙 이름과 실제 권한 대조,kt66-web 컨테이너 · root Bash,chapter09/C09-05.txt
+Q09-04,은닉 의심 경보의 추가 조사,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter09/Q09-04.dql
+C09-06,은닉 의심 경보의 추가 조사,kt66-web 컨테이너 · root Bash,chapter09/C09-06.txt
+C09-07,관리자 컨테이너에서 설정 확인,kt66-web에서 나와 kt66 Ubuntu VM에서 실행,chapter09/C09-07.txt
+C09-08,관리자 컨테이너에서 설정 확인,kt66-siem 컨테이너 · root Bash,chapter09/C09-08.txt
+C09-09,관리자 컨테이너에서 설정 확인,kt66-siem에서 나와 kt66 Ubuntu VM에서 실행,chapter09/C09-09.txt
+C09-10,EICAR로 파일 유입을 설명하기,kt66-web 컨테이너 · root Bash,chapter09/C09-10.txt
+C09-11,선택 실습의 입력과 파일 확인,kt66-web 컨테이너 · root Bash,chapter09/C09-11.txt
+C09-12,선택 실습의 입력과 파일 확인,kt66-web 컨테이너 · root Bash,chapter09/C09-12.txt
+Q09-05,FIM 경보를 먼저 확인하기,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter09/Q09-05.dql
+Q09-06,VirusTotal 전체 결과와 탐지 결과,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter09/Q09-06.dql
+Q09-07,경로와 해시로 판정을 연결하기,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter09/Q09-07.dql
+Q09-08,미탐지와 조회 실패 구분,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter09/Q09-08.dql
+C09-13,프로세스와 로그 수집 확인,kt66-web 컨테이너 · root Bash,chapter09/C09-13.txt
+Q09-09,ClamAV 경보 검색과 원문,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter09/Q09-09.dql
+Q09-10,한 파일의 탐지로 좁히기,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter09/Q09-10.dql
+C09-14,선택 실습의 직접 검사와 종료 코드,kt66-web 컨테이너 · root Bash,chapter09/C09-14.txt
+C09-15,검사 범위와 문제 확인 순서,kt66-web 컨테이너 · root Bash,chapter09/C09-15.txt
+Q09-12,파일 이름과 원인 경보를 교차 확인,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter09/Q09-12.dql
+C09-16,9.6  선택 실습 파일의 원상복구,kt66-web 컨테이너 · root Bash,chapter09/C09-16.txt
+Q09-11,9.6  선택 실습 파일의 원상복구,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter09/Q09-11.dql
+C09-17,수집 상태와 조사 기록 마무리,kt66-web 컨테이너 · root Bash,chapter09/C09-17.txt
+C10-01,10.1  준비와 실행 위치,Windows PC · PowerShell,chapter10/C10-01.txt
+C10-02,10.1  준비와 실행 위치,kt66 VM · 터미널,chapter10/C10-02.txt
+C10-03,관리자 서버에서 연결 상태 확인,kt66 VM · 터미널,chapter10/C10-03.txt
+C10-04,관리자 서버에서 연결 상태 확인,kt66-siem 컨테이너 · root Bash,chapter10/C10-04.txt
+C10-05,관리자 서버에서 연결 상태 확인,kt66-siem 컨테이너 · root Bash,chapter10/C10-05.txt
+Q10-01,검색 기간과 표 열 구성,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter10/Q10-01.dql
+Q10-02,원전의 fw 단절 사례,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter10/Q10-02.dql
+C10-06,원인 조사와 실패 시 확인 순서,kt66-siem 컨테이너 · root Bash,chapter10/C10-06.txt
+C10-07,원인 조사와 실패 시 확인 순서,"kt66-siem에서 exit 후 kt66 Ubuntu VM, 이어 bastion",chapter10/C10-07.txt
+C10-08,자동 대응 설정을 읽는다,"kt66-bastion에서 exit 후 kt66 Ubuntu VM, 이어 siem",chapter10/C10-08.txt
+C10-09,대상 에이전트의 대응 로그,"kt66-siem에서 exit 후 kt66 Ubuntu VM, 이어 bastion",chapter10/C10-09.txt
+Q10-03,Wazuh의 차단·해제 검색,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter10/Q10-03.dql
+Q10-04,대응 대상과 원인 경보를 연결한다,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter10/Q10-04.dql
+Q10-05,대응 대상과 원인 경보를 연결한다,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter10/Q10-05.dql
+Q10-06,대응 대상과 원인 경보를 연결한다,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter10/Q10-06.dql
+C10-10,대응 대상과 원인 경보를 연결한다,kt66-bastion 컨테이너 · root Bash,chapter10/C10-10.txt
+Q10-07,대응 입력 한 쌍의 조사 결과,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter10/Q10-07.dql
+C10-11,원상복구와 종결,kt66-bastion 컨테이너 · root Bash,chapter10/C10-11.txt
+C11-01,준비와 프로세스 확인,kt66 VM · 터미널,chapter11/C11-01.txt
+C11-02,준비와 프로세스 확인,kt66-ips 컨테이너 · root Bash,chapter11/C11-02.txt
+C11-03,규칙과 수집 파일을 확인한다,kt66-ips 컨테이너 · root Bash,chapter11/C11-03.txt
+C11-04,규칙과 수집 파일을 확인한다,kt66-ips 컨테이너 · root Bash,chapter11/C11-04.txt
+Q11-01,Wazuh에서 Suricata를 찾는다,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter11/Q11-01.dql
+C11-05,Wazuh에서 Suricata를 찾는다,"kt66-ips에서 exit 후 kt66 Ubuntu VM, 이어 siem",chapter11/C11-05.txt
+Q11-02,추가 필터와 누락 점검,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter11/Q11-02.dql
+Q11-03,추가 필터와 누락 점검,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter11/Q11-03.dql
+Q11-04,추가 필터와 누락 점검,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter11/Q11-04.dql
+Q11-05,네트워크와 호스트 기록을 연결한다,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter11/Q11-05.dql
+Q11-06,11.2  ATT&CK로 조사 범위를 정한다,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter11/Q11-06.dql
+Q11-07,MITRE 화면과 원문 경보의 왕복,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter11/Q11-07.dql
+Q11-08,MITRE 화면과 원문 경보의 왕복,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter11/Q11-08.dql
+Q11-09,11.3  일일 관제의 시작,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter11/Q11-09.dql
+Q11-10,고위험 경보에서 낮은 레벨의 원인으로,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter11/Q11-10.dql
+Q11-11,고위험 경보에서 낮은 레벨의 원인으로,Windows PC · Wazuh Discover · wazuh-archives-* · DQL,chapter11/Q11-11.dql
+C12-01,강사 준비: 생성과 적재 경로,kt66 VM · 터미널,chapter12/C12-01.txt
+C12-02,강사 준비: 생성과 적재 경로,kt66 VM · 터미널,chapter12/C12-02.txt
+C12-03,강사 준비: 생성과 적재 경로,kt66 VM · 터미널,chapter12/C12-03.txt
+Q12-01,데이터 확인과 시간 범위 고정,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter12/Q12-01.dql
+Q12-02,12.2  한 IP를 두 필드에서 찾는다,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter12/Q12-02.dql
+Q12-03,Discover에서 건수와 분포 읽기,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter12/Q12-03.dql
+Q12-04,허용·차단 후보를 같은 분모로 비교한다,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter12/Q12-04.dql
+Q12-05,허용·차단 후보를 같은 분모로 비교한다,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter12/Q12-05.dql
+Q12-06,허용·차단 후보를 같은 분모로 비교한다,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter12/Q12-06.dql
+Q12-07,허용·차단 후보를 같은 분모로 비교한다,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter12/Q12-07.dql
+Q12-08,12.3  계정과 호스트로 피벗한다,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter12/Q12-08.dql
+Q12-09,12.3  계정과 호스트로 피벗한다,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter12/Q12-09.dql
+Q12-10,12.3  계정과 호스트로 피벗한다,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter12/Q12-10.dql
+Q12-11,IP가 없는 후속 기록을 보존한다,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter12/Q12-11.dql
+Q12-12,IP가 없는 후속 기록을 보존한다,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter12/Q12-12.dql
+D12-01,12.4  Dev Tools의 요청과 응답,Windows PC · Wazuh · Indexer management → Dev Tools,chapter12/D12-01.http
+D12-02,기간과 전체 문서 수를 고정한다,Windows PC · Wazuh · Indexer management → Dev Tools,chapter12/D12-02.http
+D12-03,한 IP의 집계: 검색 부분,Windows PC · Wazuh · Indexer management → Dev Tools,chapter12/D12-03.http
+D12-04,한 IP의 집계: 요약 부분,Windows PC · Wazuh · Indexer management → Dev Tools,chapter12/D12-04.http
+D12-05,업무외 비율의 계산 기준,Windows PC · Wazuh · Indexer management → Dev Tools,chapter12/D12-05.http
+Q12-13,보존된 한 IP로 집계 결과까지 확인,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter12/Q12-13.dql
+Q12-14,집계에서 원문과 시간 간격으로 돌아가기,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter12/Q12-14.dql
+Q13-01,로그인과 권한 사용의 후보 연결,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter13/Q13-01.dql
+Q13-02,로그인과 권한 사용의 후보 연결,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter13/Q13-02.dql
+Q13-03,13.3  규칙별 가중치를 계산한다,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter13/Q13-03.dql
+D13-01,시간 집계 요청의 범위,Windows PC · Wazuh · Indexer management → Dev Tools,chapter13/D13-01.http
+D13-02,시간 집계 요청의 계산 부분,Windows PC · Wazuh · Indexer management → Dev Tools,chapter13/D13-02.http
+Q13-05,시간 점수의 구성 문서로 되돌아가기,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter13/Q13-05.dql
+Q13-06,시간 점수의 구성 문서로 되돌아가기,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter13/Q13-06.dql
+Q13-07,과거 조회 0건과 신규 주소 판정,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter13/Q13-07.dql
+Q13-04,13.5  정답 라벨로 오류를 평가한다,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,chapter13/Q13-04.dql
+QA-01,출발지와 자동 대응 필드,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,appendix/QA-01.dql
+QA-02,검색 예와 오류 점검,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,appendix/QA-02.dql
+QA-03,검색 예와 오류 점검,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,appendix/QA-03.dql
+QA-04,검색 예와 오류 점검,Windows PC · Wazuh Discover · wazuh-alerts-* · DQL,appendix/QA-04.dql
+CA-01,J  보존 기록을 로컬에서 읽기,Windows PC · PowerShell · 내려받은 저장소 루트,appendix/CA-01.txt
+CA-02,J  보존 기록을 로컬에서 읽기,Windows PC · PowerShell · 같은 저장소 루트,appendix/CA-02.txt
+CA-03,J  보존 기록을 로컬에서 읽기,Windows PC · PowerShell · 같은 저장소 루트,appendix/CA-03.txt
+CA-04,J  보존 기록을 로컬에서 읽기,Windows PC · PowerShell · 같은 저장소 루트,appendix/CA-04.txt

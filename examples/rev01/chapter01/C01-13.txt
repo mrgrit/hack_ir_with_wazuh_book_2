@@ -1,0 +1,2 @@
+Get-Content -LiteralPath "$agentDir\ossec.log" `
+  -Tail 20

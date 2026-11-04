@@ -1,0 +1,2 @@
+net.exe use '\\127.0.0.1\IPC$' /delete
+net.exe use

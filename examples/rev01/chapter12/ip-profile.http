@@ -1,0 +1,31 @@
+GET wazuh-alerts-*/_search
+{
+  "size": 0, "track_total_hits": true,
+  "query": {"bool": {"filter": [
+    {"term": {"synthetic.flag": true}},
+    {"range": {"timestamp": {
+      "gte": "2026-08-01T00:00:00+09:00",
+      "lt": "2026-11-01T00:00:00+09:00"
+    }}},
+    {"bool": {"minimum_should_match": 1,
+      "should": [
+        {"term": {"data.srcip":
+          "185.220.158.180"}},
+        {"term": {"data.src_ip":
+          "185.220.158.180"}}
+      ]}}
+  ]}},
+  "aggs": {
+    "max_level": {"max": {
+      "field": "rule.level"}},
+    "sensors": {"terms": {
+      "field": "agent.name", "size": 50}},
+    "types_estimate": {"cardinality": {
+      "field": "rule.id"}},
+    "days": {"date_histogram": {
+      "field": "timestamp",
+      "calendar_interval": "day",
+      "time_zone": "Asia/Seoul",
+      "min_doc_count": 1}}
+  }
+}

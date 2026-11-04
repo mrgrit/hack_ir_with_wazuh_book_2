@@ -1,0 +1,7 @@
+agent.name:"windows-user"
+AND data.win.system.channel:
+ "Microsoft-Windows-Sysmon/Operational"
+AND data.win.system.eventRecordID:
+ (9407 OR 9451 OR 9454 OR 9455 OR 9461 OR 9462)
+AND timestamp >= "2026-11-03T16:00:00+09:00"
+AND timestamp < "2026-11-03T17:00:00+09:00"

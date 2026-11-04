@@ -1,0 +1,5 @@
+hostname
+whoami.exe
+$PSVersionTable.PSVersion
+Get-Service WazuhSvc,Sysmon64 |
+ Format-Table Name,Status

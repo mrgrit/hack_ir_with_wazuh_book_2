@@ -1,0 +1,14 @@
+@'
+using System.Diagnostics;
+class LabParent {
+  static void Main() {
+    var p = new ProcessStartInfo();
+    p.FileName = @"C:\Windows\System32\cmd.exe";
+    p.Arguments = "/d /c echo book2-ch05-child";
+    p.UseShellExecute = false;
+    using (var child = Process.Start(p)) {
+      child.WaitForExit();
+    }
+  }
+}
+'@ | Set-Content -LiteralPath "$dir\w.cs" -Encoding ASCII

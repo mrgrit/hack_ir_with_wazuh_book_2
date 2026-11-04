@@ -1,0 +1,2 @@
+exit
+sudo docker exec -it kt66-web /bin/bash

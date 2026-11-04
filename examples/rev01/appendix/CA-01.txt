@@ -1,0 +1,5 @@
+Test-Path .\examples\rev01\records\manifest.json
+$manifest = Get-Content `
+  .\examples\rev01\records\manifest.json `
+  -Raw -Encoding UTF8 | ConvertFrom-Json
+$manifest.files | Format-Table file,returned

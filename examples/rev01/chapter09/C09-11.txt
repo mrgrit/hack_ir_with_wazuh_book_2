@@ -1,0 +1,3 @@
+curl --fail --show-error --location \
+  --output "$sample" \
+  https://secure.eicar.org/eicar.com.txt

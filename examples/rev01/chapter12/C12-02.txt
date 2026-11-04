@@ -1,0 +1,2 @@
+python3 analytics/kt66_synth.py --days 90 \
+  --seed 66 --out /home/ccc/synth-v2-ch12.jsonl

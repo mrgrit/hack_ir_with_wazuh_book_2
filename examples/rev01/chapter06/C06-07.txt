@@ -1,0 +1,5 @@
+$exe = 'C:\Program Files\osquery\osqueryd\osqueryd.exe'
+Get-AuthenticodeSignature -FilePath $exe |
+ Format-List Status,Path,SignerCertificate
+(Get-Item -LiteralPath $exe).VersionInfo |
+ Format-List CompanyName,ProductName,FileVersion

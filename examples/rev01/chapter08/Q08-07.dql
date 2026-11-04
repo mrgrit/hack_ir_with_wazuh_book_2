@@ -1,0 +1,4 @@
+rule.groups:sca
+AND data.sca.check.result:failed
+AND data.sca.check.title:
+ (*SSH* OR *password* OR *root* OR *firewall*)

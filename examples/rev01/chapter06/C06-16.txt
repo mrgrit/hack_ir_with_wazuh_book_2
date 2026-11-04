@@ -1,0 +1,6 @@
+Get-Service WazuhSvc,Sysmon64,osqueryd |
+ Format-Table Name,Status
+Get-MpComputerStatus |
+ Format-List RealTimeProtectionEnabled,IsTamperProtected
+Get-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa' |
+ Format-List RunAsPPL,RunAsPPLBoot

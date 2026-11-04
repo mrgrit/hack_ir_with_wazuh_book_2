@@ -1,0 +1,4 @@
+ls -l pw-five.txt
+printf '%s\n' Book2Wrong1 Book2Wrong2 Book2Wrong3 \
+  Book2Wrong4 Book2Wrong5 > pw-five.txt
+cat pw-five.txt

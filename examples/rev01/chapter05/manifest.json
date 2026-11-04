@@ -1,0 +1,226 @@
+[
+  {
+    "id": "C05-01",
+    "file": "C05-01.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "실습 위치와 센서 확인",
+    "input": "hostname\nwhoami.exe\n$PSVersionTable.PSVersion\nGet-Service WazuhSvc,Sysmon64 |\n Format-Table Name,Status"
+  },
+  {
+    "id": "C05-02",
+    "file": "C05-02.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "실습 위치와 센서 확인",
+    "input": "Get-ItemProperty 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\PowerShell\\ScriptBlockLogging'\nGet-WinEvent -ListLog 'Microsoft-Windows-PowerShell/Operational' |\n Format-List LogName,IsEnabled\nGet-ExecutionPolicy -List"
+  },
+  {
+    "id": "C05-03",
+    "file": "C05-03.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "작업 디렉터리와 관찰 시각",
+    "input": "$dir = 'C:\\Windows\\Temp\\book2_ch05'\nTest-Path -LiteralPath $dir\n$start = Get-Date\n$start.ToUniversalTime().ToString('o')"
+  },
+  {
+    "id": "C05-04",
+    "file": "C05-04.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "작업 디렉터리와 관찰 시각",
+    "input": "New-Item -ItemType Directory -Path $dir\nGet-Item -LiteralPath $dir"
+  },
+  {
+    "id": "C05-05",
+    "file": "C05-05.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "5.2  인코딩한 PowerShell 명령 실행",
+    "input": "$text = 'Write-Output book2-ch05-encoded'\n$bytes = [Text.Encoding]::Unicode.GetBytes($text)\n$encoded = [Convert]::ToBase64String($bytes)\n$encoded"
+  },
+  {
+    "id": "C05-06",
+    "file": "C05-06.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "5.2  인코딩한 PowerShell 명령 실행",
+    "input": "powershell.exe -NoProfile -EncodedCommand $encoded"
+  },
+  {
+    "id": "C05-07",
+    "file": "C05-07.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "명령줄을 실행하지 않고 복원하기",
+    "input": "[Text.Encoding]::Unicode.GetString(\n [Convert]::FromBase64String($encoded)\n)"
+  },
+  {
+    "id": "C05-08",
+    "file": "C05-08.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "원본 Sysmon 프로세스 확인",
+    "input": "Get-WinEvent -FilterHashtable @{\n LogName='Microsoft-Windows-Sysmon/Operational'\n Id=1;StartTime=$start\n} | Format-List TimeCreated,Id,RecordId,Message"
+  },
+  {
+    "id": "Q05-01",
+    "file": "Q05-01.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "원본 Sysmon 프로세스 확인",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"1\"\nAND data.win.eventdata.image:*powershell.exe\nAND data.win.eventdata.commandLine:*VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIABiAG8AbwBrADIALQBjAGgAMAA1AC0AZQBuAGMAbwBkAGUAZAA=*"
+  },
+  {
+    "id": "Q05-02",
+    "file": "Q05-02.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "명령줄을 조사할 때의 판정 기준",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"1\"\nAND data.win.eventdata.image:*powershell.exe\nAND data.win.eventdata.commandLine:(*-enc* OR *-EncodedCommand* OR *DownloadString* OR *DownloadFile* OR *IEX* OR *Invoke-Expression*)"
+  },
+  {
+    "id": "C05-09",
+    "file": "C05-09.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "5.4  4104에서 처리한 코드 읽기",
+    "input": "powershell.exe -NoProfile -Command {\n $api = 'VirtualAlloc'\n Write-Output ('book2-ch05-scriptblock ' + $api)\n}"
+  },
+  {
+    "id": "C05-10",
+    "file": "C05-10.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "5.4  4104에서 처리한 코드 읽기",
+    "input": "Get-WinEvent -FilterHashtable @{\n LogName='Microsoft-Windows-PowerShell/Operational'\n Id=4104;StartTime=$start\n} | Format-List TimeCreated,Id,RecordId,Message"
+  },
+  {
+    "id": "Q05-03",
+    "file": "Q05-03.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "스크립트 블록을 Wazuh에서 대조",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Microsoft-Windows-PowerShell/Operational\"\nAND data.win.system.eventID:\"4104\"\nAND data.win.eventdata.scriptBlockId:\"5b40f8dd-b7da-4b25-932a-8b50a8b9a59e\""
+  },
+  {
+    "id": "Q05-04",
+    "file": "Q05-04.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "난독화 해제와 의심 문자열의 한계",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Microsoft-Windows-PowerShell/Operational\"\nAND data.win.system.eventID:\"4104\"\nAND data.win.eventdata.scriptBlockText:(*Invoke-Mimikatz* OR *Invoke-Shellcode* OR *System.Reflection.Assembly* OR *VirtualAlloc* OR *SetThreadContext* OR *AmsiUtils* OR *amsiInitFailed*)"
+  },
+  {
+    "id": "Q05-05",
+    "file": "Q05-05.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "인코딩한 문구와 4104 연결",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Microsoft-Windows-PowerShell/Operational\"\nAND data.win.system.eventID:\"4104\"\nAND data.win.eventdata.scriptBlockId:\"c6b05be4-bfdb-4ae4-b16c-ebcbd0c7d19b\""
+  },
+  {
+    "id": "Q05-12",
+    "file": "Q05-12.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "4104를 실행 프로세스에 연결",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"1\"\nAND data.win.eventdata.processId:\"5228\"\nAND timestamp >= \"2026-11-03T14:58:00+09:00\"\nAND timestamp < \"2026-11-03T15:00:00+09:00\""
+  },
+  {
+    "id": "Q05-13",
+    "file": "Q05-13.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "처리 코드 이후의 파일과 통신 조회",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\n \"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:(1 OR 3 OR 11 OR 22)\nAND (data.win.eventdata.processGuid:\n \"{af6e9a1f-780c-6ae9-7406-000000000300}\"\n OR data.win.eventdata.parentProcessGuid:\n \"{af6e9a1f-780c-6ae9-7406-000000000300}\")"
+  },
+  {
+    "id": "C05-11",
+    "file": "C05-11.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "certutil 입력 파일 준비",
+    "input": "Test-Path -LiteralPath \"$dir\\p.b64\"\nTest-Path -LiteralPath \"$dir\\p.txt\"\n$plain = [Text.Encoding]::ASCII.GetBytes('book2-ch05-file')\n[Convert]::ToBase64String($plain) |\n Set-Content -LiteralPath \"$dir\\p.b64\" -Encoding ASCII\nGet-Content -LiteralPath \"$dir\\p.b64\""
+  },
+  {
+    "id": "C05-12",
+    "file": "C05-12.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "문구 파일 복원과 확인",
+    "input": "certutil.exe -decode \"$dir\\p.b64\" \"$dir\\p.txt\"\nGet-Content -LiteralPath \"$dir\\p.txt\"\nGet-FileHash -LiteralPath \"$dir\\p.txt\" -Algorithm SHA256"
+  },
+  {
+    "id": "Q05-06",
+    "file": "Q05-06.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "문구 파일 복원과 확인",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"1\"\nAND data.win.eventdata.image:*certutil.exe\nAND data.win.eventdata.commandLine:*decode*\nAND data.win.eventdata.commandLine:*book2_ch05*"
+  },
+  {
+    "id": "Q05-07",
+    "file": "Q05-07.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "다운로드와 보안 제품의 결과 연결",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Microsoft-Windows-Windows Defender/Operational\"\nAND data.win.system.eventID:(1116 OR 1117)"
+  },
+  {
+    "id": "C05-13",
+    "file": "C05-13.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "5.6  Office 이름을 가진 부모 프로세스",
+    "input": "$csc = 'C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe'\nTest-Path -LiteralPath $csc\nTest-Path -LiteralPath \"$dir\\w.cs\"\nTest-Path -LiteralPath \"$dir\\WINWORD.EXE\""
+  },
+  {
+    "id": "C05-14",
+    "file": "C05-14.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "문구만 출력하는 부모 프로그램 작성",
+    "input": "@'\nusing System.Diagnostics;\nclass LabParent {\n  static void Main() {\n    var p = new ProcessStartInfo();\n    p.FileName = @\"C:\\Windows\\System32\\cmd.exe\";\n    p.Arguments = \"/d /c echo book2-ch05-child\";\n    p.UseShellExecute = false;\n    using (var child = Process.Start(p)) {\n      child.WaitForExit();\n    }\n  }\n}\n'@ | Set-Content -LiteralPath \"$dir\\w.cs\" -Encoding ASCII"
+  },
+  {
+    "id": "C05-15",
+    "file": "C05-15.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "소스 확인과 컴파일",
+    "input": "Get-Content -LiteralPath \"$dir\\w.cs\"\n& $csc /nologo \"/out:$dir\\WINWORD.EXE\" \"$dir\\w.cs\"\n$LASTEXITCODE\nGet-Item -LiteralPath \"$dir\\WINWORD.EXE\""
+  },
+  {
+    "id": "C05-16",
+    "file": "C05-16.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "소스 확인과 컴파일",
+    "input": "Get-AuthenticodeSignature -LiteralPath \"$dir\\WINWORD.EXE\" |\n Format-List Status,Path\n& \"$dir\\WINWORD.EXE\""
+  },
+  {
+    "id": "Q05-08",
+    "file": "Q05-08.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "부모와 자식을 Wazuh에서 찾기",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"1\"\nAND data.win.eventdata.parentImage:*WINWORD.EXE\nAND data.win.eventdata.image:*cmd.exe\nAND data.win.eventdata.commandLine:*book2-ch05-child"
+  },
+  {
+    "id": "Q05-09",
+    "file": "Q05-09.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "프로세스 관계와 문서 유입 경로 조사",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"1\"\nAND data.win.eventdata.processGuid:\"{af6e9a1f-7709-6ae9-6a06-000000000300}\""
+  },
+  {
+    "id": "Q05-10",
+    "file": "Q05-10.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "5.7  검색 조건을 조사 범위로 확장하기",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"1\"\nAND data.win.eventdata.parentImage:(*WINWORD.EXE OR *EXCEL.EXE OR *POWERPNT.EXE OR *OUTLOOK.EXE)\nAND data.win.eventdata.image:(*cmd.exe OR *powershell.exe OR *wscript.exe OR *cscript.exe OR *mshta.exe OR *rundll32.exe OR *regsvr32.exe)"
+  },
+  {
+    "id": "Q05-11",
+    "file": "Q05-11.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-archives-* · DQL",
+    "section": "정상 도구의 실행 인자로 탐색하기",
+    "input": "agent.name:\"windows-user\"\nAND data.win.system.channel:\"Microsoft-Windows-Sysmon/Operational\"\nAND data.win.system.eventID:\"1\"\nAND data.win.eventdata.image:(*certutil.exe OR *mshta.exe OR *regsvr32.exe OR *rundll32.exe OR *bitsadmin.exe OR *wmic.exe OR *msiexec.exe)"
+  },
+  {
+    "id": "C05-17",
+    "file": "C05-17.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "5.8  실습 파일 원상복구",
+    "input": "Get-ChildItem -LiteralPath $dir |\n Select-Object FullName,Length\nGet-Process WINWORD -ErrorAction SilentlyContinue |\n Select-Object Id,Path"
+  },
+  {
+    "id": "C05-18",
+    "file": "C05-18.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "5.8  실습 파일 원상복구",
+    "input": "Remove-Item -LiteralPath \"$dir\\p.b64\"\nRemove-Item -LiteralPath \"$dir\\p.txt\"\nRemove-Item -LiteralPath \"$dir\\w.cs\"\nRemove-Item -LiteralPath \"$dir\\WINWORD.EXE\"\nGet-ChildItem -LiteralPath $dir"
+  },
+  {
+    "id": "C05-19",
+    "file": "C05-19.txt",
+    "where": "Windows 실습 게스트 · 관리자 Windows PowerShell",
+    "section": "최종 상태와 실패 시 점검",
+    "input": "Remove-Item -LiteralPath $dir\nTest-Path -LiteralPath $dir\nGet-Service WazuhSvc,Sysmon64 |\n Format-Table Name,Status\nGet-MpComputerStatus |\n Format-List IsTamperProtected,RealTimeProtectionEnabled\nGet-ExecutionPolicy -List"
+  }
+]

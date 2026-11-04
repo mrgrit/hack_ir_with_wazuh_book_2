@@ -1,0 +1,4 @@
+sudo /usr/sbin/sshd -T |
+ grep -E \
+ '^(permitrootlogin|passwordauthentication|'\
+'pubkeyauthentication|permitemptypasswords) '

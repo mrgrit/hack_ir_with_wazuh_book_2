@@ -1,0 +1,2 @@
+tail -n 2 /var/log/suricata/eve.json
+less /var/ossec/etc/ossec.conf

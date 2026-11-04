@@ -1,0 +1,1 @@
+ls -ld /tmp/wazuh-book2-ch02

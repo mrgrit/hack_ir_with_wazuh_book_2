@@ -1,0 +1,2 @@
+rm pw-two.txt users-three.txt pw-five.txt
+ls -la /tmp/wazuh-book2-ch02

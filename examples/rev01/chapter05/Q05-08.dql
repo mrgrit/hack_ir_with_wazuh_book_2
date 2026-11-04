@@ -1,0 +1,6 @@
+agent.name:"windows-user"
+AND data.win.system.channel:"Microsoft-Windows-Sysmon/Operational"
+AND data.win.system.eventID:"1"
+AND data.win.eventdata.parentImage:*WINWORD.EXE
+AND data.win.eventdata.image:*cmd.exe
+AND data.win.eventdata.commandLine:*book2-ch05-child

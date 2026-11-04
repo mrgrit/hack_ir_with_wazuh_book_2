@@ -1,0 +1,4 @@
+ls -l users-three.txt
+printf '%s\n' book2_missing_a book2_missing_b \
+  book2_missing_c > users-three.txt
+cat users-three.txt

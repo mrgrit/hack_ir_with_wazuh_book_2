@@ -1,0 +1,1602 @@
+{
+  "chapter": 12,
+  "kind": "saved-evidence-excerpts",
+  "scope": "보존 자료의 필드 발췌. 전체 로그나 SIEM 복원용 자료가 아니다.",
+  "cases": [
+    {
+      "case": "ch12-live-ip",
+      "source": "editorial/evidence/analysis-revision/2026-11-04/evidence.json",
+      "source_sha256": "3233d26006eb2224e8019e79e14bba01063fe9aaa53fe4a9116ac3151b40310b",
+      "pointer": "/records/8",
+      "index": "wazuh-alerts-*",
+      "query": {
+        "size": 5,
+        "track_total_hits": true,
+        "query": {
+          "bool": {
+            "should": [
+              {
+                "term": {
+                  "data.srcip": "192.168.0.108"
+                }
+              },
+              {
+                "term": {
+                  "data.src_ip": "192.168.0.108"
+                }
+              }
+            ],
+            "minimum_should_match": 1
+          }
+        },
+        "sort": [
+          {
+            "timestamp": "asc"
+          }
+        ]
+      },
+      "total": {
+        "value": 69,
+        "relation": "eq"
+      },
+      "returned": 5,
+      "records": [
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "zS-8m6EBb-mjh6Pa-AkW",
+          "id": "1793614213.9685708",
+          "timestamp": "2026-11-02T10:10:13.269+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 5,
+            "description": "Web server 400 error code.",
+            "id": "31101"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "zi-8m6EBb-mjh6Pa-AkW",
+          "id": "1793614213.9686232",
+          "timestamp": "2026-11-02T10:10:13.282+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 6,
+            "description": "Shellshock attack attempt",
+            "id": "31166"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "zy-8m6EBb-mjh6Pa-AkW",
+          "id": "1793614213.9686645",
+          "timestamp": "2026-11-02T10:10:13.282+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 5,
+            "description": "Web server 400 error code.",
+            "id": "31101"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "0C-8m6EBb-mjh6Pa-AkW",
+          "id": "1793614213.9687145",
+          "timestamp": "2026-11-02T10:10:13.282+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 5,
+            "description": "Web server 400 error code.",
+            "id": "31101"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "-i-8m6EBb-mjh6Pa-wn2",
+          "id": "1793614213.9687609",
+          "timestamp": "2026-11-02T10:10:13.289+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 7,
+            "description": "ModSecurity: Rejected a query",
+            "id": "30411"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        }
+      ],
+      "source_hash_basis": "LF-normalized UTF-8 bytes"
+    },
+    {
+      "case": "ch12-live-all",
+      "source": "editorial/evidence/analysis-revision/2026-11-04/followup.json",
+      "source_sha256": "5ffabe67273dd68211defb9fec1d26673094635496e2640ee3c129a2e75bc75f",
+      "pointer": "/records/8",
+      "index": "wazuh-alerts-*",
+      "query": {
+        "size": 200,
+        "track_total_hits": true,
+        "query": {
+          "bool": {
+            "filter": [
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "term": {
+                        "data.srcip": "192.168.0.108"
+                      }
+                    },
+                    {
+                      "term": {
+                        "data.src_ip": "192.168.0.108"
+                      }
+                    }
+                  ],
+                  "minimum_should_match": 1
+                }
+              },
+              {
+                "range": {
+                  "timestamp": {
+                    "gte": "2026-11-02T00:00:00+09:00",
+                    "lt": "2026-11-04T00:00:00+09:00"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "sort": [
+          {
+            "timestamp": "asc"
+          }
+        ],
+        "aggs": {
+          "rules": {
+            "terms": {
+              "field": "rule.id",
+              "size": 100
+            }
+          },
+          "agents": {
+            "terms": {
+              "field": "agent.name",
+              "size": 100
+            }
+          },
+          "max_level": {
+            "max": {
+              "field": "rule.level"
+            }
+          },
+          "hours": {
+            "date_histogram": {
+              "field": "timestamp",
+              "fixed_interval": "1h",
+              "time_zone": "+09:00"
+            },
+            "aggs": {
+              "risk": {
+                "sum": {
+                  "script": {
+                    "source": "doc['rule.level'].size()==0 ? 0 : (doc['rule.level'].value >= 5 ? doc['rule.level'].value * doc['rule.level'].value : 0)"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "total": {
+        "value": 69,
+        "relation": "eq"
+      },
+      "returned": 69,
+      "records": [
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "zS-8m6EBb-mjh6Pa-AkW",
+          "id": "1793614213.9685708",
+          "timestamp": "2026-11-02T10:10:13.269+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 5,
+            "description": "Web server 400 error code.",
+            "id": "31101"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "zi-8m6EBb-mjh6Pa-AkW",
+          "id": "1793614213.9686232",
+          "timestamp": "2026-11-02T10:10:13.282+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 6,
+            "description": "Shellshock attack attempt",
+            "id": "31166"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "zy-8m6EBb-mjh6Pa-AkW",
+          "id": "1793614213.9686645",
+          "timestamp": "2026-11-02T10:10:13.282+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 5,
+            "description": "Web server 400 error code.",
+            "id": "31101"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "0C-8m6EBb-mjh6Pa-AkW",
+          "id": "1793614213.9687145",
+          "timestamp": "2026-11-02T10:10:13.282+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 5,
+            "description": "Web server 400 error code.",
+            "id": "31101"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "-i-8m6EBb-mjh6Pa-wn2",
+          "id": "1793614213.9687609",
+          "timestamp": "2026-11-02T10:10:13.289+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 7,
+            "description": "ModSecurity: Rejected a query",
+            "id": "30411"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "-y-8m6EBb-mjh6Pa-wn2",
+          "id": "1793614213.9688419",
+          "timestamp": "2026-11-02T10:10:13.295+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 7,
+            "description": "ModSecurity: Rejected a query",
+            "id": "30411"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "_C-8m6EBb-mjh6Pa-wn2",
+          "id": "1793614213.9689267",
+          "timestamp": "2026-11-02T10:10:13.303+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 7,
+            "description": "ModSecurity: Rejected a query",
+            "id": "30411"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Cy-9m6EBb-mjh6PaAwrN",
+          "id": "1793614215.9690099",
+          "timestamp": "2026-11-02T10:10:15.264+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 6,
+            "description": "A web attack returned code 200 (success).",
+            "id": "31106"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "DC-9m6EBb-mjh6PaAwrN",
+          "id": "1793614215.9690593",
+          "timestamp": "2026-11-02T10:10:15.266+0000",
+          "agent": {
+            "ip": "10.20.32.80",
+            "name": "web",
+            "id": "002"
+          },
+          "rule": {
+            "level": 6,
+            "description": "SQL injection attempt.",
+            "id": "31164"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "-y8EnKEBb-mjh6Pacxnx",
+          "id": "1793618893.12588194",
+          "timestamp": "2026-11-02T11:28:13.009+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "IC8FnKEBb-mjh6Pavxr7",
+          "id": "1793618975.12590173",
+          "timestamp": "2026-11-02T11:29:35.026+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "IS8FnKEBb-mjh6Pavxr7",
+          "id": "1793618976.12590707",
+          "timestamp": "2026-11-02T11:29:36.982+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Iy8FnKEBb-mjh6Pa-hqX",
+          "id": "1793618995.12591646",
+          "timestamp": "2026-11-02T11:29:55.038+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 8,
+            "description": "Maximum authentication attempts exceeded.",
+            "id": "5758"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "JS8FnKEBb-mjh6Pa-hqX",
+          "id": "1793618995.12592413",
+          "timestamp": "2026-11-02T11:29:55.038+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 10,
+            "description": "syslog: User missed the password more than one time",
+            "id": "2502"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Ji8FnKEBb-mjh6Pa-hqX",
+          "id": "1793618997.12592954",
+          "timestamp": "2026-11-02T11:29:57.000+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Li8FnKEBb-mjh6Pa_hp_",
+          "id": "1793618999.12593488",
+          "timestamp": "2026-11-02T11:29:59.002+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "ZC8GnKEBb-mjh6PaXBqR",
+          "id": "1793619017.12594427",
+          "timestamp": "2026-11-02T11:30:17.166+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 10,
+            "description": "syslog: User missed the password more than one time",
+            "id": "2502"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Zi8GnKEBb-mjh6PaXBqR",
+          "id": "1793619017.12595350",
+          "timestamp": "2026-11-02T11:30:17.166+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 8,
+            "description": "Maximum authentication attempts exceeded.",
+            "id": "5758"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Zy8GnKEBb-mjh6PaXBqR",
+          "id": "1793619019.12595735",
+          "timestamp": "2026-11-02T11:30:19.023+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "aC8GnKEBb-mjh6PaXBqR",
+          "id": "1793619023.12596269",
+          "timestamp": "2026-11-02T11:30:23.026+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "hy8HnKEBb-mjh6PagRqZ",
+          "id": "1793619093.12596748",
+          "timestamp": "2026-11-02T11:31:33.122+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "iC8HnKEBb-mjh6PagRqZ",
+          "id": "1793619093.12597282",
+          "timestamp": "2026-11-02T11:31:33.122+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "iS8HnKEBb-mjh6PagRqZ",
+          "id": "1793619093.12597816",
+          "timestamp": "2026-11-02T11:31:33.122+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "ii8HnKEBb-mjh6PagRqZ",
+          "id": "1793619093.12598350",
+          "timestamp": "2026-11-02T11:31:33.122+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "iy8HnKEBb-mjh6PagRqZ",
+          "id": "1793619095.12598884",
+          "timestamp": "2026-11-02T11:31:35.104+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "jC8HnKEBb-mjh6PagRqZ",
+          "id": "1793619095.12599363",
+          "timestamp": "2026-11-02T11:31:35.146+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "jS8HnKEBb-mjh6PagRqZ",
+          "id": "1793619095.12599842",
+          "timestamp": "2026-11-02T11:31:35.146+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "ji8HnKEBb-mjh6PagRqZ",
+          "id": "1793619095.12600321",
+          "timestamp": "2026-11-02T11:31:35.146+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "jy8HnKEBb-mjh6PagRqZ",
+          "id": "1793619097.12600800",
+          "timestamp": "2026-11-02T11:31:37.080+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 10,
+            "description": "sshd: brute force trying to get access to the system. Authentication failed.",
+            "id": "5763"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "kC8HnKEBb-mjh6PagRqZ",
+          "id": "1793619097.12602015",
+          "timestamp": "2026-11-02T11:31:37.080+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "kS8HnKEBb-mjh6PagRqZ",
+          "id": "1793619097.12602494",
+          "timestamp": "2026-11-02T11:31:37.082+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "ki8HnKEBb-mjh6PagRqZ",
+          "id": "1793619097.12602973",
+          "timestamp": "2026-11-02T11:31:37.130+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "ky8HnKEBb-mjh6PagRqZ",
+          "id": "1793619097.12603452",
+          "timestamp": "2026-11-02T11:31:37.189+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "Host Blocked by firewall-drop Active Response",
+            "id": "651"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc",
+            "origin": {
+              "module": "wazuh-execd",
+              "name": "node01"
+            },
+            "command": "add"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "ui8KnKEBb-mjh6PaVBpO",
+          "id": "1793619279.12608071",
+          "timestamp": "2026-11-02T11:34:39.258+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "Host Unblocked by firewall-drop Active Response",
+            "id": "652"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc",
+            "origin": {
+              "module": "wazuh-execd",
+              "name": "node01"
+            },
+            "command": "delete"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "_C8LnKEBb-mjh6Pasxrv",
+          "id": "1793619371.12639121",
+          "timestamp": "2026-11-02T11:36:11.277+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: Attempt to login using a non-existent user",
+            "id": "5710"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "_S8LnKEBb-mjh6Pasxrv",
+          "id": "1793619371.12639653",
+          "timestamp": "2026-11-02T11:36:11.318+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: Attempt to login using a non-existent user",
+            "id": "5710"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "_i8LnKEBb-mjh6Pasxrv",
+          "id": "1793619371.12640208",
+          "timestamp": "2026-11-02T11:36:11.375+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: Attempt to login using a non-existent user",
+            "id": "5710"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "_y8LnKEBb-mjh6Pasxrv",
+          "id": "1793619371.12640740",
+          "timestamp": "2026-11-02T11:36:11.375+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: Attempt to login using a non-existent user",
+            "id": "5710"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "AC8LnKEBb-mjh6Pasxvv",
+          "id": "1793619371.12641272",
+          "timestamp": "2026-11-02T11:36:11.378+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: Attempt to login using a non-existent user",
+            "id": "5710"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "AS8LnKEBb-mjh6Pasxvv",
+          "id": "1793619371.12641804",
+          "timestamp": "2026-11-02T11:36:11.407+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Ai8LnKEBb-mjh6Pasxvv",
+          "id": "1793619371.12642319",
+          "timestamp": "2026-11-02T11:36:11.411+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Ay8LnKEBb-mjh6Pasxvv",
+          "id": "1793619371.12642834",
+          "timestamp": "2026-11-02T11:36:11.416+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "CS8LnKEBb-mjh6PatxvV",
+          "id": "1793619375.12643349",
+          "timestamp": "2026-11-02T11:36:15.288+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: Attempt to login using a non-existent user",
+            "id": "5710"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Cy8LnKEBb-mjh6PatxvV",
+          "id": "1793619375.12644431",
+          "timestamp": "2026-11-02T11:36:15.330+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: Attempt to login using a non-existent user",
+            "id": "5710"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Ci8LnKEBb-mjh6PatxvV",
+          "id": "1793619375.12643890",
+          "timestamp": "2026-11-02T11:36:15.330+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: Attempt to login using a non-existent user",
+            "id": "5710"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "IS8MnKEBb-mjh6Pakhs2",
+          "id": "1793619423.12644972",
+          "timestamp": "2026-11-02T11:37:03.370+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Ii8MnKEBb-mjh6Pakhs2",
+          "id": "1793619425.12645506",
+          "timestamp": "2026-11-02T11:37:05.325+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "JC8MnKEBb-mjh6PanRvx",
+          "id": "1793619433.12646445",
+          "timestamp": "2026-11-02T11:37:13.330+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "KC8MnKEBb-mjh6PaoRvY",
+          "id": "1793619433.12648157",
+          "timestamp": "2026-11-02T11:37:13.453+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "US8NnKEBb-mjh6PafBue",
+          "id": "1793619485.12651352",
+          "timestamp": "2026-11-02T11:38:05.389+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "root"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Uy8NnKEBb-mjh6PafBue",
+          "id": "1793619485.12652188",
+          "timestamp": "2026-11-02T11:38:05.431+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "PAM: User login failed.",
+            "id": "5503"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "root"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "VC8NnKEBb-mjh6PafBue",
+          "id": "1793619487.12652724",
+          "timestamp": "2026-11-02T11:38:07.394+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 5,
+            "description": "sshd: authentication failed.",
+            "id": "5760"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "root"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Vi8NnKEBb-mjh6PagBuG",
+          "id": "1793619491.12653205",
+          "timestamp": "2026-11-02T11:38:11.377+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "ZS8NnKEBb-mjh6Pa4hsx",
+          "id": "1793619515.12654477",
+          "timestamp": "2026-11-02T11:38:35.459+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "cS8NnKEBb-mjh6Pa5hsb",
+          "id": "1793619517.12660548",
+          "timestamp": "2026-11-02T11:38:37.401+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "dC8NnKEBb-mjh6Pa5hsb",
+          "id": "1793619517.12661820",
+          "timestamp": "2026-11-02T11:38:37.414+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "fy8NnKEBb-mjh6Pa5hsb",
+          "id": "1793619517.12666848",
+          "timestamp": "2026-11-02T11:38:37.456+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "hS8NnKEBb-mjh6Pa7Rv0",
+          "id": "1793619519.12669453",
+          "timestamp": "2026-11-02T11:38:39.401+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Ai90nqEBb-mjh6PaTm0v",
+          "id": "1793659775.17385949",
+          "timestamp": "2026-11-02T22:49:35.388+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Ly90nqEBb-mjh6PaTm08",
+          "id": "1793659779.17454353",
+          "timestamp": "2026-11-02T22:49:39.531+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Bi90nqEBb-mjh6Pa9nYc",
+          "id": "1793659821.17890564",
+          "timestamp": "2026-11-02T22:50:21.424+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "8i90nqEBb-mjh6Pa9njo",
+          "id": "1793659827.18287384",
+          "timestamp": "2026-11-02T22:50:27.428+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "bS92nqEBb-mjh6PaK4Ik",
+          "id": "1793659903.18663514",
+          "timestamp": "2026-11-02T22:51:43.516+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Li92nqEBb-mjh6Pa3oOS",
+          "id": "1793659947.18976259",
+          "timestamp": "2026-11-02T22:52:27.818+0000",
+          "agent": {
+            "ip": "10.20.32.254",
+            "name": "kt66-host",
+            "id": "006"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "TC93nqEBb-mjh6Pao5Aq",
+          "id": "1793659998.19415134",
+          "timestamp": "2026-11-02T22:53:18.682+0000",
+          "agent": {
+            "ip": "10.20.32.254",
+            "name": "kt66-host",
+            "id": "006"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "XS93nqEBb-mjh6Pao5Gq",
+          "id": "1793660002.19965559",
+          "timestamp": "2026-11-02T22:53:22.085+0000",
+          "agent": {
+            "ip": "10.20.32.254",
+            "name": "kt66-host",
+            "id": "006"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "3S93nqEBb-mjh6PatZjt",
+          "id": "1793660007.20325203",
+          "timestamp": "2026-11-02T22:53:27.597+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "Ey93nqEBb-mjh6Pazp8z",
+          "id": "1793660013.20414969",
+          "timestamp": "2026-11-02T22:53:33.602+0000",
+          "agent": {
+            "ip": "10.20.30.201",
+            "name": "bastion",
+            "id": "001"
+          },
+          "rule": {
+            "level": 3,
+            "description": "sshd: authentication success.",
+            "id": "5715"
+          },
+          "data": {
+            "srcip": "192.168.0.108",
+            "dstuser": "ccc"
+          }
+        },
+        {
+          "_index": "wazuh-alerts-4.x-2026.11.02",
+          "_id": "6y-gnqEBb-mjh6PaUN-g",
+          "id": "1793662667.24962457",
+          "timestamp": "2026-11-02T23:37:47.380+0000",
+          "agent": {
+            "ip": "10.20.32.254",
+            "name": "kt66-host",
+            "id": "006"
+          },
+          "rule": {
+            "level": 10,
+            "description": "Multiple Firewall drop events from same source.",
+            "id": "4151"
+          },
+          "data": {
+            "srcip": "192.168.0.108"
+          }
+        }
+      ],
+      "source_hash_basis": "LF-normalized UTF-8 bytes"
+    }
+  ]
+}

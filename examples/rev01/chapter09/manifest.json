@@ -1,0 +1,205 @@
+[
+  {
+    "id": "C09-01",
+    "file": "C09-01.txt",
+    "where": "Windows PC · PowerShell",
+    "section": "웹 컨테이너 접속과 실행 위치",
+    "input": "ssh ccc@192.168.0.107"
+  },
+  {
+    "id": "C09-02",
+    "file": "C09-02.txt",
+    "where": "kt66 VM · 터미널",
+    "section": "웹 컨테이너 접속과 실행 위치",
+    "input": "sudo docker ps --format \"{{.Names}}\\t{{.Status}}\"\nsudo docker exec -it kt66-web /bin/bash\nhostname"
+  },
+  {
+    "id": "C09-03",
+    "file": "C09-03.txt",
+    "where": "kt66-web 컨테이너 · root Bash",
+    "section": "9.2  호스트 이상 경보",
+    "input": "less /var/ossec/etc/ossec.conf"
+  },
+  {
+    "id": "C09-04",
+    "file": "C09-04.txt",
+    "where": "kt66-web 컨테이너 · root Bash",
+    "section": "검사 시각과 검색 기간",
+    "input": "grep -F 'rootcheck:' /var/ossec/logs/ossec.log |\n  tail -n 4"
+  },
+  {
+    "id": "Q09-01",
+    "file": "Q09-01.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "검사 시각과 검색 기간",
+    "input": "rule.groups:rootcheck"
+  },
+  {
+    "id": "Q09-02",
+    "file": "Q09-02.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "호스트와 경로로 좁히기",
+    "input": "rule.groups:rootcheck\nAND agent.name:\"web\""
+  },
+  {
+    "id": "Q09-03",
+    "file": "Q09-03.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "호스트와 경로로 좁히기",
+    "input": "rule.groups:rootcheck AND agent.name:\"web\"\nAND data.file:\"/var/log/kt66-cmd.log\""
+  },
+  {
+    "id": "C09-05",
+    "file": "C09-05.txt",
+    "where": "kt66-web 컨테이너 · root Bash",
+    "section": "규칙 이름과 실제 권한 대조",
+    "input": "stat -c '%A %a %U:%G %n' /var/log/kt66-cmd.log"
+  },
+  {
+    "id": "Q09-04",
+    "file": "Q09-04.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "은닉 의심 경보의 추가 조사",
+    "input": "rule.groups:rootcheck\nAND full_log:(*hidden* OR *trojaned*)"
+  },
+  {
+    "id": "C09-06",
+    "file": "C09-06.txt",
+    "where": "kt66-web 컨테이너 · root Bash",
+    "section": "은닉 의심 경보의 추가 조사",
+    "input": "ps -ef\nss -lntup"
+  },
+  {
+    "id": "C09-07",
+    "file": "C09-07.txt",
+    "where": "kt66-web에서 나와 kt66 Ubuntu VM에서 실행",
+    "section": "관리자 컨테이너에서 설정 확인",
+    "input": "exit\nsudo docker exec -it kt66-siem /bin/bash"
+  },
+  {
+    "id": "C09-08",
+    "file": "C09-08.txt",
+    "where": "kt66-siem 컨테이너 · root Bash",
+    "section": "관리자 컨테이너에서 설정 확인",
+    "input": "grep -n -F '<name>virustotal</name>' \\\n  /var/ossec/etc/ossec.conf"
+  },
+  {
+    "id": "C09-09",
+    "file": "C09-09.txt",
+    "where": "kt66-siem에서 나와 kt66 Ubuntu VM에서 실행",
+    "section": "관리자 컨테이너에서 설정 확인",
+    "input": "exit\nsudo docker exec -it kt66-web /bin/bash"
+  },
+  {
+    "id": "C09-10",
+    "file": "C09-10.txt",
+    "where": "kt66-web 컨테이너 · root Bash",
+    "section": "EICAR로 파일 유입을 설명하기",
+    "input": "pwd\nls -ld /var/www/html/uploads\nsample=/var/www/html/uploads/invoice-ch09.pdf.exe\nls -l -- \"$sample\""
+  },
+  {
+    "id": "C09-11",
+    "file": "C09-11.txt",
+    "where": "kt66-web 컨테이너 · root Bash",
+    "section": "선택 실습의 입력과 파일 확인",
+    "input": "curl --fail --show-error --location \\\n  --output \"$sample\" \\\n  https://secure.eicar.org/eicar.com.txt"
+  },
+  {
+    "id": "C09-12",
+    "file": "C09-12.txt",
+    "where": "kt66-web 컨테이너 · root Bash",
+    "section": "선택 실습의 입력과 파일 확인",
+    "input": "ls -l -- \"$sample\"\nwc -c < \"$sample\"\nmd5sum -- \"$sample\"\nsha256sum -- \"$sample\""
+  },
+  {
+    "id": "Q09-05",
+    "file": "Q09-05.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "FIM 경보를 먼저 확인하기",
+    "input": "agent.name:\"web\" AND rule.groups:syscheck\nAND syscheck.path:\n \"/var/www/html/uploads/invoice-ch09.pdf.exe\""
+  },
+  {
+    "id": "Q09-06",
+    "file": "Q09-06.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "VirusTotal 전체 결과와 탐지 결과",
+    "input": "rule.id:87105 OR rule.groups:virustotal"
+  },
+  {
+    "id": "Q09-07",
+    "file": "Q09-07.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "경로와 해시로 판정을 연결하기",
+    "input": "agent.name:\"web\" AND rule.id:87105\nAND data.virustotal.source.file:\n \"/var/www/html/uploads/invoice-ch09.pdf.exe\""
+  },
+  {
+    "id": "Q09-08",
+    "file": "Q09-08.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "미탐지와 조회 실패 구분",
+    "input": "rule.id:(87101 OR 87102 OR 87106)"
+  },
+  {
+    "id": "C09-13",
+    "file": "C09-13.txt",
+    "where": "kt66-web 컨테이너 · root Bash",
+    "section": "프로세스와 로그 수집 확인",
+    "input": "pgrep -a -x clamd\nls -l /var/run/clamav/clamd.ctl\nclamdscan --version\ntail -n 5 /var/log/kt66-clamav.log"
+  },
+  {
+    "id": "Q09-09",
+    "file": "Q09-09.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "ClamAV 경보 검색과 원문",
+    "input": "rule.groups:virus OR rule.id:52502"
+  },
+  {
+    "id": "Q09-10",
+    "file": "Q09-10.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "한 파일의 탐지로 좁히기",
+    "input": "agent.name:\"web\" AND rule.id:52502\nAND full_log:*invoice-ch09.pdf.exe*"
+  },
+  {
+    "id": "C09-14",
+    "file": "C09-14.txt",
+    "where": "kt66-web 컨테이너 · root Bash",
+    "section": "선택 실습의 직접 검사와 종료 코드",
+    "input": "clamdscan --fdpass \"$sample\"\nscan_rc=$?\nprintf \"exit=%s\\n\" \"$scan_rc\""
+  },
+  {
+    "id": "C09-15",
+    "file": "C09-15.txt",
+    "where": "kt66-web 컨테이너 · root Bash",
+    "section": "검사 범위와 문제 확인 순서",
+    "input": "less /usr/local/bin/kt66-clamav\nless /etc/clamav/clamd.conf"
+  },
+  {
+    "id": "Q09-12",
+    "file": "Q09-12.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "파일 이름과 원인 경보를 교차 확인",
+    "input": "agent.name:\"web\" AND\n(syscheck.path:\n \"/var/www/html/uploads/invoice.pdf.exe\" OR\n data.virustotal.source.file:\n \"/var/www/html/uploads/invoice.pdf.exe\")"
+  },
+  {
+    "id": "C09-16",
+    "file": "C09-16.txt",
+    "where": "kt66-web 컨테이너 · root Bash",
+    "section": "9.6  선택 실습 파일의 원상복구",
+    "input": "ls -l -- \"$sample\"\nsha256sum -- \"$sample\"\nrm -i -- \"$sample\"\nls -l -- \"$sample\""
+  },
+  {
+    "id": "Q09-11",
+    "file": "Q09-11.dql",
+    "where": "Windows PC · Wazuh Discover · wazuh-alerts-* · DQL",
+    "section": "9.6  선택 실습 파일의 원상복구",
+    "input": "agent.name:\"web\" AND rule.id:553\nAND syscheck.path:\n \"/var/www/html/uploads/invoice-ch09.pdf.exe\""
+  },
+  {
+    "id": "C09-17",
+    "file": "C09-17.txt",
+    "where": "kt66-web 컨테이너 · root Bash",
+    "section": "수집 상태와 조사 기록 마무리",
+    "input": "pgrep -a -x clamd\n/var/ossec/bin/wazuh-control status\nexit"
+  }
+]

@@ -1,0 +1,2 @@
+sc.exe query book2_ch04_svc
+Test-Path C:\Windows\Temp\book2_ch04_missing.exe

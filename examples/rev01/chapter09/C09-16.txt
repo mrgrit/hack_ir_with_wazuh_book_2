@@ -1,0 +1,4 @@
+ls -l -- "$sample"
+sha256sum -- "$sample"
+rm -i -- "$sample"
+ls -l -- "$sample"

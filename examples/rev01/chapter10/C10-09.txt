@@ -1,0 +1,3 @@
+exit
+sudo docker exec -it kt66-bastion /bin/bash
+less /var/ossec/logs/active-responses.log

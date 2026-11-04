@@ -1,0 +1,6 @@
+agent.name:"windows-user"
+AND data.win.system.channel:
+ "Microsoft-Windows-Sysmon/Operational"
+AND data.win.system.eventID:(1 OR 13)
+AND data.win.eventdata.processGuid:
+ "{af6e9a1f-765d-6ae9-4006-000000000300}"

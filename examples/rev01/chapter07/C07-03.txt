@@ -1,0 +1,6 @@
+$agentDir = 'C:\Program Files (x86)\ossec-agent'
+$cfgPath = Join-Path $agentDir 'ossec.conf'
+Test-Path -LiteralPath $cfgPath
+[xml]$cfg = Get-Content -LiteralPath $cfgPath -Raw
+$cfg.ossec_config.localfile |
+ Format-List location,log_format,query

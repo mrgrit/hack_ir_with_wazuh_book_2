@@ -1,0 +1,7 @@
+agent.name:"windows-user"
+AND data.win.system.providerName:
+ "Microsoft-Windows-Eventlog"
+AND ((data.win.system.channel:"Security"
+ AND data.win.system.eventID:"1102") OR
+ (data.win.system.channel:"System"
+ AND data.win.system.eventID:"104"))

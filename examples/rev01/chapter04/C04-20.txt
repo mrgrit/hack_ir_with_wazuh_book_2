@@ -1,0 +1,1 @@
+& $oq --json "SELECT u.username,g.groupname FROM user_groups ug JOIN users u USING(uid) JOIN groups g USING(gid) WHERE g.group_sid='S-1-5-32-544';"

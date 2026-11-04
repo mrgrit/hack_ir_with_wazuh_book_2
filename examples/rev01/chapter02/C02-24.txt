@@ -1,0 +1,3 @@
+pwd
+ls -la /tmp/wazuh-book2-ch02
+cat /root/.config/freerdp/known_hosts2

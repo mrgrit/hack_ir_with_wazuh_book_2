@@ -1,0 +1,3 @@
+pgrep -a -x clamd
+/var/ossec/bin/wazuh-control status
+exit

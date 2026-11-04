@@ -1,0 +1,4 @@
+sc.exe qc book2_ch04_svc
+sc.exe query book2_ch04_svc
+schtasks.exe /query /tn book2_ch04_task /fo LIST
+reg.exe query HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v book2_ch04_run

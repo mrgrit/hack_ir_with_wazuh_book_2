@@ -1,0 +1,4 @@
+$text = 'Write-Output book2-ch05-encoded'
+$bytes = [Text.Encoding]::Unicode.GetBytes($text)
+$encoded = [Convert]::ToBase64String($bytes)
+$encoded

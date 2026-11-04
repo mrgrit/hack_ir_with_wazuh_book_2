@@ -1,0 +1,10 @@
+$bundle = Get-Content `
+  .\examples\rev01\records\chapter01.json `
+  -Raw -Encoding UTF8 | ConvertFrom-Json
+$case = $bundle.cases |
+  Where-Object case -eq 'original-alert-fields'
+$case.records | ForEach-Object {
+  $_.rule | Format-List
+  $_.data.win.system | Format-List
+  $_.data.win.eventdata | Format-List
+}

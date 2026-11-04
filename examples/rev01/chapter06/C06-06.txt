@@ -1,0 +1,4 @@
+Get-WinEvent -FilterHashtable @{
+ LogName=$sysmonLog;Id=10
+} -MaxEvents 20 |
+ Format-List TimeCreated,Id,RecordId,Message
